@@ -1,0 +1,13 @@
+.navbar-inverse{
+	background-color: #BF0404 !important;
+	border: none;
+}
+
+.player {
+	z-index: 1000;
+	position: absolute;
+	bottom: 0;
+	background-color: #BF0404;
+	height: 100px;
+	width: 100%;
+}
