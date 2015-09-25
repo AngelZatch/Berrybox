@@ -1,5 +1,5 @@
-.navbar-inverse{
-	background-color: #BF0404 !important;
+.navbar{
+	border-bottom: 1px solid #BF0404 !important;
 	border: none;
 }
 
@@ -20,10 +20,23 @@
 	padding-right: 0 ! important;
 }
 
-.panel-body {
-	min-height: 70.8%;
+
+
+.chat-room {
+	text-align: center;
 }
 
-.chat-title {
-	text-align: center;
+.room-dj {
+	font-weight: 700;
+}
+
+.body-chat {
+	overflow-y: scroll;
+	min-height: 64.2%;
+	max-height: 64.2%;
+}
+
+.message-author{
+	font-weight: 600;
+	color: aqua;
 }
