@@ -7,7 +7,23 @@
 	z-index: 1000;
 	position: absolute;
 	bottom: 0;
-	background-color: #BF0404;
-	height: 100px;
+	border-top: 1px solid #BF0404;
+	height: 50px;
 	width: 100%;
+}
+
+.main {
+	margin-top: 50px;
+}
+
+.panel-chat {
+	padding-right: 0 ! important;
+}
+
+.panel-body {
+	min-height: 70.8%;
+}
+
+.chat-title {
+	text-align: center;
 }
