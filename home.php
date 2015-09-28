@@ -1,24 +1,37 @@
 <?php
 session_start();
 require_once "functions/db_connect.php";
+$db = PDOFactory::getConnection();
+$queryActiveRooms = $db->query("SHOW TABLES LIKE '%Room%'");
 
 /** LOAD CHAT **/
 ?>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>Strawberry Music Streamer</title>
-	<?php include "styles.php";?>
-</head>
-<body>
-<?php include "includes/nav.php";?>
-<div class="main">
-<div class="col-lg-8">
-	<button class="btn btn-primary">Create a room</button>
-</div>
-<?php include "includes/chat.php";?>
-</div>
-<?php include "includes/player.php";?>
-<?php include "scripts.php";?>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Strawberry Music Streamer</title>
+		<?php include "styles.php";?>
+	</head>
+	<body>
+		<?php include "includes/nav.php";?>
+		<div class="main">
+			<div class="col-lg-8" id="large-block">
+				<!--<button class="btn btn-primary btn-block" id="create-room">Create a room</button>
+				<p>Active rooms</p>
+				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
+				<p><?php print_r($activeRooms);?></p>
+				<?php } ?>-->
+				<?php include "includes/page-player.php";?>
+			</div>
+			<?php include "includes/chat.php";?>
+		</div>
+		<?php include "includes/player.php";?>
+		<?php include "scripts.php";?>
+	</body>
+	<script>
+		$("#create-room").on('click', function(){
+			$("#large-block").empty();
+			$("#large-block").load("includes/create_room.php");
+		})
+	</script>
 </html>

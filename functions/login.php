@@ -15,6 +15,7 @@ if(isset($_POST["login"])){
 		$credentials = $checkCredentials->fetch(PDO::FETCH_ASSOC);
 		$_SESSION["username"] = $credentials["user_pseudo"];
 		$_SESSION["power"] = $credentials["user_power"];
+		$_SESSION["token"] = $credentials["user_token"];
 		header("Location: home.php");
 	}
 }

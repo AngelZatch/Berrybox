@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	window.uniqueToken = "9RSDFCF0QN7ZSOS";
 	loadChat();
 })
 
@@ -17,14 +18,16 @@ $(".btn-chat").on('click', function(){
 
 function sendMessage(){
 	var message = $(".chatbox").val();
-	$.post("functions/post_chat.php", {message : message}).done(function(){
+	var token = window.uniqueToken;
+	$.post("functions/post_chat.php", {message : message, token : token}).done(function(){
 		$(".chatbox").val('');
 		loadChat();
 	})
 }
 
 function loadChat(){
-	$.post("functions/load_chat.php").done(function(data){
+	var token = window.uniqueToken;
+	$.post("functions/load_chat.php", {token : token}).done(function(data){
 		var messageList = JSON.parse(data);
 		$(".panel-body").empty();
 		for(var i = 0; i < messageList.length; i++){

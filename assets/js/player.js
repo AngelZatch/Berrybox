@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	makeCORSRequest();
+	//makeCORSRequest();
 	/*$(".play-url").on('click', function(){
 		var link = $("url-box").val();
 		window.player = AV.Player.fromURL("https://www.youtube.com/watch?v=lMYBhsQ0krw");
