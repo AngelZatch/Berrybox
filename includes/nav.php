@@ -1,5 +1,4 @@
 <?php
-session_start();
 ?>
 <nav class="navbar navbar-fixed-top">
 	<div class="container-fluid">
@@ -13,11 +12,11 @@ session_start();
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<?php if(!isset($_SESSION["power"])){?>
-				<li><button class="btn btn-primary">Log in</button></li>
-				<li><a href="signup.php" role="button" class="btn btn-default">Sign up</a></li>
+				<a href="portal.php" class="btn btn-primary navbar-btn">Log in</a>
+				<a href="signup.php" role="button" class="btn btn-default navbar-btn">Sign up</a>
 				<?php } else { ?>
-				<li><a href=""><span class="glyphicon glyphicon-user"></span></a></li>
-				<li><a href=""><span class="glyphicon glyphicon-off"></span> Sign out</a></li>
+				<li><a href=""><span class="glyphicon glyphicon-user"></span><?php echo $_SESSION["username"];?></a></li>
+				<li><a href="logout.php"><span class="glyphicon glyphicon-off"></span> Sign out</a></li>
 				<?php } ?>
 			</ul>
 		</div>
