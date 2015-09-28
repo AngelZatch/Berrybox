@@ -13,7 +13,7 @@
 }
 
 .main {
-	margin-top: 50px;
+	margin-top: 52px;
 }
 
 .panel-chat {
@@ -32,11 +32,20 @@
 
 .body-chat {
 	overflow-y: scroll;
-	min-height: 64.2%;
-	max-height: 64.2%;
+	min-height: 58.5%;
+	max-height: 58.5%;
 }
 
 .message-author{
 	font-weight: 600;
 	color: aqua;
+}
+
+.room-title {
+	text-align: center;
+	font-size: 18px;
+}
+
+.user-room {
+	font-weight: 800;
 }
