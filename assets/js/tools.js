@@ -14,6 +14,6 @@ $(document).ready(function(){
 
 	$(".navbar-brand").on('click', function(){
 		$("#large-block").empty();
-		$("#large-block").load("includes/base-page.php");
+		$("#large-block").load("base_page.php");
 	})
 })

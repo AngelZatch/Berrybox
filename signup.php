@@ -26,7 +26,7 @@ if(isset($_POST["signup"])){
 		<?php include "styles.php";?>
 	</head>
 	<body>
-		<?php include "includes/nav.php";?>
+		<?php include "nav.php";?>
 		<div class="main">
 			<div class="col-lg-7 col-lg-offset-2">
 				<form action="" method="post">
@@ -46,7 +46,7 @@ if(isset($_POST["signup"])){
 				</form>
 			</div>
 		</div>
-		<?php include "includes/player.php";?>
+		<?php include "player.php";?>
 		<?php include "scripts.php";?>
 	</body>
 </html>

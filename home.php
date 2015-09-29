@@ -1,10 +1,5 @@
 <?php
 session_start();
-require_once "functions/db_connect.php";
-$db = PDOFactory::getConnection();
-
-//$enteredRooms = $db->query("SHOW COLUMNS LIKE '%roomUsers%")->rowCount();
-//echo $enteredRooms;
 ?>
 <html>
 	<head>
@@ -13,16 +8,15 @@ $db = PDOFactory::getConnection();
 		<?php include "styles.php";?>
 	</head>
 	<body>
-		<?php include "includes/nav.php";?>
+		<?php include "nav.php";?>
 		<div class="main">
-			<div class="col-lg-8" id="large-block">
-				<?php include "includes/base-page.php";?>
-			</div>
-			<div class="col-lg-4" id="small-block">
-				<?php include "includes/chat.php";?>
+			<div class="col-lg-12">
+				<div id="large-block">
+					<?php include "base_page.php";?>
+				</div>
 			</div>
 		</div>
-		<?php include "includes/player.php";?>
+		<?php include "player.php";?>
 		<?php include "scripts.php";?>
 	</body>
 	<script>
@@ -46,13 +40,15 @@ $db = PDOFactory::getConnection();
 			})
 		}).on('click', '#create-room', function(){
 			$("#large-block").empty();
-			$("#large-block").load("includes/create_room.php");
+			$("#large-block").load("create_room.php");
 		}).on('click', '.join-room', function(){
 			var roomToken = $(this).val();
 			var userToken = "<?php echo $_SESSION["token"];?>";
-			/*$.post("functions/join_room.php", {roomToken : roomToken, userToken : userToken}).done(function(data){
-		//$.post("functions/page_player.php");
-	})*/
+			$.post("functions/join_room.php", {roomToken : roomToken, userToken : userToken}).done(function(data){
+				$("#large-block").empty();
+				$("#large-block").load("room.php", {roomToken : roomToken});
+				loadChat(roomToken);
+			})
 		}).on('click', '[name=createRoom]', function(){
 			var roomName = $('[name=roomName]').val();
 			var user = "<?php echo $_SESSION["token"];?>";
@@ -63,12 +59,12 @@ $db = PDOFactory::getConnection();
 				/** Once the room is created **/
 				$("#large-block").empty();
 				/** Bring the player of the room **/
-				$("#large-block").load("includes.page_player.php");
+				$("#large-block").load("includes/room.php");
 			})
 		})
 		$("#create-room").on('click', function(){
 			$("#large-block").empty();
-			$("#large-block").load("includes/create_room.php");
+			$("#large-block").load("create_room.php");
 		})
 	</script>
 </html>
