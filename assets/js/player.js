@@ -1,9 +1,12 @@
 $(document).ready(function(){
+
 	//makeCORSRequest();
-	/*$(".play-url").on('click', function(){
-		var link = $("url-box").val();
-		window.player = AV.Player.fromURL("https://www.youtube.com/watch?v=lMYBhsQ0krw");
-	})*/
+	$(".play-url").on('click', function(){
+		var src = $(".url-box").val();
+		console.log(src);
+		/*window.player = AV.Player.fromURL("https://www.youtube.com/watch?v=lMYBhsQ0krw");*/
+		$("#frame-play iframe").attr("src", src);
+	})
 
 	/*window.player = AV.Player.fromURL("http://www.youtube.com/watch?v=lMYBhsQ0krw");
 	player.play();*/

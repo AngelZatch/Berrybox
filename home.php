@@ -2,9 +2,6 @@
 session_start();
 require_once "functions/db_connect.php";
 $db = PDOFactory::getConnection();
-$queryActiveRooms = $db->query("SHOW TABLES LIKE '%Room%'");
-
-/** LOAD CHAT **/
 ?>
 <html>
 	<head>
@@ -16,11 +13,6 @@ $queryActiveRooms = $db->query("SHOW TABLES LIKE '%Room%'");
 		<?php include "includes/nav.php";?>
 		<div class="main">
 			<div class="col-lg-8" id="large-block">
-				<!--<button class="btn btn-primary btn-block" id="create-room">Create a room</button>
-				<p>Active rooms</p>
-				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
-				<p><?php print_r($activeRooms);?></p>
-				<?php } ?>-->
 				<?php include "includes/page-player.php";?>
 			</div>
 			<?php include "includes/chat.php";?>

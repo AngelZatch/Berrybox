@@ -2,7 +2,7 @@
 ?>
 <nav class="navbar navbar-fixed-top">
 	<div class="container-fluid">
-		<a href="home.php" class="navbar-brand">Strawberry</a>
+		<a class="navbar-brand">Strawberry</a>
 		<form class="navbar-form navbar-left" role="search">
 			<div class="form-group">
 				<input type="text" class="form-control" name="search_terms" placeholder="Search anything...">
