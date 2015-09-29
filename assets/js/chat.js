@@ -31,7 +31,7 @@ function loadChat(){
 		var messageList = JSON.parse(data);
 		$(".panel-body").empty();
 		for(var i = 0; i < messageList.length; i++){
-			var message = "["+messageList[i].timestamp+"] ";
+			var message = messageList[i].timestamp+" ";
 			message += "<span class='message-author' style='color:"+messageList[i].authorColor+";'>";
 			message += messageList[i].author;
 			message += "</span>";

@@ -1,6 +1,7 @@
 .navbar{
 	border-bottom: 1px solid #BF0404 !important;
 	border: none;
+	background-color: white;
 }
 
 .player {
@@ -19,8 +20,6 @@
 .panel-chat {
 	padding-right: 0 ! important;
 }
-
-
 
 .chat-room {
 	text-align: center;

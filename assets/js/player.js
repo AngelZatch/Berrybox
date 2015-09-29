@@ -2,10 +2,21 @@ $(document).ready(function(){
 
 	//makeCORSRequest();
 	$(".play-url").on('click', function(){
+		// Get URL
 		var src = $(".url-box").val();
-		console.log(src);
-		/*window.player = AV.Player.fromURL("https://www.youtube.com/watch?v=lMYBhsQ0krw");*/
-		$("#frame-play iframe").attr("src", src);
+		var res = src.replace("watch?v=", "embed/");
+		res += "?autoplay=1";
+
+		// Load video into iframe
+		$("#frame-play iframe").attr("src", res);
+
+		// Empty URL box
+		$(".url-box").empty();
+
+		// Post URL into room history
+		$.post("functions/post_history.php", {url : res, roomToken : window.uniqueToken}).done(function(data){
+
+		})
 	})
 
 	/*window.player = AV.Player.fromURL("http://www.youtube.com/watch?v=lMYBhsQ0krw");
