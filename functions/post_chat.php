@@ -20,4 +20,4 @@ VALUES(:author, :time, :message)");
 }catch(PDOException $e){
 	$db->rollBack();
 }
-
+?>

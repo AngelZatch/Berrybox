@@ -18,7 +18,7 @@ function loadChat(data){
 			message += messageList[i].author;
 			message += "</span>";
 			message += " : "+messageList[i].content+"<br/>";
-			$(".panel-body").append(message);
+			$(".body-chat").append(message);
 		}
 	})
 }

@@ -19,4 +19,5 @@ try{
 	$db->commit();
 } catch(PDOException $e){
 	$db->rollBack();
+	echo $e->getMessage();
 }

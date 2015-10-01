@@ -32,8 +32,6 @@
 
 .body-chat {
 	overflow-y: scroll;
-	min-height: 58.5%;
-	max-height: 58.5%;
 }
 
 .message-author{
@@ -48,4 +46,13 @@
 
 .user-room {
 	font-weight: 800;
+}
+
+#room-player {
+	margin-left: none;
+}
+
+#room-chat {
+	padding-right: 0;
+	height: auto !important;
 }

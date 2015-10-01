@@ -10,13 +10,10 @@ session_start();
 	<body>
 		<?php include "nav.php";?>
 		<div class="main">
-			<div class="col-lg-12">
-				<div id="large-block">
-					<?php include "base_page.php";?>
-				</div>
+			<div id="large-block">
+				<?php include "base_page.php";?>
 			</div>
 		</div>
-		<?php include "player.php";?>
 		<?php include "scripts.php";?>
 	</body>
 	<script>

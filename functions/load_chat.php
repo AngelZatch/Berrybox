@@ -10,7 +10,7 @@ $messageList = array();
 while($message = $load->fetch(PDO::FETCH_ASSOC)){
 	$m = array();
 	$m["author"] = $message["user_pseudo"];
-	//$m["authorColor"] = $message["up_color"];
+	$m["authorColor"] = $message["up_color"];
 	$m["timestamp"] = date_create($message["message_time"])->format('H:i');
 	$m["content"] = stripslashes($message["message_contents"]);
 	array_push($messageList, $m);

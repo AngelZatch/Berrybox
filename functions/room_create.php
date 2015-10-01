@@ -40,6 +40,17 @@ room_user_token VARCHAR(10) NOT NULL,
 room_user_state INT(11),
 room_user_date_state DATETIME
 )");
+
+	// Put the creator of the room in the room
+	$activeUser = $db->query("INSERT INTO roomUsers_$uniqueToken(room_user_token, room_user_state, room_user_date_state)
+	VALUES(:token, :state, :date)");
+	$initialState = 2; // Administrator
+	$date = date_create('now')->format('Y-m-d H:i:s');
+	$activeUser->bindParam(':token', $creatorToken);
+	$activeUser->bindParam(':state', $initialState);
+	$activeUser->bindParam(':token', $date);
+	$activeUser->execute();
+
 	echo $uniqueToken;
 } catch (PDOException $e){
 	echo $e->getMessage();
