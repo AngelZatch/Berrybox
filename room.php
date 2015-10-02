@@ -57,7 +57,10 @@ $roomDetails = $db->query("SELECT *
 <script>
 	$(document).ready(function(){
 		var roomToken = "<?php echo $roomToken;?>";
+		setInterval(loadChat, 3000, roomToken);
 		loadHistory(roomToken);
+		loadCurrentPlay(roomToken);
+		setInterval(loadCurrentPlay, 5000, roomToken);
 	}).on('focus', '.chatbox', function(){
 		$(this).keypress(function(event){
 			if(event.which == 13){
@@ -76,7 +79,7 @@ $roomDetails = $db->query("SELECT *
 		res += "?autoplay=1";
 
 		// Load video into iframe
-		$("#frame-play iframe").attr("src", res);
+		playVideo(res);
 
 		// Empty URL box
 		$(".url-box").val('');
@@ -106,5 +109,17 @@ $roomDetails = $db->query("SELECT *
 			$(".room-history").empty();
 			$(".room-history").append(listOfSongs);
 		})
+	}
+	function loadCurrentPlay(roomToken){
+		$.post("functions/load_current.php", {roomToken : roomToken}).done(function(data){
+			var url = "https://youtube.com/embed/"+data+"?autoplay=1";
+			if(url != sessionStorage.getItem("currently-playing")){
+				playVideo(url);
+			}
+		})
+	}
+	function playVideo(res){
+		$("#frame-play iframe").attr("src", res);
+		sessionStorage.setItem("currently-playing", res);
 	}
 </script>

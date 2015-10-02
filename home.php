@@ -44,7 +44,6 @@ session_start();
 			$.post("functions/join_room.php", {roomToken : roomToken, userToken : userToken}).done(function(data){
 				$("#large-block").empty();
 				$("#large-block").load("room.php", {roomToken : roomToken});
-				loadChat(roomToken);
 			})
 		}).on('click', '[name=createRoom]', function(){
 			var roomName = $('[name=roomName]').val();

@@ -8,6 +8,7 @@ function sendMessage(data){
 }
 
 function loadChat(data){
+	console.log("fetching chat");
 	var token = data;
 	$.post("functions/load_chat.php", {token : token}).done(function(data){
 		var messageList = JSON.parse(data);
