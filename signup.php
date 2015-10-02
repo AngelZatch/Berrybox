@@ -6,6 +6,7 @@ if(isset($_POST["signup"])){
 	$db = PDOFactory::getConnection();
 
 	$token = generateUserToken();
+	$color = "000000";
 
 	try{
 		$newUser = $db->prepare("INSERT INTO user(user_token, user_pseudo, user_pwd) VALUES(:token, :pseudo, :pwd)");
@@ -13,6 +14,12 @@ if(isset($_POST["signup"])){
 		$newUser->bindParam(':pwd', $_POST["password"]);
 		$newUser->bindParam(':token', $token);
 		$newUser->execute();
+
+		$newPref = $db->prepare("INSERT INTO user_preferences(up_user_id, up_color)
+								VALUES(:token, :color)");
+		$newPref->bindParam(':token', $token);
+		$newPref->bindParam(':color', $color);
+		$newPref->execute();
 		header('Location: home.php');
 	} catch(PDOException $e){
 		echo $e->getMessage();
