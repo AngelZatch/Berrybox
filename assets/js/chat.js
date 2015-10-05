@@ -1,8 +1,8 @@
 function sendMessage(data){
 	var message = $(".chatbox").val();
 	var token = data;
-	$.post("functions/post_chat.php", {message : message, token : token}).done(function(){
-		$(".chatbox").val('');
+	$(".chatbox").val('');
+	$.post("functions/post_chat.php", {message : message, token : token}).done(function(data){
 		loadChat(token);
 	})
 }
