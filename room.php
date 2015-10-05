@@ -128,17 +128,19 @@ if(isset($_GET["lang"])){
 	}*/
 	function loadCurrentPlay(roomToken){
 		$.post("functions/load_current.php", {roomToken : roomToken}).done(function(data){
-			var url = "https://www.youtube.com/embed/"+data+"?autoplay=1";
-			console.log("Checking video with "+url);
-			if(url != sessionStorage.getItem("currently-playing")){
-				playVideo(url);
-				$.post("functions/fetch_video_info.php", {id : data}).done(function(data){
-					$(".currently-name").empty();
-					$(".currently-name").html(data);
-				})
-				console.log("Different token. Playing new video : "+data);
-			} else {
-				console.log("Same token.");
+			if(data != null){
+				var url = "https://www.youtube.com/embed/"+data+"?autoplay=1";
+				console.log("Checking video with "+url);
+				if(url != sessionStorage.getItem("currently-playing")){
+					playVideo(url);
+					$.post("functions/fetch_video_info.php", {id : data}).done(function(data){
+						$(".currently-name").empty();
+						$(".currently-name").html(data);
+					})
+					console.log("Different token. Playing new video : "+data);
+				} else {
+					console.log("Same token.");
+				}
 			}
 		})
 	}

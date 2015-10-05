@@ -25,7 +25,7 @@ if(isset($_GET["lang"])){
 		<?php include "nav.php";?>
 		<div class="main">
 			<div id="large-block">
-				<button class="btn btn-primary btn-block" id="create-room"><?php echo $lang["room_create"];?></button>
+				<a href="create_room.php?lang=<?php echo $_GET["lang"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_create"];?></a>
 				<p id="active-rooms-title"><?php echo $lang["active_room"];?></p>
 				<div class="container-fluid">
 					<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
@@ -45,28 +45,4 @@ if(isset($_GET["lang"])){
 		</div>
 		<?php include "scripts.php";?>
 	</body>
-	<script>
-		$(document).ready(function(){
-			console.log("ready");
-		}).on('click', '#create-room', function(){
-			$("#large-block").empty();
-			$("#large-block").load("create_room.php");
-		}).on('click', '[name=createRoom]', function(){
-			var roomName = $('[name=roomName]').val();
-			var user = "<?php echo $_SESSION["token"];?>";
-			$.post("functions/room_create.php", {roomName : roomName, creator : user}).done(function(data){
-				/** Unique token of the room **/
-				sessionStorage.setItem("created-room", data);
-				window.uniqueToken = data;
-				/** Once the room is created **/
-				$("#large-block").empty();
-				/** Bring the player of the room **/
-				$("#large-block").load("includes/room.php");
-			})
-		})
-		$("#create-room").on('click', function(){
-			$("#large-block").empty();
-			$("#large-block").load("create_room.php");
-		})
-	</script>
 </html>
