@@ -21,6 +21,7 @@ function loadChat(data){
 			message += " : "+messageList[i].content+"<br/>";
 			message += "</p>";
 			$(".body-chat").append(message);
+			$(".body-chat").scrollTop($(".body-chat")[0].scrollHeight);
 		}
 	})
 }

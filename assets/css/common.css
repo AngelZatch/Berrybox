@@ -35,6 +35,7 @@
 
 .body-chat {
 	overflow-y: scroll;
+	height: 83.7vh;
 }
 
 .room-title {
