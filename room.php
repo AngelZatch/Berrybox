@@ -72,7 +72,37 @@ if(isset($_GET["lang"])){
 		setInterval(loadChat, 3000, roomToken);
 		//loadHistory(roomToken);
 		loadCurrentPlay(roomToken);
-		setInterval(loadCurrentPlay, 5000, roomToken);
+		var checkVideo = setInterval(loadCurrentPlay, 5000, roomToken);
+		$(document).on('click','.play-url', function(){
+			// Get room token
+			var roomToken = "<?php echo $roomToken;?>";
+
+			// Get URL
+			var src = $(".url-box").val();
+			if(src != ''){
+				clearInterval(checkVideo);
+				var res = src.replace("watch?v=", "embed/");
+				res += "?autoplay=1";
+
+				// Load video into iframe
+				var id = playVideo(res);
+
+				// get ID of video
+				var id = res.substr(30, 11);
+				$.post("functions/fetch_video_info.php", {id : id}).done(function(data){
+					$(".currently-name").empty();
+					$(".currently-name").html(data);
+				})
+
+				// Empty URL box
+				$(".url-box").val('');
+
+				// Post URL into room history
+				$.post("functions/post_history.php", {url : id, roomToken : roomToken}).done(function(data){
+					var checkVideo = setInterval(loadCurrentPlay, 5000, roomToken);
+				})
+			}
+		})
 	}).on('focus', '.chatbox', function(){
 		$(this).keypress(function(event){
 			if(event.which == 13){
@@ -81,27 +111,6 @@ if(isset($_GET["lang"])){
 		})
 	}).on('click', '.btn-chat', function(){
 		sendMessage("<?php echo $roomToken;?>");
-	}).on('click','.play-url', function(){
-		// Get room token
-		var roomToken = "<?php echo $roomToken;?>";
-
-		// Get URL
-		var src = $(".url-box").val();
-		if(src != ''){
-			var res = src.replace("watch?v=", "embed/");
-			res += "?autoplay=1";
-
-			// Load video into iframe
-			playVideo(res);
-
-			// Empty URL box
-			$(".url-box").val('');
-
-			// Post URL into room history
-			$.post("functions/post_history.php", {url : id, roomToken : roomToken}).done(function(data){
-				//loadHistory(roomToken);
-			})
-		}
 	})/*
 	function loadHistory(roomToken){
 		$.post("functions/fetch_history.php", {roomToken : roomToken}).done(function(data){
@@ -119,20 +128,23 @@ if(isset($_GET["lang"])){
 	}*/
 	function loadCurrentPlay(roomToken){
 		$.post("functions/load_current.php", {roomToken : roomToken}).done(function(data){
-			var url = "https://youtube.com/embed/"+data+"?autoplay=1";
+			var url = "https://www.youtube.com/embed/"+data+"?autoplay=1";
+			console.log("Checking video with "+url);
 			if(url != sessionStorage.getItem("currently-playing")){
 				playVideo(url);
+				$.post("functions/fetch_video_info.php", {id : data}).done(function(data){
+					$(".currently-name").empty();
+					$(".currently-name").html(data);
+				})
+				console.log("Different token. Playing new video : "+data);
+			} else {
+				console.log("Same token.");
 			}
 		})
 	}
 	function playVideo(res){
-		$("#frame-play iframe").attr("src", res);
-		// get ID of video
-		var id = res.substr(30, 11);
-		$.post("functions/fetch_video_info.php", {id : id}).done(function(data){
-			$(".currently-name").empty();
-			$(".currently-name").html(data);
-		})
 		sessionStorage.setItem("currently-playing", res);
+		console.log("Setting storage : "+res);
+		$("#frame-play iframe").attr("src", res);
 	}
 </script>
