@@ -2,6 +2,15 @@
 require_once "functions/db_connect.php";
 include "functions/tools.php";
 
+if(isset($_GET["lang"])){
+	$lang = $_GET["lang"];
+	$_SESSION["lang"] = $lang;
+
+	include_once "languages/lang.".$lang.".php";
+} else {
+	header("Location:portal.php?lang=en");
+}
+
 if(isset($_POST["signup"])){
 	$db = PDOFactory::getConnection();
 
@@ -20,11 +29,12 @@ if(isset($_POST["signup"])){
 		$newPref->bindParam(':token', $token);
 		$newPref->bindParam(':color', $color);
 		$newPref->execute();
-		header('Location: home.php');
+		header('Location: home.php?lang='.$_GET["lang"]);
 	} catch(PDOException $e){
 		echo $e->getMessage();
 	}
 }
+
 ?>
 <html>
 	<head>
@@ -38,22 +48,21 @@ if(isset($_POST["signup"])){
 			<div class="col-lg-7 col-lg-offset-2">
 				<form action="" method="post">
 					<div class="form-group">
-						<label for="username" class="control-label">Username</label>
+						<label for="username" class="control-label"><?php echo $lang["username"];?></label>
 						<input type="text" placeholder="Username" class="form-control" name="username">
 					</div>
 					<div class="form-group">
-						<label for="password" class="control-label">Password</label>
+						<label for="password" class="control-label"><?php echo $lang["password"];?></label>
 						<input type="password" class="form-control" name="password">
 					</div>
 					<div class="form-group">
-						<label for="password-confirm" class="control-label">Please confirm your password</label>
+						<label for="password-confirm" class="control-label"><?php echo $lang["pwd_confirm"];?></label>
 						<input type="password" class="form-control">
 					</div>
-					<input type="submit" class="btn btn-primary btn-block" name="signup" value="Register">
+					<input type="submit" class="btn btn-primary btn-block" name="signup" value="<?php echo $lang["sign_up"];?>">
 				</form>
 			</div>
 		</div>
-		<?php include "player.php";?>
 		<?php include "scripts.php";?>
 	</body>
 </html>

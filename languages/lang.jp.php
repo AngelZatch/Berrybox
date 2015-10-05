@@ -20,11 +20,17 @@ $lang["back"] = "戻る";
 
 /** ACTIONS **/
 $lang["log_out"] = "ログアウト";
+$lang["log_in"] = "ログイン";
+$lang["sign_up"] = "サインアップ";
 
-/** LANGUAGE **/
 /** LANGUAGES **/
 $lang["language_name"] = "言語";
 $lang["lang_en"] = "English";
 $lang["lang_jp"] = "日本語";
 $lang["lang_fr"] = "Français";
+
+/** MISCELLANOUS **/
+$lang["username"] = "ユーザ名";
+$lang["password"] = "パスワード";
+$lang["pwd_confirm"] = "パスワードを確認して下さい。";
 ?>

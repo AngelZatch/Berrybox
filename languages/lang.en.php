@@ -20,10 +20,17 @@ $lang["back"] = "Back";
 
 /** ACTIONS **/
 $lang["log_out"] = "Log out";
+$lang["log_in"] = "Log in";
+$lang["sign_up"] = "Sign up";
 
 /** LANGUAGES **/
 $lang["language_name"] = "Language";
 $lang["lang_en"] = "English";
 $lang["lang_jp"] = "日本語";
 $lang["lang_fr"] = "Français";
+
+/** MISCELLANOUS **/
+$lang["username"] = "Username";
+$lang["password"] = "Password";
+$lang["pwd_confirm"] = "Please confirm your password";
 ?>

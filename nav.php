@@ -8,12 +8,17 @@
 <button type="submit" class="btn btn-default">Rechercher</button>
 </form>-->
 		<ul class="nav navbar-nav navbar-right">
+			<?php if(isset($_SESSION["username"])){?>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $_SESSION["username"];?> <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="logout.php"><?php echo $lang["log_out"];?></a></li>
 				</ul>
 			</li>
+			<?php } else { ?>
+				<li><a href="portal.php?lang=<?php echo $_GET["lang"];?>" class="navbar-link"><?php echo $lang["log_in"];?></a></li>
+				<li><a href="signup.php?lang=<?php echo $_GET["lang"];?>" class="navbar-link"><?php echo $lang["sign_up"];?></a></li>
+			<?php } ?>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $lang["language_name"];?> <span class="caret"></span></a>
 				<ul class="dropdown-menu">
