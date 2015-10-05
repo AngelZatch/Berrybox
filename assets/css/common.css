@@ -1,29 +1,32 @@
-.navbar{
-	border-bottom: 1px solid #BF0404 !important;
-	border: none;
-	background-color: white;
-	cursor: pointer;
-}
-
 .player {
 	z-index: 1000;
 	position: absolute;
 	bottom: 0;
 	border-top: 1px solid #BF0404;
-	height: 50px;
+	height: 67%;
 	width: 100%;
 }
 
 .main {
-	margin-top: 52px;
+	margin-top: 50px;
 }
 
 .panel-chat {
-	padding-right: 0 ! important;
+	height: inherit;
+	padding: 0 !important;
+	margin: 0 !important;
 }
 
 .chat-room {
 	text-align: center;
+}
+
+.message-time{
+	color: #B5B5B5;
+}
+
+.message-author{
+	font-weight: 900;
 }
 
 .room-dj {
@@ -34,14 +37,9 @@
 	overflow-y: scroll;
 }
 
-.message-author{
-	font-weight: 600;
-	color: aqua;
-}
-
 .room-title {
-	text-align: center;
-	font-size: 18px;
+	font-size: 32px;
+	margin-bottom: 5px;
 }
 
 .user-room {
@@ -50,9 +48,24 @@
 
 #room-player {
 	margin-left: none;
+	padding-top: 20px;
 }
 
 #room-chat {
 	padding-right: 0;
-	height: auto !important;
+	height: 100vh;
+}
+
+.footer-chat {
+	position: absolute;
+	bottom: 0;
+}
+
+.room-creator {
+	font-size: 18px;
+}
+
+#active-rooms-title {
+	font-size: 24px;
+	text-align: center;
 }

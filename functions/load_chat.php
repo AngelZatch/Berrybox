@@ -5,7 +5,8 @@ $db = PDOFactory::getConnection();
 $token = $_POST["token"];
 $load = $db->query("SELECT * FROM roomChat_$token s
 					JOIN user u ON s.message_author = u.user_token
-					JOIN user_preferences up ON s.message_author=up.up_user_id");
+					JOIN user_preferences up ON s.message_author=up.up_user_id
+					ORDER BY message_time ASC");
 $messageList = array();
 while($message = $load->fetch(PDO::FETCH_ASSOC)){
 	$m = array();

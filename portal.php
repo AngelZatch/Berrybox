@@ -26,7 +26,6 @@ include "functions/login.php";
 				</form>
 			</div>
 		</div>
-		<?php include "player.php";?>
 		<?php include "scripts.php";?>
 	</body>
 </html>

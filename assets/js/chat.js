@@ -8,17 +8,18 @@ function sendMessage(data){
 }
 
 function loadChat(data){
-	console.log("fetching chat");
 	var token = data;
 	$.post("functions/load_chat.php", {token : token}).done(function(data){
 		var messageList = JSON.parse(data);
 		$(".panel-body").empty();
 		for(var i = 0; i < messageList.length; i++){
-			var message = messageList[i].timestamp+" ";
+			var message = "<p>";
+			message += "<span class='message-time'>"+messageList[i].timestamp+"</span> ";
 			message += "<span class='message-author' style='color:"+messageList[i].authorColor+";'>";
 			message += messageList[i].author;
 			message += "</span>";
 			message += " : "+messageList[i].content+"<br/>";
+			message += "</p>";
 			$(".body-chat").append(message);
 		}
 	})
