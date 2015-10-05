@@ -15,6 +15,9 @@ function loadChat(data){
 		for(var i = 0; i < messageList.length; i++){
 			var message = "<p>";
 			message += "<span class='message-time'>"+messageList[i].timestamp+"</span> ";
+			if(messageList[i].status == 1){
+				message += "<span class='glyphicon glyphicon-star'></span>";
+			}
 			message += "<span class='message-author' style='color:"+messageList[i].authorColor+";'>";
 			message += messageList[i].author;
 			message += "</span>";

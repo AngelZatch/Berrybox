@@ -97,13 +97,6 @@ if(isset($_GET["lang"])){
 			// Empty URL box
 			$(".url-box").val('');
 
-			// get ID of video
-			var id = res.substr(30, 11);
-			$.post("functions/fetch_video_info.php", {id : id}).done(function(data){
-				$(".currently-name").empty();
-				$(".currently-name").html(data);
-			})
-
 			// Post URL into room history
 			$.post("functions/post_history.php", {url : id, roomToken : roomToken}).done(function(data){
 				//loadHistory(roomToken);
@@ -134,6 +127,12 @@ if(isset($_GET["lang"])){
 	}
 	function playVideo(res){
 		$("#frame-play iframe").attr("src", res);
+		// get ID of video
+		var id = res.substr(30, 11);
+		$.post("functions/fetch_video_info.php", {id : id}).done(function(data){
+			$(".currently-name").empty();
+			$(".currently-name").html(data);
+		})
 		sessionStorage.setItem("currently-playing", res);
 	}
 </script>
