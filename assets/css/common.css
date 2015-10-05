@@ -39,7 +39,7 @@
 }
 
 .room-title {
-	font-size: 32px;
+	font-size: 22px;
 	margin-bottom: 5px;
 }
 
@@ -49,7 +49,7 @@
 
 #room-player {
 	margin-left: none;
-	padding-top: 20px;
+	padding-top: 14px;
 }
 
 #room-chat {
