@@ -2,4 +2,4 @@
 <script src="bootstrap/js/bootstrap.js"></script>
 
 <script src="assets/js/tools.js"></script>
-<script src="assets/js/chat.js"></script>
+<script src="assets/js/bootstrap-popover-x.min.js"></script>

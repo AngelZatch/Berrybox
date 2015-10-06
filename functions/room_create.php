@@ -42,7 +42,8 @@ message_contents TEXT
 	$newUsersList = $db->query("CREATE TABLE roomUsers_$uniqueToken(
 room_user_entry INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 room_user_token VARCHAR(10) NOT NULL,
-room_user_state INT(11),
+room_user_state TINYINT(1) COMMENT '1 : standard / 2 : creator / 3 : moderator / 4 : toed / 5 : banned',
+room_user_present TINYINT(1),
 room_user_date_state DATETIME
 )");
 

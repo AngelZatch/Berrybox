@@ -11,9 +11,4 @@ $(document).ready(function(){
 			regex = new RegExp(matchParams.join('').replace(/^s+|s+$/g,''), regexFlags);
 		return regex.test(jQuery(elem)[attr.method](attr.property));
 	}
-
-	$(".navbar-brand").on('click', function(){
-		$("#large-block").empty();
-		$("#large-block").load("base_page.php");
-	})
 })
