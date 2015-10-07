@@ -166,3 +166,7 @@
 #color-0c89a8 {
 	background-color: #0c89a8;
 }
+
+.btn-disabled {
+	cursor: pointer !important;
+}

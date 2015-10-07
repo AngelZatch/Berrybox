@@ -7,9 +7,13 @@ $lang["room_join"] = "Rejoindre";
 $lang["room_create"] = "Créer un salon";
 $lang["active_room"] = "Salons actifs";
 $lang["room_name"] = "Nom du salon";
+$lang["room_protection"] = "Niveau de protection";
 $lang["level_private"] = "Privé";
 $lang["level_locked"] = "Protégé par mot de passe";
 $lang["level_public"] = "Public";
+$lang["private_tip"] = "Ce salon ne sera pas visible par les autres utilisateurs";
+$lang["locked_tip"] = "L'accès à ce salon nécessitera un mot de password";
+$lang["public_tip"] = "Ce salon sera accessible à tout le monde";
 
 /** CHAT **/
 $lang["post_chat"] = "Envoyer";
@@ -45,4 +49,6 @@ $lang["lang_fr"] = "Français";
 $lang["username"] = "Nom d'utilisateur";
 $lang["password"] = "Mot de passe";
 $lang["pwd_confirm"] = "Veuillez confirmer votre mot de passe";
+$lang["cancel"] = "Annuler";
+$lang["wrong_password"] = "Mot de passe erroné";
 ?>

@@ -7,9 +7,13 @@ $lang["room_join"] = "Join";
 $lang["room_create"] = "Create a new room";
 $lang["active_room"] = "Active rooms";
 $lang["room_name"] = "Name of the room";
+$lang["room_protection"] = "Protection level";
 $lang["level_private"] = "Private";
 $lang["level_locked"] = "Locked";
 $lang["level_public"] = "Public";
+$lang["private_tip"] = "This room will remain invisible to anyone";
+$lang["locked_tip"] = "Access to this room will require a password";
+$lang["public_tip"] = "This room will be visible to everyone";
 
 /** CHAT **/
 $lang["post_chat"] = "Chat";
@@ -44,4 +48,6 @@ $lang["lang_fr"] = "Français";
 $lang["username"] = "Username";
 $lang["password"] = "Password";
 $lang["pwd_confirm"] = "Please confirm your password";
+$lang["cancel"] = "Cancel";
+$lang["wrong_password"] = "Wrong password. Please try again";
 ?>
