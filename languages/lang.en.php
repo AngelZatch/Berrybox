@@ -14,6 +14,9 @@ $lang["level_public"] = "Public";
 $lang["private_tip"] = "This room will remain invisible to anyone";
 $lang["locked_tip"] = "Access to this room will require a password";
 $lang["public_tip"] = "This room will be visible to everyone";
+$lang["action_timeout"] = "Time out this user";
+$lang["action_ban"] = "Ban this user indefinitely";
+$lang["action_promote"] = "Promote this user to moderator";
 
 /** CHAT **/
 $lang["post_chat"] = "Chat";
@@ -25,6 +28,7 @@ $lang["color_pick"] = "Pick a color for your username";
 $lang["youtube_message"] = "Submit your YouTube link here";
 $lang["submit_link"] = "Submit";
 $lang["no_submit"] = "Please <a href='signup.php?lang=en'>register</a> or <a href='portal.php?lang=en'>log in</a> to submit links";
+$lang["no_chat"] = "Please <a href='signup.php?lang=en'>register</a> or <a href='portal.php?lang=en'>log in</a> to post messages";
 $lang["room_admin"] = "Room creator";
 $lang["room_mod"] = "Room moderator";
 $lang["now_playing"] = "Now playing";

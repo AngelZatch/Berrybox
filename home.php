@@ -29,21 +29,19 @@ if(isset($_GET["lang"])){
 				<p id="active-rooms-title"><?php echo $lang["active_room"];?></p>
 				<div class="container-fluid">
 					<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
-					<div class="col-lg-3">
-						<div class="thumbnail">
-							<img src="assets/Binboda.Momiji.full.1184759.jpg" alt="" style="height:100px;">
-							<div class="caption">
-								<p><?php echo $activeRooms["room_name"];?></p>
-								<p><?php echo $activeRooms["user_pseudo"];?></p>
-								<div>
-									<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
-									<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>
-									<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
-									<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
-									<?php } else { ?>
-									<a href="room.php?id=<?php echo $activeRooms["room_token"];?>&lang=<?php echo $_GET["lang"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
-									<?php } ?>
-								</div>
+					<div class="panel panel-default">
+						<!--<img src="assets/Binboda.Momiji.full.1184759.jpg" alt="" style="height:100px;">-->
+						<div class="panel-body">
+							<p class="col-lg-3"><?php echo $activeRooms["room_name"];?></p>
+							<p class="col-lg-3"><?php echo $activeRooms["user_pseudo"];?></p>
+							<div class="col-lg-6">
+								<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
+								<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>
+								<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
+								<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
+								<?php } else { ?>
+								<a href="room.php?id=<?php echo $activeRooms["room_token"];?>&lang=<?php echo $_GET["lang"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
@@ -80,10 +78,10 @@ if(isset($_GET["lang"])){
 							})
 						}
 					})
-				})/*.on('blur', '.password-input', function(){
-				$(this).hide('200');
-				$(this).next().show('200');
-			})*/
+				}).on('blur', function(){
+					$(this).hide('200');
+					$(this).next().show('200');
+				})
 			})
 		</script>
 	</body>

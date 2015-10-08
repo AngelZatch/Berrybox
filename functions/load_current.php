@@ -9,5 +9,7 @@ $load = $db->query("SELECT history_link FROM roomHistory_$token
 if($load->rowCount() != 0){
 	$load->fetch(PDO::FETCH_ASSOC);
 	echo $load["history_link"];
+} else {
+	echo null;
 }
 ?>

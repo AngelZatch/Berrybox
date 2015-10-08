@@ -40,7 +40,7 @@ if(isset($_GET["lang"])){
 				<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
 				<button class="btn btn-primary btn-block play-url" data-toggle="modal"><?php echo $lang["submit_link"];?></button>
 				<?php } else { ?>
-				<p id="submit-required"><?php echo $lang["no_submit"];?></p>
+				<p class="submit-required"><?php echo $lang["no_submit"];?></p>
 				<?php } ?>
 			</div>
 		</div>
@@ -89,12 +89,17 @@ if(isset($_GET["lang"])){
 				</div>
 				<div class="panel-body body-chat"></div>
 				<div class="panel-footer footer-chat">
+					<?php if(isset($_SESSION["token"])){ ?>
 					<div class="input-group">
 						<input type="text" class="form-control chatbox" placeholder="<?php echo $lang["chat_placeholder"];?>">
 						<span class="input-group-btn btn-chat">
 							<button class="btn btn-primary"><?php echo $lang["post_chat"];?></button>
 						</span>
 					</div>
+					<?php } else { ?>
+					<p class="submit-required"><?php echo $lang["no_chat"];?></p>
+					<?php } ?>
+
 				</div>
 			</div>
 		</div>
@@ -104,13 +109,15 @@ if(isset($_GET["lang"])){
 <script>
 	$(document).ready(function(){
 		var roomToken = "<?php echo $roomToken;?>";
-		var userToken = "<?php echo $_SESSION["token"];?>";
-
+		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
 		// Join the room
-		joinRoom(roomToken, userToken);
-
-		// Load the chat
-		setInterval(loadChat, 3000, roomToken);
+		function joinRoom(roomToken, userToken){
+			return $.post("functions/join_room.php", {roomToken : roomToken, userToken : userToken});
+		}
+		joinRoom(roomToken, userToken).done(function(result){
+			// Load the chat
+			setInterval(loadChat, 3000, roomToken, result);
+		})
 
 		// Load the history of all submitted songs in this room
 		//loadHistory(roomToken);
@@ -140,7 +147,7 @@ if(isset($_GET["lang"])){
 		sendMessage("<?php echo $roomToken;?>");
 	}).on('click', '.color-cube', function(){
 		var color = $(this).attr('id').substr(6,6);
-		var userToken = "<?php echo $_SESSION["token"];?>";
+		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
 		$.post("functions/change_color.php", {userToken : userToken, color : color}).done(function(){
 			$(".close").click();
 		})
@@ -159,9 +166,6 @@ if(isset($_GET["lang"])){
 			$(".room-history").append(listOfSongs);
 		})
 	}*/
-	function joinRoom(roomToken, userToken){
-		$.post("functions/join_room.php", {roomToken : roomToken, userToken : userToken});
-	}
 	function leaveRoom(roomToken, userToken){
 		$.post("functions/leave_room.php", {roomToken : roomToken, userToken : userToken});
 	}
@@ -169,16 +173,12 @@ if(isset($_GET["lang"])){
 		$.post("functions/load_current.php", {roomToken : roomToken}).done(function(data){
 			if(data != null){
 				var url = "https://www.youtube.com/embed/"+data+"?autoplay=1";
-				console.log("Checking video with "+url);
 				if(url != sessionStorage.getItem("currently-playing")){
 					playVideo(url);
 					$.post("functions/fetch_video_info.php", {id : data}).done(function(data){
 						$(".currently-name").empty();
 						$(".currently-name").html(data);
 					})
-					console.log("Different token. Playing new video : "+data);
-				} else {
-					console.log("Same token.");
 				}
 			}
 		})
@@ -222,11 +222,9 @@ if(isset($_GET["lang"])){
 		var message = $(".chatbox").val();
 		var token = data;
 		$(".chatbox").val('');
-		$.post("functions/post_chat.php", {message : message, token : token}).done(function(data){
-			loadChat(token);
-		})
+		$.post("functions/post_chat.php", {message : message, token : token});
 	}
-	function loadChat(data){
+	function loadChat(data, userPower){
 		var token = data;
 		$.post("functions/load_chat.php", {token : token}).done(function(data){
 			var messageList = JSON.parse(data);
@@ -238,6 +236,12 @@ if(isset($_GET["lang"])){
 					message += "<span class='glyphicon glyphicon-star' title='<?php echo $lang["room_admin"];?>'></span>";
 				} else if(messageList[i].status == 3) {
 					message += "<span class='glyphicon glyphicon-empty-star' title='<?php echo $lang["room_mod"];?>'></span>";
+				} else {
+					if(userPower == 2 || userPower == 3){
+						message += "<span class='glyphicon glyphicon-time moderation-option' title='<?php echo $lang["action_timeout"];?>' onClick=timeoutUser('"+messageList[i].authorToken+"')></span> ";
+						message += "<span class='glyphicon glyphicon-fire moderation-option' title='<?php echo $lang["action_ban"];?>' onClick=banUser('"+messageList[i].authorToken+"')></span> ";
+						message += "<span class='glyphicon glyphicon-heart moderation-option' title='<?php echo $lang["action_promote"];?>' onClick=promoteUser('"+messageList[i].authorToken+"')></span> ";
+					}
 				}
 				message += "<span class='message-author' style='color:"+messageList[i].authorColor+";'>";
 				message += messageList[i].author;
@@ -248,6 +252,15 @@ if(isset($_GET["lang"])){
 				$(".body-chat").scrollTop($(".body-chat")[0].scrollHeight);
 			}
 		})
+	}
+	function timeoutUser(token){
+		console.log("You poked "+token);
+	}
+	function banUser(token){
+
+	}
+	function promoteUser(token){
+		console.log(token);
 	}
 	function getWatchCount(token){
 		$.post("functions/get_watch_count.php", {token : token}).done(function(data){

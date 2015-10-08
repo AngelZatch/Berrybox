@@ -22,12 +22,14 @@ VALUES(:token, :state, :present, :date)");
 		$join->bindParam(':date', $timestamp);
 		$join->execute();
 		$db->commit();
+		echo $state;
 	}catch(PDOException $e){
 		$db->rollBack();
-		echo $e->getMessage();
 	}
 } else {
 	// If the user left the room and is coming back
 	$rejoin = $db->query("UPDATE roomUsers_$roomToken SET room_user_present=1 WHERE room_user_token='$userToken'");
+	$search->fetch(PDO::FETCH_ASSOC);
+	echo 2;
 }
 ?>

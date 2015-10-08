@@ -71,9 +71,9 @@
 	text-align: center;
 }
 
-#submit-required {
-	font-size: 22px;
+.submit-required {
 	text-align: center;
+	font-size: 20px;
 }
 
 .color-cube {
@@ -169,4 +169,13 @@
 
 .btn-disabled {
 	cursor: pointer !important;
+}
+
+.moderation-option{
+	color: #DDD;
+	cursor: pointer;
+}
+
+.moderation-option:hover{
+	color: #000;
 }

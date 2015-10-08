@@ -14,6 +14,9 @@ $lang["level_public"] = "パブリック";
 $lang["private_tip"] = "このルームが目に見えませんになる。";
 $lang["locked_tip"] = "このルームには、パスワードによるアクセスを持っている。";
 $lang["public_tip"] = "誰もこのルームに入ることができるようになる。";
+$lang["action_timeout"] = "Mettre cet utilisateur en sourdine";
+$lang["action_ban"] = "Bannir cet utilisateur indéfiniment";
+$lang["action_promote"] = "Promouvoir cet utilisateur au rang de modérateur";
 
 /** CHAT **/
 $lang["post_chat"] = "チャット";
@@ -25,6 +28,7 @@ $lang["color_pick"] = "ユーザー名の色";
 $lang["youtube_message"] = "YouTubeのリンクを書きます";
 $lang["submit_link"] = "提出する";
 $lang["no_submit"] = "曲を提出するには、<a href='portal.php?lang=jp'>ログイン</a>または<a href='signup.php?lang=jp'>サインアップ</a>して下さい。";
+$lang["no_chat"] = "メッセジを送受信するには、<a href='portal.php?lang=jp'>ログイン</a>または<a href='signup.php?lang=jp'>サインアップ</a>して下さい。";
 $lang["room_admin"] = "ルームクリエイター";
 $lang["room_mod"] = "ルームモデレータ";
 $lang["now_playing"] = "プレイ中";
