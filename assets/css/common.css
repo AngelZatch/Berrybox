@@ -180,6 +180,11 @@
 	color: #000;
 }
 
+.moderation-option-enabled{
+	color: #000;
+	cursor: pointer;
+}
+
 .system-message{
 	color: #888;
 	font-style: italic;
@@ -193,5 +198,5 @@
 }
 
 .whisper{
-	background-color : #CCC;
+	background-color : #D5D5D5;
 }

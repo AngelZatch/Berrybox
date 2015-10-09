@@ -5,7 +5,7 @@ $db = PDOFactory::getConnection();
 $token = $_POST["token"];
 // To reduce the stress on the client, messages from the last 30 minutes are loaded.
 $now = date('Y-m-d H:i:s');
-$limitDate = date('Y-m-d H:i:s', time() - 90 * 60);
+$limitDate = date('Y-m-d H:i:s', time() - 180 * 60);
 
 $load = $db->query("SELECT *
 						FROM roomChat_$token s
@@ -17,15 +17,10 @@ $messageList = array();
 while($message = $load->fetch(PDO::FETCH_ASSOC)){
 	$m = array();
 	$m["scope"] = $message["message_scope"];
-	if(isset($message["user_pseudo"])){
-		$m["author"] = $message["user_pseudo"];
-		$permission = $db->query("SELECT room_user_state FROM roomUsers_$token WHERE room_user_token = '$message[user_token]'")->fetch(PDO::FETCH_ASSOC);
-		$m["status"] = $permission["room_user_state"];
-		$m["authorColor"] = $message["up_color"];
-	} else {
-		$m["author"] = "System";
-		$m["status"] = 1;
-	}
+	$m["author"] = $message["user_pseudo"];
+	$permission = $db->query("SELECT room_user_state FROM roomUsers_$token WHERE room_user_token = '$message[user_token]'")->fetch(PDO::FETCH_ASSOC);
+	$m["status"] = $permission["room_user_state"];
+	$m["authorColor"] = $message["up_color"];
 	if($message["message_destination"] != ''){
 		$destination = $db->query("SELECT *
 									FROM user u
