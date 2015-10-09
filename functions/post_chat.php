@@ -6,8 +6,15 @@ $db = PDOFactory::getConnection();
 $message = addslashes($_POST["message"]);
 $token = $_POST["token"];
 $author = $_SESSION["token"];
-$destination = $_POST["destination"];
 $scope = $_POST["scope"];
+
+if(isset($_POST["solveDestination"])){
+	$solve = $db->query("SELECT user_token FROM user WHERE user_pseudo='$_POST[solveDestination]'")->fetch(PDO::FETCH_ASSOC);
+	$destination = $solve["user_token"];
+} else {
+	$destination = $_POST["destination"];
+}
+
 $time = date_create('now')->format('Y-m-d H:i:s');
 if($message != ''){
 	try{

@@ -143,11 +143,11 @@ if(isset($_GET["lang"])){
 	}).on('focus', '.chatbox', function(){
 		$(this).keypress(function(event){
 			if(event.which == 13){
-				sendMessage("<?php echo $roomToken;?>", 1, '', '');
+				sendMessage("<?php echo $roomToken;?>", 1, 'chatbox', '');
 			}
 		})
 	}).on('click', '.btn-chat', function(){
-		sendMessage("<?php echo $roomToken;?>", 1, '', '');
+		sendMessage("<?php echo $roomToken;?>", 1, 'chatbox', '');
 	}).on('click', '.color-cube', function(){
 		var color = $(this).attr('id').substr(6,6);
 		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
@@ -223,11 +223,33 @@ if(isset($_GET["lang"])){
 		$("#frame-play iframe").attr("src", res);
 	}
 	function sendMessage(data, scope, message, destination){
-		if(scope == 1 && message == ''){
-			var message = $(".chatbox").val();
-			$(".chatbox").val('');
+		console.log("Sending...");
+		if(message == 'chatbox' && scope == 1){
+			var fullString = $(".chatbox").val();
+			var actionToken = $(".chatbox").val().substr(0,1);
+			if(actionToken == '/'){
+				var action = $(".chatbox").val().substr(1).split(" ");
+				if(action[0] == 'w'){
+					scope = 6;
+					destination = action[1];
+					message = "";
+					for(var i = 2; i < action.length; i++){
+						message += action[i];
+						if(i != action.length-1){
+							message += " ";
+						}
+					}
+					$(".chatbox").val('');
+					$.post("functions/post_chat.php", {message : message, token : data, scope : scope, destination : destination, solveDestination : destination});
+				}
+			} else {
+				var message = $(".chatbox").val();
+				$(".chatbox").val('');
+				$.post("functions/post_chat.php", {message : message, token : data, scope : scope, destination : destination});
+			}
+		} else {
+			$.post("functions/post_chat.php", {message : message, token : data, scope : scope, destination : destination});
 		}
-		$.post("functions/post_chat.php", {message : message, token : data, scope : scope, destination : destination});
 	}
 	function loadChat(data, userPower){
 		var token = data;
@@ -299,18 +321,31 @@ if(isset($_GET["lang"])){
 					var message = "<p>";
 					message += "<span class='message-time'>"+messageList[i].timestamp+"</span> ";
 					if(messageList[i].status == 2){
+						// If author is creator
 						message += "<span class='glyphicon glyphicon-star' title='<?php echo $lang["room_admin"];?>'></span> ";
-					}
-					if(messageList[i].status == 3) {
-						message += "<span class='glyphicon glyphicon-star-empty' title='<?php echo $lang["room_mod"];?>'></span> ";
-					}
-					if(messageList[i].status != 2 && messageList[i].status != 3 && messageList[i].authorToken != "<?php echo $_SESSION["token"];?>"){
+					} else if(messageList[i].status == 3) {
+						// If author is a moderator
+						if((userPower == 2 || userPower == 3) && messageList[i].authorToken != "<?php echo $_SESSION["token"];?>"){
+							// If current user is a mod or an admin, he can timeout the mod
+							message += "<span class='glyphicon glyphicon-time moderation-option' title='<?php echo $lang["action_timeout"];?>' onClick=timeoutUser('"+messageList[i].authorToken+"')></span> ";
+							if(userPower == 2){
+								// Specific actions to the admin : ban & demote
+								message += "<span class='glyphicon glyphicon-fire moderation-option' title='<?php echo $lang["action_ban"];?>' onClick=banUser('"+messageList[i].authorToken+"')></span> ";
+								message += "<span class='glyphicon glyphicon-star-empty moderation-option-enabled' title='<?php echo $lang["room_mod"];?>'></span> ";
+							}
+						}
+						else {
+							// If current user has no power here
+							message += "<span class='glyphicon glyphicon-star-empty' title='<?php echo $lang["room_mod"];?>'></span> ";
+						}
+					} else {
+						// If author is a standard user
 						if(userPower == 2 || userPower == 3){
+							// Mod & admin actions
 							message += "<span class='glyphicon glyphicon-time moderation-option' title='<?php echo $lang["action_timeout"];?>' onClick=timeoutUser('"+messageList[i].authorToken+"')></span> ";
 							message += "<span class='glyphicon glyphicon-fire moderation-option' title='<?php echo $lang["action_ban"];?>' onClick=banUser('"+messageList[i].authorToken+"')></span> ";
-							if(messageList[i].status == 3) {
-								message += "<span class='glyphicon glyphicon-star-empty moderation-option-enabled' title='<?php echo $lang["room_mod"];?>'></span> ";
-							} else if(userPower == 2){
+							if(userPower == 2){
+								//Admin action
 								message += "<span class='glyphicon glyphicon-star-empty moderation-option' title='<?php echo $lang["action_promote"];?>' onClick=promoteUser('"+messageList[i].authorToken+"')></span> ";
 							}
 						}
@@ -323,7 +358,6 @@ if(isset($_GET["lang"])){
 				}
 				$(".body-chat").append(message);
 			}
-			console.log(messageList);
 			$(".body-chat").scrollTop($(".body-chat")[0].scrollHeight);
 		})
 	}
