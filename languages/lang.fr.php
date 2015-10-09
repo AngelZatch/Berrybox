@@ -17,6 +17,9 @@ $lang["public_tip"] = "Ce salon sera accessible à tout le monde";
 $lang["action_timeout"] = "Mettre cet utilisateur en sourdine";
 $lang["action_ban"] = "Bannir cet utilisateur indéfiniment";
 $lang["action_promote"] = "Promouvoir cet utilisateur au rang de modérateur";
+$lang["timeout_message_admin_first_part"] = "Vous avez mis cet utilisateur en sourdine (";
+$lang["timeout_message_admin_second_part"] = " fois)";
+$lang["timeout_message_user"] = "You have been timeouted and therefore won't be able to post messages and/or submit videos";
 
 /** CHAT **/
 $lang["post_chat"] = "Envoyer";

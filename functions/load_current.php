@@ -7,9 +7,9 @@ $load = $db->query("SELECT history_link FROM roomHistory_$token
 					ORDER BY room_history_id DESC
 					LIMIT 1");
 if($load->rowCount() != 0){
-	$load->fetch(PDO::FETCH_ASSOC);
-	echo $load["history_link"];
+	$loaded = $load->fetch(PDO::FETCH_ASSOC);
+	echo $loaded["history_link"];
 } else {
-	echo null;
+	echo 0;
 }
 ?>

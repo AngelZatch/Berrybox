@@ -37,7 +37,9 @@ history_user VARCHAR(10) NOT NULL
 )");
 	$newChat = $db->query("CREATE TABLE roomChat_$uniqueToken(
 message_id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+message_scope TINYINT(1) COMMENT '1 : all / 2 : creator / 3 : moderators / 4 : system / 5 : solo',
 message_author VARCHAR(10) NOT NULL,
+message_destination VARCHAR(10),
 message_time DATETIME,
 message_contents TEXT
 )");
@@ -45,8 +47,10 @@ message_contents TEXT
 room_user_entry INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 room_user_token VARCHAR(10) NOT NULL,
 room_user_state TINYINT(1) COMMENT '1 : standard / 2 : creator / 3 : moderator / 4 : toed / 5 : banned',
+room_user_timeouts INT(11) NOT NULL DEFAULT '0' COMMENT 'number of timeouts of this user',
 room_user_present TINYINT(1),
-room_user_date_state DATETIME
+room_user_date_state DATETIME,
+room_user_next_state_reset DATETIME
 )");
 
 	// Put the creator of the room in the room

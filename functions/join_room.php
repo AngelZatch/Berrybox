@@ -29,7 +29,7 @@ VALUES(:token, :state, :present, :date)");
 } else {
 	// If the user left the room and is coming back
 	$rejoin = $db->query("UPDATE roomUsers_$roomToken SET room_user_present=1 WHERE room_user_token='$userToken'");
-	$search->fetch(PDO::FETCH_ASSOC);
-	echo 2;
+	$res = $search->fetch(PDO::FETCH_ASSOC);
+	echo $res["room_user_state"];
 }
 ?>

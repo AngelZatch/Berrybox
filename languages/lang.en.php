@@ -14,9 +14,12 @@ $lang["level_public"] = "Public";
 $lang["private_tip"] = "This room will remain invisible to anyone";
 $lang["locked_tip"] = "Access to this room will require a password";
 $lang["public_tip"] = "This room will be visible to everyone";
-$lang["action_timeout"] = "Time out this user";
+$lang["action_timeout"] = "Time this user out";
 $lang["action_ban"] = "Ban this user indefinitely";
 $lang["action_promote"] = "Promote this user to moderator";
+$lang["timeout_message_admin_first_part"] = "User has been timeouted (";
+$lang["timeout_message_admin_second_part"] = " times)";
+$lang["timeout_message_user"] = "You have been timeouted and therefore won't be able to post messages and/or submit videos";
 
 /** CHAT **/
 $lang["post_chat"] = "Chat";
