@@ -14,12 +14,12 @@ $lang["level_public"] = "パブリック";
 $lang["private_tip"] = "このルームが目に見えませんになる。";
 $lang["locked_tip"] = "このルームには、パスワードによるアクセスを持っている。";
 $lang["public_tip"] = "誰もこのルームに入ることができるようになる。";
-$lang["action_timeout"] = "Mettre cet utilisateur en sourdine";
-$lang["action_ban"] = "Bannir cet utilisateur indéfiniment";
-$lang["action_promote"] = "Promouvoir cet utilisateur au rang de modérateur";
-$lang["timeout_message_admin_first_part"] = "User has been timeouted (";
-$lang["timeout_message_admin_second_part"] = " times)";
-$lang["timeout_message_user"] = "Vous avez été mis en sourdine et ne pourrez plus envoyer de messages ou de vidéos";
+$lang["action_timeout"] = "このユーザーをミュートする。";
+$lang["action_ban"] = "このルームからこのユーザーを禁止する。";
+$lang["action_promote"] = "モデレーターにこのユーザーを促進する。";
+$lang["timeout_message_admin_first_part"] = "このユーザは、ミュートされています (";
+$lang["timeout_message_admin_second_part"] = " 回)";
+$lang["timeout_message_user"] = "あなたはミュートされていました。次のメッセジを送信することができません。";
 
 /** CHAT **/
 $lang["post_chat"] = "チャット";
@@ -36,6 +36,8 @@ $lang["room_admin"] = "ルームクリエイター";
 $lang["room_mod"] = "ルームモデレータ";
 $lang["now_playing"] = "プレイ中";
 $lang["watch_count"] = "観衆カウント";
+$lang["playlist"] = "プレイリスと";
+$lang["sync"] = "シンク";
 
 /** BUTTONS **/
 $lang["back"] = "戻る";

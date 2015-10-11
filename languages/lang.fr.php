@@ -37,6 +37,8 @@ $lang["room_mod"] = "Modérateur";
 $lang["room_creator"] = "Créateur";
 $lang["now_playing"] = "Vidéo en cours";
 $lang["watch_count"] = "Spectateurs";
+$lang["playlist"] = "Liste des chansons";
+$lang["sync"] = "Synchro";
 
 /** BUTTONS **/
 $lang["back"] = "Retour";

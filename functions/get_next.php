@@ -1,9 +1,11 @@
 <?php
-include "functions/db_connect.php";
+include "db_connect.php";
 $db = PDOFactory::getConnection();
-$roomToken = "FYRNDGIXQ08B4VW";
-$prev = "8ySIhxJL2Fg";
-$next = $db->query("SELECT history_link FROM roomHistory_$roomToken
+
+$roomToken = $_POST["roomToken"];
+$prev = $_POST["lastPlayed"];
+
+$next = $db->query("SELECT history_link, video_name FROM roomHistory_$roomToken
 					WHERE room_history_id > (SELECT MAX(room_history_id) AS most_recent_id
 					FROM roomHistory_$roomToken
 					WHERE history_link = '$prev')
@@ -14,4 +16,3 @@ $n["link"] = $next["history_link"];
 $n["title"] = $next["video_name"];
 echo json_encode($n);
 ?>
-

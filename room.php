@@ -25,23 +25,21 @@ if(isset($_GET["lang"])){
 	</head>
 	<body>
 		<div class="col-lg-8" id="room-player">
-			<a href="home.php?lang=<?php echo $_GET["lang"];?>" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> <?php echo $lang["back"];?></a>
 			<div class="room-info">
-				<p class="room-title"><?php echo $roomDetails["room_name"];?></p>
+				<p class="room-title"><a href="home.php?lang=<?php echo $_GET["lang"];?>" class="btn btn-default leave-room"><span class="glyphicon glyphicon-arrow-left"></span> <?php echo $lang["back"];?></a> <?php echo $roomDetails["room_name"];?></p>
 				<p class="room-creator"><span class="glyphicon glyphicon-user" title="<?php echo $lang["room_admin"];?>"></span> <?php echo $roomDetails["user_pseudo"];?> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
 			</div>
-			<?php if ($roomDetails["user_token"] == $_SESSION["token"]){ ?>
-			LOL
-			<?php } ?>
 			<div id="currently-playing">
-				<div class="modal-body" id="frame-play">
-					<iframe src="" frameborder="0" width="100%" height="67%"></iframe>
-				</div>
+				<div class="modal-body" id="player"></div>
 			</div>
 			<div class="add-link">
 				<?php if(isset($_SESSION["token"])){ ?>
-				<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
-				<button class="btn btn-primary btn-block play-url" data-toggle="modal"><?php echo $lang["submit_link"];?></button>
+				<div class="input-group">
+					<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
+					<span class="input-group-btn">
+						<button class="btn btn-primary btn-block play-url" data-toggle="modal"><?php echo $lang["submit_link"];?></button>
+					</span>
+				</div>
 				<?php } else { ?>
 				<p class="submit-required"><?php echo $lang["no_submit"];?></p>
 				<?php } ?>
@@ -50,15 +48,15 @@ if(isset($_GET["lang"])){
 		<div class="col-lg-4" id="room-chat">
 			<div class="panel panel-default panel-chat">
 				<div class="panel-heading">
-					<p class="chat-room">
-						<span class="room-dj"><?php echo $roomDetails["user_pseudo"];?></span>
-					</p>
 					<div class="chat-options row">
-						<div class="col-lg-6">
+						<div class="col-lg-3 toggle-song-list">
+							<span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?>
+						</div>
+						<div class="col-lg-4">
 							<span class="glyphicon glyphicon-user" title="<?php echo $lang["watch_count"];?>"></span><span id="watch-count"></span>
 						</div>
-						<div class="col-lg-6">
-							<div data-toggle="popover-x" data-target="#popover-chat-settings" data-placement="bottom" style="cursor:pointer;"><span class="glyphicon glyphicon-cog" title="<?php echo $lang["chat_settings"];?>"></span> <?php echo $lang["chat_settings"];?></div>
+						<div class="col-lg-5">
+							<div data-toggle="popover-x" data-target="#popover-chat-settings" data-placement="bottom bottom-right" style="cursor:pointer;"><span class="glyphicon glyphicon-cog" title="<?php echo $lang["chat_settings"];?>"></span> <?php echo $lang["chat_settings"];?></div>
 							<div class="popover popover-default popover-lg" id="popover-chat-settings">
 								<div class="arrow"></div>
 								<div class="popover-title"><span class="close" data-dismiss="popover-x">&times;</span><?php echo $lang["chat_settings"];?></div>
@@ -106,10 +104,36 @@ if(isset($_GET["lang"])){
 				</div>
 			</div>
 		</div>
+		<div class="col-lg-3" id="song-list">
+			<div class="panel panel-default panel-song-list">
+				<div class="panel-heading"><?php echo $lang["playlist"];?></div>
+				<div class="panel-body" id="body-song-list"></div>
+			</div>
+		</div>
 		<?php include "scripts.php";?>
 	</body>
 </html>
 <script>
+	/* YOUTUBE PLAYER */
+	var tag = document.createElement('script');
+	tag.src = "https://www.youtube.com/iframe_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	var player;
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+			height: '507',
+			width: '832',
+			videoId: '',
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange
+			}
+		});
+	}
+
+	var done = false;
 	$(document).ready(function(){
 		var roomToken = "<?php echo $roomToken;?>";
 		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
@@ -119,19 +143,16 @@ if(isset($_GET["lang"])){
 		}
 		joinRoom(roomToken, userToken).done(function(result){
 			// Load the chat
-			setInterval(loadChat, 3000, roomToken, result);
+			setInterval(loadChat, 2000, roomToken, result);
+			// Load the history of all submitted songs in this room
+			loadSongHistory(roomToken);
+			setInterval(loadSongHistory, 10000, roomToken);
+			//window.checkVideo = setInterval(synchronize, 5000, roomToken);
 		})
-
-		// Load the history of all submitted songs in this room
-		//loadHistory(roomToken);
-
-		// Loading the last submitted video
-		loadCurrentPlay(roomToken);
-		window.checkVideo = setInterval(loadCurrentPlay, 5000, roomToken);
 
 		// Get the number of people in the room
 		getWatchCount(roomToken);
-		setInterval(getWatchCount, 15000, roomToken);
+		setInterval(getWatchCount, 30000, roomToken);
 	}).on('click','.play-url', function(){
 		submitLink();
 	}).on('focus', '.url-box', function(){
@@ -154,35 +175,59 @@ if(isset($_GET["lang"])){
 		$.post("functions/change_color.php", {userToken : userToken, color : color}).done(function(){
 			$(".close").click();
 		})
-	})/*
-	function loadHistory(roomToken){
-		$.post("functions/fetch_history.php", {roomToken : roomToken}).done(function(data){
-			var historySongs = JSON.parse(data);
-			var listOfSongs = "<ul class='list-group'>";
-			for(var i = 0; i < historySongs.length; i++){
-				listOfSongs += "<li class='list-group-item'>";
-				listOfSongs += historySongs[i].link;
-				listOfSongs += "</li>";
-			}
-			listOfSongs += "</ul>";
-			$(".room-history").empty();
-			$(".room-history").append(listOfSongs);
-		})
-	}*/
-	function leaveRoom(roomToken, userToken){
-		$.post("functions/leave_room.php", {roomToken : roomToken, userToken : userToken});
+	}).on('click', '.toggle-song-list', function(){
+		var position = ($("#song-list").css("right") == "0px")?"32%":"0px"
+		$("#song-list").animate({
+			'right': position
+		}, 200);
+	}).unload(function(){
+		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
+		$.post("functions/leave_room.php", {roomToken : "<?php echo $roomToken;?>", userToken : userToken});
+	})
+	function onPlayerReady(event){
+		synchronize("<?php echo $roomToken;?>");
 	}
-	function loadCurrentPlay(roomToken){
-		$.post("functions/load_current.php", {roomToken : roomToken}).done(function(data){
-			if(data != 0){
-				var url = "https://www.youtube.com/embed/"+data+"?autoplay=1";
-				if(url != sessionStorage.getItem("currently-playing")){
-					playVideo(url);
-					$.post("functions/fetch_video_info.php", {id : data}).done(function(data){
-						$(".currently-name").empty();
-						$(".currently-name").html(data);
-					})
+	function onPlayerStateChange(event) {
+		if (event.data == YT.PlayerState.ENDED) {
+			$.post("functions/get_next.php", {roomToken : "<?php echo $roomToken;?>", lastPlayed : sessionStorage.getItem("currently-playing")}).done(function(data){
+				var songInfo = JSON.parse(data);
+				if(songInfo.link != null){
+					playSong(songInfo.link, songInfo.title);
+				} else {
+					setTimeout(onPlayerStateChange, 2000, event);
 				}
+			});
+		}
+	}
+	function synchronize(roomToken){
+		/* This function synchronizes the current video for everyone */
+		$.post("functions/load_current.php", {roomToken : roomToken}).done(function(data){
+			var songInfo = JSON.parse(data);
+			if(songInfo.link != null){
+				playSong(songInfo.link, songInfo.title);
+			}
+		})
+	}
+	function playSong(id, title){
+		player.loadVideoById(id);
+		sessionStorage.setItem("currently-playing", id);
+		$(".currently-name").empty();
+		$(".currently-name").html(title);
+		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
+		if(userToken == "<?php echo $roomDetails["room_creator"];?>"){
+			sendMessage("<?php echo $roomToken;?>", 4, title);
+		}
+	}
+	function loadSongHistory(roomToken){
+		// Gets the whole history of the room
+		$.post("functions/get_history.php", {roomToken : roomToken}).done(function(data){
+			var songList = JSON.parse(data);
+			$("#body-song-list").empty();
+			for(var i = 0; i < songList.length; i++){
+				var message = "<p>";
+				message = songList[i].videoName;
+				message += "</p>";
+				$("#body-song-list").append(message);
 			}
 		})
 	}
@@ -193,37 +238,17 @@ if(isset($_GET["lang"])){
 		// Get URL
 		var src = $(".url-box").val();
 		if(src != ''){
-			clearInterval(window.checkVideo);
-			var res = src.replace("watch?v=", "embed/");
-			res += "?autoplay=1";
-
-			// Load video into iframe
-			var id = playVideo(res);
-
 			// get ID of video
-			var id = res.substr(30, 11);
-			$.post("functions/fetch_video_info.php", {id : id}).done(function(data){
-				$(".currently-name").empty();
-				$(".currently-name").html(data);
-				sendMessage("<?php echo $roomToken;?>", 4, "Now playing : "+data, '');
-			})
+			var id = src.substr(32, 11);
+
+			// Post URL into room history
+			$.post("functions/post_history.php", {url : id, roomToken : roomToken});
 
 			// Empty URL box
 			$(".url-box").val('');
-
-			// Post URL into room history
-			$.post("functions/post_history.php", {url : id, roomToken : roomToken}).done(function(data){
-				window.checkVideo = setInterval(loadCurrentPlay, 5000, roomToken);
-			})
 		}
 	}
-	function playVideo(res){
-		sessionStorage.setItem("currently-playing", res);
-		console.log("Setting storage : "+res);
-		$("#frame-play iframe").attr("src", res);
-	}
-	function sendMessage(data, scope, message, destination){
-		console.log("Sending...");
+	function sendMessage(roomToken, scope, message, destination){
 		if(message == 'chatbox' && scope == 1){
 			var fullString = $(".chatbox").val();
 			var actionToken = $(".chatbox").val().substr(0,1);
@@ -240,22 +265,22 @@ if(isset($_GET["lang"])){
 						}
 					}
 					$(".chatbox").val('');
-					$.post("functions/post_chat.php", {message : message, token : data, scope : scope, destination : destination, solveDestination : destination});
+					$.post("functions/post_chat.php", {message : message, token : roomToken, scope : scope, destination : destination, solveDestination : destination});
 				}
 			} else {
 				var message = $(".chatbox").val();
 				$(".chatbox").val('');
-				$.post("functions/post_chat.php", {message : message, token : data, scope : scope, destination : destination});
+				$.post("functions/post_chat.php", {message : message, token : roomToken, scope : scope, destination : destination});
 			}
 		} else {
-			$.post("functions/post_chat.php", {message : message, token : data, scope : scope, destination : destination});
+			$.post("functions/post_chat.php", {message : message, token : roomToken, scope : scope, destination : destination});
 		}
 	}
 	function loadChat(data, userPower){
 		var token = data;
 		$.post("functions/load_chat.php", {token : token}).done(function(data){
 			var messageList = JSON.parse(data);
-			$(".panel-body").empty();
+			$(".body-chat").empty();
 			for(var i = 0; i < messageList.length; i++){
 				if(messageList[i].scope == 6){
 					// Whispers

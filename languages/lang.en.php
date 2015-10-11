@@ -36,6 +36,8 @@ $lang["room_admin"] = "Room creator";
 $lang["room_mod"] = "Room moderator";
 $lang["now_playing"] = "Now playing";
 $lang["watch_count"] = "Spectators";
+$lang["playlist"] = "Playlist";
+$lang["sync"] = "Sync";
 
 /** BUTTONS **/
 $lang["back"] = "Back";

@@ -3,12 +3,15 @@ include "db_connect.php";
 $db = PDOFactory::getConnection();
 
 $token = $_POST["roomToken"];
-$load = $db->query("SELECT history_link FROM roomHistory_$token
+$load = $db->query("SELECT history_link, video_name FROM roomHistory_$token
 					ORDER BY room_history_id DESC
 					LIMIT 1");
 if($load->rowCount() != 0){
+	$n = array();
 	$loaded = $load->fetch(PDO::FETCH_ASSOC);
-	echo $loaded["history_link"];
+	$n["link"] = $loaded["history_link"];
+	$n["title"] = $loaded["video_name"];
+	echo json_encode($n);
 } else {
 	echo 0;
 }

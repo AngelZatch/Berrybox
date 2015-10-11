@@ -53,6 +53,7 @@
 }
 
 #room-chat {
+	z-index: 3;
 	padding-right: 0;
 	height: 100vh;
 }
@@ -199,4 +200,28 @@
 
 .whisper{
 	background-color : #D5D5D5;
+}
+
+#song-list {
+	padding: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 2;
+	height: 100vh;
+}
+
+.toggle-song-list {
+	cursor: pointer;
+}
+
+.panel-song-list {
+	height: inherit;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+#body-song-list {
+	overflow-y: scroll;
+	height: 93vh;
 }
