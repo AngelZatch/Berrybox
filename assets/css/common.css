@@ -203,25 +203,57 @@
 }
 
 #song-list {
-	padding: 0;
-	position: absolute;
-	top: 0;
-	right: 0;
 	z-index: 2;
-	height: 100vh;
 }
 
-.toggle-song-list {
-	cursor: pointer;
-}
 
-.panel-song-list {
+
+.panellist {
 	height: inherit;
 	padding: 0 !important;
 	margin: 0 !important;
 }
 
 #body-song-list {
-	overflow-y: scroll;
 	height: 93vh;
+	white-space: nowrap;
+	overflow-y: scroll;
+}
+
+.song-list-line{
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.song-played > div > p > a{
+	color: #f4c977;
+}
+
+.song-playing{
+	font-weight: 900;
+}
+
+.song-ignored > div > p > a{
+	color: red;
+}
+
+.full-panel {
+	padding-right: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100vh;
+}
+
+#user-list {
+	z-index: 2;
+}
+
+.button-glyph {
+	cursor: pointer;
+}
+
+#body-user-list {
+	height: 93vh;
+	overflow-y: scroll;
 }

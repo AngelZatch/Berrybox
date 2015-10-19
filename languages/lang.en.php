@@ -20,12 +20,18 @@ $lang["action_promote"] = "Promote this user to moderator";
 $lang["timeout_message_admin_first_part"] = "User has been timeouted (";
 $lang["timeout_message_admin_second_part"] = " times)";
 $lang["timeout_message_user"] = "You have been timeouted and therefore won't be able to post messages and/or submit videos";
+$lang["ignore_song"] = "Ignore this song";
+$lang["song_up"] = "Move this song up the queue";
+$lang["song_down"] = "Move this song down the queue";
 
 /** CHAT **/
 $lang["post_chat"] = "Chat";
 $lang["chat_placeholder"] = "Write a message";
 $lang["chat_settings"] = "Chat Settings";
 $lang["color_pick"] = "Pick a color for your username";
+
+/** SYSTEM MESSAGES **/
+$lang["song_ignored"] = "This song will be ignored:";
 
 /** ROOM **/
 $lang["youtube_message"] = "Submit your YouTube link here";

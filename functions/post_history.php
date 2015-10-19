@@ -14,7 +14,7 @@ try{
 	// Fetch name of the video
 	$content = file_get_contents("http://youtube.com/get_video_info?video_id=".$link);
 	parse_str($content, $ytarr);
-	$title = $ytarr['title'];
+	$title = addslashes($ytarr['title']);
 
 	$upload = $db->prepare("INSERT INTO roomHistory_$roomToken(history_link, video_name, history_time, history_user)
 	VALUES(:link, :title, :time, :user)");

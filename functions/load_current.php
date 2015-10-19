@@ -4,6 +4,7 @@ $db = PDOFactory::getConnection();
 
 $token = $_POST["roomToken"];
 $load = $db->query("SELECT history_link, video_name FROM roomHistory_$token
+					WHERE video_status = 1
 					ORDER BY room_history_id DESC
 					LIMIT 1");
 if($load->rowCount() != 0){

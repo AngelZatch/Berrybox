@@ -35,6 +35,7 @@ history_link VARCHAR(15) NOT NULL COMMENT 'id of the youtube video',
 video_name VARCHAR (300) COMMENT 'full name of the video',
 history_time DATETIME,
 history_user VARCHAR(10) NOT NULL
+video_status TINYINT(1) COMMENT '0 : queued / 1 : playing / 2 : played / 3 : ignored'
 )");
 	$newChat = $db->query("CREATE TABLE roomChat_$uniqueToken(
 message_id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,

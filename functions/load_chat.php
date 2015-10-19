@@ -2,6 +2,7 @@
 include "db_connect.php";
 $db = PDOFactory::getConnection();
 
+$lang = $_POST["lang"];
 $token = $_POST["token"];
 // To reduce the stress on the client, messages from the last 30 minutes are loaded.
 $now = date('Y-m-d H:i:s');
@@ -18,7 +19,8 @@ while($message = $load->fetch(PDO::FETCH_ASSOC)){
 	$m = array();
 	$m["scope"] = $message["message_scope"];
 	$m["author"] = $message["user_pseudo"];
-	$permission = $db->query("SELECT room_user_state FROM roomUsers_$token WHERE room_user_token = '$message[user_token]'")->fetch(PDO::FETCH_ASSOC);
+	$permission = $db->query("SELECT room_user_state FROM roomUsers_$token
+								WHERE room_user_token = '$message[user_token]'")->fetch(PDO::FETCH_ASSOC);
 	$m["status"] = $permission["room_user_state"];
 	$m["authorColor"] = $message["up_color"];
 	if($message["message_destination"] != ''){
@@ -32,7 +34,17 @@ while($message = $load->fetch(PDO::FETCH_ASSOC)){
 	$m["destinationToken"] = $message["message_destination"];
 	$m["authorToken"] = $message["message_author"];
 	$m["timestamp"] = date_create($message["message_time"])->format('H:i');
-	$m["content"] = stripslashes($message["message_contents"]);
+
+	$contentRaw = $message["message_contents"];
+	$pattern = "#\{(.*?)\}#";
+	if(preg_match($pattern, $contentRaw, $matches)){
+		$translationToken = $db->query("SELECT expression_$lang FROM translation
+							WHERE shortened_token = '$matches[1]'")->fetch(PDO::FETCH_ASSOC);
+		$messageInterpreted = preg_replace($pattern, $translationToken["expression_$lang"], $contentRaw);
+		$m["content"] = stripslashes($messageInterpreted);
+	} else {
+		$m["content"] = stripslashes($message["message_contents"]);
+	}
 	array_push($messageList, $m);
 }
 echo json_encode($messageList);

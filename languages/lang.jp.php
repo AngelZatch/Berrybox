@@ -20,12 +20,18 @@ $lang["action_promote"] = "モデレーターにこのユーザーを促進す�
 $lang["timeout_message_admin_first_part"] = "このユーザは、ミュートされています (";
 $lang["timeout_message_admin_second_part"] = " 回)";
 $lang["timeout_message_user"] = "あなたはミュートされていました。次のメッセジを送信することができません。";
+$lang["ignore_song"] = "Ignore this song";
+$lang["song_up"] = "Move this song up the queue";
+$lang["song_down"] = "Move this song down the queue";
 
 /** CHAT **/
 $lang["post_chat"] = "チャット";
 $lang["chat_placeholder"] = "メッセージを送信";
 $lang["chat_settings"] = "チャット設定";
 $lang["color_pick"] = "ユーザー名の色";
+
+/** SYSTEM MESSAGES **/
+$lang["song_ignored"] = "This song has been ignored:";
 
 /** ROOM **/
 $lang["youtube_message"] = "YouTubeのリンクを書きます";

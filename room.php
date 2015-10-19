@@ -49,13 +49,13 @@ if(isset($_GET["lang"])){
 			<div class="panel panel-default panel-chat">
 				<div class="panel-heading">
 					<div class="chat-options row">
-						<div class="col-lg-3 toggle-song-list">
+						<div class="col-lg-3 toggle-song-list button-glyph">
 							<span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?>
 						</div>
-						<div class="col-lg-4">
+						<div class="col-lg-2 toggle-user-list button-glyph">
 							<span class="glyphicon glyphicon-user" title="<?php echo $lang["watch_count"];?>"></span><span id="watch-count"></span>
 						</div>
-						<div class="col-lg-5">
+						<div class="col-lg-7">
 							<div data-toggle="popover-x" data-target="#popover-chat-settings" data-placement="bottom bottom-right" style="cursor:pointer;"><span class="glyphicon glyphicon-cog" title="<?php echo $lang["chat_settings"];?>"></span> <?php echo $lang["chat_settings"];?></div>
 							<div class="popover popover-default popover-lg" id="popover-chat-settings">
 								<div class="arrow"></div>
@@ -104,10 +104,16 @@ if(isset($_GET["lang"])){
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-3" id="song-list">
-			<div class="panel panel-default panel-song-list">
+		<div class="col-lg-4 full-panel" id="song-list">
+			<div class="panel panel-default panel-list">
 				<div class="panel-heading"><?php echo $lang["playlist"];?></div>
 				<div class="panel-body" id="body-song-list"></div>
+			</div>
+		</div>
+		<div class="col-lg-3 full-panel" id="user-list">
+			<div class="panel panel-default panel-list">
+				<div class="panel-heading">User List</div>
+				<div class="panel-body" id="body-user-list"></div>
 			</div>
 		</div>
 		<?php include "scripts.php";?>
@@ -145,8 +151,11 @@ if(isset($_GET["lang"])){
 			// Load the chat
 			setInterval(loadChat, 2000, roomToken, result);
 			// Load the history of all submitted songs in this room
-			loadSongHistory(roomToken);
-			setInterval(loadSongHistory, 10000, roomToken);
+			loadSongHistory(roomToken, result);
+			setInterval(loadSongHistory, 8000, roomToken, result);
+			// Load all the active users in the room
+			loadUsers(roomToken);
+			setInterval(loadUsers, 12000, roomToken);
 			//window.checkVideo = setInterval(synchronize, 5000, roomToken);
 		})
 
@@ -176,8 +185,49 @@ if(isset($_GET["lang"])){
 			$(".close").click();
 		})
 	}).on('click', '.toggle-song-list', function(){
-		var position = ($("#song-list").css("right") == "0px")?"32%":"0px"
+		var position;
+		// If none of the panels are visible
+		if($("#user-list").css("right") == "0px" && $("#song-list").css("right") == "0px"){
+			position = "32%";
+		} else if($("#user-list").css("right") < "500px" && $("#song-list").css("right") == "0px"){
+			// If the other panel is already visible on the right
+			position = "55.5%";
+		} else if($("#user-list").css("right") > "500px" && $("#song-list").css("right") == "0px"){
+			// If the other panel is already visible on the left
+			position = "32%";
+		} else if($("#user-list").css("right") > "500px" && $("#song-list").css("right") != "0px"){
+			// Toggling off with the other panel visible on the left
+			position = "0px";
+			$("#user-list").animate({
+				'right': "32%"
+			}, 200);
+		} else if($("#song-list").css("right") != "0px"){
+			// If the panel is already visible and has to be toggled off
+			position = "0px";
+		}
 		$("#song-list").animate({
+			'right': position
+		}, 200);
+	}).on('click', '.toggle-user-list', function(){
+		var position;
+		if($("#user-list").css("right") == "0px" && $("#song-list").css("right") == "0px"){
+			position = "32%";
+		} else if($("#song-list").css("right") < "500px" && $("#user-list").css("right") == "0px"){
+			// If the other panel is already visible
+			position = "64%";
+		} else if($("#song-list").css("right") > "500px" && $("#user-list").css("right") == "0px"){
+			// If the other panel is already visible
+			position = "32%";
+		} else if($("#song-list").css("right") > "500px" && $("#user-list").css("right") != "0px"){
+			position = "0px";
+			$("#song-list").animate({
+				'right': "32%"
+			}, 200);
+		} else if($("#user-list").css("right") != "0px"){
+			// If the panel is already visible and has to be toggled off
+			position = "0px";
+		}
+		$("#user-list").animate({
 			'right': position
 		}, 200);
 	}).unload(function(){
@@ -218,16 +268,80 @@ if(isset($_GET["lang"])){
 			sendMessage("<?php echo $roomToken;?>", 4, title);
 		}
 	}
-	function loadSongHistory(roomToken){
+	function loadSongHistory(roomToken, userPower){
 		// Gets the whole history of the room
 		$.post("functions/get_history.php", {roomToken : roomToken}).done(function(data){
 			var songList = JSON.parse(data);
 			$("#body-song-list").empty();
 			for(var i = 0; i < songList.length; i++){
-				var message = "<p>";
-				message = songList[i].videoName;
+				if(songList[i].videoStatus == 2){
+					var message = "<div class='row song-played'>";
+					message += "<div class='col-lg-12'>";
+				} else if(songList[i].videoStatus == 1){
+					var message = "<div class='row song-playing'>";
+					message += "<div class='col-lg-12'>";
+				} else if(songList[i].videoStatus == 3){
+					var message = "<div class='row song-ignored'>";
+					message += "<div class='col-lg-9'>";
+				} else {
+					var message = "<div class='row'>";
+					message += "<div class='col-lg-9'>";
+				}
+				message += "<p class='song-list-line'>";
+				message += "<a href='http://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songList[i].videoName+"'>";
+				message += songList[i].videoName;
+				message +=  "</a>";
 				message += "</p>";
+				message += "</div>";
+				if(userPower == 2 || userPower == 3){
+					if(songList[i].videoStatus == 0){
+						message += "<div class='col-lg-1'>";
+						message += "<span class='glyphicon glyphicon-ban-circle button-glyph' onClick=ignoreSong("+songList[i].entry+")></span>";
+						message += "</div>";
+						message += "<div class='col-lg-1'>";
+						message += "<span class='glyphicon glyphicon-arrow-up'></span>";
+						message += "</div>";
+						message += "<div class='col-lg-1'>";
+						message += "<span class='glyphicon glyphicon-arrow-down'></span>";
+						message += "</div>";
+					} else if(songList[i].videoStatus == 3){
+						message += "<div class='col-lg-1'>";
+						message += "<span class='glyphicon glyphicon-leaf button-glyph' onClick=reinstateSong("+songList[i].entry+")></span>";
+						message += "</div>";
+					}
+				}
+				message += "</div>";
 				$("#body-song-list").append(message);
+			}
+		})
+	}
+	function ignoreSong(id){
+		$.post("functions/ignore_song.php", {roomToken : "<?php echo $roomToken;?>", id : id}).done(function(data){
+			var message = "{song_ignored}"+data;
+			sendMessage("<?php echo $roomToken;?>", 4, message);
+		})
+	}
+	function reinstateSong(id){
+		$.post("functions/reinstate_song.php", {roomToken : "<?php echo $roomToken;?>", id : id}).done(function(data){
+			var message = "{song_reinstated}"+data;
+			sendMessage("<?php echo $roomToken;?>", 4, message);
+		})
+	}
+	function loadUsers(roomToken){
+		$.post("functions/get_user_list.php", {roomToken : roomToken}).done(function(data){
+			var userList = JSON.parse(data);
+			$("#body-user-list").empty();
+			for(var i = 0; i < userList.length; i++){
+				var message = "";
+				message = "<p>";
+				if(userList[i].power == 2){
+					message += "<span class='glyphicon glyphicon-star'></span>";
+				} else if(userList[i].power == 3){
+					message += "<span class='glyphicon glyphicon-star-empty'></span>";
+				}
+				message += userList[i].pseudo;
+				message += "</p>";
+				$("#body-user-list").append(message);
 			}
 		})
 	}
@@ -276,9 +390,9 @@ if(isset($_GET["lang"])){
 			$.post("functions/post_chat.php", {message : message, token : roomToken, scope : scope, destination : destination});
 		}
 	}
-	function loadChat(data, userPower){
-		var token = data;
-		$.post("functions/load_chat.php", {token : token}).done(function(data){
+	function loadChat(roomToken, userPower){
+		var lang = "<?php echo $_GET["lang"];?>";
+		$.post("functions/load_chat.php", {token : roomToken, lang : lang}).done(function(data){
 			var messageList = JSON.parse(data);
 			$(".body-chat").empty();
 			for(var i = 0; i < messageList.length; i++){
