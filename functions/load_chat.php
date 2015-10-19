@@ -39,7 +39,10 @@ while($message = $load->fetch(PDO::FETCH_ASSOC)){
 	$pattern = "#\{(.*?)\}#";
 	if(preg_match($pattern, $contentRaw, $matches)){
 		$translationToken = $db->query("SELECT expression_$lang FROM translation
-							WHERE shortened_token = '$matches[1]'")->fetch(PDO::FETCH_ASSOC);
+							WHERE shortened_token = '$matches[1]'
+							OR expression_en = '$matches[1]'
+							OR expression_fr = '$matches[1]'
+							OR expression_jp = '$matches[1]'")->fetch(PDO::FETCH_ASSOC);
 		$messageInterpreted = preg_replace($pattern, $translationToken["expression_$lang"], $contentRaw);
 		$m["content"] = stripslashes($messageInterpreted);
 	} else {

@@ -30,9 +30,6 @@ $lang["chat_placeholder"] = "Write a message";
 $lang["chat_settings"] = "Chat Settings";
 $lang["color_pick"] = "Pick a color for your username";
 
-/** SYSTEM MESSAGES **/
-$lang["song_ignored"] = "This song will be ignored:";
-
 /** ROOM **/
 $lang["youtube_message"] = "Submit your YouTube link here";
 $lang["submit_link"] = "Submit";

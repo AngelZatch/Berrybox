@@ -19,7 +19,7 @@ $lang["action_ban"] = "Bannir cet utilisateur indéfiniment";
 $lang["action_promote"] = "Promouvoir cet utilisateur au rang de modérateur";
 $lang["timeout_message_admin_first_part"] = "Vous avez mis cet utilisateur en sourdine (";
 $lang["timeout_message_admin_second_part"] = " fois)";
-$lang["timeout_message_user"] = "You have been timeouted and therefore won't be able to post messages and/or submit videos";
+$lang["timeout_message_user"] = "Vous avez été mis en sourdine et ne pourrez plus parler et/ou soumettre des vidéos pendant un certain temps.";
 $lang["ignore_song"] = "Ignorer cette musique";
 $lang["song_up"] = "Déplacer cette chanson vers le haut de la file d'attente";
 $lang["song_down"] = "Déplacer cette chanson vers le bas de la file d'attente";
@@ -29,9 +29,6 @@ $lang["post_chat"] = "Envoyer";
 $lang["chat_placeholder"] = "Ecrire un message";
 $lang["chat_settings"] = "Paramètres du chat";
 $lang["color_pick"] = "Choisissez une couleur pour votre nom";
-
-/** SYSTEM MESSAGES **/
-$lang["song_ignored"] = "Cette musique sera ignorée : ";
 
 /** ROOM **/
 $lang["youtube_message"] = "Envoyer un lien YouTube";

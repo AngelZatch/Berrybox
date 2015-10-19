@@ -240,21 +240,26 @@ if(isset($_GET["lang"])){
 	function onPlayerStateChange(event) {
 		if (event.data == YT.PlayerState.ENDED) {
 			$.post("functions/get_next.php", {roomToken : "<?php echo $roomToken;?>", lastPlayed : sessionStorage.getItem("currently-playing")}).done(function(data){
-				var songInfo = JSON.parse(data);
-				if(songInfo.link != null){
-					playSong(songInfo.link, songInfo.title);
+				if(data != ""){
+					var songInfo = JSON.parse(data);
+					if(songInfo.link != null){
+						playSong(songInfo.link, songInfo.title);
+					}
 				} else {
-					setTimeout(onPlayerStateChange, 2000, event);
+					synchronize("<?php echo $roomToken;?>");
 				}
 			});
 		}
 	}
 	function synchronize(roomToken){
+		console.log("Synchronizing...");
 		/* This function synchronizes the current video for everyone */
 		$.post("functions/load_current.php", {roomToken : roomToken}).done(function(data){
 			var songInfo = JSON.parse(data);
 			if(songInfo.link != null){
 				playSong(songInfo.link, songInfo.title);
+			} else {
+				window.videoPending = setTimeout(synchronize, 3000, "<?php echo $roomToken;?>");
 			}
 		})
 	}
@@ -298,12 +303,12 @@ if(isset($_GET["lang"])){
 						message += "<div class='col-lg-1'>";
 						message += "<span class='glyphicon glyphicon-ban-circle button-glyph' onClick=ignoreSong("+songList[i].entry+")></span>";
 						message += "</div>";
-						message += "<div class='col-lg-1'>";
+						/*message += "<div class='col-lg-1'>";
 						message += "<span class='glyphicon glyphicon-arrow-up'></span>";
 						message += "</div>";
 						message += "<div class='col-lg-1'>";
 						message += "<span class='glyphicon glyphicon-arrow-down'></span>";
-						message += "</div>";
+						message += "</div>";*/
 					} else if(songList[i].videoStatus == 3){
 						message += "<div class='col-lg-1'>";
 						message += "<span class='glyphicon glyphicon-leaf button-glyph' onClick=reinstateSong("+songList[i].entry+")></span>";
