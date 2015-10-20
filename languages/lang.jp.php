@@ -17,6 +17,7 @@ $lang["public_tip"] = "誰もこのルームに入ることができるように
 $lang["action_timeout"] = "このユーザーをミュートする。";
 $lang["action_ban"] = "このルームからこのユーザーを禁止する。";
 $lang["action_promote"] = "モデレーターにこのユーザーを促進する。";
+$lang["action_demote"] = "このユーザーを降格する。";
 $lang["timeout_message_admin_first_part"] = "このユーザは、ミュートされています (";
 $lang["timeout_message_admin_second_part"] = " 回)";
 $lang["timeout_message_user"] = "あなたはミュートされていました。次のメッセジを送信することができません。";
@@ -30,6 +31,15 @@ $lang["chat_placeholder"] = "メッセージを送信";
 $lang["chat_settings"] = "チャット設定";
 $lang["color_pick"] = "ユーザー名の色";
 
+/** MOOD **/
+$lang["mood-question"] = "この曲、どう思う？";
+$lang["like"] = "いいね！";
+$lang["cry"] = "悲しい感じがする";
+$lang["love"] = "ラブに考える";
+$lang["intense"] = "興奮する！";
+$lang["sleep"] = "落ち着く";
+$lang["energy"] = "元気一杯！！！";
+
 /** ROOM **/
 $lang["youtube_message"] = "YouTubeのリンクを書きます";
 $lang["submit_link"] = "提出する";
@@ -39,7 +49,7 @@ $lang["room_admin"] = "ルームクリエイター";
 $lang["room_mod"] = "ルームモデレータ";
 $lang["now_playing"] = "プレイ中";
 $lang["watch_count"] = "観衆カウント";
-$lang["playlist"] = "プレイリスと";
+$lang["playlist"] = "プレイリスト";
 $lang["sync"] = "シンク";
 
 /** BUTTONS **/

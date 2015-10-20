@@ -17,6 +17,7 @@ $lang["public_tip"] = "Ce salon sera accessible à tout le monde";
 $lang["action_timeout"] = "Mettre cet utilisateur en sourdine";
 $lang["action_ban"] = "Bannir cet utilisateur indéfiniment";
 $lang["action_promote"] = "Promouvoir cet utilisateur au rang de modérateur";
+$lang["action_demote"] = "Enlever les privilèges de modérateur à cet utilisateur.";
 $lang["timeout_message_admin_first_part"] = "Vous avez mis cet utilisateur en sourdine (";
 $lang["timeout_message_admin_second_part"] = " fois)";
 $lang["timeout_message_user"] = "Vous avez été mis en sourdine et ne pourrez plus parler et/ou soumettre des vidéos pendant un certain temps.";
@@ -29,6 +30,16 @@ $lang["post_chat"] = "Envoyer";
 $lang["chat_placeholder"] = "Ecrire un message";
 $lang["chat_settings"] = "Paramètres du chat";
 $lang["color_pick"] = "Choisissez une couleur pour votre nom";
+
+/** MOOD **/
+$lang["mood-question"] = "Que pensez-vous de la musique ?";
+$lang["like"] = "J'aime";
+$lang["cry"] = "Elle me rend triste";
+$lang["love"] = "Elle me rend mélancolique";
+$lang["intense"] = "J'adore !";
+$lang["sleep"] = "Elle m'apaise";
+$lang["energy"] = "Je suis plein d'énergie !!";
+
 
 /** ROOM **/
 $lang["youtube_message"] = "Envoyer un lien YouTube";

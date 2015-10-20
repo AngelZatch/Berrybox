@@ -50,6 +50,7 @@
 #room-player {
 	margin-left: none;
 	padding-top: 14px;
+	padding-right: 0 !important;
 }
 
 #room-chat {
@@ -206,9 +207,7 @@
 	z-index: 2;
 }
 
-
-
-.panellist {
+.panel-list {
 	height: inherit;
 	padding: 0 !important;
 	margin: 0 !important;
@@ -256,4 +255,42 @@
 #body-user-list {
 	height: 93vh;
 	overflow-y: scroll;
+}
+
+.emotion-glyph {
+	text-align: center;
+	font-size: 18px;
+}
+
+.emotion-like {
+	color: #494AFF;
+}
+
+.emotion-cry {
+	color: #60E5FF;
+}
+
+.emotion-love {
+	color: #FF2921;
+}
+
+.emotion-sleep {
+	color: #B694CC;
+}
+
+.emotion-energy {
+	color: #76FF48;
+}
+
+.emotion-intense {
+	color: #FF7000;
+}
+
+.mood-selectors {
+	display: none;
+}
+
+.mood-question {
+	font-size: 18px;
+	text-align: center;
 }

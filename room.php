@@ -32,30 +32,65 @@ if(isset($_GET["lang"])){
 			<div id="currently-playing">
 				<div class="modal-body" id="player"></div>
 			</div>
-			<div class="add-link">
-				<?php if(isset($_SESSION["token"])){ ?>
-				<div class="input-group">
-					<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
-					<span class="input-group-btn">
-						<button class="btn btn-primary btn-block play-url" data-toggle="modal"><?php echo $lang["submit_link"];?></button>
-					</span>
+			<div class="row">
+				<div class="add-link col-lg-12">
+					<?php if(isset($_SESSION["token"])){ ?>
+					<div class="input-group">
+						<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
+						<span class="input-group-btn">
+							<button class="btn btn-primary btn-block play-url" data-toggle="modal"><?php echo $lang["submit_link"];?></button>
+						</span>
+					</div>
+					<?php } else { ?>
+					<p class="submit-required"><?php echo $lang["no_submit"];?></p>
+					<?php } ?>
 				</div>
-				<?php } else { ?>
-				<p class="submit-required"><?php echo $lang["no_submit"];?></p>
-				<?php } ?>
+				<div class="col-lg-6 mood-selectors">
+					<p class="mood-question">Do you like this song?</p>
+					<div class="col-lg-2">
+						<p class="emotion-glyph emotion-like button-glyph" onClick="voteMood('like')">
+							<span class="glyphicon glyphicon-thumbs-up"></span>
+						</p>
+					</div>
+					<div class="col-lg-2">
+						<p class="emotion-glyph emotion-cry button-glyph" onClick="voteMood('cry')">
+							<span class="glyphicon glyphicon-tint"></span>
+						</p>
+					</div>
+					<div class="col-lg-2">
+						<p class="emotion-glyph emotion-love button-glyph" onClick="voteMood('love')">
+							<span class="glyphicon glyphicon-heart"></span>
+						</p>
+					</div>
+					<div class="col-lg-2">
+						<p class="emotion-glyph emotion-intense button-glyph" onClick="voteMood('intense')">
+							<span class="glyphicon glyphicon-eye-open"></span>
+						</p>
+					</div>
+					<div class="col-lg-2">
+						<p class="emotion-glyph emotion-sleep button-glyph" onClick="voteMood('sleep')">
+							<span class="glyphicon glyphicon-bed"></span>
+						</p>
+					</div>
+					<div class="col-lg-2">
+						<p class="emotion-glyph emotion-energy button-glyph" onClick="voteMood('energy')">
+							<span class="glyphicon glyphicon-flash"></span>
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="col-lg-4" id="room-chat">
 			<div class="panel panel-default panel-chat">
 				<div class="panel-heading">
 					<div class="chat-options row">
-						<div class="col-lg-3 toggle-song-list button-glyph">
+						<div class="col-lg-4 toggle-song-list button-glyph">
 							<span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?>
 						</div>
 						<div class="col-lg-2 toggle-user-list button-glyph">
 							<span class="glyphicon glyphicon-user" title="<?php echo $lang["watch_count"];?>"></span><span id="watch-count"></span>
 						</div>
-						<div class="col-lg-7">
+						<div class="col-lg-6">
 							<div data-toggle="popover-x" data-target="#popover-chat-settings" data-placement="bottom bottom-right" style="cursor:pointer;"><span class="glyphicon glyphicon-cog" title="<?php echo $lang["chat_settings"];?>"></span> <?php echo $lang["chat_settings"];?></div>
 							<div class="popover popover-default popover-lg" id="popover-chat-settings">
 								<div class="arrow"></div>
@@ -230,6 +265,90 @@ if(isset($_GET["lang"])){
 		$("#user-list").animate({
 			'right': position
 		}, 200);
+	}).on('mouseenter', '.emotion-like', function(){
+		$(".mood-question").fadeOut('500', function(){
+			$(".mood-question").empty();
+			$(".mood-question").html("<?php echo $lang["like"];?>");
+			$(".mood-question").addClass("emotion-like");
+			$(".mood-question").fadeIn('500');
+		});
+	}).on('mouseenter', '.emotion-cry', function(){
+		$(".mood-question").fadeOut('500', function(){
+			$(".mood-question").empty();
+			$(".mood-question").html("<?php echo $lang["cry"];?>");
+			$(".mood-question").addClass("emotion-cry");
+			$(".mood-question").fadeIn('500');
+		});
+	}).on('mouseenter', '.emotion-love', function(){
+		$(".mood-question").fadeOut('500', function(){
+			$(".mood-question").empty();
+			$(".mood-question").html("<?php echo $lang["love"];?>");
+			$(".mood-question").addClass("emotion-love");
+			$(".mood-question").fadeIn('500');
+		});
+	}).on('mouseenter', '.emotion-intense', function(){
+		$(".mood-question").fadeOut('500', function(){
+			$(".mood-question").empty();
+			$(".mood-question").html("<?php echo $lang["intense"];?>");
+			$(".mood-question").addClass("emotion-intense");
+			$(".mood-question").fadeIn('500');
+		});
+	}).on('mouseenter', '.emotion-sleep', function(){
+		$(".mood-question").fadeOut('500', function(){
+			$(".mood-question").empty();
+			$(".mood-question").html("<?php echo $lang["sleep"];?>");
+			$(".mood-question").addClass("emotion-sleep");
+			$(".mood-question").fadeIn('500');
+		});
+	}).on('mouseenter', '.emotion-energy', function(){
+		$(".mood-question").fadeOut('500', function(){
+			$(".mood-question").empty();
+			$(".mood-question").html("<?php echo $lang["energy"];?>");
+			$(".mood-question").addClass("emotion-energy");
+			$(".mood-question").fadeIn('500');
+		});
+	}).on('mouseleave', '.emotion-like', function(){
+		$(".mood-question").fadeOut('500', function(){
+			$(".mood-question").empty();
+			$(".mood-question").html("<?php echo $lang["mood-question"];?>");
+			$(".mood-question").removeClass("emotion-like");
+			$(".mood-question").fadeIn('500');
+		});
+	}).on('mouseleave', '.emotion-cry', function(){
+		$(".mood-question").fadeOut('500', function(){
+			$(".mood-question").empty();
+			$(".mood-question").html("<?php echo $lang["mood-question"];?>");
+			$(".mood-question").removeClass("emotion-cry");
+			$(".mood-question").fadeIn('500');
+		});
+	}).on('mouseleave', '.emotion-love', function(){
+		$(".mood-question").fadeOut('500', function(){
+			$(".mood-question").empty();
+			$(".mood-question").html("<?php echo $lang["mood-question"];?>");
+			$(".mood-question").removeClass("emotion-love");
+			$(".mood-question").fadeIn('500');
+		});
+	}).on('mouseleave', '.emotion-intense', function(){
+		$(".mood-question").fadeOut('500', function(){
+			$(".mood-question").empty();
+			$(".mood-question").html("<?php echo $lang["mood-question"];?>");
+			$(".mood-question").removeClass("emotion-intense");
+			$(".mood-question").fadeIn('500');
+		});
+	}).on('mouseleave', '.emotion-sleep', function(){
+		$(".mood-question").fadeOut('500', function(){
+			$(".mood-question").empty();
+			$(".mood-question").html("<?php echo $lang["mood-question"];?>");
+			$(".mood-question").removeClass("emotion-sleep");
+			$(".mood-question").fadeIn('500');
+		});
+	}).on('mouseleave', '.emotion-energy', function(){
+		$(".mood-question").fadeOut('500', function(){
+			$(".mood-question").empty();
+			$(".mood-question").html("<?php echo $lang["mood-question"];?>");
+			$(".mood-question").removeClass("emotion-energy");
+			$(".mood-question").fadeIn('500');
+		});
 	}).unload(function(){
 		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
 		$.post("functions/leave_room.php", {roomToken : "<?php echo $roomToken;?>", userToken : userToken});
@@ -249,6 +368,11 @@ if(isset($_GET["lang"])){
 					synchronize("<?php echo $roomToken;?>");
 				}
 			});
+		}
+		if(event.data == YT.PlayerState.PLAYING){
+			var moodTimer = player.getDuration() * 1000;
+			setTimeout(showMoodSelectors, moodTimer * 0.3);
+			setTimeout(hideMoodSelectors, moodTimer - 10000);
 		}
 	}
 	function synchronize(roomToken){
@@ -270,7 +394,9 @@ if(isset($_GET["lang"])){
 		$(".currently-name").html(title);
 		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
 		if(userToken == "<?php echo $roomDetails["room_creator"];?>"){
-			sendMessage("<?php echo $roomToken;?>", 4, title);
+			var message = "{now_playing}"+title;
+			sendMessage("<?php echo $roomToken;?>", 4, message);
+			$.post("functions/register_song.php", {id : id});
 		}
 	}
 	function loadSongHistory(roomToken, userPower){
@@ -331,6 +457,23 @@ if(isset($_GET["lang"])){
 			var message = "{song_reinstated}"+data;
 			sendMessage("<?php echo $roomToken;?>", 4, message);
 		})
+	}
+	function showMoodSelectors(){
+		$(".add-link").animate({
+			'width': '50%'
+		}, 300);
+		$(".mood-selectors").show('900');
+	}
+	function voteMood(mood){
+		$.post("functions/select_mood.php", {mood : mood, id : sessionStorage.getItem("currently-playing")}).done(function(){
+			hideMoodSelectors();
+		})
+	}
+	function hideMoodSelectors(){
+		$(".add-link").animate({
+			'width': '100%'
+		}, 300);
+		$(".mood-selectors").hide('900');
 	}
 	function loadUsers(roomToken){
 		$.post("functions/get_user_list.php", {roomToken : roomToken}).done(function(data){
@@ -426,7 +569,7 @@ if(isset($_GET["lang"])){
 					}
 				} else if(messageList[i].scope == 5){
 					// System messages viewable by only one user
-					if(messageList[i].destination == "<?php echo $_SESSION["token"];?>"){
+					if(messageList[i].destinationToken == "<?php echo $_SESSION["token"];?>"){
 						var message = "<p class='system-message system-alert'>";
 						message += "<span class='glyphicon glyphicon-exclamation-sign'></span> ";
 						message += messageList[i].content;
@@ -475,7 +618,7 @@ if(isset($_GET["lang"])){
 							if(userPower == 2){
 								// Specific actions to the admin : ban & demote
 								message += "<span class='glyphicon glyphicon-fire moderation-option' title='<?php echo $lang["action_ban"];?>' onClick=banUser('"+messageList[i].authorToken+"')></span> ";
-								message += "<span class='glyphicon glyphicon-star-empty moderation-option-enabled' title='<?php echo $lang["room_mod"];?>'></span> ";
+								message += "<span class='glyphicon glyphicon-star-empty moderation-option-enabled' title='<?php echo $lang["action_demote"];?>' onClick=demoteUser('"+messageList[i].authorToken+"')></span> ";
 							}
 						}
 						else {
@@ -517,7 +660,22 @@ if(isset($_GET["lang"])){
 
 	}
 	function promoteUser(token){
-		console.log(token);
+		$.post("functions/promote_user.php", {roomToken : "<?php echo $roomToken;?>", adminToken : "<?php echo $_SESSION["token"];?>", userToken : token}).done(function(data){
+			var message = "{user_promoted}"+data;
+			// System message to everyone to alert the new mod
+			sendMessage("<?php echo $roomToken;?>", 4, message);
+			// System message to the new mod only
+			sendMessage("<?php echo $roomToken;?>", 5, "{you_promoted}", token);
+		})
+	}
+	function demoteUser(token){
+		$.post("functions/demote_user.php", {roomToken : "<?php echo $roomToken;?>", adminToken : "<?php echo $_SESSION["token"];?>", userToken : token}).done(function(data){
+			var message = "{user_demoted}"+data;
+			// System message to everyone to alert of the demote
+			sendMessage("<?php echo $roomToken;?>", 4, message);
+			// System message to the affected user only
+			sendMessage("<?php echo $roomToken;?>", 5, "{you_demoted}", token);
+		});
 	}
 	function getWatchCount(token){
 		$.post("functions/get_watch_count.php", {token : token}).done(function(data){
