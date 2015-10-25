@@ -50,7 +50,9 @@ $lang["room_mod"] = "ルームモデレータ";
 $lang["now_playing"] = "プレイ中";
 $lang["watch_count"] = "観衆カウント";
 $lang["playlist"] = "プレイリスト";
-$lang["sync"] = "シンク";
+$lang["sync-on"] = "シンク オン";
+$lang["sync-off"] = "シンク　オフ";
+$lang["leave"] = "ルームを出ます";
 
 /** BUTTONS **/
 $lang["back"] = "戻る";

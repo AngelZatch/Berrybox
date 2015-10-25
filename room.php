@@ -26,8 +26,13 @@ if(isset($_GET["lang"])){
 	<body>
 		<div class="col-lg-8" id="room-player">
 			<div class="room-info">
-				<p class="room-title"><a href="home.php?lang=<?php echo $_GET["lang"];?>" class="btn btn-default leave-room"><span class="glyphicon glyphicon-arrow-left"></span> <?php echo $lang["back"];?></a> <?php echo $roomDetails["room_name"];?></p>
+				<p class="room-title"><?php echo $roomDetails["room_name"];?></p>
 				<p class="room-creator"><span class="glyphicon glyphicon-user" title="<?php echo $lang["room_admin"];?>"></span> <?php echo $roomDetails["user_pseudo"];?> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
+				<div class="room-admin btn-group">
+					<?php if($_SESSION["token"] != $roomDetails["room_creator"]){?>
+					<button class="btn btn-default btn-admin sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync-on"];?></button>
+					<?php } ?>
+				</div>
 			</div>
 			<div id="currently-playing">
 				<div class="modal-body" id="player"></div>
@@ -81,72 +86,69 @@ if(isset($_GET["lang"])){
 			</div>
 		</div>
 		<div class="col-lg-4" id="room-chat">
-			<div class="panel panel-default panel-chat">
+			<div class="panel panel-default panel-room panel-chat">
 				<div class="panel-heading">
 					<div class="chat-options row">
-						<div class="col-lg-4 toggle-song-list button-glyph">
-							<span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?>
+						<div class="col-lg-3 button-glyph">
+							<a href="home.php?lang=<?php echo $_GET["lang"];?>" style="color:inherit;" title="<?php echo $lang["leave"];?>"><span class="glyphicon glyphicon-arrow-left"></span></a>
 						</div>
-						<div class="col-lg-2 toggle-user-list button-glyph">
+						<div class="col-lg-3 toggle-song-list button-glyph">
+							<span class="glyphicon glyphicon-list" title="<?php echo $lang["playlist"];?>"></span>
+						</div>
+						<div class="col-lg-3 toggle-user-list button-glyph">
 							<span class="glyphicon glyphicon-user" title="<?php echo $lang["watch_count"];?>"></span><span id="watch-count"></span>
 						</div>
-						<div class="col-lg-6">
-							<div data-toggle="popover-x" data-target="#popover-chat-settings" data-placement="bottom bottom-right" style="cursor:pointer;"><span class="glyphicon glyphicon-cog" title="<?php echo $lang["chat_settings"];?>"></span> <?php echo $lang["chat_settings"];?></div>
-							<div class="popover popover-default popover-lg" id="popover-chat-settings">
-								<div class="arrow"></div>
-								<div class="popover-title"><span class="close" data-dismiss="popover-x">&times;</span><?php echo $lang["chat_settings"];?></div>
-								<div class="popover-content">
-									<p><?php echo $lang["color_pick"];?></p>
-									<div class="color-cube" id="color-67fc97"></div>
-									<div class="color-cube" id="color-4e96f2"></div>
-									<div class="color-cube" id="color-db8bf7"></div>
-									<div class="color-cube" id="color-e416a1"></div>
-									<div class="color-cube" id="color-1bddcf"></div>
-									<div class="color-cube" id="color-31a03f"></div>
-									<div class="color-cube" id="color-fb4836"></div>
-									<div class="color-cube" id="color-4b524d"></div>
-									<div class="color-cube" id="color-6a3b88"></div>
-									<div class="color-cube" id="color-a16ce8"></div>
-									<div class="color-cube" id="color-dfe092"></div>
-									<div class="color-cube" id="color-c9c00c"></div>
-									<div class="color-cube" id="color-707e66"></div>
-									<div class="color-cube" id="color-0954ee"></div>
-									<div class="color-cube" id="color-ad6337"></div>
-									<div class="color-cube" id="color-5f1107"></div>
-									<div class="color-cube" id="color-c372d4"></div>
-									<div class="color-cube" id="color-e17db6"></div>
-									<div class="color-cube" id="color-ca2004"></div>
-									<div class="color-cube" id="color-4df847"></div>
-									<div class="color-cube" id="color-0c89a8"></div>
-								</div>
+						<div class="col-lg-3 button-glyph" data-toggle="popover-x" data-target="#popover-chat-settings" data-placement="bottom bottom-right">
+							<span class="glyphicon glyphicon-cog" title="<?php echo $lang["chat_settings"];?>"></span>
+						</div>
+						<div class="popover popover-default popover-lg" id="popover-chat-settings">
+							<div class="arrow"></div>
+							<div class="popover-title"><span class="close" data-dismiss="popover-x">&times;</span><?php echo $lang["chat_settings"];?></div>
+							<div class="popover-content">
+								<p><?php echo $lang["color_pick"];?></p>
+								<div class="color-cube" id="color-67fc97"></div>
+								<div class="color-cube" id="color-4e96f2"></div>
+								<div class="color-cube" id="color-db8bf7"></div>
+								<div class="color-cube" id="color-e416a1"></div>
+								<div class="color-cube" id="color-1bddcf"></div>
+								<div class="color-cube" id="color-31a03f"></div>
+								<div class="color-cube" id="color-fb4836"></div>
+								<div class="color-cube" id="color-4b524d"></div>
+								<div class="color-cube" id="color-6a3b88"></div>
+								<div class="color-cube" id="color-a16ce8"></div>
+								<div class="color-cube" id="color-dfe092"></div>
+								<div class="color-cube" id="color-c9c00c"></div>
+								<div class="color-cube" id="color-707e66"></div>
+								<div class="color-cube" id="color-0954ee"></div>
+								<div class="color-cube" id="color-ad6337"></div>
+								<div class="color-cube" id="color-5f1107"></div>
+								<div class="color-cube" id="color-c372d4"></div>
+								<div class="color-cube" id="color-e17db6"></div>
+								<div class="color-cube" id="color-ca2004"></div>
+								<div class="color-cube" id="color-4df847"></div>
+								<div class="color-cube" id="color-0c89a8"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="panel-body body-chat"></div>
-				<div class="panel-footer footer-chat">
+				<div class="panel-body" id="body-chat"></div>
+				<div class="panel-footer">
 					<?php if(isset($_SESSION["token"])){ ?>
-					<div class="input-group">
-						<input type="text" class="form-control chatbox" placeholder="<?php echo $lang["chat_placeholder"];?>">
-						<span class="input-group-btn btn-chat">
-							<button class="btn btn-primary"><?php echo $lang["post_chat"];?></button>
-						</span>
-					</div>
+					<input type="text" class="form-control chatbox" placeholder="<?php echo $lang["chat_placeholder"];?>">
 					<?php } else { ?>
 					<p class="submit-required"><?php echo $lang["no_chat"];?></p>
 					<?php } ?>
-
 				</div>
 			</div>
 		</div>
 		<div class="col-lg-4 full-panel" id="song-list">
-			<div class="panel panel-default panel-list">
+			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><?php echo $lang["playlist"];?></div>
 				<div class="panel-body" id="body-song-list"></div>
 			</div>
 		</div>
 		<div class="col-lg-3 full-panel" id="user-list">
-			<div class="panel panel-default panel-list">
+			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading">User List</div>
 				<div class="panel-body" id="body-user-list"></div>
 			</div>
@@ -164,8 +166,8 @@ if(isset($_GET["lang"])){
 	var player;
 	function onYouTubeIframeAPIReady() {
 		player = new YT.Player('player', {
-			height: '507',
-			width: '832',
+			height: '482',
+			width: '802',
 			videoId: '',
 			events: {
 				'onReady': onPlayerReady,
@@ -185,13 +187,14 @@ if(isset($_GET["lang"])){
 		joinRoom(roomToken, userToken).done(function(result){
 			// Load the chat
 			setInterval(loadChat, 2000, roomToken, result);
+			window.userPower = result;
 			// Load the history of all submitted songs in this room
 			loadSongHistory(roomToken, result);
-			setInterval(loadSongHistory, 8000, roomToken, result);
 			// Load all the active users in the room
 			loadUsers(roomToken);
-			setInterval(loadUsers, 12000, roomToken);
 			//window.checkVideo = setInterval(synchronize, 5000, roomToken);
+			window.chatHovered = false;
+			window.sync = true;
 		})
 
 		// Get the number of people in the room
@@ -219,50 +222,88 @@ if(isset($_GET["lang"])){
 		$.post("functions/change_color.php", {userToken : userToken, color : color}).done(function(){
 			$(".close").click();
 		})
+	}).on('click', '#btn-synchro', function(){
+		var $b = $(this);
+		if($b.hasClass("sync-on")){
+			$b.removeClass("sync-on");
+			$b.empty();
+			$b.addClass("sync-off");
+			$b.html("<span class='glyphicon glyphicon-repeat'></span> " +"<?php echo $lang["sync-off"];?>");
+			window.sync = false;
+			$b.blur();
+		} else {
+			$b.addClass("sync-on");
+			$b.empty();
+			$b.removeClass("sync-off");
+			$b.html("<span class='glyphicon glyphicon-refresh'></span> " +"<?php echo $lang["sync-on"];?>");
+			window.sync = true;
+			synchronize("<?php echo $roomToken;?>");
+			$b.blur();
+		}
 	}).on('click', '.toggle-song-list', function(){
 		var position;
+		var $s = $("#song-list");
+		var $u = $("#user-list");
 		// If none of the panels are visible
-		if($("#user-list").css("right") == "0px" && $("#song-list").css("right") == "0px"){
+		if($u.css("right") == "0px" && $s.css("right") == "0px"){
 			position = "32%";
-		} else if($("#user-list").css("right") < "500px" && $("#song-list").css("right") == "0px"){
+		} else if($u.css("right") < "500px" && $s.css("right") == "0px"){
 			// If the other panel is already visible on the right
 			position = "55.5%";
-		} else if($("#user-list").css("right") > "500px" && $("#song-list").css("right") == "0px"){
+		} else if($u.css("right") > "500px" && $s.css("right") == "0px"){
 			// If the other panel is already visible on the left
 			position = "32%";
-		} else if($("#user-list").css("right") > "500px" && $("#song-list").css("right") != "0px"){
+		} else if($u.css("right") > "500px" && $s.css("right") != "0px"){
 			// Toggling off with the other panel visible on the left
 			position = "0px";
-			$("#user-list").animate({
+			$u.animate({
 				'right': "32%"
 			}, 200);
-		} else if($("#song-list").css("right") != "0px"){
+		} else if($s.css("right") != "0px"){
 			// If the panel is already visible and has to be toggled off
 			position = "0px";
 		}
-		$("#song-list").animate({
+		if($s.css("display") == "none"){
+			$s.toggle();
+			loadSongHistory("<?php echo $roomToken;?>", window.userPower);
+		} else {
+			$s.t = setTimeout((function(){
+				$s.hide();
+			}), 200);
+		}
+		$s.animate({
 			'right': position
 		}, 200);
 	}).on('click', '.toggle-user-list', function(){
 		var position;
-		if($("#user-list").css("right") == "0px" && $("#song-list").css("right") == "0px"){
+		var $s = $("#song-list");
+		var $u = $("#user-list");
+		if($u.css("right") == "0px" && $s.css("right") == "0px"){
 			position = "32%";
-		} else if($("#song-list").css("right") < "500px" && $("#user-list").css("right") == "0px"){
+		} else if($s.css("right") < "500px" && $u.css("right") == "0px"){
 			// If the other panel is already visible
 			position = "64%";
-		} else if($("#song-list").css("right") > "500px" && $("#user-list").css("right") == "0px"){
+		} else if($s.css("right") > "500px" && $u.css("right") == "0px"){
 			// If the other panel is already visible
 			position = "32%";
-		} else if($("#song-list").css("right") > "500px" && $("#user-list").css("right") != "0px"){
+		} else if($s.css("right") > "500px" && $u.css("right") != "0px"){
 			position = "0px";
-			$("#song-list").animate({
+			$s.animate({
 				'right': "32%"
 			}, 200);
-		} else if($("#user-list").css("right") != "0px"){
+		} else if($u.css("right") != "0px"){
 			// If the panel is already visible and has to be toggled off
 			position = "0px";
 		}
-		$("#user-list").animate({
+		if($u.css("display") == "none"){
+			$u.toggle();
+			loadUsers("<?php echo $roomToken;?>");
+		} else {
+			$u.t = setTimeout((function(){
+				$u.hide();
+			}), 200);
+		}
+		$u.animate({
 			'right': position
 		}, 200);
 	}).on('mouseenter', '.emotion-like', function(){
@@ -349,6 +390,10 @@ if(isset($_GET["lang"])){
 			$(".mood-question").removeClass("emotion-energy");
 			$(".mood-question").fadeIn('500');
 		});
+	}).on('mouseenter', '#body-chat', function(){
+		window.chatHovered = true;
+	}).on('mouseleave', '#body-chat', function(){
+		window.chatHovered = false;
 	}).unload(function(){
 		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
 		$.post("functions/leave_room.php", {roomToken : "<?php echo $roomToken;?>", userToken : userToken});
@@ -357,17 +402,19 @@ if(isset($_GET["lang"])){
 		synchronize("<?php echo $roomToken;?>");
 	}
 	function onPlayerStateChange(event) {
-		if (event.data == YT.PlayerState.ENDED) {
-			$.post("functions/get_next.php", {roomToken : "<?php echo $roomToken;?>", lastPlayed : sessionStorage.getItem("currently-playing")}).done(function(data){
-				if(data != ""){
-					var songInfo = JSON.parse(data);
-					if(songInfo.link != null){
-						playSong(songInfo.link, songInfo.title);
+		if(window.sync == true){
+			if (event.data == YT.PlayerState.ENDED) {
+				$.post("functions/get_next.php", {roomToken : "<?php echo $roomToken;?>", lastPlayed : sessionStorage.getItem("currently-playing")}).done(function(data){
+					if(data != ""){
+						var songInfo = JSON.parse(data);
+						if(songInfo.link != null){
+							playSong(songInfo.link, songInfo.title);
+						}
+					} else {
+						synchronize("<?php echo $roomToken;?>");
 					}
-				} else {
-					synchronize("<?php echo $roomToken;?>");
-				}
-			});
+				});
+			}
 		}
 		if(event.data == YT.PlayerState.PLAYING){
 			var moodTimer = player.getDuration() * 1000;
@@ -376,7 +423,6 @@ if(isset($_GET["lang"])){
 		}
 	}
 	function synchronize(roomToken){
-		console.log("Synchronizing...");
 		/* This function synchronizes the current video for everyone */
 		$.post("functions/load_current.php", {roomToken : roomToken}).done(function(data){
 			var songInfo = JSON.parse(data);
@@ -400,51 +446,55 @@ if(isset($_GET["lang"])){
 		}
 	}
 	function loadSongHistory(roomToken, userPower){
-		// Gets the whole history of the room
-		$.post("functions/get_history.php", {roomToken : roomToken}).done(function(data){
-			var songList = JSON.parse(data);
-			$("#body-song-list").empty();
-			for(var i = 0; i < songList.length; i++){
-				if(songList[i].videoStatus == 2){
-					var message = "<div class='row song-played'>";
-					message += "<div class='col-lg-12'>";
-				} else if(songList[i].videoStatus == 1){
-					var message = "<div class='row song-playing'>";
-					message += "<div class='col-lg-12'>";
-				} else if(songList[i].videoStatus == 3){
-					var message = "<div class='row song-ignored'>";
-					message += "<div class='col-lg-9'>";
-				} else {
-					var message = "<div class='row'>";
-					message += "<div class='col-lg-9'>";
-				}
-				message += "<p class='song-list-line'>";
-				message += "<a href='http://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songList[i].videoName+"'>";
-				message += songList[i].videoName;
-				message +=  "</a>";
-				message += "</p>";
-				message += "</div>";
-				if(userPower == 2 || userPower == 3){
-					if(songList[i].videoStatus == 0){
-						message += "<div class='col-lg-1'>";
-						message += "<span class='glyphicon glyphicon-ban-circle button-glyph' onClick=ignoreSong("+songList[i].entry+")></span>";
-						message += "</div>";
-						/*message += "<div class='col-lg-1'>";
+		if($("#song-list").css("display") != "none"){
+			console.log("Loading");
+			// Gets the whole history of the room
+			$.post("functions/get_history.php", {roomToken : roomToken}).done(function(data){
+				var songList = JSON.parse(data);
+				$("#body-song-list").empty();
+				for(var i = 0; i < songList.length; i++){
+					if(songList[i].videoStatus == 2){
+						var message = "<div class='row song-played'>";
+						message += "<div class='col-lg-12'>";
+					} else if(songList[i].videoStatus == 1){
+						var message = "<div class='row song-playing'>";
+						message += "<div class='col-lg-12'>";
+					} else if(songList[i].videoStatus == 3){
+						var message = "<div class='row song-ignored'>";
+						message += "<div class='col-lg-9'>";
+					} else {
+						var message = "<div class='row'>";
+						message += "<div class='col-lg-9'>";
+					}
+					message += "<p class='song-list-line'>";
+					message += "<a href='http://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songList[i].videoName+"'>";
+					message += songList[i].videoName;
+					message +=  "</a>";
+					message += "</p>";
+					message += "</div>";
+					if(userPower == 2 || userPower == 3){
+						if(songList[i].videoStatus == 0){
+							message += "<div class='col-lg-1'>";
+							message += "<span class='glyphicon glyphicon-ban-circle button-glyph' onClick=ignoreSong("+songList[i].entry+")></span>";
+							message += "</div>";
+							/*message += "<div class='col-lg-1'>";
 						message += "<span class='glyphicon glyphicon-arrow-up'></span>";
 						message += "</div>";
 						message += "<div class='col-lg-1'>";
 						message += "<span class='glyphicon glyphicon-arrow-down'></span>";
 						message += "</div>";*/
-					} else if(songList[i].videoStatus == 3){
-						message += "<div class='col-lg-1'>";
-						message += "<span class='glyphicon glyphicon-leaf button-glyph' onClick=reinstateSong("+songList[i].entry+")></span>";
-						message += "</div>";
+						} else if(songList[i].videoStatus == 3){
+							message += "<div class='col-lg-1'>";
+							message += "<span class='glyphicon glyphicon-leaf button-glyph' onClick=reinstateSong("+songList[i].entry+")></span>";
+							message += "</div>";
+						}
 					}
+					message += "</div>";
+					$("#body-song-list").append(message);
 				}
-				message += "</div>";
-				$("#body-song-list").append(message);
-			}
-		})
+			})
+			setTimeout(loadSongHistory, 8000, roomToken, userPower);
+		}
 	}
 	function ignoreSong(id){
 		$.post("functions/ignore_song.php", {roomToken : "<?php echo $roomToken;?>", id : id}).done(function(data){
@@ -470,28 +520,31 @@ if(isset($_GET["lang"])){
 		})
 	}
 	function hideMoodSelectors(){
-		$(".add-link").animate({
-			'width': '100%'
-		}, 300);
 		$(".mood-selectors").hide('900');
+		$(".add-link").delay('900').animate({
+			'width': '100%'
+		}, 400);
 	}
 	function loadUsers(roomToken){
-		$.post("functions/get_user_list.php", {roomToken : roomToken}).done(function(data){
-			var userList = JSON.parse(data);
-			$("#body-user-list").empty();
-			for(var i = 0; i < userList.length; i++){
-				var message = "";
-				message = "<p>";
-				if(userList[i].power == 2){
-					message += "<span class='glyphicon glyphicon-star'></span>";
-				} else if(userList[i].power == 3){
-					message += "<span class='glyphicon glyphicon-star-empty'></span>";
+		if($("#user-list").css("display") != "none"){
+			$.post("functions/get_user_list.php", {roomToken : roomToken}).done(function(data){
+				var userList = JSON.parse(data);
+				$("#body-user-list").empty();
+				for(var i = 0; i < userList.length; i++){
+					var message = "";
+					message = "<p>";
+					if(userList[i].power == 2){
+						message += "<span class='glyphicon glyphicon-star'></span>";
+					} else if(userList[i].power == 3){
+						message += "<span class='glyphicon glyphicon-star-empty'></span>";
+					}
+					message += userList[i].pseudo;
+					message += "</p>";
+					$("#body-user-list").append(message);
 				}
-				message += userList[i].pseudo;
-				message += "</p>";
-				$("#body-user-list").append(message);
-			}
-		})
+			})
+			setTimeout(loadSongHistory, 8000, roomToken);
+		}
 	}
 	function submitLink(){
 		// Get room token
@@ -542,7 +595,7 @@ if(isset($_GET["lang"])){
 		var lang = "<?php echo $_GET["lang"];?>";
 		$.post("functions/load_chat.php", {token : roomToken, lang : lang}).done(function(data){
 			var messageList = JSON.parse(data);
-			$(".body-chat").empty();
+			$("#body-chat").empty();
 			for(var i = 0; i < messageList.length; i++){
 				if(messageList[i].scope == 6){
 					// Whispers
@@ -605,7 +658,7 @@ if(isset($_GET["lang"])){
 					}
 				} else if(messageList[i].scope == 1){
 					// Chat for everyone
-					var message = "<p>";
+					var message = "<p class='standard-message'>";
 					message += "<span class='message-time'>"+messageList[i].timestamp+"</span> ";
 					if(messageList[i].status == 2){
 						// If author is creator
@@ -643,10 +696,12 @@ if(isset($_GET["lang"])){
 					message += " : "+messageList[i].content+"<br/>";
 					message += "</p>";
 				}
-				$(".body-chat").append(message);
+				$("#body-chat").append(message);
 			}
-			$(".body-chat").scrollTop($(".body-chat")[0].scrollHeight);
 		})
+		if(!window.chatHovered){
+			$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
+		}
 	}
 	function timeoutUser(userToken){
 		var roomToken = "<?php echo $roomToken;?>";

@@ -50,7 +50,9 @@ $lang["room_mod"] = "Room moderator";
 $lang["now_playing"] = "Now playing";
 $lang["watch_count"] = "Spectators";
 $lang["playlist"] = "Playlist";
-$lang["sync"] = "Sync";
+$lang["sync-on"] = "Sync ON";
+$lang["sync-off"] = "Sync OFF";
+$lang["leave"] = "Leave the room";
 
 /** BUTTONS **/
 $lang["back"] = "Back";
