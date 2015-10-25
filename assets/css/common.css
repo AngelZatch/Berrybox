@@ -1,3 +1,16 @@
+body{
+	background-color: #0a0905;
+}
+
+#player{
+	width: 100%;
+	margin: 0 auto;
+}
+
+.panel{
+	border-radius: 0px !important;
+}
+
 .player {
 	z-index: 1000;
 	position: absolute;
@@ -7,18 +20,49 @@
 	width: 100%;
 }
 
+.room-info{
+	color: #e5e2d3;
+	white-space: nowrap;
+}
+
 .main {
 	margin-top: 50px;
+}
+
+input.form-control{
+	background-color: inherit;
+	border: 2px solid #444;
+	color: white;
 }
 
 .panel-chat {
 	height: inherit;
 	padding: 0 !important;
 	margin: 0 !important;
+	background-color: #302d22;
+	border: none;
+	border-left: 1px solid #050505;
+}
+
+.panel-heading,
+.panel-footer{
+	background-color: inherit !important;
+}
+
+.panel-heading{
+	color: #e0d5ac !important;
+}
+
+.panel-footer{
+	padding-bottom: 9px;
 }
 
 .chat-room {
 	text-align: center;
+}
+
+.chat-options{
+	color: #e0d5ac;
 }
 
 .message-time{
@@ -33,14 +77,17 @@
 	font-weight: 700;
 }
 
-.body-chat {
+#body-chat {
 	overflow-y: scroll;
-	height: 83.7vh;
+	height: 85.7vh;
+	font-size: 12.5px;
 }
 
 .room-title {
 	font-size: 22px;
 	margin-bottom: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .user-room {
@@ -59,13 +106,10 @@
 	height: 100vh;
 }
 
-.footer-chat {
-	position: absolute;
-	bottom: 0;
-}
+
 
 .room-creator {
-	font-size: 18px;
+	font-size: 14px;
 }
 
 #active-rooms-title {
@@ -205,6 +249,7 @@
 
 #song-list {
 	z-index: 2;
+	display: none;
 }
 
 .panel-list {
@@ -246,10 +291,16 @@
 
 #user-list {
 	z-index: 2;
+	display: none;
 }
 
 .button-glyph {
 	cursor: pointer;
+	text-align: center;
+}
+
+.button-glyph:hover{
+	color: white;
 }
 
 #body-user-list {
@@ -293,4 +344,38 @@
 .mood-question {
 	font-size: 18px;
 	text-align: center;
+}
+
+.standard-message{
+	color: #e5e2d3;
+}
+
+.panel-room {
+	background-color: #302d22;
+	border: none;
+	border-left: 1px solid #050505;
+	color: #e5e2d3;
+}
+
+::-webkit-scrollbar{
+	background-color: #302D22;
+	width: 6px;
+}
+
+::-webkit-scrollbar-thumb{
+	background-color: #14130e;
+	border-radius: 10px;
+}
+
+.btn-admin {
+	background-color: inherit;
+	color: inherit;
+}
+
+.sync-on {
+	background-color: #cf9930;
+}
+
+.sync-off{
+	background-color: #9e865a;
 }

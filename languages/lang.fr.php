@@ -52,7 +52,9 @@ $lang["room_creator"] = "Créateur";
 $lang["now_playing"] = "Vidéo en cours";
 $lang["watch_count"] = "Spectateurs";
 $lang["playlist"] = "Liste des chansons";
-$lang["sync"] = "Synchro";
+$lang["sync-on"] = "Synchro ON";
+$lang["sync-off"] = "Synchro OFF";
+$lang["leave"] = "Quitter le salon";
 
 /** BUTTONS **/
 $lang["back"] = "Retour";
