@@ -31,13 +31,36 @@ if(isset($_GET["lang"])){
 				<div class="room-admin btn-group">
 					<?php if($_SESSION["token"] != $roomDetails["room_creator"]){?>
 					<button class="btn btn-default btn-admin sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync-on"];?></button>
+					<?php } else { ?>
+					<button class="btn btn-danger btn-admin" onClick="closeRoom('<?php echo $roomToken;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
+					<!--<div class="btn-group" id="dropdown-room-type">
+<button class="btn btn-default btn-admin dropdown-toggle" id="room-type" data-toggle="dropdown">
+<?php switch($roomDetails["room_protection"] == 1){
+	case 1:?>
+<span class="glyphicon glyphicon-volume-up"></span> <?php echo $lang["level_public"];?>
+<?php break;
+	case 2: ?>
+<span class="glyphicon glyphicon-eye-open"></span> <?php echo $lang["level_protected"];?>
+<?php break;
+	case 3: ?>
+<span class="glyphicon glyphicon-headphones"></span> <?php echo $lang["level_private"];?>
+<?php break;
+} ?>
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu dropdown-room">
+<li><a class="dropdown-link"><?php echo $lang["level_public"];?></a></li>
+<li><a class="dropdown-link"><?php echo $lang["level_locked"];?></a></li>
+<li><a class="dropdown-link"><?php echo $lang["level_private"];?></a></li>
+</ul>
+</div>-->
 					<?php } ?>
 				</div>
 			</div>
 			<div id="currently-playing">
 				<div class="modal-body" id="player"></div>
 			</div>
-			<div class="row">
+			<div class="row under-video">
 				<div class="add-link col-lg-12">
 					<?php if(isset($_SESSION["token"])){ ?>
 					<div class="input-group">
@@ -180,12 +203,14 @@ if(isset($_GET["lang"])){
 	$(document).ready(function(){
 		var roomToken = "<?php echo $roomToken;?>";
 		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
+		window.roomState = "<?php echo $roomDetails["room_active"];?>";
 		// Join the room
 		function joinRoom(roomToken, userToken){
 			return $.post("functions/join_room.php", {roomToken : roomToken, userToken : userToken});
 		}
 		joinRoom(roomToken, userToken).done(function(result){
 			// Load the chat
+			$("#body-chat").append("<p class='system-message'><?php echo $lang["welcome"];?></p>");
 			setInterval(loadChat, 2000, roomToken, result);
 			window.userPower = result;
 			// Load the history of all submitted songs in this room
@@ -195,11 +220,18 @@ if(isset($_GET["lang"])){
 			//window.checkVideo = setInterval(synchronize, 5000, roomToken);
 			window.chatHovered = false;
 			window.sync = true;
+			// Watching the state of the user
+			setTimeout(userState, 10000, roomToken, userToken);
+			setTimeout(roomState, 10000, roomToken);
 		})
 
 		// Get the number of people in the room
 		getWatchCount(roomToken);
 		setInterval(getWatchCount, 30000, roomToken);
+		$(window).on('beforeunload', function(event){
+			var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
+			$.post("functions/leave_room.php", {roomToken : "<?php echo $roomToken;?>", userToken : userToken});
+		})
 	}).on('click','.play-url', function(){
 		submitLink();
 	}).on('focus', '.url-box', function(){
@@ -394,9 +426,6 @@ if(isset($_GET["lang"])){
 		window.chatHovered = true;
 	}).on('mouseleave', '#body-chat', function(){
 		window.chatHovered = false;
-	}).unload(function(){
-		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
-		$.post("functions/leave_room.php", {roomToken : "<?php echo $roomToken;?>", userToken : userToken});
 	})
 	function onPlayerReady(event){
 		synchronize("<?php echo $roomToken;?>");
@@ -421,6 +450,27 @@ if(isset($_GET["lang"])){
 			setTimeout(showMoodSelectors, moodTimer * 0.3);
 			setTimeout(hideMoodSelectors, moodTimer - 10000);
 		}
+	}
+	function userState(roomToken, userToken){
+		$.post("functions/get_user_state.php", {roomToken : roomToken, userToken : userToken}).done(function(data){
+			if(data == 1){
+				setTimeout(userState, 10000, roomToken, userToken);
+			} else {
+				$("#body-chat").append("<p class='system-message system-alert'><?php echo $lang["room_closing"];?></p>");
+				setTimeout(function(){
+					window.location.replace("home.php?lang=<?php echo $_GET["lang"];?>");
+				}, 3000);
+			}
+		})
+	}
+	function roomState(roomToken){
+		$.post("functions/get_room_state.php", {roomToken : roomToken}).done(function(data){
+			window.roomState = data;
+			if(data == 0){
+				$(".under-video").hide('1000');
+			}
+			setTimeout(userState, 2000, roomToken);
+		})
 	}
 	function synchronize(roomToken){
 		/* This function synchronizes the current video for everyone */
@@ -547,20 +597,22 @@ if(isset($_GET["lang"])){
 		}
 	}
 	function submitLink(){
-		// Get room token
-		var roomToken = "<?php echo $roomToken;?>";
+		if(window.roomState == 1){
+			// Get room token
+			var roomToken = "<?php echo $roomToken;?>";
 
-		// Get URL
-		var src = $(".url-box").val();
-		if(src != ''){
-			// get ID of video
-			var id = src.substr(32, 11);
+			// Get URL
+			var src = $(".url-box").val();
+			if(src != ''){
+				// get ID of video
+				var id = src.substr(32, 11);
 
-			// Post URL into room history
-			$.post("functions/post_history.php", {url : id, roomToken : roomToken});
+				// Post URL into room history
+				$.post("functions/post_history.php", {url : id, roomToken : roomToken});
 
-			// Empty URL box
-			$(".url-box").val('');
+				// Empty URL box
+				$(".url-box").val('');
+			}
 		}
 	}
 	function sendMessage(roomToken, scope, message, destination){
@@ -593,15 +645,18 @@ if(isset($_GET["lang"])){
 	}
 	function loadChat(roomToken, userPower){
 		var lang = "<?php echo $_GET["lang"];?>";
-		$.post("functions/load_chat.php", {token : roomToken, lang : lang}).done(function(data){
+		if(!window.lastID){
+			window.lastID = 0;
+		}
+		$.post("functions/load_chat.php", {token : roomToken, lang : lang, lastMessageID : window.lastID}).done(function(data){
 			var messageList = JSON.parse(data);
-			$("#body-chat").empty();
 			for(var i = 0; i < messageList.length; i++){
+				var messageTime = moment(messageList[i].timestamp).format('HH:mm');
 				if(messageList[i].scope == 6){
 					// Whispers
 					if(messageList[i].destinationToken == "<?php echo $_SESSION["token"];?>"){
 						var message = "<p class='whisper'>";
-						message += "<span class='message-time'>"+messageList[i].timestamp+"</span> ";
+						message += "<span class='message-time'>"+messageTime+"</span> ";
 						message += "<span class='message-author' style='color:"+messageList[i].authorColor+";'>";
 						message += messageList[i].author;
 						message += "</span>";
@@ -610,7 +665,7 @@ if(isset($_GET["lang"])){
 						message += "</p>";
 					} else if(messageList[i].authorToken == "<?php echo $_SESSION["token"];?>"){
 						var message = "<p class='whisper'>";
-						message += "<span class='message-time'>"+messageList[i].timestamp+"</span> ";
+						message += "<span class='message-time'>"+messageTime+"</span> ";
 						message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
 						message += "<span class='message-author' style='color:"+messageList[i].destinationColor+";'>";
 						message += messageList[i].destination;
@@ -659,7 +714,7 @@ if(isset($_GET["lang"])){
 				} else if(messageList[i].scope == 1){
 					// Chat for everyone
 					var message = "<p class='standard-message'>";
-					message += "<span class='message-time'>"+messageList[i].timestamp+"</span> ";
+					message += "<span class='message-time'>"+messageTime+"</span> ";
 					if(messageList[i].status == 2){
 						// If author is creator
 						message += "<span class='glyphicon glyphicon-star' title='<?php echo $lang["room_admin"];?>'></span> ";
@@ -696,6 +751,7 @@ if(isset($_GET["lang"])){
 					message += " : "+messageList[i].content+"<br/>";
 					message += "</p>";
 				}
+				window.lastID = messageList[i].id;
 				$("#body-chat").append(message);
 			}
 		})
@@ -737,6 +793,10 @@ if(isset($_GET["lang"])){
 			$("#watch-count").empty();
 			$("#watch-count").append(" "+data);
 		})
+	}
+	function closeRoom(roomToken){
+		sendMessage(roomToken, 4, "{close_room_5}");
+		$.post("functions/close_room.php", {roomToken : roomToken});
 	}
 
 </script>

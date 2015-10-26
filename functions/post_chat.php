@@ -15,7 +15,8 @@ if(isset($_POST["solveDestination"])){
 	$destination = $_POST["destination"];
 }
 
-$time = date_create('now')->format('Y-m-d H:i:s');
+date_default_timezone_set('UTC');
+$time = date('Y-m-d H:i:s', time());
 if($message != ''){
 	try{
 		$db->beginTransaction();

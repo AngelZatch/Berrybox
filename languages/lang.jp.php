@@ -24,12 +24,16 @@ $lang["timeout_message_user"] = "あなたはミュートされていました�
 $lang["ignore_song"] = "この曲をスキップ";
 $lang["song_up"] = "この曲を上に移動します";
 $lang["song_down"] = "この曲を移動します";
+$lang["close_room"] = "ルームを閉める";
+$lang["room_closing"] = "The room is closing. You will now be redirected outside.";
+$lang["change_type"] = "ルームタイプを変更します";
 
 /** CHAT **/
 $lang["post_chat"] = "チャット";
 $lang["chat_placeholder"] = "メッセージを送信";
 $lang["chat_settings"] = "チャット設定";
 $lang["color_pick"] = "ユーザー名の色";
+$lang["welcome"] = "チャットルームへようこそ！";
 
 /** MOOD **/
 $lang["mood-question"] = "この曲、どう思う？";

@@ -24,12 +24,16 @@ $lang["timeout_message_user"] = "You have been timeouted and therefore won't be 
 $lang["ignore_song"] = "Ignore this song";
 $lang["song_up"] = "Move this song up the queue";
 $lang["song_down"] = "Move this song down the queue";
+$lang["close_room"] = "Close the room";
+$lang["room_closing"] = "The room is closing. You will now be redirected outside.";
+$lang["change_type"] = "Change the type of the room";
 
 /** CHAT **/
 $lang["post_chat"] = "Chat";
 $lang["chat_placeholder"] = "Write a message";
 $lang["chat_settings"] = "Chat Settings";
 $lang["color_pick"] = "Pick a color for your username";
+$lang["welcome"] = "Welcome in the chat room!";
 
 /** MOOD **/
 $lang["mood-question"] = "So, what do you think of this song?";

@@ -24,12 +24,16 @@ $lang["timeout_message_user"] = "Vous avez été mis en sourdine et ne pourrez p
 $lang["ignore_song"] = "Ignorer cette musique";
 $lang["song_up"] = "Déplacer cette chanson vers le haut de la file d'attente";
 $lang["song_down"] = "Déplacer cette chanson vers le bas de la file d'attente";
+$lang["close_room"] = "Fermer le salon";
+$lang["room_closing"] = "Ce salon ferme. Vous allez maintenant être redirigé dehors.";
+$lang["change_type"] = "Changer le type du salon";
 
 /** CHAT **/
 $lang["post_chat"] = "Envoyer";
 $lang["chat_placeholder"] = "Ecrire un message";
 $lang["chat_settings"] = "Paramètres du chat";
 $lang["color_pick"] = "Choisissez une couleur pour votre nom";
+$lang["welcome"] = "Bienvenue dans le salon !";
 
 /** MOOD **/
 $lang["mood-question"] = "Que pensez-vous de la musique ?";

@@ -379,3 +379,11 @@ input.form-control{
 .sync-off{
 	background-color: #9e865a;
 }
+
+.dropdown-room {
+	background-color: inherit;
+}
+
+.dropdown-link {
+	color: #e5e2d3 !important;
+}

@@ -4,19 +4,31 @@ $db = PDOFactory::getConnection();
 
 $lang = $_POST["lang"];
 $token = $_POST["token"];
+$lastId = $_POST["lastMessageID"];
 // To reduce the stress on the client, messages from the last 30 minutes are loaded.
-$now = date('Y-m-d H:i:s');
-$limitDate = date('Y-m-d H:i:s', time() - 180 * 60);
+date_default_timezone_set('UTC');
+$now = date('Y-m-d H:i:s', time());
+$limitDate = date('Y-m-d H:i:s', time() - 30 * 60);
 
-$load = $db->query("SELECT *
+// To further reduce the amount of data exchanged, the function will only return additional messages sent after the first loading.
+if($lastId > 0){
+	$load = $db->query("SELECT * FROM roomChat_$token s
+						LEFT JOIN user u ON s.message_author = u.user_token
+						LEFT JOIN user_preferences up ON s.message_author = up.up_user_id
+						WHERE message_id > $lastId
+						ORDER BY message_time ASC");
+} else {
+	$load = $db->query("SELECT *
 						FROM roomChat_$token s
 						LEFT JOIN user u ON s.message_author = u.user_token
 						LEFT JOIN user_preferences up ON s.message_author=up.up_user_id
 					WHERE message_time <= '$now' AND message_time > '$limitDate'
 					ORDER BY message_time ASC");
+}
 $messageList = array();
 while($message = $load->fetch(PDO::FETCH_ASSOC)){
 	$m = array();
+	$m["id"] = $message["message_id"];
 	$m["scope"] = $message["message_scope"];
 	$m["author"] = $message["user_pseudo"];
 	$permission = $db->query("SELECT room_user_state FROM roomUsers_$token
@@ -33,7 +45,7 @@ while($message = $load->fetch(PDO::FETCH_ASSOC)){
 	}
 	$m["destinationToken"] = $message["message_destination"];
 	$m["authorToken"] = $message["message_author"];
-	$m["timestamp"] = date_create($message["message_time"])->format('H:i');
+	$m["timestamp"] = $message["message_time"];
 
 	$contentRaw = $message["message_contents"];
 	$pattern = "#\{(.*?)\}#";
