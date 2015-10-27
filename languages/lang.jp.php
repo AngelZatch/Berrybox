@@ -27,6 +27,7 @@ $lang["song_down"] = "この曲を移動します";
 $lang["close_room"] = "ルームを閉める";
 $lang["room_closing"] = "The room is closing. You will now be redirected outside.";
 $lang["change_type"] = "ルームタイプを変更します";
+$lang["song_submit_success"] = "あなたのビデオ曲は提出されました";
 
 /** CHAT **/
 $lang["post_chat"] = "チャット";
@@ -78,4 +79,14 @@ $lang["password"] = "パスワード";
 $lang["pwd_confirm"] = "パスワードを確認して下さい。";
 $lang["cancel"] = "キャンセル";
 $lang["wrong_password"] = "間違いましたパスワード";
+$lang["my_profile"] = "プロファイル";
+
+/** PROFILE **/
+$lang["display_name"] = "ディスプレイ名";
+$lang["display_name_tip"] = "ディスプレイ名をカスタマイズします";
+$lang["profile_picture"] = "プロファイル画像";
+$lang["profile_picture_formats"] = "3MB上限. JPGとPNG形式は、サポートされています";
+$lang["bio"] = "バイオ";
+$lang["bio_tip"] = "あなたの事項商会〔400文字上限〕";
+$lang["save_changes"] = "セイブ";
 ?>

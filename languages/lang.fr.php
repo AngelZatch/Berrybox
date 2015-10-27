@@ -27,6 +27,7 @@ $lang["song_down"] = "Déplacer cette chanson vers le bas de la file d'attente";
 $lang["close_room"] = "Fermer le salon";
 $lang["room_closing"] = "Ce salon ferme. Vous allez maintenant être redirigé dehors.";
 $lang["change_type"] = "Changer le type du salon";
+$lang["song_submit_success"] = "Votre vidéo a bien été ajoutée à la playlist";
 
 /** CHAT **/
 $lang["post_chat"] = "Envoyer";
@@ -80,4 +81,14 @@ $lang["password"] = "Mot de passe";
 $lang["pwd_confirm"] = "Veuillez confirmer votre mot de passe";
 $lang["cancel"] = "Annuler";
 $lang["wrong_password"] = "Mot de passe erroné";
+$lang["my_profile"] = "Mon profil";
+
+/** PROFILE **/
+$lang["display_name"] = "Nom affiché";
+$lang["display_name_tip"] = "Personnalisez votre nom affiché.";
+$lang["profile_picture"] = "Image de profil";
+$lang["profile_picture_formats"] = "3Mo max. Formats JPG et PNG supportés";
+$lang["bio"] = "Bio";
+$lang["bio_tip"] = "Parlez de vous en moins de 400 caractères.";
+$lang["save_changes"] = "Sauvegarder les changements";
 ?>

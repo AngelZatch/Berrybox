@@ -1,10 +1,15 @@
 body{
-	background-color: #0a0905;
+	background-color: #2d2c26;
+	color: #e5e2d3;
 }
 
 #player{
 	width: 100%;
 	margin: 0 auto;
+}
+
+.navbar{
+	background-color: #3a3624;
 }
 
 .panel{
@@ -26,7 +31,7 @@ body{
 }
 
 .main {
-	margin-top: 50px;
+	margin-top: 80px;
 }
 
 input.form-control{
@@ -243,6 +248,12 @@ input.form-control{
 	font-weight: 700;
 }
 
+.system-success{
+	color: #87ce77;
+	font-style: italic;
+	font-weight: 600;
+}
+
 .whisper{
 	background-color : #D5D5D5;
 }
@@ -270,7 +281,7 @@ input.form-control{
 }
 
 .song-played > div > p > a{
-	color: #f4c977;
+	color: #66573f;
 }
 
 .song-playing{
@@ -386,4 +397,51 @@ input.form-control{
 
 .dropdown-link {
 	color: #e5e2d3 !important;
+}
+
+#profile-picture-sample {
+	width: 120px;
+	height: 120px;
+	border: 2px #444 solid;
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+.small-pp {
+	width: 35px;
+	height: 35px;
+	overflow: hidden;
+	border-radius: 20px;
+}
+
+.dropdown-profile {
+	padding-top: 8px !important;
+	padding-bottom: 8px !important;
+}
+
+.navbar-nav>li>a:hover{
+	background-color: inherit !important;
+}
+
+.btn-nav {
+	margin-top: 10px;
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+}
+
+.panel-active-room {
+	background-color: #23221d;
+}
+
+.room-picture {
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+	border-radius: 20px;
+	float: left;
+	margin-right: 10px;
+}
+
+.profile-picture {
+	width: inherit;
 }

@@ -25,7 +25,7 @@ if($next["history_link"] != null){
 							WHERE room_history_id='$next[room_history_id]'");
 	$n = array();
 	$n["link"] = $next["history_link"];
-	$n["title"] = $next["video_name"];
+	$n["title"] = stripslashes($next["video_name"]);
 	echo json_encode($n);
 } else {
 	echo null;

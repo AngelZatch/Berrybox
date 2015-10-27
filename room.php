@@ -26,8 +26,11 @@ if(isset($_GET["lang"])){
 	<body>
 		<div class="col-lg-8" id="room-player">
 			<div class="room-info">
+				<div class="room-picture">
+					<img src="profile-pictures/<?php echo $roomDetails["user_pp"];?>" class="profile-picture" title="<?php echo $roomDetails["user_pseudo"]." (".$lang["room_admin"].")";?>" alt="">
+				</div>
 				<p class="room-title"><?php echo $roomDetails["room_name"];?></p>
-				<p class="room-creator"><span class="glyphicon glyphicon-user" title="<?php echo $lang["room_admin"];?>"></span> <?php echo $roomDetails["user_pseudo"];?> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
+				<p class="room-creator"> <?php echo $roomDetails["user_pseudo"];?> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
 				<div class="room-admin btn-group">
 					<?php if($_SESSION["token"] != $roomDetails["room_creator"]){?>
 					<button class="btn btn-default btn-admin sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync-on"];?></button>
@@ -517,7 +520,7 @@ if(isset($_GET["lang"])){
 						message += "<div class='col-lg-9'>";
 					}
 					message += "<p class='song-list-line'>";
-					message += "<a href='http://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songList[i].videoName+"'>";
+					message += "<a href='http://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title="+songList[i].videoName+">";
 					message += songList[i].videoName;
 					message +=  "</a>";
 					message += "</p>";
@@ -609,6 +612,7 @@ if(isset($_GET["lang"])){
 
 				// Post URL into room history
 				$.post("functions/post_history.php", {url : id, roomToken : roomToken});
+				$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["song_submit_success"];?></p>");
 
 				// Empty URL box
 				$(".url-box").val('');

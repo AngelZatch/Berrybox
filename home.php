@@ -25,12 +25,10 @@ if(isset($_GET["lang"])){
 		<?php include "nav.php";?>
 		<div class="main">
 			<div id="large-block">
-				<a href="create_room.php?lang=<?php echo $_GET["lang"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_create"];?></a>
 				<p id="active-rooms-title"><?php echo $lang["active_room"];?></p>
 				<div class="container-fluid">
 					<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
-					<div class="panel panel-default">
-						<!--<img src="assets/Binboda.Momiji.full.1184759.jpg" alt="" style="height:100px;">-->
+					<div class="panel panel-active-room">
 						<div class="panel-body">
 							<p class="col-lg-3"><?php echo $activeRooms["room_name"];?></p>
 							<p class="col-lg-3"><?php echo $activeRooms["user_pseudo"];?></p>
