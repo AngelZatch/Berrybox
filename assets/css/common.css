@@ -399,12 +399,27 @@ input.form-control{
 	color: #e5e2d3 !important;
 }
 
-#profile-picture-sample {
-	width: 120px;
-	height: 120px;
-	border: 2px #444 solid;
-	border-radius: 2px;
+#profile-picture-sample,
+.file-preview,
+.file-preview-frame{
+	width: 120px !important;
+	height: 120px !important;
+	border: 2px #444 solid !important;
+	border-radius: 60px !important;
 	overflow: hidden;
+	padding: 0 !important;
+	text-align: inherit;
+}
+
+.file-preview-frame {
+	margin: 0 !important;
+	display: block !important;
+	border: none !important;
+}
+
+.file-preview-image{
+	width: inherit !important;
+	height: auto !important;
 }
 
 .small-pp {
@@ -419,8 +434,16 @@ input.form-control{
 	padding-bottom: 8px !important;
 }
 
-.navbar-nav>li>a:hover{
-	background-color: inherit !important;
+.nav>li>a.btn:hover{
+	background-color: #a67a26;
+}
+
+.nav>li>a:hover,
+.nav>li>a:active,
+.nav .open>a,
+.nav .open>a:hover,
+.nav .open>a:focus{
+	background-color: inherit;
 }
 
 .btn-nav {
@@ -434,14 +457,18 @@ input.form-control{
 }
 
 .room-picture {
-	width: 50px;
-	height: 50px;
+	width: 55px;
+	height: 55px;
 	overflow: hidden;
-	border-radius: 20px;
+	border-radius: 28px;
 	float: left;
 	margin-right: 10px;
 }
 
 .profile-picture {
 	width: inherit;
+}
+
+.btn{
+	background-color: inherit;
 }
