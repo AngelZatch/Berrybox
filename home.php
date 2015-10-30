@@ -5,15 +5,6 @@ $db = PDOFactory::getConnection();
 $queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
 								WHERE room_active = 1");
-
-if(isset($_GET["lang"])){
-	$lang = $_GET["lang"];
-	$_SESSION["lang"] = $lang;
-
-	include_once "languages/lang.".$lang.".php";
-} else {
-	header("Location:home.php?lang=en");
-}
 ?>
 <html>
 	<head>

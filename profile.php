@@ -5,17 +5,10 @@ $db = PDOFactory::getConnection();
 
 $userToken = $_GET["id"];
 
-if(isset($_GET["lang"])){
-	$lang = $_GET["lang"];
-	$_SESSION["lang"] = $lang;
-
-	include_once "languages/lang.".$lang.".php";
-} else {
-	header("Location:home.php?lang=en");
-}
 if(isset($_POST["submit"])){
 	$newPseudo = addslashes($_POST["username"]);
 	$newBio = addslashes($_POST["bio"]);
+	$newLang = $_POST["default-lang"];
 	// Uploading the profile picture on the folder
 	if($_FILES["profile-picture"]["name"]){
 		$pictureExtension = pathinfo($_FILES["profile-picture"]["name"], PATHINFO_EXTENSION);
@@ -27,7 +20,8 @@ if(isset($_POST["submit"])){
 				//Writing in the table the modifications
 				$edit = $db->query("UPDATE user
 									SET user_pseudo = '$newPseudo',
-									user_bio = '$newBio'
+									user_bio = '$newBio',
+									user_lang = '$newLang'
 									WHERE user_token = '$userToken'");
 			} else {
 				$picture = $_SESSION["token"].".".pathinfo($_FILES["profile-picture"]["name"], PATHINFO_EXTENSION);
@@ -36,15 +30,17 @@ if(isset($_POST["submit"])){
 				$edit = $db->query("UPDATE user
 									SET user_pseudo = '$newPseudo',
 									user_bio = '$newBio',
-									user_pp = '$picture'
+									user_pp = '$picture',
+									user_lang = '$newLang',
 									WHERE user_token = '$userToken'");
 			}
 		}
 	} else {
 		$edit = $db->query("UPDATE user
-													SET user_pseudo = '$newPseudo',
-													user_bio = '$newBio'
-													WHERE user_token = '$userToken'");
+							SET user_pseudo = '$newPseudo',
+							user_bio = '$newBio',
+							user_lang = '$newLang'
+							WHERE user_token = '$userToken'");
 	}
 }
 
@@ -77,9 +73,6 @@ $queryActiveRooms = $db->query("SELECT * FROM rooms r
 						<div class="kv-avatar">
 							<input type="file" id="avatar" name="profile-picture" class="file-loading">
 						</div>
-						<!--<div id="profile-picture-sample">
-<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit;">
-</div>-->
 						<span class="help-block" id="username-tip"><?php echo $lang["profile_picture_formats"];?></span>
 					</div>
 				</div>
@@ -88,6 +81,17 @@ $queryActiveRooms = $db->query("SELECT * FROM rooms r
 					<div class="col-lg-6">
 						<textarea rows="5" maxlength="400" name="bio" class="form-control" aria-describedby="bio-tip" style="background-color:inherit; border:2px #444 solid; color:white;"><?php echo stripslashes($userDetails["user_bio"]);?></textarea>
 						<span class="help-block" id="bio-tip"><?php echo $lang["bio_tip"];?></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="default-lang" class="col-lg-3 control-label"><?php echo $lang["default_lang"];?></label>
+					<div class="col-lg-6">
+						<select name="default-lang" id="" class="form-control" style="background-color:inherit; border:2px #444 solid; color:white;">
+							<option value="en" <?php if($userDetails["user_lang"]=="en") echo "selected='selected'";?>>English</option>
+							<option value="fr" <?php if($userDetails["user_lang"]=="fr") echo "selected='selected'";?>>Français</option>
+							<option value="jp" <?php if($userDetails["user_lang"]=="jp") echo "selected='selected'";?>>日本語</option>
+						</select>
+						<span class="help-block" id="lang-tip"><?php echo $lang["lang_tip"];?></span>
 					</div>
 				</div>
 				<div class="col-lg-offset-2 col-lg-8">

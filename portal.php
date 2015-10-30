@@ -2,13 +2,8 @@
 require_once "functions/db_connect.php";
 include "functions/tools.php";
 include "functions/login.php";
-if(isset($_GET["lang"])){
-	$lang = $_GET["lang"];
-	$_SESSION["lang"] = $lang;
-
-	include_once "languages/lang.".$lang.".php";
-} else {
-	header("Location:portal.php?lang=en");
+if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
+	header("Location:home.php?lang=$_SESSION[lang]");
 }
 ?>
 <html>

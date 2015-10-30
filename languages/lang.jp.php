@@ -57,7 +57,6 @@ $lang["watch_count"] = "観衆カウント";
 $lang["playlist"] = "プレイリスト";
 $lang["sync-on"] = "シンク オン";
 $lang["sync-off"] = "シンク　オフ";
-$lang["leave"] = "ルームを出ます";
 
 /** BUTTONS **/
 $lang["back"] = "戻る";
@@ -79,7 +78,11 @@ $lang["password"] = "パスワード";
 $lang["pwd_confirm"] = "パスワードを確認して下さい。";
 $lang["cancel"] = "キャンセル";
 $lang["wrong_password"] = "間違いましたパスワード";
+
+/** MENU **/
+$lang["menu"] = "メインメニュー";
 $lang["my_profile"] = "プロファイル";
+$lang["leave"] = "ルームを出ます";
 
 /** PROFILE **/
 $lang["display_name"] = "ディスプレイ名";
@@ -88,5 +91,7 @@ $lang["profile_picture"] = "プロファイル画像";
 $lang["profile_picture_formats"] = "3MB上限. JPGとPNG形式は、サポートされています";
 $lang["bio"] = "バイオ";
 $lang["bio_tip"] = "あなたの事項商会〔400文字上限〕";
+$lang["default_lang"] = "デフォールト言語";
+$lang["lang_tip"] = "アプリのディスプレイ言語";
 $lang["save_changes"] = "セイブ";
 ?>

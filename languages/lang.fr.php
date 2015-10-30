@@ -59,7 +59,6 @@ $lang["watch_count"] = "Spectateurs";
 $lang["playlist"] = "Liste des chansons";
 $lang["sync-on"] = "Synchro ON";
 $lang["sync-off"] = "Synchro OFF";
-$lang["leave"] = "Quitter le salon";
 
 /** BUTTONS **/
 $lang["back"] = "Retour";
@@ -81,7 +80,11 @@ $lang["password"] = "Mot de passe";
 $lang["pwd_confirm"] = "Veuillez confirmer votre mot de passe";
 $lang["cancel"] = "Annuler";
 $lang["wrong_password"] = "Mot de passe erroné";
+
+/** MENU **/
+$lang["menu"] = "Menu principal";
 $lang["my_profile"] = "Mon profil";
+$lang["leave"] = "Quitter le salon";
 
 /** PROFILE **/
 $lang["display_name"] = "Nom affiché";
@@ -90,5 +93,7 @@ $lang["profile_picture"] = "Image de profil";
 $lang["profile_picture_formats"] = "3Mo max. Formats JPG et PNG supportés";
 $lang["bio"] = "Bio";
 $lang["bio_tip"] = "Parlez de vous en moins de 400 caractères.";
+$lang["default_lang"] = "Langue par défaut";
+$lang["lang_tip"] = "Langue d'affichage du site";
 $lang["save_changes"] = "Sauvegarder les changements";
 ?>

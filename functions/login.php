@@ -16,7 +16,8 @@ if(isset($_POST["login"])){
 		$_SESSION["username"] = $credentials["user_pseudo"];
 		$_SESSION["power"] = $credentials["user_power"];
 		$_SESSION["token"] = $credentials["user_token"];
-		header("Location: home.php?lang=".$_GET["lang"]);
+		$_SESSION["lang"] = $credentials["user_lang"];
+		header("Location: home.php?lang=".$credentials["user_lang"]);
 	}
 }
 ?>

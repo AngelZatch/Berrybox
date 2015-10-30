@@ -472,3 +472,33 @@ input.form-control{
 .btn{
 	background-color: inherit;
 }
+
+#menu-list {
+	z-index: 2;
+	display: none;
+}
+
+.menu-pp {
+	width: 50px;
+	height: inherit;
+	overflow: hidden;
+	border-radius: 25px;
+	float: left;
+	margin-right: 20px;
+}
+
+#user-name {
+	font-size: 18px;
+	line-height: 50px;
+	font-weight: 700;
+}
+
+.connected-user {
+	height: 50px;
+	margin-bottom: 30px;
+}
+
+option{
+	background-color: inherit;
+	color: black;
+}

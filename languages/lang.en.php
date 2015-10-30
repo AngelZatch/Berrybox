@@ -57,7 +57,6 @@ $lang["watch_count"] = "Spectators";
 $lang["playlist"] = "Playlist";
 $lang["sync-on"] = "Sync ON";
 $lang["sync-off"] = "Sync OFF";
-$lang["leave"] = "Leave the room";
 
 /** BUTTONS **/
 $lang["back"] = "Back";
@@ -79,7 +78,11 @@ $lang["password"] = "Password";
 $lang["pwd_confirm"] = "Please confirm your password";
 $lang["cancel"] = "Cancel";
 $lang["wrong_password"] = "Wrong password. Please try again";
+
+/** MENU **/
+$lang["menu"] = "Main menu";
 $lang["my_profile"] = "My profile";
+$lang["leave"] = "Leave the room";
 
 /** PROFILE **/
 $lang["display_name"] = "Display name";
@@ -88,5 +91,7 @@ $lang["profile_picture"] = "Profile picture";
 $lang["profile_picture_formats"] = "3Mo max. JPG & PNG formats supported";
 $lang["bio"] = "Bio";
 $lang["bio_tip"] = "Who you are in less than 400 characters.";
+$lang["default_lang"] = "Default language";
+$lang["lang_tip"] = "The language the whole application will display";
 $lang["save_changes"] = "Save changes";
 ?>

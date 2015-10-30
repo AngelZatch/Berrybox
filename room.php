@@ -8,6 +8,10 @@ $roomDetails = $db->query("SELECT *
 							JOIN user u ON r.room_creator = u.user_token
 							WHERE room_token = '$roomToken'")->fetch(PDO::FETCH_ASSOC);
 
+$userDetails = $db->query("SELECT * FROM user u
+							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+$ppAdresss = "profile-pictures/".$userDetails["user_pp"];
+
 if(isset($_GET["lang"])){
 	$lang = $_GET["lang"];
 	$_SESSION["lang"] = $lang;
@@ -115,8 +119,8 @@ if(isset($_GET["lang"])){
 			<div class="panel panel-default panel-room panel-chat">
 				<div class="panel-heading">
 					<div class="chat-options row">
-						<div class="col-lg-3 button-glyph">
-							<a href="home.php?lang=<?php echo $_GET["lang"];?>" style="color:inherit;" title="<?php echo $lang["leave"];?>"><span class="glyphicon glyphicon-arrow-left"></span></a>
+						<div class="col-lg-3 toggle-menu-list button-glyph">
+							<span class="glyphicon glyphicon-dashboard" title="<?php echo $lang["menu"];?>"></span>
 						</div>
 						<div class="col-lg-3 toggle-song-list button-glyph">
 							<span class="glyphicon glyphicon-list" title="<?php echo $lang["playlist"];?>"></span>
@@ -169,14 +173,33 @@ if(isset($_GET["lang"])){
 		</div>
 		<div class="col-lg-4 full-panel" id="song-list">
 			<div class="panel panel-default panel-room panel-list">
-				<div class="panel-heading"><?php echo $lang["playlist"];?></div>
+				<div class="panel-heading"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></div>
 				<div class="panel-body" id="body-song-list"></div>
 			</div>
 		</div>
 		<div class="col-lg-3 full-panel" id="user-list">
 			<div class="panel panel-default panel-room panel-list">
-				<div class="panel-heading">User List</div>
+				<div class="panel-heading"><span class="glyphicon glyphicon-user"></span><span id="watch-count"></span> <?php echo $lang["watch_count"];?></div>
 				<div class="panel-body" id="body-user-list"></div>
+			</div>
+		</div>
+		<div class="col-lg-3 full-panel" id="menu-list">
+			<div class="panel panel-default panel-room panel-list">
+				<div class="panel-heading"><span class="glyphicon glyphicon-dashboard" title=""></span> <?php echo $lang["menu"];?></div>
+				<div class="panel-body" style="height: 93vh;">
+					<div class="connected-user">
+						<div class="menu-pp">
+							<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit">
+						</div>
+						<p id="user-name"><?php echo $userDetails["user_pseudo"];?></p>
+					</div>
+					<div class="menu-options row">
+						<ul class="nav nav-pills nav-stacked">
+							<li><a href="profile.php?lang=<?php echo $_SESSION["lang"];?>"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
+							<li><a href="home.php?lang=<?php echo $_SESSION["lang"];?>"><span class="glyphicon glyphicon-log-out col-lg-2"></span> <?php echo $lang["leave"];?></a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 		<?php include "scripts.php";?>
@@ -251,6 +274,63 @@ if(isset($_GET["lang"])){
 		})
 	}).on('click', '.btn-chat', function(){
 		sendMessage("<?php echo $roomToken;?>", 1, 'chatbox', '');
+	}).on('click', '.toggle-song-list, .toggle-menu-list, .toggle-user-list', function(){
+		var classToken = $(this).attr("class").split(' ')[1].substr(7);
+		var position;
+		if($("#"+classToken).css("display") == "none"){
+			$("#"+classToken).toggle();
+			position = "32%";
+			switch(classToken){
+				case "song-list":
+					loadSongHistory("<?php echo $roomToken;?>", window.userPower);
+					setTimeout((function(){
+						$("#user-list").hide();
+						$("#menu-list").hide();
+					}), 200);
+					$("#user-list").animate({
+						right : "0px"
+					}, 200);
+					$("#menu-list").animate({
+						right : "0px"
+					}, 200);
+					break;
+
+				case "user-list":
+					loadUsers("<?php echo $roomToken;?>");
+					setTimeout((function(){
+						$("#song-list").hide();
+						$("#menu-list").hide();
+					}), 200);
+					$("#song-list").animate({
+						right : "0px"
+					}, 200);
+					$("#menu-list").animate({
+						right : "0px"
+					}, 200);
+					break;
+
+				case "menu-list":
+					setTimeout((function(){
+						$("#song-list").hide();
+						$("#user-list").hide();
+					}), 200);
+					$("#song-list").animate({
+						right : "0px"
+					}, 200);
+					$("#user-list").animate({
+						right : "0px"
+					}, 200);
+					break;
+			}
+		} else {
+			$(this).t = setTimeout((function(){
+				$("#"+classToken).hide();
+			}), 200);
+			position = "0px";
+		}
+		$("#"+classToken).animate({
+			right : position
+		}, 200);
 	}).on('click', '.color-cube', function(){
 		var color = $(this).attr('id').substr(6,6);
 		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
@@ -275,72 +355,6 @@ if(isset($_GET["lang"])){
 			synchronize("<?php echo $roomToken;?>");
 			$b.blur();
 		}
-	}).on('click', '.toggle-song-list', function(){
-		var position;
-		var $s = $("#song-list");
-		var $u = $("#user-list");
-		// If none of the panels are visible
-		if($u.css("right") == "0px" && $s.css("right") == "0px"){
-			position = "32%";
-		} else if($u.css("right") < "500px" && $s.css("right") == "0px"){
-			// If the other panel is already visible on the right
-			position = "55.5%";
-		} else if($u.css("right") > "500px" && $s.css("right") == "0px"){
-			// If the other panel is already visible on the left
-			position = "32%";
-		} else if($u.css("right") > "500px" && $s.css("right") != "0px"){
-			// Toggling off with the other panel visible on the left
-			position = "0px";
-			$u.animate({
-				'right': "32%"
-			}, 200);
-		} else if($s.css("right") != "0px"){
-			// If the panel is already visible and has to be toggled off
-			position = "0px";
-		}
-		if($s.css("display") == "none"){
-			$s.toggle();
-			loadSongHistory("<?php echo $roomToken;?>", window.userPower);
-		} else {
-			$s.t = setTimeout((function(){
-				$s.hide();
-			}), 200);
-		}
-		$s.animate({
-			'right': position
-		}, 200);
-	}).on('click', '.toggle-user-list', function(){
-		var position;
-		var $s = $("#song-list");
-		var $u = $("#user-list");
-		if($u.css("right") == "0px" && $s.css("right") == "0px"){
-			position = "32%";
-		} else if($s.css("right") < "500px" && $u.css("right") == "0px"){
-			// If the other panel is already visible
-			position = "64%";
-		} else if($s.css("right") > "500px" && $u.css("right") == "0px"){
-			// If the other panel is already visible
-			position = "32%";
-		} else if($s.css("right") > "500px" && $u.css("right") != "0px"){
-			position = "0px";
-			$s.animate({
-				'right': "32%"
-			}, 200);
-		} else if($u.css("right") != "0px"){
-			// If the panel is already visible and has to be toggled off
-			position = "0px";
-		}
-		if($u.css("display") == "none"){
-			$u.toggle();
-			loadUsers("<?php echo $roomToken;?>");
-		} else {
-			$u.t = setTimeout((function(){
-				$u.hide();
-			}), 200);
-		}
-		$u.animate({
-			'right': position
-		}, 200);
 	}).on('mouseenter', '.emotion-like', function(){
 		$(".mood-question").fadeOut('500', function(){
 			$(".mood-question").empty();
@@ -500,7 +514,6 @@ if(isset($_GET["lang"])){
 	}
 	function loadSongHistory(roomToken, userPower){
 		if($("#song-list").css("display") != "none"){
-			console.log("Loading");
 			// Gets the whole history of the room
 			$.post("functions/get_history.php", {roomToken : roomToken}).done(function(data){
 				var songList = JSON.parse(data);
