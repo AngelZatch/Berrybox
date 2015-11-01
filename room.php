@@ -8,10 +8,63 @@ $roomDetails = $db->query("SELECT *
 							JOIN user u ON r.room_creator = u.user_token
 							WHERE room_token = '$roomToken'")->fetch(PDO::FETCH_ASSOC);
 
-$userDetails = $db->query("SELECT * FROM user u
+if(isset($_SESSION["token"])){
+	$userDetails = $db->query("SELECT * FROM user u
 							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
-$ppAdresss = "profile-pictures/".$userDetails["user_pp"];
+	$ppAdresss = "profile-pictures/".$userDetails["user_pp"];
+} else {
+	include "functions/tools.php";
+	if(isset($_POST["login"])){
+		session_start();
 
+		$username = $_POST["login_name"];
+		$password = $_POST["login_pwd"];
+
+		$checkCredentials = $db->prepare("SELECT * FROM user WHERE user_pseudo=? AND user_pwd=?");
+		$checkCredentials->bindParam(1, $username);
+		$checkCredentials->bindParam(2, $password);
+		$checkCredentials->execute();
+
+		if($checkCredentials->rowCount() == 1){
+			$credentials = $checkCredentials->fetch(PDO::FETCH_ASSOC);
+			$_SESSION["username"] = $credentials["user_pseudo"];
+			$_SESSION["power"] = $credentials["user_power"];
+			$_SESSION["token"] = $credentials["user_token"];
+			$_SESSION["lang"] = $credentials["user_lang"];
+			header("Location: $_SERVER[REQUEST_URI]");
+		}
+	}
+	if(isset($_POST["signup"])){
+		$db = PDOFactory::getConnection();
+
+		$pseudo = $_POST["login_name"];
+		$power = "1";
+		$token = generateUserToken();
+		$color = "000000";
+
+		try{
+			$newUser = $db->prepare("INSERT INTO user(user_token, user_pseudo, user_pwd) VALUES(:token, :pseudo, :pwd)");
+			$newUser->bindParam(':pseudo', $pseudo);
+			$newUser->bindParam(':pwd', $_POST["login_pwd"]);
+			$newUser->bindParam(':token', $token);
+			$newUser->execute();
+
+			$newPref = $db->prepare("INSERT INTO user_preferences(up_user_id, up_color)
+								VALUES(:token, :color)");
+			$newPref->bindParam(':token', $token);
+			$newPref->bindParam(':color', $color);
+			$newPref->execute();
+		} catch(PDOException $e){
+			echo $e->getMessage();
+		}
+		session_start();
+		$_SESSION["username"] = $pseudo;
+		$_SESSION["power"] = $power;
+		$_SESSION["token"] = $token;
+		$_SESSION["lang"] = "en";
+		header("Location: $_SERVER[REQUEST_URI]");
+	}
+}
 if(isset($_GET["lang"])){
 	$lang = $_GET["lang"];
 	$_SESSION["lang"] = $lang;
@@ -26,6 +79,7 @@ if(isset($_GET["lang"])){
 		<meta charset="UTF-8">
 		<title><?php echo $roomDetails["user_pseudo"];?>'s Strawberry room</title>
 		<?php include "styles.php";?>
+		<link rel="stylesheet" href="assets/css/ekko-lightbox.min.css">
 	</head>
 	<body>
 		<div class="col-lg-8" id="room-player">
@@ -36,23 +90,25 @@ if(isset($_GET["lang"])){
 				<p class="room-title"><?php echo $roomDetails["room_name"];?></p>
 				<p class="room-creator"> <?php echo $roomDetails["user_pseudo"];?> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
 				<div class="room-admin btn-group">
-					<?php if($_SESSION["token"] != $roomDetails["room_creator"]){?>
+					<?php
+					if(isset($_SESSION["token"])){
+						if($_SESSION["token"] != $roomDetails["room_creator"]){?>
 					<button class="btn btn-default btn-admin sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync-on"];?></button>
 					<?php } else { ?>
 					<button class="btn btn-danger btn-admin" onClick="closeRoom('<?php echo $roomToken;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
 					<!--<div class="btn-group" id="dropdown-room-type">
 <button class="btn btn-default btn-admin dropdown-toggle" id="room-type" data-toggle="dropdown">
 <?php switch($roomDetails["room_protection"] == 1){
-	case 1:?>
+							case 1:?>
 <span class="glyphicon glyphicon-volume-up"></span> <?php echo $lang["level_public"];?>
 <?php break;
-	case 2: ?>
+							case 2: ?>
 <span class="glyphicon glyphicon-eye-open"></span> <?php echo $lang["level_protected"];?>
 <?php break;
-	case 3: ?>
+							case 3: ?>
 <span class="glyphicon glyphicon-headphones"></span> <?php echo $lang["level_private"];?>
 <?php break;
-} ?>
+						} ?>
 <span class="caret"></span>
 </button>
 <ul class="dropdown-menu dropdown-room">
@@ -61,7 +117,8 @@ if(isset($_GET["lang"])){
 <li><a class="dropdown-link"><?php echo $lang["level_private"];?></a></li>
 </ul>
 </div>-->
-					<?php } ?>
+					<?php }
+					}?>
 				</div>
 			</div>
 			<div id="currently-playing">
@@ -76,8 +133,6 @@ if(isset($_GET["lang"])){
 							<button class="btn btn-primary btn-block play-url" data-toggle="modal"><?php echo $lang["submit_link"];?></button>
 						</span>
 					</div>
-					<?php } else { ?>
-					<p class="submit-required"><?php echo $lang["no_submit"];?></p>
 					<?php } ?>
 				</div>
 				<div class="col-lg-6 mood-selectors">
@@ -165,8 +220,6 @@ if(isset($_GET["lang"])){
 				<div class="panel-footer">
 					<?php if(isset($_SESSION["token"])){ ?>
 					<input type="text" class="form-control chatbox" placeholder="<?php echo $lang["chat_placeholder"];?>">
-					<?php } else { ?>
-					<p class="submit-required"><?php echo $lang["no_chat"];?></p>
 					<?php } ?>
 				</div>
 			</div>
@@ -183,6 +236,7 @@ if(isset($_GET["lang"])){
 				<div class="panel-body" id="body-user-list"></div>
 			</div>
 		</div>
+		<?php if(isset($_SESSION["token"])){ ?>
 		<div class="col-lg-3 full-panel" id="menu-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-dashboard" title=""></span> <?php echo $lang["menu"];?></div>
@@ -195,17 +249,22 @@ if(isset($_GET["lang"])){
 					</div>
 					<div class="menu-options row">
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="profile.php?lang=<?php echo $_SESSION["lang"];?>"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
+							<li><a href="profile.php?id=<?php echo $_SESSION["token"];?>&lang=<?php echo $_SESSION["lang"];?>"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
 							<li><a href="home.php?lang=<?php echo $_SESSION["lang"];?>"><span class="glyphicon glyphicon-log-out col-lg-2"></span> <?php echo $lang["leave"];?></a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
+		<?php } else { ?>
+		<a href="not_logged.php" id="no-credentials"></a>
+		<?php } ?>
 		<?php include "scripts.php";?>
+		<script src="assets/js/ekko-lightbox.min.js"></script>
 	</body>
 </html>
 <script>
+	<?php if(isset($_SESSION["token"])){ ?>
 	/* YOUTUBE PLAYER */
 	var tag = document.createElement('script');
 	tag.src = "https://www.youtube.com/iframe_api";
@@ -227,8 +286,8 @@ if(isset($_GET["lang"])){
 
 	var done = false;
 	$(document).ready(function(){
-		var roomToken = "<?php echo $roomToken;?>";
 		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
+		var roomToken = "<?php echo $roomToken;?>";
 		window.roomState = "<?php echo $roomDetails["room_active"];?>";
 		// Join the room
 		function joinRoom(roomToken, userToken){
@@ -815,5 +874,10 @@ if(isset($_GET["lang"])){
 		sendMessage(roomToken, 4, "{close_room_5}");
 		$.post("functions/close_room.php", {roomToken : roomToken});
 	}
-
+	<?php } else { ?>
+	$("#no-credentials").ekkoLightbox({
+		onNavigate: false
+	});
+	$("#no-credentials").click();
+	<?php } ?>
 </script>

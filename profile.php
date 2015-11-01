@@ -31,7 +31,7 @@ if(isset($_POST["submit"])){
 									SET user_pseudo = '$newPseudo',
 									user_bio = '$newBio',
 									user_pp = '$picture',
-									user_lang = '$newLang',
+									user_lang = '$newLang'
 									WHERE user_token = '$userToken'");
 			}
 		}

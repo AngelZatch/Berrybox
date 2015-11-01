@@ -10,7 +10,11 @@ if(isset($_SESSION["username"])){
 	$currentLang = $_GET["lang"];
 	//... And if it doesn't match, we reload the page with the correct language.
 	if($currentLang != $lang){
-		$base = substr_replace($_SERVER["REQUEST_URI"], $lang, -2);
+		if(isset($_GET["lang"])){
+			$base = substr_replace($_SERVER["REQUEST_URI"], $lang, -2);
+		} else {
+			$base = $_SERVER["REQUEST_URI"]."?lang=en";
+		}
 		header("Location:$base");
 	} else {
 		$_SESSION["lang"] = $lang;
