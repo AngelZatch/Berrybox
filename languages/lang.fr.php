@@ -53,12 +53,17 @@ $lang["no_submit"] = "Veuillez vous <a href='signup.php?lang=fr'>inscrire</a> ou
 $lang["no_chat"] = "Veuillez vous <a href='signup.php?lang=fr'>inscrire</a> ou vous <a href='portal.php?lang=fr'>connecter</a> pour poster des messages";
 $lang["room_admin"] = "Administrateur";
 $lang["room_mod"] = "Modérateur";
-$lang["room_creator"] = "Créateur";
+$lang["room_creator"] = "Créateur du salon";
 $lang["now_playing"] = "Vidéo en cours";
 $lang["watch_count"] = "Spectateurs";
 $lang["playlist"] = "Liste des chansons";
 $lang["sync-on"] = "Synchro ON";
 $lang["sync-off"] = "Synchro OFF";
+$lang["ul_admin"] = "Créateur";
+$lang["ul_mods"] = "Modérateurs";
+$lang["ul_users"] = "Spectateurs";
+$lang["sl_played"] = "Vidéos lues";
+$lang["sl_upcoming"] = "Vidéos à venir";
 
 /** BUTTONS **/
 $lang["back"] = "Retour";
@@ -80,6 +85,7 @@ $lang["password"] = "Mot de passe";
 $lang["pwd_confirm"] = "Veuillez confirmer votre mot de passe";
 $lang["cancel"] = "Annuler";
 $lang["wrong_password"] = "Mot de passe erroné";
+$lang["no_credentials"] = "Ah ! On dirait que vous n'êtes pas enregistré. Enregistrez-vous ou connectez-vous simplement pour accéder au salon.";
 
 /** MENU **/
 $lang["menu"] = "Menu principal";

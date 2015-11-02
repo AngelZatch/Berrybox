@@ -57,6 +57,11 @@ $lang["watch_count"] = "Spectators";
 $lang["playlist"] = "Playlist";
 $lang["sync-on"] = "Sync ON";
 $lang["sync-off"] = "Sync OFF";
+$lang["ul_admin"] = "Creator";
+$lang["ul_mods"] = "Moderators";
+$lang["ul_users"] = "Listeners";
+$lang["sl_played"] = "Played videos";
+$lang["sl_upcoming"] = "Upcoming videos";
 
 /** BUTTONS **/
 $lang["back"] = "Back";
@@ -78,6 +83,7 @@ $lang["password"] = "Password";
 $lang["pwd_confirm"] = "Please confirm your password";
 $lang["cancel"] = "Cancel";
 $lang["wrong_password"] = "Wrong password. Please try again";
+$lang["no_credentials"] = "Oops! It appears you're not registered. Please log in or sign up to access the room.";
 
 /** MENU **/
 $lang["menu"] = "Main menu";

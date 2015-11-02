@@ -510,3 +510,10 @@ option{
 .modal-header{
 	display: none;
 }
+
+.list-rank{
+	text-transform: uppercase;
+	font-weight: 200;
+	font-size: 14px;
+	color: #888;
+}

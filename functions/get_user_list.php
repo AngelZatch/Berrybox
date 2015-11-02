@@ -7,7 +7,7 @@ $roomToken = $_POST["roomToken"];
 $queryList = $db->query("SELECT * FROM roomUsers_$roomToken ru
 						JOIN user u ON ru.room_user_token = u.user_token
 						WHERE room_user_present = 1
-						ORDER BY room_user_state ASC");
+						ORDER BY room_user_state DESC");
 $userList = array();
 while($user = $queryList->fetch(PDO::FETCH_ASSOC)){
 	$u = array();

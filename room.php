@@ -286,7 +286,7 @@ if(isset($_GET["lang"])){
 
 	var done = false;
 	$(document).ready(function(){
-		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
+		var userToken = "<?php echo $_SESSION["token"];?>";
 		var roomToken = "<?php echo $roomToken;?>";
 		window.roomState = "<?php echo $roomDetails["room_active"];?>";
 		// Join the room
@@ -577,18 +577,34 @@ if(isset($_GET["lang"])){
 			$.post("functions/get_history.php", {roomToken : roomToken}).done(function(data){
 				var songList = JSON.parse(data);
 				$("#body-song-list").empty();
+				var previousSongState = -1;
 				for(var i = 0; i < songList.length; i++){
+					var message = "";
+					if(previousSongState != songList[i].videoStatus){
+						switch(songList[i].videoStatus){
+							case '0':
+								var messageRank = "<p class='list-rank'><?php echo $lang["sl_upcoming"];?></p>";
+								$("#body-song-list").append(messageRank);
+								break;
+							case '1':
+								message += "<p class='list-rank'><?php echo $lang["now_playing"];?></p>";
+								break;
+							case '2':
+								message += "<p class='list-rank'><?php echo $lang["sl_played"];?></p>";
+								break;
+						}
+					}
 					if(songList[i].videoStatus == 2){
-						var message = "<div class='row song-played'>";
+						message += "<div class='row song-played'>";
 						message += "<div class='col-lg-12'>";
 					} else if(songList[i].videoStatus == 1){
-						var message = "<div class='row song-playing'>";
+						message += "<div class='row song-playing'>";
 						message += "<div class='col-lg-12'>";
 					} else if(songList[i].videoStatus == 3){
-						var message = "<div class='row song-ignored'>";
+						message += "<div class='row song-ignored'>";
 						message += "<div class='col-lg-9'>";
 					} else {
-						var message = "<div class='row'>";
+						var message = "<div class='row song-upcoming'>";
 						message += "<div class='col-lg-9'>";
 					}
 					message += "<p class='song-list-line'>";
@@ -615,6 +631,7 @@ if(isset($_GET["lang"])){
 						}
 					}
 					message += "</div>";
+					previousSongState = songList[i].videoStatus;
 					$("#body-song-list").append(message);
 				}
 			})
@@ -655,16 +672,26 @@ if(isset($_GET["lang"])){
 			$.post("functions/get_user_list.php", {roomToken : roomToken}).done(function(data){
 				var userList = JSON.parse(data);
 				$("#body-user-list").empty();
+				var previousRank = -1;
 				for(var i = 0; i < userList.length; i++){
 					var message = "";
-					message = "<p>";
-					if(userList[i].power == 2){
-						message += "<span class='glyphicon glyphicon-star'></span>";
-					} else if(userList[i].power == 3){
-						message += "<span class='glyphicon glyphicon-star-empty'></span>";
+					if(previousRank != userList[i].power){
+						switch(userList[i].power){
+							case '1':
+								message += "<p class='list-rank'><?php echo $lang["ul_users"];?></p>";
+								break;
+							case '2':
+								message += "<p class='list-rank'><?php echo $lang["ul_admin"];?></p>";
+								break;
+							case '3':
+								message += "<p class='list-rank'><?php echo $lang["ul_mods"];?></p>";
+								break;
+						}
 					}
+					message += "<p>";
 					message += userList[i].pseudo;
 					message += "</p>";
+					previousRank = userList[i].power;
 					$("#body-user-list").append(message);
 				}
 			})
@@ -843,29 +870,29 @@ if(isset($_GET["lang"])){
 			sendMessage("<?php echo $roomToken;?>", 5, "<?php echo $lang["timeout_message_user"];?>", userToken);
 		})
 	}
-	function banUser(token){
+	function banUser(userToken){
 
 	}
-	function promoteUser(token){
-		$.post("functions/promote_user.php", {roomToken : "<?php echo $roomToken;?>", adminToken : "<?php echo $_SESSION["token"];?>", userToken : token}).done(function(data){
+	function promoteUser(userToken){
+		$.post("functions/promote_user.php", {roomToken : "<?php echo $roomToken;?>", adminToken : "<?php echo $_SESSION["token"];?>", userToken : userToken}).done(function(data){
 			var message = "{user_promoted}"+data;
 			// System message to everyone to alert the new mod
 			sendMessage("<?php echo $roomToken;?>", 4, message);
 			// System message to the new mod only
-			sendMessage("<?php echo $roomToken;?>", 5, "{you_promoted}", token);
+			sendMessage("<?php echo $roomToken;?>", 5, "{you_promoted}", userToken);
 		})
 	}
-	function demoteUser(token){
-		$.post("functions/demote_user.php", {roomToken : "<?php echo $roomToken;?>", adminToken : "<?php echo $_SESSION["token"];?>", userToken : token}).done(function(data){
+	function demoteUser(userToken){
+		$.post("functions/demote_user.php", {roomToken : "<?php echo $roomToken;?>", adminToken : "<?php echo $_SESSION["token"];?>", userToken : userToken}).done(function(data){
 			var message = "{user_demoted}"+data;
 			// System message to everyone to alert of the demote
 			sendMessage("<?php echo $roomToken;?>", 4, message);
 			// System message to the affected user only
-			sendMessage("<?php echo $roomToken;?>", 5, "{you_demoted}", token);
+			sendMessage("<?php echo $roomToken;?>", 5, "{you_demoted}", userToken);
 		});
 	}
-	function getWatchCount(token){
-		$.post("functions/get_watch_count.php", {token : token}).done(function(data){
+	function getWatchCount(roomToken){
+		$.post("functions/get_watch_count.php", {token : roomToken}).done(function(data){
 			$("#watch-count").empty();
 			$("#watch-count").append(" "+data);
 		})

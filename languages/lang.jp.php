@@ -57,6 +57,11 @@ $lang["watch_count"] = "観衆カウント";
 $lang["playlist"] = "プレイリスト";
 $lang["sync-on"] = "シンク オン";
 $lang["sync-off"] = "シンク　オフ";
+$lang["ul_admin"] = "クリエイター";
+$lang["ul_mods"] = "モデレーターズ";
+$lang["ul_users"] = "リサナーズ";
+$lang["sl_played"] = "過去";
+$lang["sl_upcoming"] = "次";
 
 /** BUTTONS **/
 $lang["back"] = "戻る";
@@ -78,6 +83,7 @@ $lang["password"] = "パスワード";
 $lang["pwd_confirm"] = "パスワードを確認して下さい。";
 $lang["cancel"] = "キャンセル";
 $lang["wrong_password"] = "間違いましたパスワード";
+$lang["no_credentials"] = "Oops! It appears you're not registered. Please log in or sign up to access the room.";
 
 /** MENU **/
 $lang["menu"] = "メインメニュー";
