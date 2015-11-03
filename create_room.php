@@ -2,14 +2,6 @@
 session_start();
 require "functions/db_connect.php";
 $db = PDOFactory::getConnection();
-if(isset($_GET["lang"])){
-	$lang = $_GET["lang"];
-	$_SESSION["lang"] = $lang;
-
-	include_once "languages/lang.".$lang.".php";
-} else {
-	header("Location:create_room.php?lang=en");
-}
 ?>
 <html>
 	<head>
