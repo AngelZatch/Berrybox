@@ -100,4 +100,8 @@ $lang["bio_tip"] = "Who you are in less than 400 characters.";
 $lang["default_lang"] = "Default language";
 $lang["lang_tip"] = "The language the whole application will display";
 $lang["save_changes"] = "Save changes";
+
+/** BETA **/
+$lang["beta_key"] = "To have access to the application, please enter your beta key here!";
+$lang["beta_sign"] = "If you're signing up, please enter your beta key below";
 ?>

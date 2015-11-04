@@ -83,7 +83,7 @@ $lang["password"] = "パスワード";
 $lang["pwd_confirm"] = "パスワードを確認して下さい。";
 $lang["cancel"] = "キャンセル";
 $lang["wrong_password"] = "間違いましたパスワード";
-$lang["no_credentials"] = "Oops! It appears you're not registered. Please log in or sign up to access the room.";
+$lang["no_credentials"] = "あれ？あなたはログインしていませんように見えます。お願い、ルームにアクセスするには、ログインまたはサインアップしてください。";
 
 /** MENU **/
 $lang["menu"] = "メインメニュー";
@@ -100,4 +100,8 @@ $lang["bio_tip"] = "あなたの事項商会〔400文字上限〕";
 $lang["default_lang"] = "デフォールト言語";
 $lang["lang_tip"] = "アプリのディスプレイ言語";
 $lang["save_changes"] = "セイブ";
+
+/** BETA **/
+$lang["beta_key"] = "アプリにアクセスするには、下記のベータキーを入力してください。";
+$lang["beta_sign"] = "あなたがサインアップするなら、下記のベターキーを入力してください。";
 ?>
