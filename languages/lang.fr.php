@@ -102,4 +102,8 @@ $lang["bio_tip"] = "Parlez de vous en moins de 400 caractères.";
 $lang["default_lang"] = "Langue par défaut";
 $lang["lang_tip"] = "Langue d'affichage du site";
 $lang["save_changes"] = "Sauvegarder les changements";
+
+/** BETA **/
+$lang["beta_key"] = "Entrez votre clé beta ci-dessous pour avoir accès à l'application";
+$lang["beta_sign"] = "Si vous vous enregistrez, veuillez entrer votre clé beta ci-dessous";
 ?>

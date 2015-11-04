@@ -257,7 +257,7 @@ if(isset($_GET["lang"])){
 			</div>
 		</div>
 		<?php } else { ?>
-		<a href="not_logged.php" id="no-credentials"></a>
+		<a href="not_logged.php?lang=<?php echo $_GET["lang"];?>" id="no-credentials"></a>
 		<?php } ?>
 		<?php include "scripts.php";?>
 		<script src="assets/js/ekko-lightbox.min.js"></script>

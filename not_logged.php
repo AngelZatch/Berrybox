@@ -10,7 +10,7 @@ if(!isset($_GET["lang"])){
 ?>
 <div class="row">
 	<div class="col-lg-10 col-lg-offset-1">
-		<p>Oh! It appears you're not logged in or registered. Please log in or register to access a room.</p>
+		<p><?php echo $lang["no_credentials"];?></p>
 		<form action="" method="post">
 			<div class="form-group">
 				<label for="login_name" class="control-label"><?php echo $lang["username"];?></label>
@@ -19,6 +19,10 @@ if(!isset($_GET["lang"])){
 			<div class="form-group">
 				<label for="login_pwd" class="control-label"><?php echo $lang["password"];?></label>
 				<input type="password" class="form-control" name="login_pwd">
+			</div>
+			<div class="form-group">
+				<label for="beta" class="control-label"><?php echo $lang["beta_sign"];?></label>
+				<input type="text" class="form-control" name="beta">
 			</div>
 			<div class="row">
 				<input type="submit" class="btn btn-primary col-lg-6" name="login" value="<?php echo $lang["log_in"];?>">
