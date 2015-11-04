@@ -37,32 +37,41 @@ if(isset($_SESSION["token"])){
 	if(isset($_POST["signup"])){
 		$db = PDOFactory::getConnection();
 
-		$pseudo = $_POST["login_name"];
-		$power = "1";
-		$token = generateUserToken();
-		$color = "000000";
+		$betaKey = $_POST["beta"];
+		$matchKey = $db->query("SELECT * FROM beta_keys WHERE key_value = '$betaKey' AND key_user IS NULL");
+		if($matchKey->rowCount() == 1){
+			$token = generateUserToken();
+			$color = "000000";
+			$access = "1";
+			$pseudo = $_POST["login_name"];
+			$power = "1";;
 
-		try{
-			$newUser = $db->prepare("INSERT INTO user(user_token, user_pseudo, user_pwd) VALUES(:token, :pseudo, :pwd)");
-			$newUser->bindParam(':pseudo', $pseudo);
-			$newUser->bindParam(':pwd', $_POST["login_pwd"]);
-			$newUser->bindParam(':token', $token);
-			$newUser->execute();
+			try{
+				$newUser = $db->prepare("INSERT INTO user(user_token, user_pseudo, user_pwd, beta_access) VALUES(:token, :pseudo, :pwd, :access)");
+				$newUser->bindParam(':pseudo', $_POST["login_name"]);
+				$newUser->bindParam(':pwd', $_POST["login_pwd"]);
+				$newUser->bindParam(':token', $token);
+				$newUser->bindParam(':access', $access);
+				$newUser->execute();
 
-			$newPref = $db->prepare("INSERT INTO user_preferences(up_user_id, up_color)
+				$newPref = $db->prepare("INSERT INTO user_preferences(up_user_id, up_color)
 								VALUES(:token, :color)");
-			$newPref->bindParam(':token', $token);
-			$newPref->bindParam(':color', $color);
-			$newPref->execute();
-		} catch(PDOException $e){
-			echo $e->getMessage();
+				$newPref->bindParam(':token', $token);
+				$newPref->bindParam(':color', $color);
+				$newPref->execute();
+
+				$useKey = $db->query("UPDATE beta_keys SET key_user='$token' WHERE key_value='$betaKey'");
+				header('Location: home.php?lang='.$_GET["lang"]);
+				session_start();
+				$_SESSION["username"] = $pseudo;
+				$_SESSION["power"] = $power;
+				$_SESSION["token"] = $token;
+				$_SESSION["lang"] = "en";
+				header("Location: $_SERVER[REQUEST_URI]");
+			} catch(PDOException $e){
+				echo $e->getMessage();
+			}
 		}
-		session_start();
-		$_SESSION["username"] = $pseudo;
-		$_SESSION["power"] = $power;
-		$_SESSION["token"] = $token;
-		$_SESSION["lang"] = "en";
-		header("Location: $_SERVER[REQUEST_URI]");
 	}
 }
 if(isset($_GET["lang"])){
