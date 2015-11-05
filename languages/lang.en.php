@@ -90,6 +90,7 @@ $lang["no_credentials"] = "Oops! It appears you're not registered. Please log in
 $lang["menu"] = "Main menu";
 $lang["my_profile"] = "My profile";
 $lang["leave"] = "Leave the room";
+$lang["warning_sync_admin"] = "Warning! The synchronization is based on you, the creator of the room. If you leave, the sync will stop.";
 
 /** PROFILE **/
 $lang["display_name"] = "Display name";

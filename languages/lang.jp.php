@@ -90,6 +90,7 @@ $lang["no_credentials"] = "あれ？あなたはログインしていません�
 $lang["menu"] = "メインメニュー";
 $lang["my_profile"] = "プロファイル";
 $lang["leave"] = "ルームを出ます";
+$lang["warning_sync_admin"] = "注意！　シンクはあなたに基づいています。あなたはルームを出るとき、シンクが停止します。";
 
 /** PROFILE **/
 $lang["display_name"] = "ディスプレイ名";

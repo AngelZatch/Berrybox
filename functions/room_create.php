@@ -31,7 +31,7 @@ try{
 
 	$newHistory = $db->query("CREATE TABLE roomHistory_$uniqueToken(
 room_history_id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-playlist_order INT(11) UNSIGNED AUTO_INCREMENT COMMENT 'order of play',
+playlist_order INT(11) COMMENT 'order of play',
 history_link VARCHAR(15) NOT NULL COMMENT 'id of the youtube video',
 video_name VARCHAR (300) COMMENT 'full name of the video',
 history_time DATETIME COMMENT 'submission timestamp',
