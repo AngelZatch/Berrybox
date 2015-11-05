@@ -62,6 +62,7 @@ $lang["ul_mods"] = "Moderators";
 $lang["ul_users"] = "Listeners";
 $lang["sl_played"] = "Played videos";
 $lang["sl_upcoming"] = "Upcoming videos";
+$lang["synchronizing"] = "Synchronization, please wait a moment.";
 
 /** BUTTONS **/
 $lang["back"] = "Back";

@@ -62,6 +62,7 @@ $lang["ul_mods"] = "モデレーターズ";
 $lang["ul_users"] = "リサナーズ";
 $lang["sl_played"] = "過去";
 $lang["sl_upcoming"] = "次";
+$lang["synchronizing"] = "シンク中…　しばらくお待ちください。";
 
 /** BUTTONS **/
 $lang["back"] = "戻る";

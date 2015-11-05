@@ -5,12 +5,15 @@ $db = PDOFactory::getConnection();
 
 $roomToken = $_POST["roomToken"];
 $prev = $_POST["lastPlayed"];
+$userPower = $_POST["userPower"];
 
-// Update status of previous video to 'played' (2)
-$played = $db->query("UPDATE roomHistory_$roomToken
+if($userPower == 2){
+	// Update status of previous video to 'played' (2)
+	$played = $db->query("UPDATE roomHistory_$roomToken
 					SET video_status='2'
 					WHERE history_link = '$prev'
 					AND video_status = '1'");
+}
 
 // Get next video
 $next = $db->query("SELECT room_history_id, history_link, video_name FROM roomHistory_$roomToken
@@ -18,11 +21,13 @@ $next = $db->query("SELECT room_history_id, history_link, video_name FROM roomHi
 					ORDER BY room_history_id ASC
 					LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 
-// Set status of next video to 'playing' (1)
 if($next["history_link"] != null){
-	$playing = $db->query("UPDATE roomHistory_$roomToken
+	if($userPower == 2){
+		// Set status of next video to 'playing' (1)
+		$playing = $db->query("UPDATE roomHistory_$roomToken
 							SET video_status='1'
 							WHERE room_history_id='$next[room_history_id]'");
+	}
 	$n = array();
 	$n["link"] = $next["history_link"];
 	$n["title"] = stripslashes($next["video_name"]);
