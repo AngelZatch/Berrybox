@@ -260,6 +260,9 @@ if(isset($_GET["lang"])){
 						<ul class="nav nav-pills nav-stacked">
 							<li><a href="profile.php?id=<?php echo $_SESSION["token"];?>&lang=<?php echo $_SESSION["lang"];?>"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
 							<li><a href="home.php?lang=<?php echo $_SESSION["lang"];?>"><span class="glyphicon glyphicon-log-out col-lg-2"></span> <?php echo $lang["leave"];?></a></li>
+							<li>
+								<p style="font-size:12px; padding:5px; text-align:center;"><?php echo $lang["warning_sync_admin"];?></p>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -513,21 +516,27 @@ if(isset($_GET["lang"])){
 		window.chatHovered = false;
 	})
 	function onPlayerReady(event){
+		sessionStorage.setItem("currently-playing", "");
 		synchronize("<?php echo $roomToken;?>");
 	}
 	function onPlayerStateChange(event) {
 		if(window.sync == true){
 			if (event.data == YT.PlayerState.ENDED) {
-				$.post("functions/get_next.php", {roomToken : "<?php echo $roomToken;?>", lastPlayed : sessionStorage.getItem("currently-playing")}).done(function(data){
-					if(data != ""){
-						var songInfo = JSON.parse(data);
-						if(songInfo.link != null){
-							playSong(songInfo.link, songInfo.title);
+				if(userPower == 2){
+					$.post("functions/get_next.php", {roomToken : "<?php echo $roomToken;?>", userPower : window.userPower, lastPlayed : sessionStorage.getItem("currently-playing")}).done(function(data){
+						if(data != ""){
+							var songInfo = JSON.parse(data);
+							if(songInfo.link != null){
+								playSong(songInfo.link, songInfo.title);
+							}
+						} else {
+							synchronize("<?php echo $roomToken;?>");
 						}
-					} else {
-						synchronize("<?php echo $roomToken;?>");
-					}
-				});
+					});
+				} else {
+					synchronize("<?php echo $roomToken;?>");
+					$("#body-chat").append("<p class='system-message'><span class='glyphicon glyphicon-refresh'></span> <?php echo $lang["synchronizing"];?></p>");
+				}
 			}
 		}
 		if(event.data == YT.PlayerState.PLAYING){
@@ -562,7 +571,11 @@ if(isset($_GET["lang"])){
 		$.post("functions/load_current.php", {roomToken : roomToken}).done(function(data){
 			var songInfo = JSON.parse(data);
 			if(songInfo.link != null){
-				playSong(songInfo.link, songInfo.title);
+				if(songInfo.link != sessionStorage.getItem("currently-playing")){
+					playSong(songInfo.link, songInfo.title);
+				} else {
+					window.videoPending = setTimeout(synchronize, 3000, "<?php echo $roomToken;?>");
+				}
 			} else {
 				window.videoPending = setTimeout(synchronize, 3000, "<?php echo $roomToken;?>");
 			}

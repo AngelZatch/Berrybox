@@ -64,6 +64,7 @@ $lang["ul_mods"] = "Modérateurs";
 $lang["ul_users"] = "Spectateurs";
 $lang["sl_played"] = "Vidéos lues";
 $lang["sl_upcoming"] = "Vidéos à venir";
+$lang["synchronizing"] = "Synchro en cours, merci de patienter un instant...";
 
 /** BUTTONS **/
 $lang["back"] = "Retour";
@@ -91,6 +92,7 @@ $lang["no_credentials"] = "Ah ! On dirait que vous n'êtes pas enregistré. Enre
 $lang["menu"] = "Menu principal";
 $lang["my_profile"] = "Mon profil";
 $lang["leave"] = "Quitter le salon";
+$lang["warning_sync_admin"] = "Attention ! La synchronisation du salon est basée sur vous. Si vous quittez le salon, la synchro va s'arrêter pour tout le monde.";
 
 /** PROFILE **/
 $lang["display_name"] = "Nom affiché";

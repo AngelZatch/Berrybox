@@ -62,6 +62,7 @@ $lang["ul_mods"] = "モデレーターズ";
 $lang["ul_users"] = "リサナーズ";
 $lang["sl_played"] = "過去";
 $lang["sl_upcoming"] = "次";
+$lang["synchronizing"] = "シンク中…　しばらくお待ちください。";
 
 /** BUTTONS **/
 $lang["back"] = "戻る";
@@ -89,6 +90,7 @@ $lang["no_credentials"] = "あれ？あなたはログインしていません�
 $lang["menu"] = "メインメニュー";
 $lang["my_profile"] = "プロファイル";
 $lang["leave"] = "ルームを出ます";
+$lang["warning_sync_admin"] = "注意！　シンクはあなたに基づいています。あなたはルームを出るとき、シンクが停止します。";
 
 /** PROFILE **/
 $lang["display_name"] = "ディスプレイ名";
