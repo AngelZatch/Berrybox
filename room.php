@@ -261,7 +261,9 @@ if(isset($_GET["lang"])){
 							<li><a href="profile.php?id=<?php echo $_SESSION["token"];?>&lang=<?php echo $_SESSION["lang"];?>"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
 							<li><a href="home.php?lang=<?php echo $_SESSION["lang"];?>"><span class="glyphicon glyphicon-log-out col-lg-2"></span> <?php echo $lang["leave"];?></a></li>
 							<li>
+								<?php if($_SESSION["token"] == $roomDetails["room_creator"]){ ?>
 								<p style="font-size:12px; padding:5px; text-align:center;"><?php echo $lang["warning_sync_admin"];?></p>
+								<?php } ?>
 							</li>
 						</ul>
 					</div>
