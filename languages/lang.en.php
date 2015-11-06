@@ -28,13 +28,15 @@ $lang["close_room"] = "Close the room";
 $lang["room_closing"] = "The room is closing. You will now be redirected outside.";
 $lang["change_type"] = "Change the type of the room";
 $lang["song_submit_success"] = "Your song has been submitted into the playlist";
+$lang["invalid_link"] = "The link you submitted is invalid. Please submit a valid link";
+$lang["db_error"] = "There has been in an error in submitting your song. Please try again.";
 
 /** CHAT **/
 $lang["post_chat"] = "Chat";
 $lang["chat_placeholder"] = "Write a message";
 $lang["chat_settings"] = "Chat Settings";
 $lang["color_pick"] = "Pick a color for your username";
-$lang["welcome"] = "Welcome in the chat room!";
+$lang["welcome"] = "Welcome in the chat room! To submit a video, please paste the full YouTube link (https://www.youtube.com/watch?v=id_of_video.com) in the box under the player.";
 
 /** MOOD **/
 $lang["mood-question"] = "So, what do you think of this song?";
