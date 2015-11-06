@@ -195,10 +195,10 @@ if(isset($_GET["lang"])){
 						<div class="col-lg-3 button-glyph" data-toggle="popover-x" data-target="#popover-chat-settings" data-placement="bottom bottom-right">
 							<span class="glyphicon glyphicon-cog" title="<?php echo $lang["chat_settings"];?>"></span>
 						</div>
-						<div class="popover popover-default popover-lg" id="popover-chat-settings">
-							<div class="arrow"></div>
-							<div class="popover-title"><span class="close" data-dismiss="popover-x">&times;</span><?php echo $lang["chat_settings"];?></div>
-							<div class="popover-content">
+						<div class="popover popover-default popover-lg" id="popover-chat-settings" style="background-color:#2D2C26;">
+							<div class="arrow" style="background-color:#2D2C26;"></div>
+							<div class="popover-title" style="background-color:#2D2C26;"><span class="close" data-dismiss="popover-x">&times;</span><?php echo $lang["chat_settings"];?></div>
+							<div class="popover-content" style="background-color:#2D2C26;">
 								<p><?php echo $lang["color_pick"];?></p>
 								<div class="color-cube" id="color-67fc97"></div>
 								<div class="color-cube" id="color-4e96f2"></div>
@@ -734,8 +734,22 @@ if(isset($_GET["lang"])){
 				var id = src.substr(32, 11);
 
 				// Post URL into room history
-				$.post("functions/post_history.php", {url : id, roomToken : roomToken});
-				$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["song_submit_success"];?></p>");
+				$.post("functions/post_history.php", {url : id, roomToken : roomToken}).done(function(code){
+					console.log(code);
+					switch(code){
+						case '1': // success code
+							$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["song_submit_success"];?></p>");
+							break;
+
+						case '2': //db error code
+							$("#body-chat").append("<p class='system-message system-warning'></span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["db_error"];?></p>");
+							break;
+
+						case '3': // Invalid link code
+							$("#body-chat").append("<p class='system-message system-alert'><span class='glyphicon glyphicon-exclamation-sign'></span> <?php echo $lang["invalid_link"];?></p>");
+							break;
+					}
+				});
 
 				// Empty URL box
 				$(".url-box").val('');

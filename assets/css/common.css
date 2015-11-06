@@ -84,6 +84,7 @@ input.form-control{
 
 #body-chat {
 	overflow-y: scroll;
+	overflow-wrap: break-word;
 	height: 85.7vh;
 	font-size: 12.5px;
 }
@@ -244,18 +245,30 @@ input.form-control{
 
 .system-alert{
 	color: #d61b1b;
-	font-style: italic;
 	font-weight: 700;
 }
 
 .system-success{
 	color: #87ce77;
-	font-style: italic;
+	font-weight: 600;
+}
+
+.system-warning{
+	color: #eded89;
 	font-weight: 600;
 }
 
 .whisper{
+	margin-left: -15px;
+	margin-right: -15px;
+	border-left: 5px #cf9930 solid;
 	background-color : #D5D5D5;
+	color: black;
+	padding-left: 10px;
+}
+
+.whisper > .message-time{
+	color: inherit;
 }
 
 #song-list {
