@@ -112,8 +112,6 @@ input.form-control{
 	height: 100vh;
 }
 
-
-
 .room-creator {
 	font-size: 14px;
 }
@@ -487,6 +485,11 @@ input.form-control{
 }
 
 #menu-list {
+	z-index: 2;
+	display: none;
+}
+
+#options-list{
 	z-index: 2;
 	display: none;
 }

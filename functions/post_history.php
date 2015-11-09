@@ -4,7 +4,7 @@ session_start();
 $db = PDOFactory::getConnection();
 
 $link = $_POST["url"];
-$time = date_create('now')->format('Y-m-d H:i:s');
+$time = date_create('now', new datetimezone('UTC'))->format('Y-m-d H:i:s');
 $user = $_SESSION["token"];
 $roomToken = $_POST["roomToken"];
 

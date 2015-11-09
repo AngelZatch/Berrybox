@@ -23,9 +23,11 @@ $next = $db->query("SELECT room_history_id, history_link, video_name FROM roomHi
 
 if($next["history_link"] != null){
 	if($userPower == 2){
+		$time = date_create('now', new datetimezone('UTC'))->format('Y-m-d H:i:s');
 		// Set status of next video to 'playing' (1)
 		$playing = $db->query("UPDATE roomHistory_$roomToken
-							SET video_status='1'
+							SET video_status='1',
+							history_start = '$time'
 							WHERE room_history_id='$next[room_history_id]'");
 	}
 	$n = array();

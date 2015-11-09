@@ -192,36 +192,8 @@ if(isset($_GET["lang"])){
 						<div class="col-lg-3 toggle-user-list button-glyph">
 							<span class="glyphicon glyphicon-user" title="<?php echo $lang["watch_count"];?>"></span><span id="watch-count"></span>
 						</div>
-						<div class="col-lg-3 button-glyph" data-toggle="popover-x" data-target="#popover-chat-settings" data-placement="bottom bottom-right">
+						<div class="col-lg-3 toggle-options-list button-glyph">
 							<span class="glyphicon glyphicon-cog" title="<?php echo $lang["chat_settings"];?>"></span>
-						</div>
-						<div class="popover popover-default popover-lg" id="popover-chat-settings" style="background-color:#2D2C26;">
-							<div class="arrow" style="background-color:#2D2C26;"></div>
-							<div class="popover-title" style="background-color:#2D2C26;"><span class="close" data-dismiss="popover-x">&times;</span><?php echo $lang["chat_settings"];?></div>
-							<div class="popover-content" style="background-color:#2D2C26;">
-								<p><?php echo $lang["color_pick"];?></p>
-								<div class="color-cube" id="color-67fc97"></div>
-								<div class="color-cube" id="color-4e96f2"></div>
-								<div class="color-cube" id="color-db8bf7"></div>
-								<div class="color-cube" id="color-e416a1"></div>
-								<div class="color-cube" id="color-1bddcf"></div>
-								<div class="color-cube" id="color-31a03f"></div>
-								<div class="color-cube" id="color-fb4836"></div>
-								<div class="color-cube" id="color-4b524d"></div>
-								<div class="color-cube" id="color-6a3b88"></div>
-								<div class="color-cube" id="color-a16ce8"></div>
-								<div class="color-cube" id="color-dfe092"></div>
-								<div class="color-cube" id="color-c9c00c"></div>
-								<div class="color-cube" id="color-707e66"></div>
-								<div class="color-cube" id="color-0954ee"></div>
-								<div class="color-cube" id="color-ad6337"></div>
-								<div class="color-cube" id="color-5f1107"></div>
-								<div class="color-cube" id="color-c372d4"></div>
-								<div class="color-cube" id="color-e17db6"></div>
-								<div class="color-cube" id="color-ca2004"></div>
-								<div class="color-cube" id="color-4df847"></div>
-								<div class="color-cube" id="color-0c89a8"></div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -243,6 +215,35 @@ if(isset($_GET["lang"])){
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-user"></span><span id="watch-count"></span> <?php echo $lang["watch_count"];?></div>
 				<div class="panel-body" id="body-user-list"></div>
+			</div>
+		</div>
+		<div class="col-lg-3 full-panel" id="options-list">
+			<div class="panel panel-default panel-room panel-list">
+				<div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["chat_settings"];?></div>
+				<div class="panel-body" id="body-options-list">
+					<p><?php echo $lang["color_pick"];?></p>
+					<div class="color-cube" id="color-67fc97"></div>
+					<div class="color-cube" id="color-4e96f2"></div>
+					<div class="color-cube" id="color-db8bf7"></div>
+					<div class="color-cube" id="color-e416a1"></div>
+					<div class="color-cube" id="color-1bddcf"></div>
+					<div class="color-cube" id="color-31a03f"></div>
+					<div class="color-cube" id="color-fb4836"></div>
+					<div class="color-cube" id="color-4b524d"></div>
+					<div class="color-cube" id="color-6a3b88"></div>
+					<div class="color-cube" id="color-a16ce8"></div>
+					<div class="color-cube" id="color-dfe092"></div>
+					<div class="color-cube" id="color-c9c00c"></div>
+					<div class="color-cube" id="color-707e66"></div>
+					<div class="color-cube" id="color-0954ee"></div>
+					<div class="color-cube" id="color-ad6337"></div>
+					<div class="color-cube" id="color-5f1107"></div>
+					<div class="color-cube" id="color-c372d4"></div>
+					<div class="color-cube" id="color-e17db6"></div>
+					<div class="color-cube" id="color-ca2004"></div>
+					<div class="color-cube" id="color-4df847"></div>
+					<div class="color-cube" id="color-0c89a8"></div>
+				</div>
 			</div>
 		</div>
 		<?php if(isset($_SESSION["token"])){ ?>
@@ -345,9 +346,25 @@ if(isset($_GET["lang"])){
 				sendMessage("<?php echo $roomToken;?>", 1, 'chatbox', '');
 			}
 		})
+		//# CURRENT DEV : Whisper name autocomplete
+		/*$(this).keyup(function(){
+			if($(this).val() === "/w "){
+				$.post("functions/get_user_list.php", {roomToken : "<?php echo $roomToken;?>"}).done(function(data){
+					var userList = JSON.parse(data);
+					var autocompleteList = [];
+					for(var i = 0; i < userList.length; i++){
+						autocompleteList.push(userList[i].pseudo);
+					}
+					console.log(autocompleteList);
+					$(".chatbox").autocomplete({
+						source: autocompleteList
+					})
+				});
+			}
+		})*/
 	}).on('click', '.btn-chat', function(){
 		sendMessage("<?php echo $roomToken;?>", 1, 'chatbox', '');
-	}).on('click', '.toggle-song-list, .toggle-menu-list, .toggle-user-list', function(){
+	}).on('click', '.toggle-song-list, .toggle-menu-list, .toggle-user-list, .toggle-options-list', function(){
 		var classToken = $(this).attr("class").split(' ')[1].substr(7);
 		var position;
 		if($("#"+classToken).css("display") == "none"){
@@ -359,11 +376,15 @@ if(isset($_GET["lang"])){
 					setTimeout((function(){
 						$("#user-list").hide();
 						$("#menu-list").hide();
+						$("#options-list").hide();
 					}), 200);
 					$("#user-list").animate({
 						right : "0px"
 					}, 200);
 					$("#menu-list").animate({
+						right : "0px"
+					}, 200);
+					$("#options-list").animate({
 						right : "0px"
 					}, 200);
 					break;
@@ -373,11 +394,15 @@ if(isset($_GET["lang"])){
 					setTimeout((function(){
 						$("#song-list").hide();
 						$("#menu-list").hide();
+						$("#options-list").hide();
 					}), 200);
 					$("#song-list").animate({
 						right : "0px"
 					}, 200);
 					$("#menu-list").animate({
+						right : "0px"
+					}, 200);
+					$("#options-list").animate({
 						right : "0px"
 					}, 200);
 					break;
@@ -386,11 +411,32 @@ if(isset($_GET["lang"])){
 					setTimeout((function(){
 						$("#song-list").hide();
 						$("#user-list").hide();
+						$("#options-list").hide();
 					}), 200);
 					$("#song-list").animate({
 						right : "0px"
 					}, 200);
 					$("#user-list").animate({
+						right : "0px"
+					}, 200);
+					$("#options-list").animate({
+						right : "0px"
+					}, 200);
+					break;
+
+				case "options-list":
+					setTimeout((function(){
+						$("#song-list").hide();
+						$("#user-list").hide();
+						$("#menu-list").hide();
+					}), 200);
+					$("#song-list").animate({
+						right : "0px"
+					}, 200);
+					$("#user-list").animate({
+						right : "0px"
+					}, 200);
+					$("#menu-list").animate({
 						right : "0px"
 					}, 200);
 					break;
@@ -425,7 +471,7 @@ if(isset($_GET["lang"])){
 			$b.removeClass("sync-off");
 			$b.html("<span class='glyphicon glyphicon-refresh'></span> " +"<?php echo $lang["sync-on"];?>");
 			window.sync = true;
-			synchronize("<?php echo $roomToken;?>");
+			synchronize("<?php echo $roomToken;?>", userPower);
 			$b.blur();
 		}
 	}).on('mouseenter', '.emotion-like', function(){
@@ -519,7 +565,7 @@ if(isset($_GET["lang"])){
 	})
 	function onPlayerReady(event){
 		sessionStorage.setItem("currently-playing", "");
-		synchronize("<?php echo $roomToken;?>");
+		synchronize("<?php echo $roomToken;?>", userPower);
 	}
 	function onPlayerStateChange(event) {
 		if(window.sync == true){
@@ -529,14 +575,14 @@ if(isset($_GET["lang"])){
 						if(data != ""){
 							var songInfo = JSON.parse(data);
 							if(songInfo.link != null){
-								playSong(songInfo.link, songInfo.title);
+								playSong(songInfo.link, songInfo.title, 0);
 							}
 						} else {
-							synchronize("<?php echo $roomToken;?>");
+							synchronize("<?php echo $roomToken;?>", userPower);
 						}
 					});
 				} else {
-					synchronize("<?php echo $roomToken;?>");
+					synchronize("<?php echo $roomToken;?>", userPower);
 					$("#body-chat").append("<p class='system-message'><span class='glyphicon glyphicon-refresh'></span> <?php echo $lang["synchronizing"];?></p>");
 				}
 			}
@@ -568,28 +614,38 @@ if(isset($_GET["lang"])){
 			setTimeout(userState, 2000, roomToken);
 		})
 	}
-	function synchronize(roomToken){
+	function synchronize(roomToken, userPower){
 		/* This function synchronizes the current video for everyone */
-		$.post("functions/load_current.php", {roomToken : roomToken}).done(function(data){
+		$.post("functions/load_current.php", {roomToken : roomToken, userPower : userPower}).done(function(data){
 			var songInfo = JSON.parse(data);
 			if(songInfo.link != null){
 				if(songInfo.link != sessionStorage.getItem("currently-playing")){
-					playSong(songInfo.link, songInfo.title);
+					playSong(songInfo.link, songInfo.title, songInfo.timestart);
 				} else {
-					window.videoPending = setTimeout(synchronize, 3000, "<?php echo $roomToken;?>");
+					window.videoPending = setTimeout(synchronize, 3000, "<?php echo $roomToken;?>", userPower);
 				}
 			} else {
-				window.videoPending = setTimeout(synchronize, 3000, "<?php echo $roomToken;?>");
+				window.videoPending = setTimeout(synchronize, 3000, "<?php echo $roomToken;?>", userPower);
 			}
 		})
 	}
-	function playSong(id, title){
-		player.loadVideoById(id);
+	function playSong(id, title, timestart){
+		if(timestart != 0){
+			//console.log("timestamp : "+timestart);
+			var sTime = moment.utc(timestart).add(4, 's');
+			//console.log("start of video fetched from DB : "+sTime);
+			var sLocalTime = moment(sTime).local();
+			//console.log("formatted : "+sLocalTime);
+			var timeDelta = Math.round(moment().diff(sLocalTime)/1000);
+			//console.log("TIME DELTA : "+timeDelta);
+			player.loadVideoById(id, timeDelta);
+		} else {
+			player.loadVideoById(id);
+		}
 		sessionStorage.setItem("currently-playing", id);
 		$(".currently-name").empty();
 		$(".currently-name").html(title);
-		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
-		if(userToken == "<?php echo $roomDetails["room_creator"];?>"){
+		if("<?php echo isset($_SESSION["token"]);?>" == "<?php echo $roomDetails["room_creator"];?>" && timestart != 0){
 			var message = "{now_playing}"+title;
 			sendMessage("<?php echo $roomToken;?>", 4, message);
 			$.post("functions/register_song.php", {id : id});
@@ -792,7 +848,8 @@ if(isset($_GET["lang"])){
 		$.post("functions/load_chat.php", {token : roomToken, lang : lang, lastMessageID : window.lastID}).done(function(data){
 			var messageList = JSON.parse(data);
 			for(var i = 0; i < messageList.length; i++){
-				var messageTime = moment(messageList[i].timestamp).format('HH:mm');
+				var mTime = moment.utc(messageList[i].timestamp);
+				var messageTime = moment(mTime).local().format("HH:mm");
 				if(messageList[i].scope == 6){
 					// Whispers
 					if(messageList[i].destinationToken == "<?php echo $_SESSION["token"];?>"){
