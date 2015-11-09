@@ -645,7 +645,8 @@ if(isset($_GET["lang"])){
 		sessionStorage.setItem("currently-playing", id);
 		$(".currently-name").empty();
 		$(".currently-name").html(title);
-		if("<?php echo isset($_SESSION["token"]);?>" == "<?php echo $roomDetails["room_creator"];?>" && timestart != 0){
+		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
+		if(userToken == "<?php echo $roomDetails["room_creator"];?>" && timestart == 0){
 			var message = "{now_playing}"+title;
 			sendMessage("<?php echo $roomToken;?>", 4, message);
 			$.post("functions/register_song.php", {id : id});
