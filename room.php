@@ -183,16 +183,16 @@ if(isset($_GET["lang"])){
 			<div class="panel panel-default panel-room panel-chat">
 				<div class="panel-heading">
 					<div class="chat-options row">
-						<div class="col-lg-3 toggle-menu-list button-glyph">
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 toggle-menu-list button-glyph">
 							<span class="glyphicon glyphicon-dashboard" title="<?php echo $lang["menu"];?>"></span>
 						</div>
-						<div class="col-lg-3 toggle-song-list button-glyph">
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 toggle-song-list button-glyph">
 							<span class="glyphicon glyphicon-list" title="<?php echo $lang["playlist"];?>"></span>
 						</div>
-						<div class="col-lg-3 toggle-user-list button-glyph">
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 toggle-user-list button-glyph">
 							<span class="glyphicon glyphicon-user" title="<?php echo $lang["watch_count"];?>"></span><span id="watch-count"></span>
 						</div>
-						<div class="col-lg-3 toggle-options-list button-glyph">
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 toggle-options-list button-glyph">
 							<span class="glyphicon glyphicon-cog" title="<?php echo $lang["chat_settings"];?>"></span>
 						</div>
 					</div>
@@ -289,8 +289,8 @@ if(isset($_GET["lang"])){
 	var player;
 	function onYouTubeIframeAPIReady() {
 		player = new YT.Player('player', {
-			height: '482',
-			width: '802',
+			height: '75%',
+			width: '60%',
 			videoId: '',
 			events: {
 				'onReady': onPlayerReady,
@@ -365,7 +365,7 @@ if(isset($_GET["lang"])){
 	}).on('click', '.btn-chat', function(){
 		sendMessage("<?php echo $roomToken;?>", 1, 'chatbox', '');
 	}).on('click', '.toggle-song-list, .toggle-menu-list, .toggle-user-list, .toggle-options-list', function(){
-		var classToken = $(this).attr("class").split(' ')[1].substr(7);
+		var classToken = $(this).attr("class").split(' ')[4].substr(7);
 		var position;
 		if($("#"+classToken).css("display") == "none"){
 			$("#"+classToken).toggle();
