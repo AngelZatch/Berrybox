@@ -33,7 +33,7 @@ if(isset($_SESSION["username"])){
 ?>
 <nav class="navbar navbar-fixed-top">
 	<div class="container-fluid">
-		<a href="home.php?lang=<?php echo $_GET["lang"];?>" class="navbar-brand">Strawberry beta</a>
+		<a href="home.php?lang=<?php echo $_GET["lang"];?>" class="navbar-brand">Berrybox beta</a>
 		<!--<form class="navbar-form navbar-left" role="search">
 <div class="form-group">
 <input type="text" class="form-control" name="search_terms" placeholder="Chercher une piste, un album, un artiste...">

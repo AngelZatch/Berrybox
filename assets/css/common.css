@@ -533,3 +533,36 @@ option{
 	font-size: 14px;
 	color: #888;
 }
+
+.user-profile-picture {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	border-radius: 75px;
+	margin-right: 10px;
+	float: left;
+}
+
+.user-profile-name {
+	font-size: 28px;
+}
+
+.user-profile-details {
+	min-height: 150px;
+	margin-bottom: 20px;
+}
+
+.stats-title {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.stats-value {
+	padding-left: 20px;
+	font-size: 20px;
+	color: #ba8a2b;
+}
+
+.user-profile-bio {
+	font-style: italic;
+}

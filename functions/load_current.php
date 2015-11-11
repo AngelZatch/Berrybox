@@ -16,7 +16,7 @@ if($load->rowCount() != 0){
 	$n["timestart"] = $loaded["history_start"];
 	echo json_encode($n);
 } else {
-	$load = $db->query("SELECT history_link, video_name, room_history_id FROM roomHistory_$token
+	$load = $db->query("SELECT history_link, video_name, room_history_id, history_user FROM roomHistory_$token
 					WHERE video_status = 0
 					ORDER BY room_history_id DESC
 					LIMIT 1");
@@ -32,6 +32,9 @@ if($load->rowCount() != 0){
 							SET video_status='1',
 							history_start = '$time'
 							WHERE room_history_id='$loaded[room_history_id]'");
+		$incrementSongs = $db->query("UPDATE user_stats
+								SET stat_songs_submitted = stat_songs_submitted + 1
+								WHERE user_token = '$loaded[history_user]'");
 	}
 	echo json_encode($n);
 }

@@ -65,6 +65,7 @@ $lang["ul_users"] = "リサナーズ";
 $lang["sl_played"] = "過去";
 $lang["sl_upcoming"] = "次";
 $lang["synchronizing"] = "シンク中…　しばらくお待ちください。";
+$lang["no_admin"] = "注意！このルームのクリエイターがいりません。シンクは不可能です。ビデオをシェアーするために、新しいルームを始めて下さい。";
 
 /** BUTTONS **/
 $lang["back"] = "戻る";
@@ -104,6 +105,11 @@ $lang["bio_tip"] = "あなたの事項商会〔400文字上限〕";
 $lang["default_lang"] = "デフォールト言語";
 $lang["lang_tip"] = "アプリのディスプレイ言語";
 $lang["save_changes"] = "セイブ";
+
+/** OTHER PROFILE **/
+$lang["no_bio"] = "このユーザーはバイオがない。";
+$lang["rooms_created"] = "始まったルームの数";
+$lang["songs_submitted"] = "プレイした曲の数";
 
 /** BETA **/
 $lang["beta_key"] = "アプリにアクセスするには、下記のベータキーを入力してください。";

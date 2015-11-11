@@ -9,7 +9,7 @@ $queryActiveRooms = $db->query("SELECT * FROM rooms r
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Strawberry Music Streamer</title>
+		<title>Berrybox</title>
 		<?php include "styles.php";?>
 	</head>
 	<body>
@@ -22,7 +22,7 @@ $queryActiveRooms = $db->query("SELECT * FROM rooms r
 					<div class="panel panel-active-room">
 						<div class="panel-body">
 							<p class="col-lg-3"><?php echo $activeRooms["room_name"];?></p>
-							<p class="col-lg-3"><?php echo $activeRooms["user_pseudo"];?></p>
+							<p class="col-lg-3"><a href="user.php?id=<?php echo $activeRooms["user_token"];?>&lang=<?php echo $_GET["lang"];?>"><?php echo $activeRooms["user_pseudo"];?></a></p>
 							<div class="col-lg-6">
 								<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
 								<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>

@@ -35,6 +35,10 @@ if(isset($_POST["signup"])){
 			$newPref->bindParam(':color', $color);
 			$newPref->execute();
 
+			$newStats = $d->prepare("INSERT INTO user_stats(user_token) VALUES(:token)");
+			$newStats->bindParam(':token', $token);
+			$newStats->execute();
+
 			$useKey = $db->query("UPDATE beta_keys SET key_user='$token' WHERE key_value='$betaKey'");
 			header('Location: home.php?lang='.$_GET["lang"]);
 		} catch(PDOException $e){

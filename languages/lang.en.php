@@ -65,6 +65,7 @@ $lang["ul_users"] = "Listeners";
 $lang["sl_played"] = "Played videos";
 $lang["sl_upcoming"] = "Upcoming videos";
 $lang["synchronizing"] = "Synchronization, please wait a moment.";
+$lang["no_admin"] = "Attention ! The creator is not present in the room. The synchronisation is therefore impossible. If you want to share videos in proper conditions, please create another room or contact the creator of this room directly.";
 
 /** BUTTONS **/
 $lang["back"] = "Back";
@@ -104,6 +105,11 @@ $lang["bio_tip"] = "Who you are in less than 400 characters.";
 $lang["default_lang"] = "Default language";
 $lang["lang_tip"] = "The language the whole application will display";
 $lang["save_changes"] = "Save changes";
+
+/** OTHER PROFILE **/
+$lang["no_bio"] = "This user doesn't have any bio";
+$lang["rooms_created"] = "Number of opened rooms";
+$lang["songs_submitted"] = "Number of played songs";
 
 /** BETA **/
 $lang["beta_key"] = "To have access to the application, please enter your beta key here!";
