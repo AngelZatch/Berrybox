@@ -57,6 +57,11 @@ room_user_date_state DATETIME,
 room_user_next_state_reset DATETIME
 )");
 
+	// Add 1 to the stat of rooms created by this user
+	$incrementStat = $db->query("UPDATE user_stats
+								SET stat_rooms_created = stat_rooms_created + 1
+								WHERE user_token = '$creatorToken'");
+
 	// Put the creator of the room in the room
 	$activeUser = $db->prepare("INSERT INTO roomUsers_$uniqueToken(room_user_token, room_user_state, room_user_date_state)
 							VALUES(:token, :state, :date)");

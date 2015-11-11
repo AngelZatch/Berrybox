@@ -309,23 +309,31 @@ if(isset($_GET["lang"])){
 			return $.post("functions/join_room.php", {roomToken : roomToken, userToken : userToken});
 		}
 		joinRoom(roomToken, userToken).done(function(result){
-			// Load the chat
+			// Load the chat (every 2s)
 			$("#body-chat").append("<p class='system-message'><?php echo $lang["welcome"];?></p>");
 			setInterval(loadChat, 2000, roomToken, result);
 			window.userPower = result;
-			// Load the history of all submitted songs in this room
+			// Load the history of all submitted songs in this room (once, it will be refreshed if the user toggles the panel)
 			loadSongHistory(roomToken, result);
-			// Load all the active users in the room
+			// Load all the active users in the room (once, it will be refreshed if the user toggles the panel)
 			loadUsers(roomToken);
-			//window.checkVideo = setInterval(synchronize, 5000, roomToken);
+			// Set global chatHover & sync variables
 			window.chatHovered = false;
 			window.sync = true;
-			// Watching the state of the user
+			// Check if creator is in the room
+			if(userToken != "<?php echo $roomDetails["room_creator"];?>"){
+				$.post("functions/check_creator.php", {roomToken : roomToken}).done(function(presence){
+					if(presence == '0'){
+						$("#body-chat").append("<p class='system-message system-alert'><?php echo $lang["no_admin"];?></p>");
+					}
+				})
+			}
+			// Watch the state of the user and of the room (refresh every 10s)
 			setTimeout(userState, 10000, roomToken, userToken);
 			setTimeout(roomState, 10000, roomToken);
 		})
 
-		// Get the number of people in the room
+		// Get the number of people in the room (refresh every 30s)
 		getWatchCount(roomToken);
 		setInterval(getWatchCount, 30000, roomToken);
 		$(window).on('beforeunload', function(event){
@@ -856,9 +864,9 @@ if(isset($_GET["lang"])){
 					if(messageList[i].destinationToken == "<?php echo $_SESSION["token"];?>"){
 						var message = "<p class='whisper'>";
 						message += "<span class='message-time'>"+messageTime+"</span> ";
-						message += "<span class='message-author' style='color:"+messageList[i].authorColor+";'>";
+						message += "<a href='user.php?id="+messageList[i].authorToken+"&lang=<?php echo $_GET["lang"];?>' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].authorColor+";'>";
 						message += messageList[i].author;
-						message += "</span>";
+						message += "</span></a>";
 						message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
 						message += messageList[i].content;
 						message += "</p>";
@@ -866,9 +874,9 @@ if(isset($_GET["lang"])){
 						var message = "<p class='whisper'>";
 						message += "<span class='message-time'>"+messageTime+"</span> ";
 						message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
-						message += "<span class='message-author' style='color:"+messageList[i].destinationColor+";'>";
+						message += "<a href='user.php?id="+messageList[i].destinationToken+"&lang=<?php echo $_GET["lang"];?>' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].destinationColor+";'>";
 						message += messageList[i].destination;
-						message += "</span> : ";
+						message += "</span></a> : ";
 						message += messageList[i].content;
 						message += "</p>";
 					} else {
@@ -944,9 +952,9 @@ if(isset($_GET["lang"])){
 							}
 						}
 					}
-					message += "<span class='message-author' style='color:"+messageList[i].authorColor+";'>";
+					message += "<a href='user.php?id="+messageList[i].authorToken+"&lang=<?php echo $_GET["lang"];?>' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].authorColor+";'>";
 					message += messageList[i].author;
-					message += "</span>";
+					message += "</span></a>";
 					message += " : "+messageList[i].content+"<br/>";
 					message += "</p>";
 				}

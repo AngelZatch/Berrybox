@@ -67,6 +67,7 @@ $lang["ul_users"] = "Spectateurs";
 $lang["sl_played"] = "Vidéos lues";
 $lang["sl_upcoming"] = "Vidéos à venir";
 $lang["synchronizing"] = "Synchro en cours, merci de patienter un instant...";
+$lang["no_admin"] = "Attention ! L'administrateur du salon n'est actuellement pas présent. La synchronisation est par conséquent impossible. Si vous voulez partager des vidéos, veuillez créer un autre salon ou contacter le créateur de celui-ci directement.";
 
 /** BUTTONS **/
 $lang["back"] = "Retour";
@@ -106,6 +107,11 @@ $lang["bio_tip"] = "Parlez de vous en moins de 400 caractères.";
 $lang["default_lang"] = "Langue par défaut";
 $lang["lang_tip"] = "Langue d'affichage du site";
 $lang["save_changes"] = "Sauvegarder les changements";
+
+/** OTHER PROFILE **/
+$lang["no_bio"] = "Cet utilisateur n'a pas de biographie";
+$lang["rooms_created"] = "Nombre de salon ouverts";
+$lang["songs_submitted"] = "Nombre de chansons validées";
 
 /** BETA **/
 $lang["beta_key"] = "Entrez votre clé beta ci-dessous pour avoir accès à l'application";

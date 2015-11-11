@@ -43,10 +43,6 @@ if(isset($_POST["submit"])){
 							WHERE user_token = '$userToken'");
 	}
 }
-
-$queryActiveRooms = $db->query("SELECT * FROM rooms r
-								JOIN user u ON r.room_creator = u.user_token
-								WHERE room_active = 1");
 ?>
 <html>
 	<head>
