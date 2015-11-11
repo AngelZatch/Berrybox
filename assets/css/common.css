@@ -16,15 +16,6 @@ body{
 	border-radius: 0px !important;
 }
 
-.player {
-	z-index: 1000;
-	position: absolute;
-	bottom: 0;
-	border-top: 1px solid #BF0404;
-	height: 67%;
-	width: 100%;
-}
-
 .room-info{
 	color: #e5e2d3;
 	white-space: nowrap;
@@ -222,16 +213,16 @@ input.form-control{
 }
 
 .moderation-option{
-	color: #DDD;
+	color: #888;
 	cursor: pointer;
 }
 
 .moderation-option:hover{
-	color: #000;
+	color: #DDD;
 }
 
 .moderation-option-enabled{
-	color: #000;
+	color: #DDD;
 	cursor: pointer;
 }
 
@@ -476,6 +467,14 @@ input.form-control{
 	margin-right: 10px;
 }
 
+.user-profile-picture {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	border-radius: 75px;
+	float: left;
+}
+
 .profile-picture {
 	width: inherit;
 }
@@ -534,35 +533,17 @@ option{
 	color: #888;
 }
 
-.user-profile-picture {
-	width: 150px;
-	height: 150px;
-	overflow: hidden;
-	border-radius: 75px;
-	margin-right: 10px;
-	float: left;
-}
-
-.user-profile-name {
-	font-size: 28px;
-}
-
 .user-profile-details {
 	min-height: 150px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .stats-title {
 	font-size: 14px;
-	font-weight: 600;
 }
 
 .stats-value {
 	padding-left: 20px;
-	font-size: 20px;
+	font-size: 22px;
 	color: #ba8a2b;
-}
-
-.user-profile-bio {
-	font-style: italic;
 }
