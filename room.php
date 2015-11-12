@@ -913,6 +913,9 @@ if(isset($_GET["lang"])){
 							break;
 						case '3':
 							message += " sm-type-skip'><span class='glyphicon glyphicon-step-forward'></span> ";
+							if(userPower != 2){
+								synchronize("<?php echo $roomToken;?>", userPower);
+							}
 							break;
 						case '4':
 							message += " sm-type-close'><span class='glyphicon glyphicon-remove-circle'></span> ";
