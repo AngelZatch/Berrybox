@@ -232,7 +232,8 @@ input.form-control{
 	font-weight: 500;
 }
 
-.system-alert{
+.system-alert,
+.sm-type-close{
 	color: #d61b1b;
 	font-weight: 700;
 }
@@ -473,6 +474,7 @@ input.form-control{
 	overflow: hidden;
 	border-radius: 75px;
 	float: left;
+	margin-right: 10px;
 }
 
 .profile-picture {
@@ -546,4 +548,20 @@ option{
 	padding-left: 20px;
 	font-size: 22px;
 	color: #ba8a2b;
+}
+
+.user-profile-name {
+	font-size: 28px;
+}
+
+.user-profile-bio {
+	font-style: italic;
+}
+
+.sm-type-play{
+	color: #7db8e0;
+}
+
+.sm-type-skip {
+	color: #eded89;
 }

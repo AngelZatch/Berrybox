@@ -30,6 +30,7 @@ $lang["change_type"] = "Change the type of the room";
 $lang["song_submit_success"] = "Your song has been submitted into the playlist";
 $lang["invalid_link"] = "The link you submitted is invalid. Please submit a valid link";
 $lang["db_error"] = "There has been in an error in submitting your song. Please try again.";
+$lang["skip"] = "Skip current video";
 
 /** CHAT **/
 $lang["post_chat"] = "Chat";

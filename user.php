@@ -18,7 +18,7 @@ $profileDetails = $db->query("SELECT * FROM user u
 	</head>
 	<body>
 		<?php include "nav.php";?>
-		<div class="main col-lg-8 col-lg-offset-2">
+		<div class="main col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
 			<div class="user-profile-details">
 				<div class="user-profile-picture">
 					<img src="profile-pictures/<?php echo $profileDetails["user_pp"];?>" class="profile-picture">
@@ -29,11 +29,11 @@ $profileDetails = $db->query("SELECT * FROM user u
 				</div>
 			</div>
 			<div class="user-profile-stats">
-				<div class="col-lg-4">
+				<div class="col-lg-4 col-md-4">
 					<p class="stats-title"><?php echo $lang["rooms_created"];?></p>
 					<p class="stats-value"><?php echo $profileDetails["stat_rooms_created"];?></p>
 				</div>
-				<div class="col-lg-4">
+				<div class="col-lg-4 col-md-4">
 					<p class="stats-title"><?php echo $lang["songs_submitted"];?></p>
 					<p class="stats-value"><?php echo $profileDetails["stat_songs_submitted"];?></p>
 				</div>
