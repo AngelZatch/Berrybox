@@ -473,6 +473,7 @@ input.form-control{
 	overflow: hidden;
 	border-radius: 75px;
 	float: left;
+	margin-right: 10px;
 }
 
 .profile-picture {
@@ -546,4 +547,12 @@ option{
 	padding-left: 20px;
 	font-size: 22px;
 	color: #ba8a2b;
+}
+
+.user-profile-name {
+	font-size: 28px;
+}
+
+.user-profile-bio {
+	font-style: italic;
 }
