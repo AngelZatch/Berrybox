@@ -349,27 +349,29 @@ if(isset($_GET["lang"])){
 			}
 		})
 	}).on('focus', '.chatbox', function(){
+		$.post("functions/get_user_list.php", {roomToken : "<?php echo $roomToken;?>"}).done(function(data){
+			var userList = JSON.parse(data);
+			var autocompleteList = [];
+			for(var i = 0; i < userList.length; i++){
+				autocompleteList.push(userList[i].pseudo);
+			}
+			$(".chatbox").textcomplete([{
+				match: /(^|\b)(\w{2,})$/,
+				search: function(term, callback){
+					callback($.map(autocompleteList, function(item){
+						return item.indexOf(term) === 0 ? item : null;
+					}));
+				},
+				replace: function(item){
+					return item;
+				}
+			}]);
+		});
 		$(this).keypress(function(event){
 			if(event.which == 13){
 				sendMessage("<?php echo $roomToken;?>", 1, 'chatbox', '');
 			}
 		})
-		//# CURRENT DEV : Whisper name autocomplete
-		/*$(this).keyup(function(){
-			if($(this).val() === "/w "){
-				$.post("functions/get_user_list.php", {roomToken : "<?php echo $roomToken;?>"}).done(function(data){
-					var userList = JSON.parse(data);
-					var autocompleteList = [];
-					for(var i = 0; i < userList.length; i++){
-						autocompleteList.push(userList[i].pseudo);
-					}
-					console.log(autocompleteList);
-					$(".chatbox").autocomplete({
-						source: autocompleteList
-					})
-				});
-			}
-		})*/
 	}).on('click', '.btn-chat', function(){
 		sendMessage("<?php echo $roomToken;?>", 1, 'chatbox', '');
 	}).on('click', '.toggle-song-list, .toggle-menu-list, .toggle-user-list, .toggle-options-list', function(){
