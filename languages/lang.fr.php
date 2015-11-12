@@ -30,6 +30,7 @@ $lang["change_type"] = "Changer le type du salon";
 $lang["song_submit_success"] = "Votre vidéo a bien été ajoutée à la playlist";
 $lang["invalid_link"] = "Le lien que vous avez soumis est invalide. Veuillez recommencer avec un lien valide";
 $lang["db_error"] = "Une erreur s'est produite pendant la soumission de votre lien. Veuillez recommencer.";
+$lang["skip"] = "Passer la vidéo en cours";
 
 /** CHAT **/
 $lang["post_chat"] = "Envoyer";

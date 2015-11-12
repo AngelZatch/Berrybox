@@ -30,6 +30,7 @@ $lang["change_type"] = "ルームタイプを変更します";
 $lang["song_submit_success"] = "あなたのビデオ曲は提出されました";
 $lang["invalid_link"] = "あなたの提出したリンクは無効です。有効なリンクを提出してください。";
 $lang["db_error"] = "エラーがありました。もう一度リンクを提出してください。";
+$lang["skip"] = "スキップ";
 
 /** CHAT **/
 $lang["post_chat"] = "チャット";

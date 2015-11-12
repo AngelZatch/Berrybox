@@ -30,6 +30,7 @@ while($message = $load->fetch(PDO::FETCH_ASSOC)){
 	$m = array();
 	$m["id"] = $message["message_id"];
 	$m["scope"] = $message["message_scope"];
+	$m["subType"] = $message["message_type"];
 	$m["author"] = $message["user_pseudo"];
 	$permission = $db->query("SELECT room_user_state FROM roomUsers_$token
 								WHERE room_user_token = '$message[user_token]'")->fetch(PDO::FETCH_ASSOC);

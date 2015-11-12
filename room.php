@@ -91,20 +91,21 @@ if(isset($_GET["lang"])){
 		<link rel="stylesheet" href="assets/css/ekko-lightbox.min.css">
 	</head>
 	<body>
-		<div class="col-lg-8" id="room-player">
+		<div class="col-lg-8 col-md-8" id="room-player">
 			<div class="room-info">
 				<div class="room-picture">
 					<img src="profile-pictures/<?php echo $roomDetails["user_pp"];?>" class="profile-picture" title="<?php echo $roomDetails["user_pseudo"]." (".$lang["room_admin"].")";?>" alt="">
 				</div>
 				<p class="room-title"><?php echo $roomDetails["room_name"];?></p>
 				<p class="room-creator"> <?php echo $roomDetails["user_pseudo"];?> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
-				<div class="room-admin btn-group">
+				<div class="room-admin">
 					<?php
 					if(isset($_SESSION["token"])){
 						if($_SESSION["token"] != $roomDetails["room_creator"]){?>
 					<button class="btn btn-default btn-admin sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync-on"];?></button>
 					<?php } else { ?>
 					<button class="btn btn-danger btn-admin" onClick="closeRoom('<?php echo $roomToken;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
+					<button class="btn btn-default btn-admin" onCLick="getNext(true)"><span class="glyphicon glyphicon-step-forward"></span> <?php echo $lang["skip"];?></button>
 					<!--<div class="btn-group" id="dropdown-room-type">
 <button class="btn btn-default btn-admin dropdown-toggle" id="room-type" data-toggle="dropdown">
 <?php switch($roomDetails["room_protection"] == 1){
@@ -179,7 +180,7 @@ if(isset($_GET["lang"])){
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-4" id="room-chat">
+		<div class="col-lg-4 col-md-4" id="room-chat">
 			<div class="panel panel-default panel-room panel-chat">
 				<div class="panel-heading">
 					<div class="chat-options row">
@@ -205,19 +206,19 @@ if(isset($_GET["lang"])){
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-4 full-panel" id="song-list">
+		<div class="col-lg-3 col-md-3 full-panel" id="song-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></div>
 				<div class="panel-body" id="body-song-list"></div>
 			</div>
 		</div>
-		<div class="col-lg-3 full-panel" id="user-list">
+		<div class="col-lg-2 col-md-2 full-panel" id="user-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-user"></span><span id="watch-count"></span> <?php echo $lang["watch_count"];?></div>
 				<div class="panel-body" id="body-user-list"></div>
 			</div>
 		</div>
-		<div class="col-lg-3 full-panel" id="options-list">
+		<div class="col-lg-2 col-md-2 full-panel" id="options-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["chat_settings"];?></div>
 				<div class="panel-body" id="body-options-list">
@@ -247,7 +248,7 @@ if(isset($_GET["lang"])){
 			</div>
 		</div>
 		<?php if(isset($_SESSION["token"])){ ?>
-		<div class="col-lg-3 full-panel" id="menu-list">
+		<div class="col-lg-2 col-md-3 full-panel" id="menu-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-dashboard" title=""></span> <?php echo $lang["menu"];?></div>
 				<div class="panel-body" style="height: 93vh;">
@@ -369,11 +370,11 @@ if(isset($_GET["lang"])){
 		});
 		$(this).keypress(function(event){
 			if(event.which == 13){
-				sendMessage("<?php echo $roomToken;?>", 1, 'chatbox', '');
+				sendMessage("<?php echo $roomToken;?>", 1, null, 'chatbox', '');
 			}
 		})
 	}).on('click', '.btn-chat', function(){
-		sendMessage("<?php echo $roomToken;?>", 1, 'chatbox', '');
+		sendMessage("<?php echo $roomToken;?>", 1, null, 'chatbox', '');
 	}).on('click', '.toggle-song-list, .toggle-menu-list, .toggle-user-list, .toggle-options-list', function(){
 		var classToken = $(this).attr("class").split(' ')[4].substr(7);
 		var position;
@@ -580,27 +581,34 @@ if(isset($_GET["lang"])){
 	function onPlayerStateChange(event) {
 		if(window.sync == true){
 			if (event.data == YT.PlayerState.ENDED) {
-				if(userPower == 2){
-					$.post("functions/get_next.php", {roomToken : "<?php echo $roomToken;?>", userPower : window.userPower, lastPlayed : sessionStorage.getItem("currently-playing")}).done(function(data){
-						if(data != ""){
-							var songInfo = JSON.parse(data);
-							if(songInfo.link != null){
-								playSong(songInfo.link, songInfo.title, 0);
-							}
-						} else {
-							synchronize("<?php echo $roomToken;?>", userPower);
-						}
-					});
-				} else {
-					synchronize("<?php echo $roomToken;?>", userPower);
-					$("#body-chat").append("<p class='system-message'><span class='glyphicon glyphicon-refresh'></span> <?php echo $lang["synchronizing"];?></p>");
-				}
+				getNext(false);
 			}
 		}
 		if(event.data == YT.PlayerState.PLAYING){
 			var moodTimer = player.getDuration() * 1000;
 			setTimeout(showMoodSelectors, moodTimer * 0.3);
 			setTimeout(hideMoodSelectors, moodTimer - 10000);
+		}
+	}
+	function getNext(skip){
+		if(skip == true){
+			var message = "{skip}";
+			sendMessage("<?php echo $roomToken;?>", 4, 3, message);
+		}
+		if(userPower == 2){
+			$.post("functions/get_next.php", {roomToken : "<?php echo $roomToken;?>", userPower : window.userPower, lastPlayed : sessionStorage.getItem("currently-playing")}).done(function(data){
+				if(data != ""){
+					var songInfo = JSON.parse(data);
+					if(songInfo.link != null){
+						playSong(songInfo.link, songInfo.title, 0);
+					}
+				} else {
+					synchronize("<?php echo $roomToken;?>", userPower);
+				}
+			});
+		} else {
+			synchronize("<?php echo $roomToken;?>", userPower);
+			$("#body-chat").append("<p class='system-message'><span class='glyphicon glyphicon-refresh'></span> <?php echo $lang["synchronizing"];?></p>");
 		}
 	}
 	function userState(roomToken, userToken){
@@ -656,9 +664,9 @@ if(isset($_GET["lang"])){
 		$(".currently-name").empty();
 		$(".currently-name").html(title);
 		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
-		if(userToken == "<?php echo $roomDetails["room_creator"];?>" && timestart == 0){
+		if(userToken == "<?php echo $roomDetails["room_creator"];?>" && (timestart == 0 || timeDelta <= 3)){
 			var message = "{now_playing}"+title;
-			sendMessage("<?php echo $roomToken;?>", 4, message);
+			sendMessage("<?php echo $roomToken;?>", 4, 2, message);
 			$.post("functions/register_song.php", {id : id});
 		}
 	}
@@ -732,13 +740,13 @@ if(isset($_GET["lang"])){
 	function ignoreSong(id){
 		$.post("functions/ignore_song.php", {roomToken : "<?php echo $roomToken;?>", id : id}).done(function(data){
 			var message = "{song_ignored}"+data;
-			sendMessage("<?php echo $roomToken;?>", 4, message);
+			sendMessage("<?php echo $roomToken;?>", 4, 5, message);
 		})
 	}
 	function reinstateSong(id){
 		$.post("functions/reinstate_song.php", {roomToken : "<?php echo $roomToken;?>", id : id}).done(function(data){
 			var message = "{song_reinstated}"+data;
-			sendMessage("<?php echo $roomToken;?>", 4, message);
+			sendMessage("<?php echo $roomToken;?>", 4, 6, message);
 		})
 	}
 	function showMoodSelectors(){
@@ -802,7 +810,6 @@ if(isset($_GET["lang"])){
 
 				// Post URL into room history
 				$.post("functions/post_history.php", {url : id, roomToken : roomToken}).done(function(code){
-					console.log(code);
 					switch(code){
 						case '1': // success code
 							$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["song_submit_success"];?></p>");
@@ -823,7 +830,7 @@ if(isset($_GET["lang"])){
 			}
 		}
 	}
-	function sendMessage(roomToken, scope, message, destination){
+	function sendMessage(roomToken, scope, type, message, destination){
 		if(message == 'chatbox' && scope == 1){
 			var fullString = $(".chatbox").val();
 			var actionToken = $(".chatbox").val().substr(0,1);
@@ -848,7 +855,7 @@ if(isset($_GET["lang"])){
 				$.post("functions/post_chat.php", {message : message, token : roomToken, scope : scope, destination : destination});
 			}
 		} else {
-			$.post("functions/post_chat.php", {message : message, token : roomToken, scope : scope, destination : destination});
+			$.post("functions/post_chat.php", {message : message, token : roomToken, scope : scope, type: type, destination : destination});
 		}
 	}
 	function loadChat(roomToken, userPower){
@@ -896,8 +903,27 @@ if(isset($_GET["lang"])){
 					}
 				} else if(messageList[i].scope == 4){
 					// System messages viewable by everyone
-					var message = "<p class='system-message'>";
-					message += "<span class='glyphicon glyphicon-info-sign'></span> ";
+					var message = "<p class='system-message";
+					switch(messageList[i].subType){
+						case '1':
+							message += "'><span class='glyphicon glyphicon-info-sign'></span> ";
+							break;
+						case '2':
+							message += " sm-type-play'><span class='glyphicon glyphicon-play'></span> ";
+							break;
+						case '3':
+							message += " sm-type-skip'><span class='glyphicon glyphicon-step-forward'></span> ";
+							break;
+						case '4':
+							message += " sm-type-close'><span class='glyphicon glyphicon-remove-circle'></span> ";
+							break;
+						case '5':
+							message += " sm-type-ignore'><span class='glyphicon glyphicon-info-sign'></span> ";
+							break;
+						case '6':
+							message += " sm-type-reinstate'><span class='glyphicon glyphicon-info-sign'></span> ";
+							break;
+					}
 					message += messageList[i].content;
 					message += "</p>";
 				} else if(messageList[i].scope == 3){
@@ -972,8 +998,8 @@ if(isset($_GET["lang"])){
 		var roomToken = "<?php echo $roomToken;?>";
 		$.post("functions/time_out.php", {roomToken : roomToken, userToken : userToken}).done(function(data){
 			var adminMessage = "<?php echo $lang["timeout_message_admin_first_part"];?>"+data+"<?php echo $lang["timeout_message_admin_second_part"];?>";
-			sendMessage("<?php echo $roomToken;?>", 3, adminMessage);
-			sendMessage("<?php echo $roomToken;?>", 5, "<?php echo $lang["timeout_message_user"];?>", userToken);
+			sendMessage("<?php echo $roomToken;?>", 3, null, adminMessage);
+			sendMessage("<?php echo $roomToken;?>", 5, null, "<?php echo $lang["timeout_message_user"];?>", userToken);
 		})
 	}
 	function banUser(userToken){
@@ -983,18 +1009,18 @@ if(isset($_GET["lang"])){
 		$.post("functions/promote_user.php", {roomToken : "<?php echo $roomToken;?>", adminToken : "<?php echo $_SESSION["token"];?>", userToken : userToken}).done(function(data){
 			var message = "{user_promoted}"+data;
 			// System message to everyone to alert the new mod
-			sendMessage("<?php echo $roomToken;?>", 4, message);
+			sendMessage("<?php echo $roomToken;?>", 4, 1, message);
 			// System message to the new mod only
-			sendMessage("<?php echo $roomToken;?>", 5, "{you_promoted}", userToken);
+			sendMessage("<?php echo $roomToken;?>", 5, null, "{you_promoted}", userToken);
 		})
 	}
 	function demoteUser(userToken){
 		$.post("functions/demote_user.php", {roomToken : "<?php echo $roomToken;?>", adminToken : "<?php echo $_SESSION["token"];?>", userToken : userToken}).done(function(data){
 			var message = "{user_demoted}"+data;
 			// System message to everyone to alert of the demote
-			sendMessage("<?php echo $roomToken;?>", 4, message);
+			sendMessage("<?php echo $roomToken;?>", 4, 1, message);
 			// System message to the affected user only
-			sendMessage("<?php echo $roomToken;?>", 5, "{you_demoted}", userToken);
+			sendMessage("<?php echo $roomToken;?>", 5, null, "{you_demoted}", userToken);
 		});
 	}
 	function getWatchCount(roomToken){
@@ -1004,7 +1030,7 @@ if(isset($_GET["lang"])){
 		})
 	}
 	function closeRoom(roomToken){
-		sendMessage(roomToken, 4, "{close_room_5}");
+		sendMessage(roomToken, 4, 4, "{close_room_5}");
 		$.post("functions/close_room.php", {roomToken : roomToken});
 	}
 	<?php } else { ?>
