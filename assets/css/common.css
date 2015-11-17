@@ -565,3 +565,8 @@ option{
 .sm-type-skip {
 	color: #eded89;
 }
+
+.creator-stats {
+	float: right;
+	font-size: 20px;
+}

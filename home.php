@@ -4,7 +4,7 @@ require "functions/db_connect.php";
 $db = PDOFactory::getConnection();
 $queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
-								WHERE room_active = 1 AND (room_protection != 3 AND room_creator != '$_SESSION[token]')");
+								WHERE room_active = 1 AND room_protection != 3 OR (room_protection = 3 AND room_creator = '$_SESSION[token]')");
 ?>
 <html>
 	<head>

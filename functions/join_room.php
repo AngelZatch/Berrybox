@@ -30,6 +30,11 @@ VALUES(:token, :state, :present, :date)");
 		$join->bindParam(':present', $present);
 		$join->bindParam(':date', $timestamp);
 		$join->execute();
+
+		// Add a visitor to the number of total visitors for the creator of the room
+		$addVisitor = $db->query("UPDATE user_stats
+								SET stat_visitors = stat_visitors +1
+								WHERE user_token = (SELECT room_creator FROM rooms WHERE room_token = '$roomToken')");
 		$db->commit();
 		echo $state;
 	}catch(PDOException $e){
