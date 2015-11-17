@@ -587,7 +587,7 @@ if(isset($_GET["lang"])){
 		synchronize("<?php echo $roomToken;?>", userPower);
 	}
 	function onPlayerStateChange(event) {
-		if(window.sync == true && window.autoplay == true){
+		if(window.sync == true && window.autoplay != false){
 			if (event.data == YT.PlayerState.ENDED) {
 				getNext(false);
 			}
