@@ -30,7 +30,9 @@ $lang["change_type"] = "Changer le type du salon";
 $lang["song_submit_success"] = "Votre vidéo a bien été ajoutée à la playlist";
 $lang["invalid_link"] = "Le lien que vous avez soumis est invalide. Veuillez recommencer avec un lien valide";
 $lang["db_error"] = "Une erreur s'est produite pendant la soumission de votre lien. Veuillez recommencer.";
-$lang["skip"] = "Passer la vidéo en cours";
+$lang["skip"] = "Suivant";
+$lang["manual_play"] = "Lecture manuelle";
+$lang["auto_play"] = "Lecture automatique";
 
 /** CHAT **/
 $lang["post_chat"] = "Envoyer";
@@ -113,6 +115,7 @@ $lang["save_changes"] = "Sauvegarder les changements";
 $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";
 $lang["rooms_created"] = "Nombre de salon ouverts";
 $lang["songs_submitted"] = "Nombre de chansons validées";
+$lang["total_views"] = "Nombre total de spectateurs";
 
 /** BETA **/
 $lang["beta_key"] = "Entrez votre clé beta ci-dessous pour avoir accès à l'application";

@@ -30,7 +30,9 @@ $lang["change_type"] = "Change the type of the room";
 $lang["song_submit_success"] = "Your song has been submitted into the playlist";
 $lang["invalid_link"] = "The link you submitted is invalid. Please submit a valid link";
 $lang["db_error"] = "There has been in an error in submitting your song. Please try again.";
-$lang["skip"] = "Skip current video";
+$lang["skip"] = "Next";
+$lang["manual_play"] = "Manual play";
+$lang["auto_play"] = "Auto play";
 
 /** CHAT **/
 $lang["post_chat"] = "Chat";
@@ -111,6 +113,7 @@ $lang["save_changes"] = "Save changes";
 $lang["no_bio"] = "This user doesn't have any bio";
 $lang["rooms_created"] = "Number of opened rooms";
 $lang["songs_submitted"] = "Number of played songs";
+$lang["total_views"] = "Total number of spectators";
 
 /** BETA **/
 $lang["beta_key"] = "To have access to the application, please enter your beta key here!";

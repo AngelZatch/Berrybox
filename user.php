@@ -37,6 +37,10 @@ $profileDetails = $db->query("SELECT * FROM user u
 					<p class="stats-title"><?php echo $lang["songs_submitted"];?></p>
 					<p class="stats-value"><?php echo $profileDetails["stat_songs_submitted"];?></p>
 				</div>
+				<div class="col-lg-4 col-md-4">
+					<p class="stats-title"><?php echo $lang["total_views"];?></p>
+					<p class="stats-value"><?php echo $profileDetails["stat_visitors"];?></p>
+				</div>
 			</div>
 		</div>
 		<?php include "scripts.php";?>

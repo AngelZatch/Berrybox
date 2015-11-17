@@ -570,3 +570,17 @@ option{
 	float: right;
 	font-size: 20px;
 }
+
+.toggle-off {
+	color: gray;
+}
+
+.toggle-on{
+	color: #fff;
+	background-color: #31b0d5;
+}
+
+.btn-toggle:hover {
+	color: #fff;
+	background-color: inherit;
+}
