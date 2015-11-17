@@ -5,3 +5,4 @@ profile-pictures/*
 
 ## Beta code
 generate_keys.php
+functions/db_connect.php
