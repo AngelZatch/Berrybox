@@ -7,6 +7,9 @@ $roomDetails = $db->query("SELECT *
 							FROM rooms r
 							JOIN user u ON r.room_creator = u.user_token
 							WHERE room_token = '$roomToken'")->fetch(PDO::FETCH_ASSOC);
+$creatorStats = $db->query("SELECT *
+							FROM user_stats us
+							WHERE user_token = '$roomDetails[room_creator]'")->fetch(PDO::FETCH_ASSOC);
 
 if(isset($_SESSION["token"])){
 	$userDetails = $db->query("SELECT * FROM user u
@@ -129,6 +132,8 @@ if(isset($_GET["lang"])){
 </div>-->
 					<?php }
 					}?>
+					<!--<div class="creator-stats" style="margin-left:40px;"><span class="glyphicon glyphicon-heart"></span> <?php echo $creatorStats["stat_followers"];?></div>-->
+					<div class="creator-stats"><span class="glyphicon glyphicon-eye-open"></span> <?php echo $creatorStats["stat_visitors"];?></div>
 				</div>
 			</div>
 			<div id="currently-playing">
