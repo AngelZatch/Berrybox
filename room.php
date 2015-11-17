@@ -1068,7 +1068,7 @@ if(isset($_GET["lang"])){
 	}
 	function closeRoom(roomToken){
 		sendMessage(roomToken, 4, 4, "{close_room_5}");
-		$.post("functions/close_room.php", {roomToken : roomToken});
+		$.post("functions/close_room.php", {roomToken : roomToken, userToken : "<?php echo $_SESSION["token"];?>"});
 	}
 	<?php } else { ?>
 	$("#no-credentials").ekkoLightbox({
