@@ -89,7 +89,7 @@ if(isset($_GET["lang"])){
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title><?php echo $roomDetails["user_pseudo"];?>'s Strawberry room</title>
+		<title><?php echo $roomDetails["room_name"];?> | <?php echo $roomDetails["user_pseudo"];?> | Berrybox</title>
 		<?php include "styles.php";?>
 		<link rel="stylesheet" href="assets/css/ekko-lightbox.min.css">
 	</head>
@@ -100,7 +100,7 @@ if(isset($_GET["lang"])){
 					<img src="profile-pictures/<?php echo $roomDetails["user_pp"];?>" class="profile-picture" title="<?php echo $roomDetails["user_pseudo"]." (".$lang["room_admin"].")";?>" alt="">
 				</div>
 				<p class="room-title"><?php echo $roomDetails["room_name"];?></p>
-				<p class="room-creator"> <?php echo $roomDetails["user_pseudo"];?> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
+				<p class="room-creator"> <a href="user.php?id=<?php echo $roomDetails["room_creator"];?>&lang=<?php echo $_GET["lang"];?>" target="_blank"><?php echo $roomDetails["user_pseudo"];?></a> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
 				<div class="room-admin">
 					<?php
 					if(isset($_SESSION["token"])){
@@ -108,7 +108,8 @@ if(isset($_GET["lang"])){
 					<button class="btn btn-default btn-admin sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync-on"];?></button>
 					<?php } else { ?>
 					<button class="btn btn-danger btn-admin" onClick="closeRoom('<?php echo $roomToken;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
-					<button class="btn btn-default btn-admin" onCLick="getNext(true)"><span class="glyphicon glyphicon-step-forward"></span> <?php echo $lang["skip"];?></button>
+					<button class="btn btn-info btn-admin btn-toggle toggle-off" id="btn-autoplay" onClick="togglePlay()"><span class="glyphicon glyphicon-play-circle"></span> <?php echo $lang["auto_play"];?></button>
+					<button class="btn btn-default btn-admin" onClick="getNext(true)"><span class="glyphicon glyphicon-step-forward"></span> <?php echo $lang["skip"];?></button>
 					<!--<div class="btn-group" id="dropdown-room-type">
 <button class="btn btn-default btn-admin dropdown-toggle" id="room-type" data-toggle="dropdown">
 <?php switch($roomDetails["room_protection"] == 1){
@@ -133,7 +134,7 @@ if(isset($_GET["lang"])){
 					<?php }
 					}?>
 					<!--<div class="creator-stats" style="margin-left:40px;"><span class="glyphicon glyphicon-heart"></span> <?php echo $creatorStats["stat_followers"];?></div>-->
-					<div class="creator-stats"><span class="glyphicon glyphicon-eye-open"></span> <?php echo $creatorStats["stat_visitors"];?></div>
+					<div class="creator-stats"><span class="glyphicon glyphicon-eye-open" title="<?php echo $lang["total_views"];?>"></span> <?php echo $creatorStats["stat_visitors"];?></div>
 				</div>
 			</div>
 			<div id="currently-playing">
@@ -333,6 +334,8 @@ if(isset($_GET["lang"])){
 						$("#body-chat").append("<p class='system-message system-alert'><?php echo $lang["no_admin"];?></p>");
 					}
 				})
+			} else {
+				window.autoplay = true;
 			}
 			// Watch the state of the user and of the room (refresh every 10s)
 			setTimeout(userState, 10000, roomToken, userToken);
@@ -584,7 +587,7 @@ if(isset($_GET["lang"])){
 		synchronize("<?php echo $roomToken;?>", userPower);
 	}
 	function onPlayerStateChange(event) {
-		if(window.sync == true){
+		if(window.sync == true && window.autoplay == true){
 			if (event.data == YT.PlayerState.ENDED) {
 				getNext(false);
 			}
@@ -675,6 +678,25 @@ if(isset($_GET["lang"])){
 			$.post("functions/register_song.php", {id : id});
 		}
 	}
+	function togglePlay(){
+		if(window.autoplay){
+			window.autoplay = false;
+			$("#btn-autoplay").removeClass("toggle-off");
+			$("#btn-autoplay").addClass("toggle-on");
+			$("#btn-autoplay").empty();
+			$("#btn-autoplay").html("<span class='glyphicon glyphicon-hourglass'></span> " +"<?php echo $lang["manual_play"];?>");
+			$("#btn-autoplay").blur();
+			sendMessage("<?php echo $roomToken;?>", 4, 3, "{auto-off}");
+		} else {
+			window.autoplay = true;
+			$("#btn-autoplay").removeClass("toggle-on");
+			$("#btn-autoplay").addClass("toggle-off");
+			$("#btn-autoplay").html("<span class='glyphicon glyphicon-play-circle'></span> " +"<?php echo $lang["auto_play"];?>");
+			$("#btn-autoplay").blur();
+			sendMessage("<?php echo $roomToken;?>", 4, 3, "{auto-on}");
+		}
+
+	}
 	function loadSongHistory(roomToken, userPower){
 		if($("#song-list").css("display") != "none"){
 			// Gets the whole history of the room
@@ -700,7 +722,7 @@ if(isset($_GET["lang"])){
 					}
 					if(songList[i].videoStatus == 2){
 						message += "<div class='row song-played'>";
-						message += "<div class='col-lg-12'>";
+						message += "<div class='col-lg-10'>";
 					} else if(songList[i].videoStatus == 1){
 						message += "<div class='row song-playing'>";
 						message += "<div class='col-lg-12'>";
@@ -711,12 +733,7 @@ if(isset($_GET["lang"])){
 						var message = "<div class='row song-upcoming'>";
 						message += "<div class='col-lg-9'>";
 					}
-					message += "<p class='song-list-line'>";
-					message += "<a href='http://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title="+songList[i].videoName+">";
-					message += songList[i].videoName;
-					message +=  "</a>";
-					message += "</p>";
-					message += "</div>";
+					message += "<p class='song-list-line'><a href='https://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title="+songList[i].videoName+">"+songList[i].videoName+"</a></p></div>";
 					if(userPower == 2 || userPower == 3){
 						if(songList[i].videoStatus == 0){
 							message += "<div class='col-lg-1'>";
@@ -733,6 +750,9 @@ if(isset($_GET["lang"])){
 							message += "<span class='glyphicon glyphicon-leaf button-glyph' onClick=reinstateSong("+songList[i].entry+")></span>";
 							message += "</div>";
 						}
+					}
+					if(songList[i].videoStatus == 2){
+							message += "<div class='col-lg-1'><span class='glyphicon glyphicon-repeat button-glyph' onClick=requeueSong("+songList[i].entry+")></span></div>";
 					}
 					message += "</div>";
 					previousSongState = songList[i].videoStatus;
@@ -752,6 +772,15 @@ if(isset($_GET["lang"])){
 		$.post("functions/reinstate_song.php", {roomToken : "<?php echo $roomToken;?>", id : id}).done(function(data){
 			var message = "{song_reinstated}"+data;
 			sendMessage("<?php echo $roomToken;?>", 4, 6, message);
+		})
+	}
+	function requeueSong(id){
+		$.post("functions/requeue_song.php", {roomToken : "<?php echo $roomToken;?>", id : id, userToken : "<?php echo $_SESSION["token"];?>"}).done(function(data){
+			if(data == "1"){
+				$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["song_submit_success"];?></p>");
+			} else {
+				$("#body-chat").append("<p class='system-message system-warning'></span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["db_error"];?></p>");
+			}
 		})
 	}
 	function showMoodSelectors(){

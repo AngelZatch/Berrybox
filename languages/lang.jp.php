@@ -30,7 +30,9 @@ $lang["change_type"] = "ルームタイプを変更します";
 $lang["song_submit_success"] = "あなたのビデオ曲は提出されました";
 $lang["invalid_link"] = "あなたの提出したリンクは無効です。有効なリンクを提出してください。";
 $lang["db_error"] = "エラーがありました。もう一度リンクを提出してください。";
-$lang["skip"] = "スキップ";
+$lang["skip"] = "ネクスト";
+$lang["manual_play"] = "マニュアルプレイ";
+$lang["auto_play"] = "オートプレイ";
 
 /** CHAT **/
 $lang["post_chat"] = "チャット";
@@ -111,6 +113,7 @@ $lang["save_changes"] = "セイブ";
 $lang["no_bio"] = "このユーザーはバイオがない。";
 $lang["rooms_created"] = "始まったルームの数";
 $lang["songs_submitted"] = "プレイした曲の数";
+$lang["total_views"] = "視聴者数";
 
 /** BETA **/
 $lang["beta_key"] = "アプリにアクセスするには、下記のベータキーを入力してください。";

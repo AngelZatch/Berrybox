@@ -36,3 +36,4 @@ if(strlen($link) == 11){
 } else {
 	echo "3"; // Invalid link code
 }
+?>
