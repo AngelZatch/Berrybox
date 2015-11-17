@@ -722,7 +722,7 @@ if(isset($_GET["lang"])){
 					}
 					if(songList[i].videoStatus == 2){
 						message += "<div class='row song-played'>";
-						message += "<div class='col-lg-12'>";
+						message += "<div class='col-lg-10'>";
 					} else if(songList[i].videoStatus == 1){
 						message += "<div class='row song-playing'>";
 						message += "<div class='col-lg-12'>";
@@ -733,12 +733,7 @@ if(isset($_GET["lang"])){
 						var message = "<div class='row song-upcoming'>";
 						message += "<div class='col-lg-9'>";
 					}
-					message += "<p class='song-list-line'>";
-					message += "<a href='http://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title="+songList[i].videoName+">";
-					message += songList[i].videoName;
-					message +=  "</a>";
-					message += "</p>";
-					message += "</div>";
+					message += "<p class='song-list-line'><a href='https://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title="+songList[i].videoName+">"+songList[i].videoName+"</a></p></div>";
 					if(userPower == 2 || userPower == 3){
 						if(songList[i].videoStatus == 0){
 							message += "<div class='col-lg-1'>";
@@ -755,6 +750,9 @@ if(isset($_GET["lang"])){
 							message += "<span class='glyphicon glyphicon-leaf button-glyph' onClick=reinstateSong("+songList[i].entry+")></span>";
 							message += "</div>";
 						}
+					}
+					if(songList[i].videoStatus == 2){
+							message += "<div class='col-lg-1'><span class='glyphicon glyphicon-repeat button-glyph' onClick=requeueSong("+songList[i].entry+")></span></div>";
 					}
 					message += "</div>";
 					previousSongState = songList[i].videoStatus;
@@ -774,6 +772,15 @@ if(isset($_GET["lang"])){
 		$.post("functions/reinstate_song.php", {roomToken : "<?php echo $roomToken;?>", id : id}).done(function(data){
 			var message = "{song_reinstated}"+data;
 			sendMessage("<?php echo $roomToken;?>", 4, 6, message);
+		})
+	}
+	function requeueSong(id){
+		$.post("functions/requeue_song.php", {roomToken : "<?php echo $roomToken;?>", id : id, userToken : "<?php echo $_SESSION["token"];?>"}).done(function(data){
+			if(data == "1"){
+				$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["song_submit_success"];?></p>");
+			} else {
+				$("#body-chat").append("<p class='system-message system-warning'></span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["db_error"];?></p>");
+			}
 		})
 	}
 	function showMoodSelectors(){

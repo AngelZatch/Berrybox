@@ -309,6 +309,7 @@ input.form-control{
 }
 
 .button-glyph {
+	color: inherit;
 	cursor: pointer;
 	text-align: center;
 }
