@@ -22,6 +22,7 @@ if(isset($_POST["signup"])){
 		$access = 1;
 
 		try{
+			$db->beginTransaction();
 			$newUser = $db->prepare("INSERT INTO user(user_token, user_pseudo, user_pwd, beta_access) VALUES(:token, :pseudo, :pwd, :access)");
 			$newUser->bindParam(':pseudo', $_POST["username"]);
 			$newUser->bindParam(':pwd', $_POST["password"]);
@@ -35,13 +36,15 @@ if(isset($_POST["signup"])){
 			$newPref->bindParam(':color', $color);
 			$newPref->execute();
 
-			$newStats = $d->prepare("INSERT INTO user_stats(user_token) VALUES(:token)");
+			$newStats = $db->prepare("INSERT INTO user_stats(user_token) VALUES(:token)");
 			$newStats->bindParam(':token', $token);
 			$newStats->execute();
 
 			$useKey = $db->query("UPDATE beta_keys SET key_user='$token' WHERE key_value='$betaKey'");
+			$db->commit();
 			header('Location: home.php?lang='.$_GET["lang"]);
 		} catch(PDOException $e){
+			$db->rollBack();
 			echo $e->getMessage();
 		}
 	}
