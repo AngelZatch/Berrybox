@@ -64,7 +64,7 @@ if(isset($_SESSION["token"])){
 				$newPref->bindParam(':color', $color);
 				$newPref->execute();
 
-				$newStats = $db->prepare("INSERT INTO user_states(user_token) VALUES(:token)");
+				$newStats = $db->prepare("INSERT INTO user_stats(user_token) VALUES(:token)");
 				$newStats->bindParam(':token', $token);
 				$newStats->execute();
 
