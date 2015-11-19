@@ -50,6 +50,7 @@ if(isset($_SESSION["token"])){
 			$power = "1";;
 
 			try{
+				$db->beginTransaction();
 				$newUser = $db->prepare("INSERT INTO user(user_token, user_pseudo, user_pwd, beta_access) VALUES(:token, :pseudo, :pwd, :access)");
 				$newUser->bindParam(':pseudo', $_POST["login_name"]);
 				$newUser->bindParam(':pwd', $_POST["login_pwd"]);
@@ -63,7 +64,12 @@ if(isset($_SESSION["token"])){
 				$newPref->bindParam(':color', $color);
 				$newPref->execute();
 
+				$newStats = $db->prepare("INSERT INTO user_states(user_token) VALUES(:token)");
+				$newStats->bindParam(':token', $token);
+				$newStats->execute();
+
 				$useKey = $db->query("UPDATE beta_keys SET key_user='$token' WHERE key_value='$betaKey'");
+				$db->commit();
 				header('Location: home.php?lang='.$_GET["lang"]);
 				session_start();
 				$_SESSION["username"] = $pseudo;
@@ -72,6 +78,7 @@ if(isset($_SESSION["token"])){
 				$_SESSION["lang"] = "en";
 				header("Location: $_SERVER[REQUEST_URI]");
 			} catch(PDOException $e){
+				$db->rollBack();
 				echo $e->getMessage();
 			}
 		}
