@@ -2,6 +2,12 @@
 /** FRANCAIS **/
 
 $lang = array();
+/** HOME **/
+$lang["hello"] = "Bienvenue sur Berrybox!";
+$lang["berrybox_description"] = "Berrybox est une application simple pour partager des vidéos et les regarder en synchronisation!";
+$lang["get_started"] = "Rejoindre l'expérience Berrybox";
+$lang["home_create_room"] = "Envie de créer un nouveau salon ? C'est par ici !";
+
 /** ROOM ADMIN **/
 $lang["room_join"] = "Rejoindre";
 $lang["room_create"] = "Créer un salon";
@@ -31,13 +37,21 @@ $lang["song_submit_success"] = "Votre vidéo a bien été ajoutée à la playlis
 $lang["invalid_link"] = "Le lien que vous avez soumis est invalide. Veuillez recommencer avec un lien valide";
 $lang["db_error"] = "Une erreur s'est produite pendant la soumission de votre lien. Veuillez recommencer.";
 $lang["skip"] = "Suivant";
-$lang["manual_play"] = "Lecture manuelle";
-$lang["auto_play"] = "Lecture automatique";
+
+/** TOGGLES **/
+$lang["play_type"] = "Type de lecture";
+$lang["play_type_tip"] = "En lecture manuelle, l'enchaînement des vidéos doit être déclenché par l'administrateur du salon.";
+$lang["manual_play"] = "Manuelle";
+$lang["auto_play"] = "Auto";
+$lang["submit_type"] = "Soumission de vidéos";
+$lang["submit_type_tip"] = "Si la soumission est restreinte à 'modérateurs', les utilisateurs standard ne pourront plus soumettre de vidéos.";
+$lang["submit_all"] = "Tout le monde";
+$lang["submit_mod"] = "Modérateurs";
 
 /** CHAT **/
 $lang["post_chat"] = "Envoyer";
 $lang["chat_placeholder"] = "Ecrire un message";
-$lang["chat_settings"] = "Paramètres du chat";
+$lang["chat_settings"] = "Paramètres du chat et du salon";
 $lang["color_pick"] = "Choisissez une couleur pour votre nom";
 $lang["welcome"] = "Bienvenue dans le salon ! Pour soumettre une vidéo, copiez le lien complet (https://www.youtube.com/watch?v=id_de_la_video.com) dans l'encadré sous le lecteur.";
 

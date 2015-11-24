@@ -115,7 +115,6 @@ if(isset($_GET["lang"])){
 					<button class="btn btn-default btn-admin sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync-on"];?></button>
 					<?php } else { ?>
 					<button class="btn btn-danger btn-admin" onClick="closeRoom('<?php echo $roomToken;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
-					<button class="btn btn-info btn-admin btn-toggle toggle-off" id="btn-autoplay" onClick="togglePlay()"><span class="glyphicon glyphicon-play-circle"></span> <?php echo $lang["auto_play"];?></button>
 					<button class="btn btn-default btn-admin" onClick="getNext(true)"><span class="glyphicon glyphicon-step-forward"></span> <?php echo $lang["skip"];?></button>
 					<!--<div class="btn-group" id="dropdown-room-type">
 <button class="btn btn-default btn-admin dropdown-toggle" id="room-type" data-toggle="dropdown">
@@ -231,32 +230,50 @@ if(isset($_GET["lang"])){
 				<div class="panel-body" id="body-user-list"></div>
 			</div>
 		</div>
-		<div class="col-lg-2 col-md-2 full-panel" id="options-list">
+		<div class="col-lg-3 col-md-3 full-panel" id="options-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["chat_settings"];?></div>
 				<div class="panel-body" id="body-options-list">
-					<p><?php echo $lang["color_pick"];?></p>
-					<div class="color-cube" id="color-67fc97"></div>
-					<div class="color-cube" id="color-4e96f2"></div>
-					<div class="color-cube" id="color-db8bf7"></div>
-					<div class="color-cube" id="color-e416a1"></div>
-					<div class="color-cube" id="color-1bddcf"></div>
-					<div class="color-cube" id="color-31a03f"></div>
-					<div class="color-cube" id="color-fb4836"></div>
-					<div class="color-cube" id="color-4b524d"></div>
-					<div class="color-cube" id="color-6a3b88"></div>
-					<div class="color-cube" id="color-a16ce8"></div>
-					<div class="color-cube" id="color-dfe092"></div>
-					<div class="color-cube" id="color-c9c00c"></div>
-					<div class="color-cube" id="color-707e66"></div>
-					<div class="color-cube" id="color-0954ee"></div>
-					<div class="color-cube" id="color-ad6337"></div>
-					<div class="color-cube" id="color-5f1107"></div>
-					<div class="color-cube" id="color-c372d4"></div>
-					<div class="color-cube" id="color-e17db6"></div>
-					<div class="color-cube" id="color-ca2004"></div>
-					<div class="color-cube" id="color-4df847"></div>
-					<div class="color-cube" id="color-0c89a8"></div>
+					<div id="colors" class="room-option">
+						<p><?php echo $lang["color_pick"];?></p>
+						<div class="color-cube" id="color-67fc97"></div>
+						<div class="color-cube" id="color-4e96f2"></div>
+						<div class="color-cube" id="color-db8bf7"></div>
+						<div class="color-cube" id="color-e416a1"></div>
+						<div class="color-cube" id="color-1bddcf"></div>
+						<div class="color-cube" id="color-31a03f"></div>
+						<div class="color-cube" id="color-fb4836"></div>
+						<div class="color-cube" id="color-4b524d"></div>
+						<div class="color-cube" id="color-6a3b88"></div>
+						<div class="color-cube" id="color-a16ce8"></div>
+						<div class="color-cube" id="color-dfe092"></div>
+						<div class="color-cube" id="color-c9c00c"></div>
+						<div class="color-cube" id="color-707e66"></div>
+						<div class="color-cube" id="color-0954ee"></div>
+						<div class="color-cube" id="color-ad6337"></div>
+						<div class="color-cube" id="color-5f1107"></div>
+						<div class="color-cube" id="color-c372d4"></div>
+						<div class="color-cube" id="color-e17db6"></div>
+						<div class="color-cube" id="color-ca2004"></div>
+						<div class="color-cube" id="color-4df847"></div>
+						<div class="color-cube" id="color-0c89a8"></div>
+					</div>
+					<?php if($_SESSION["token"] == $roomDetails["room_creator"]){ ?>
+					<div class="room-option">
+						<span class="option-title"><?php echo $lang["play_type"];?></span><br>
+						<span style="float: right;">
+							<input type="checkbox" class="admin-option-toggle" name="toggle-autoplay" <?php echo($roomDetails["room_play_type"]=='1')?'unchecked':'checked';?>>
+						</span>
+						<span class="tip"><?php echo $lang["play_type_tip"];?></span>
+					</div>
+					<div class="room-option">
+						<span class="option-title"><?php echo $lang["submit_type"];?></span><br>
+						<span style="float: right;">
+							<input type="checkbox" class="admin-option-toggle" name="toggle-submit" <?php echo($roomDetails["room_submission_rights"]=='1')?'checked':'unchecked';?>>
+						</span>
+						<span class="tip"><?php echo $lang["submit_type_tip"];?></span>
+					</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
@@ -331,24 +348,30 @@ if(isset($_GET["lang"])){
 			loadSongHistory(roomToken, result);
 			// Load all the active users in the room (once, it will be refreshed if the user toggles the panel)
 			loadUsers(roomToken);
+			// State of the room
+			watchRoom(roomToken);
 			// Set global chatHover & sync variables
 			window.chatHovered = false;
 			window.sync = true;
-			// Check if creator is in the room
+			// Check if creator
 			if(userToken != "<?php echo $roomDetails["room_creator"];?>"){
+				// If user is not the creator, check presence of the creator
 				$.post("functions/check_creator.php", {roomToken : roomToken}).done(function(presence){
 					if(presence == '0'){
 						$("#body-chat").append("<p class='system-message system-alert'><?php echo $lang["no_admin"];?></p>");
 					}
 				})
 			} else {
-				window.autoplay = true;
+				// If user is the creator, then start autoplay
+				if("<?php echo $roomDetails["room_play_type"];?>" == 1){
+					window.autoplay = true;
+				} else {
+					window.autoplay = false;
+				}
 			}
 			// Watch the state of the user and of the room (refresh every 10s)
 			setTimeout(userState, 10000, roomToken, userToken);
-			setTimeout(roomState, 10000, roomToken);
 		})
-
 		// Get the number of people in the room (refresh every 30s)
 		getWatchCount(roomToken);
 		setInterval(getWatchCount, 30000, roomToken);
@@ -356,6 +379,46 @@ if(isset($_GET["lang"])){
 			var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
 			$.post("functions/leave_room.php", {roomToken : "<?php echo $roomToken;?>", userToken : userToken});
 		})
+		$(":regex(name,toggle-autoplay)").bootstrapSwitch({
+			size: 'small',
+			onText: '<i class="glyphicon glyphicon-hourglass"></i> <?php echo $lang["manual_play"];?>',
+			offText: '<i class="glyphicon glyphicon-play-circle"></i> <?php echo $lang["auto_play"];?>',
+			onColor: 'info',
+			offColor: 'default',
+			onSwitchChange: function(){
+				var state = (window.autoplay)?'1':'0';
+				$.post("functions/toggle_autoplay.php", {roomToken : "<?php echo $roomToken;?>", state : state}).done(function(data){
+					if(data == 0){
+						sendMessage("<?php echo $roomToken;?>", 4, 1, "{auto-off}");
+						window.autoplay = false;
+					} else{
+						sendMessage("<?php echo $roomToken;?>", 4, 1, "{auto-on}");
+						window.autoplay = true;
+					}
+				})
+			}
+		});
+		$(":regex(name,toggle-submit)").bootstrapSwitch({
+			size: 'small',
+			onText: '<i class="glyphicon glyphicon-ok-sign"></i> <?php echo $lang["submit_all"];?>',
+			offText: '<i class="glyphicon glyphicon-ok-circle"></i> <?php echo $lang["submit_mod"];?>',
+			onColor: 'success',
+			offColor: 'warning',
+			onSwitchChange: function(){
+				var state = "<?php echo $roomDetails["room_submission_rights"];?>";
+				console.log(state);
+				$.post("functions/toggle_submission_rights.php", {roomToken : "<?php echo $roomToken;?>", state : state}).done(function(data){
+					console.log(data);
+					if(data == 0){
+						window.submission = false;
+						sendMessage("<?php echo $roomToken;?>", 4, 1, "{submission_mod}");
+					} else {
+						window.submission = true;
+						sendMessage("<?php echo $roomToken;?>", 4, 1, "{submission_all}");
+					}
+				})
+			}
+		});
 	}).on('click','.play-url', function(){
 		submitLink();
 	}).on('focus', '.url-box', function(){
@@ -395,7 +458,7 @@ if(isset($_GET["lang"])){
 		var position;
 		if($("#"+classToken).css("display") == "none"){
 			$("#"+classToken).toggle();
-			position = "32%";
+			position = "32.5%";
 			switch(classToken){
 				case "song-list":
 					loadSongHistory("<?php echo $roomToken;?>", window.userPower);
@@ -594,6 +657,7 @@ if(isset($_GET["lang"])){
 		synchronize("<?php echo $roomToken;?>", userPower);
 	}
 	function onPlayerStateChange(event) {
+		console.log(window.autoplay);
 		if(window.sync == true && window.autoplay != false){
 			if (event.data == YT.PlayerState.ENDED) {
 				getNext(false);
@@ -638,13 +702,33 @@ if(isset($_GET["lang"])){
 			}
 		})
 	}
-	function roomState(roomToken){
+	function watchRoom(roomToken){
 		$.post("functions/get_room_state.php", {roomToken : roomToken}).done(function(data){
-			window.roomState = data;
-			if(data == 0){
+			var states = JSON.parse(data);
+			window.roomState = states.room_active;
+
+			// Submission of videos
+			if(states.room_submission_rights == '0'){
+				if(window.userPower == 1){
+					window.submission = false;
+					$(".add-link").hide();
+				} else {
+					window.submission = true;
+				}
+			} else {
+				window.submission = true;
+				$(".add-link").show();
+			}
+
+			// State of the autoplay
+			var autoplayWatch = states.room_play_type;
+
+			// State active of the room
+			if(window.roomState == 0){
 				$(".under-video").hide('1000');
 			}
-			setTimeout(userState, 2000, roomToken);
+			// Watch the state of the room every 10 seconds
+			setTimeout(watchRoom, 10000, roomToken);
 		})
 	}
 	function synchronize(roomToken, userPower){
@@ -684,25 +768,6 @@ if(isset($_GET["lang"])){
 			sendMessage("<?php echo $roomToken;?>", 4, 2, message);
 			$.post("functions/register_song.php", {id : id});
 		}
-	}
-	function togglePlay(){
-		if(window.autoplay){
-			window.autoplay = false;
-			$("#btn-autoplay").removeClass("toggle-off");
-			$("#btn-autoplay").addClass("toggle-on");
-			$("#btn-autoplay").empty();
-			$("#btn-autoplay").html("<span class='glyphicon glyphicon-hourglass'></span> " +"<?php echo $lang["manual_play"];?>");
-			$("#btn-autoplay").blur();
-			sendMessage("<?php echo $roomToken;?>", 4, 3, "{auto-off}");
-		} else {
-			window.autoplay = true;
-			$("#btn-autoplay").removeClass("toggle-on");
-			$("#btn-autoplay").addClass("toggle-off");
-			$("#btn-autoplay").html("<span class='glyphicon glyphicon-play-circle'></span> " +"<?php echo $lang["auto_play"];?>");
-			$("#btn-autoplay").blur();
-			sendMessage("<?php echo $roomToken;?>", 4, 3, "{auto-on}");
-		}
-
 	}
 	function loadSongHistory(roomToken, userPower){
 		if($("#song-list").css("display") != "none"){
@@ -759,7 +824,7 @@ if(isset($_GET["lang"])){
 						}
 					}
 					if(songList[i].videoStatus == 2){
-							message += "<div class='col-lg-1'><span class='glyphicon glyphicon-repeat button-glyph' onClick=requeueSong("+songList[i].entry+")></span></div>";
+						message += "<div class='col-lg-1'><span class='glyphicon glyphicon-repeat button-glyph' onClick=requeueSong("+songList[i].entry+")></span></div>";
 					}
 					message += "</div>";
 					previousSongState = songList[i].videoStatus;
@@ -909,6 +974,7 @@ if(isset($_GET["lang"])){
 			for(var i = 0; i < messageList.length; i++){
 				var mTime = moment.utc(messageList[i].timestamp);
 				var messageTime = moment(mTime).local().format("HH:mm");
+				window.lastID = messageList[i].id;
 				if(messageList[i].scope == 6){
 					// Whispers
 					if(messageList[i].destinationToken == "<?php echo $_SESSION["token"];?>"){
@@ -1030,7 +1096,6 @@ if(isset($_GET["lang"])){
 					message += " : "+messageList[i].content+"<br/>";
 					message += "</p>";
 				}
-				window.lastID = messageList[i].id;
 				$("#body-chat").append(message);
 			}
 		})

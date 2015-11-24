@@ -15,6 +15,15 @@ $queryActiveRooms = $db->query("SELECT * FROM rooms r
 	<body>
 		<?php include "nav.php";?>
 		<div class="main">
+			<?php if(!isset($_SESSION["token"])) { ?>
+			<div class="container">
+				<div class="jumbotron">
+					<h1><?php echo $lang["hello"];?></h1>
+					<p><?php echo $lang["berrybox_description"];?></p>
+					<p><a href="signup.php" class="btn btn-primary btn-block btn-lg"><?php echo $lang["get_started"];?></a></p>
+				</div>
+			</div>
+			<?php } ?>
 			<div id="large-block">
 				<p id="active-rooms-title"><?php echo $lang["active_room"];?></p>
 				<div class="container-fluid">
@@ -35,6 +44,7 @@ $queryActiveRooms = $db->query("SELECT * FROM rooms r
 						</div>
 					</div>
 					<?php } ?>
+					<a href="create_room.php" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
 				</div>
 			</div>
 		</div>
