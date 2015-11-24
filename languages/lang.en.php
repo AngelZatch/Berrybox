@@ -2,6 +2,12 @@
 /** ENGLISH **/
 
 $lang = array();
+/** HOME **/
+$lang["hello"] = "Hello and welcome to Berrybox!";
+$lang["berrybox_description"] = "Berrybox is a simple application to share and watch youtube videos together!";
+$lang["get_started"] = "Join the community";
+$lang["home_create_room"] = "Want to create a new room? Click here!";
+
 /** ROOM ADMIN **/
 $lang["room_join"] = "Join";
 $lang["room_create"] = "Create a new room";
@@ -31,13 +37,21 @@ $lang["song_submit_success"] = "Your song has been submitted into the playlist";
 $lang["invalid_link"] = "The link you submitted is invalid. Please submit a valid link";
 $lang["db_error"] = "There has been in an error in submitting your song. Please try again.";
 $lang["skip"] = "Next";
-$lang["manual_play"] = "Manual play";
-$lang["auto_play"] = "Auto play";
+
+/** TOGGLES **/
+$lang["play_type"] = "Play type";
+$lang["play_type_tip"] = "In manual mode, the creator must click on 'Next' to play the next video.";
+$lang["manual_play"] = "Manual";
+$lang["auto_play"] = "Auto";
+$lang["submit_type"] = "Submission rights";
+$lang["submit_type_tip"] = "In 'Mod only', standard users won't be able to submit videos anymore";
+$lang["submit_all"] = "Everyone";
+$lang["submit_mod"] = "Mods only";
 
 /** CHAT **/
 $lang["post_chat"] = "Chat";
 $lang["chat_placeholder"] = "Write a message";
-$lang["chat_settings"] = "Chat Settings";
+$lang["chat_settings"] = "Chat and room settings";
 $lang["color_pick"] = "Pick a color for your username";
 $lang["welcome"] = "Welcome in the chat room! To submit a video, please paste the full YouTube link (https://www.youtube.com/watch?v=id_of_video.com) in the box under the player.";
 
