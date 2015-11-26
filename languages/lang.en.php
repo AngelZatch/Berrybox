@@ -31,6 +31,7 @@ $lang["ignore_song"] = "Ignore this song";
 $lang["song_up"] = "Move this song up the queue";
 $lang["song_down"] = "Move this song down the queue";
 $lang["close_room"] = "Close the room";
+$lang["close_room_tip"] = "Closing the room will deactivate video submission, video play and every user will be kicked out of the room 5 minutes after the action. This action is irreversible";
 $lang["room_closing"] = "The room is closing. You will now be redirected outside.";
 $lang["change_type"] = "Change the type of the room";
 $lang["song_submit_success"] = "Your song has been submitted into the playlist";
@@ -53,7 +54,7 @@ $lang["post_chat"] = "Chat";
 $lang["chat_placeholder"] = "Write a message";
 $lang["chat_settings"] = "Chat and room settings";
 $lang["color_pick"] = "Pick a color for your username";
-$lang["welcome"] = "Welcome in the chat room! To submit a video, please paste the full YouTube link (https://www.youtube.com/watch?v=id_of_video.com) in the box under the player.";
+$lang["welcome"] = "Welcome in the chat room! To submit a video, please paste any YouTube link in the box under the player.";
 
 /** MOOD **/
 $lang["mood-question"] = "So, what do you think of this song?";

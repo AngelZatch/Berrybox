@@ -31,6 +31,7 @@ $lang["ignore_song"] = "Ignorer cette musique";
 $lang["song_up"] = "Déplacer cette chanson vers le haut de la file d'attente";
 $lang["song_down"] = "Déplacer cette chanson vers le bas de la file d'attente";
 $lang["close_room"] = "Fermer le salon";
+$lang["close_room_tip"] = "La fermeture du salon désactivera la soumission et la lecture de vidéos, et tous les utilisateurs seront exclus du salon 5 minutes après. Cette action est irréversible";
 $lang["room_closing"] = "Ce salon ferme. Vous allez maintenant être redirigé dehors.";
 $lang["change_type"] = "Changer le type du salon";
 $lang["song_submit_success"] = "Votre vidéo a bien été ajoutée à la playlist";
@@ -53,7 +54,7 @@ $lang["post_chat"] = "Envoyer";
 $lang["chat_placeholder"] = "Ecrire un message";
 $lang["chat_settings"] = "Paramètres du chat et du salon";
 $lang["color_pick"] = "Choisissez une couleur pour votre nom";
-$lang["welcome"] = "Bienvenue dans le salon ! Pour soumettre une vidéo, copiez le lien complet (https://www.youtube.com/watch?v=id_de_la_video.com) dans l'encadré sous le lecteur.";
+$lang["welcome"] = "Bienvenue dans le salon ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur.";
 
 /** MOOD **/
 $lang["mood-question"] = "Que pensez-vous de la musique ?";

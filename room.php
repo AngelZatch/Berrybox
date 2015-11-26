@@ -114,7 +114,6 @@ if(isset($_GET["lang"])){
 						if($_SESSION["token"] != $roomDetails["room_creator"]){?>
 					<button class="btn btn-default btn-admin sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync-on"];?></button>
 					<?php } else { ?>
-					<button class="btn btn-danger btn-admin" onClick="closeRoom('<?php echo $roomToken;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
 					<button class="btn btn-default btn-admin" onClick="getNext(true)"><span class="glyphicon glyphicon-step-forward"></span> <?php echo $lang["skip"];?></button>
 					<!--<div class="btn-group" id="dropdown-room-type">
 <button class="btn btn-default btn-admin dropdown-toggle" id="room-type" data-toggle="dropdown">
@@ -273,6 +272,9 @@ if(isset($_GET["lang"])){
 						</span>
 						<span class="tip"><?php echo $lang["submit_type_tip"];?></span>
 					</div>
+					<span class="option-title"><?php echo $lang["close_room"];?></span><br>
+					<span class="tip"><?php echo $lang["close_room_tip"];?></span>
+					<button class="btn btn-danger btn-admin btn-block" onClick="closeRoom('<?php echo $roomToken;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
 					<?php } ?>
 				</div>
 			</div>
@@ -912,7 +914,13 @@ if(isset($_GET["lang"])){
 			var src = $(".url-box").val();
 			if(src != ''){
 				// get ID of video
-				var id = src.substr(32, 11);
+				var reg = new RegExp(/\?v=([a-z0-9\-\_]+)\&?/i); // works for all youtube links except youtu.be type
+				var res = reg.exec(src);
+				if(res == null){
+					var alt = new RegExp(/\.be\/([a-z0-9\-\_]+)\&?/i); // works for youtu.be type links
+					res = alt.exec(src);
+				}
+				var id = res[1];
 
 				// Post URL into room history
 				$.post("functions/post_history.php", {url : id, roomToken : roomToken}).done(function(code){

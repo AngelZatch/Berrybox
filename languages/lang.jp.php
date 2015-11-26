@@ -31,6 +31,7 @@ $lang["ignore_song"] = "この曲をスキップ";
 $lang["song_up"] = "この曲を上に移動します";
 $lang["song_down"] = "この曲を移動します";
 $lang["close_room"] = "ルームを閉める";
+$lang["close_room_tip"] = "ルームが占める割合は、ビデオ提出とプレイが無効にされます。そして5分後みんなは外にリダイレクトされます。このアクションは不可逆";
 $lang["room_closing"] = "ルームは閉じています。あなたは外にリダイレクトされます。";
 $lang["change_type"] = "ルームタイプを変更します";
 $lang["song_submit_success"] = "あなたのビデオ曲は提出されました";
@@ -53,7 +54,7 @@ $lang["post_chat"] = "チャット";
 $lang["chat_placeholder"] = "メッセージを送信";
 $lang["chat_settings"] = "チャットとルーム設定";
 $lang["color_pick"] = "ユーザー名の色";
-$lang["welcome"] = "チャットルームへようこそ！ ビデオ曲を提出ために、フールなYouTubeのリンク (https://www.youtube.com/watch?v=id_of_video.com) をプレイヤーの下に貼り付けます。";
+$lang["welcome"] = "チャットルームへようこそ！ ビデオ曲を提出ために、YouTubeのリンクをプレイヤーの下に貼り付けます。";
 
 /** MOOD **/
 $lang["mood-question"] = "この曲、どう思う？";
