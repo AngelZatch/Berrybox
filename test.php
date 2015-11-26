@@ -15,27 +15,32 @@ $queryActiveRooms = $db->query("SELECT * FROM rooms r
 	</head>
 	<body>
 		<div class="main">
-			<span class="timer"></span><br>
-			<span class="presses"></span><br>
-			<span class="mean"></span><br><br>
-			<span class="letters"></span>
+			<div class="form-group">
+				<div class="input-group">
+					<input type="text" placeholder="Write your youtube link here" class="form-control url-box">
+					<span class="input-group-btn">
+						<button class="btn btn-primary btn-block play-url" data-toggle="modal">Submit</button>
+					</span>
+				</div>
+			</div>
 		</div>
 		<?php include "scripts.php";?>
 		<script>
-			$(document).ready(function(){
-				var timer = new Date;
-				setInterval(function(){
-					$(".timer").text((new Date - timer) / 1000);
-					$(".mean").html(presses / $(".timer").text());
-				}, 1000);
-				var presses = 0;
-				$(document).keypress(function(event){
-					presses++;
-					$(".presses").html(presses);
-					$(".mean").html(presses / $(".timer").text());
-					$(".letters").append(event.keyCode+", ");
-				})
-			})
+			$(".play-url").click(function(){
+				var string = $(".url-box").val();
+
+				/** The ID of the video must be 11 characters long. So we have to find the only string of 11 characters not interrupted by any special character. **/
+				/** Example : https://www.youtube.com/watch?v=Akw-b0P4mKY **/
+				var reg = new RegExp(/\?v=([a-z0-9\-]+)\&?/i); // works for all youtube links except youtu.be type
+
+				/** First, we test the string for the most common type, using the regMatch **/
+				var res = reg.exec(string);
+				if(res == null){
+					var alt = new RegExp(/\.be\/([a-z0-9\-]+)\&?/i); // works for youtu.be type links
+					res = alt.exec(string);
+				}
+				alert(res[1]);
+			});
 		</script>
 	</body>
 </html>
