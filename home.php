@@ -2,9 +2,15 @@
 session_start();
 require "functions/db_connect.php";
 $db = PDOFactory::getConnection();
-$queryActiveRooms = $db->query("SELECT * FROM rooms r
+if(isset($_SESSION["token"])){
+	$queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
 								WHERE room_active = 1 AND (room_protection != 3 OR (room_protection = 3 AND room_creator = '$_SESSION[token]'))");
+} else {
+	$queryActiveRooms = $db->query("SELECT * FROM rooms r
+								JOIN user u ON r.room_creator = u.user_token
+								WHERE room_active = 1 AND room_protection != 3");
+}
 ?>
 <html>
 	<head>
@@ -14,7 +20,7 @@ $queryActiveRooms = $db->query("SELECT * FROM rooms r
 	</head>
 	<body>
 		<?php include "nav.php";?>
-		<div class="main">
+		<div class="main row">
 			<?php if(!isset($_SESSION["token"])) { ?>
 			<div class="container">
 				<div class="jumbotron">
@@ -45,6 +51,12 @@ $queryActiveRooms = $db->query("SELECT * FROM rooms r
 					</div>
 					<?php } ?>
 					<a href="create_room.php" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
+				</div>
+			</div>
+			<div class="col-lg-12" id="social-space" style="background-color:white;">
+				<div class="col-lg-6 col-lg-offset-3">
+					<p><?php echo $lang["follow_us"];?></p>
+					<a href="http://twitter.com/AngelZatch" target="_blank" class="btn btn-primary btn-style-default"><?php echo $lang["twitter"];?></a>
 				</div>
 			</div>
 		</div>
