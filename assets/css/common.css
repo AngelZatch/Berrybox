@@ -600,3 +600,24 @@ option{
 .tip {
 	color: #888;
 }
+
+#social-space {
+	align-content: center;
+	text-align: center;
+	margin-top: 20px;
+	padding: 20px;
+	background-color: #d3d2cd !important;
+	color: #a3a197 !important;
+}
+
+#social-space>div>p{
+	font-size: 32px;
+}
+
+.btn-style-default {
+	background-color: #cf9930 !important;
+}
+
+.btn-style-default:hover{
+	background-color: #a67a26 !important;
+}

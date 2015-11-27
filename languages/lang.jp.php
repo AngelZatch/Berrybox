@@ -106,6 +106,8 @@ $lang["pwd_confirm"] = "パスワードを確認して下さい。";
 $lang["cancel"] = "キャンセル";
 $lang["wrong_password"] = "間違いましたパスワード";
 $lang["no_credentials"] = "あれ？あなたはログインしていませんように見えます。お願い、ルームにアクセスするには、ログインまたはサインアップしてください。";
+$lang["follow_us"] = "ベリボックスのニュースはこちらです";
+$lang["twitter"] = "ツイッター";
 
 /** MENU **/
 $lang["menu"] = "メインメニュー";

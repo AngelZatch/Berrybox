@@ -106,6 +106,8 @@ $lang["pwd_confirm"] = "Please confirm your password";
 $lang["cancel"] = "Cancel";
 $lang["wrong_password"] = "Wrong password. Please try again";
 $lang["no_credentials"] = "Oops! It appears you're not registered. Please log in or sign up to access the room.";
+$lang["follow_us"] = "Follow Berrybox for latest news";
+$lang["twitter"] = "Twitter";
 
 /** MENU **/
 $lang["menu"] = "Main menu";
