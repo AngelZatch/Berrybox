@@ -342,9 +342,9 @@ if(isset($_GET["lang"])){
 			return $.post("functions/join_room.php", {roomToken : roomToken, userToken : userToken});
 		}
 		joinRoom(roomToken, userToken).done(function(result){
-			// Load the chat (every 2s)
+			// Load the chat
 			$("#body-chat").append("<p class='system-message'><?php echo $lang["welcome"];?></p>");
-			setInterval(loadChat, 2000, roomToken, result);
+			loadChat(roomToken, result);
 			window.userPower = result;
 			// Load the history of all submitted songs in this room (once, it will be refreshed if the user toggles the panel)
 			loadSongHistory(roomToken, result);
@@ -1110,6 +1110,8 @@ if(isset($_GET["lang"])){
 		if(!window.chatHovered){
 			$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
 		}
+		// Once the function has done everything, it fires at timeout to restart the whole process in 2 seconds
+		setTimeout(loadChat, 2000, roomToken, userPower);
 	}
 	function timeoutUser(userToken){
 		var roomToken = "<?php echo $roomToken;?>";
