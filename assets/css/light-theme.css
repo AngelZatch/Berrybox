@@ -1,0 +1,47 @@
+/* line 6, C:/xampp/htdocs/Berrybox/assets/light-theme.sass */
+body {
+  background-color: #FFFFFF;
+  color: black; }
+
+/* line 10, C:/xampp/htdocs/Berrybox/assets/light-theme.sass */
+.navbar {
+  background-color: #f2f2f2; }
+
+/* line 13, C:/xampp/htdocs/Berrybox/assets/light-theme.sass */
+.panel {
+  background-color: #f2f2f2; }
+
+/* line 16, C:/xampp/htdocs/Berrybox/assets/light-theme.sass */
+.btn-primary {
+  color: #cf9930; }
+
+/* line 19, C:/xampp/htdocs/Berrybox/assets/light-theme.sass */
+.form-control {
+  color: black; }
+
+/* line 22, C:/xampp/htdocs/Berrybox/assets/light-theme.sass */
+.chat-options {
+  color: #cf9930; }
+
+/* line 25, C:/xampp/htdocs/Berrybox/assets/light-theme.sass */
+.button-glyph:hover {
+  color: #916b22; }
+
+/* line 28, C:/xampp/htdocs/Berrybox/assets/light-theme.sass */
+.standard-message {
+  color: #333333; }
+
+/* line 31, C:/xampp/htdocs/Berrybox/assets/light-theme.sass */
+.song-played > div > p > a {
+  color: #e7cc98; }
+
+/* line 34, C:/xampp/htdocs/Berrybox/assets/light-theme.sass */
+.moderation-option:hover {
+  color: #090909; }
+
+/* line 37, C:/xampp/htdocs/Berrybox/assets/light-theme.sass */
+.moderation-option-enabled {
+  cursor: pointer;
+  color: black !important; }
+
+/*# sourceMappingURL=light-theme.css.map */

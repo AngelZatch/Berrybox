@@ -127,6 +127,10 @@ $lang["bio_tip"] = "Parlez de vous en moins de 400 caractères.";
 $lang["default_lang"] = "Langue par défaut";
 $lang["lang_tip"] = "Langue d'affichage du site";
 $lang["save_changes"] = "Sauvegarder les changements";
+$lang["user_theme"] = "Thème";
+$lang["theme_tip"] = "Alternez entre un thème sombre et un thème clair pour Berrybox";
+$lang["dark"] = "Sombre";
+$lang["light"] = "Clair";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";

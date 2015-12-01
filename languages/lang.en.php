@@ -125,6 +125,10 @@ $lang["bio_tip"] = "Who you are in less than 400 characters.";
 $lang["default_lang"] = "Default language";
 $lang["lang_tip"] = "The language the whole application will display";
 $lang["save_changes"] = "Save changes";
+$lang["user_theme"] = "Theme";
+$lang["theme_tip"] = "Toggle between and dark and a light theme for Berrybox";
+$lang["dark"] = "Dark";
+$lang["light"] = "Light";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "This user doesn't have any bio";

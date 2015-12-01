@@ -41,11 +41,11 @@ $lang["skip"] = "ネクスト";
 
 /** TOGGLES **/
 $lang["play_type"] = "プレイタイプ";
-$lang["play_type_tip"] = "";
+$lang["play_type_tip"] = "「オートプレイ」ビデオが終わる時に、次のビデオが自動で始まります。「マニュアルプレイ」ビデオが終わる時に、あなたは「ネクスト」ボタンを押して、次のビデオが始まります。";
 $lang["manual_play"] = "マニュアル";
 $lang["auto_play"] = "オート";
 $lang["submit_type"] = "ビデオ提出";
-$lang["submit_type_tip"] = "";
+$lang["submit_type_tip"] = "もしビデオ提出が「モデレーターだけ」のセッティングにされましたら、ノーマルユーザーがビデオ提出することができません。";
 $lang["submit_all"] = "みんな";
 $lang["submit_mod"] = "モデレーターだけ";
 
@@ -125,6 +125,10 @@ $lang["bio_tip"] = "あなたの事項商会〔400文字上限〕";
 $lang["default_lang"] = "デフォールト言語";
 $lang["lang_tip"] = "アプリのディスプレイ言語";
 $lang["save_changes"] = "セイブ";
+$lang["user_theme"] = "テーマ";
+$lang["theme_tip"] = "ダークテーマとか、ライトテーマを選択します。";
+$lang["dark"] = "ダーク";
+$lang["light"] = "ライト";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "このユーザーはバイオがない。";

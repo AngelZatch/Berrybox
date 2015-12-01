@@ -13,7 +13,16 @@ $profileDetails = $db->query("SELECT * FROM user u
 	<head>
 		<meta charset="UTF-8">
 		<title><?php echo $profileDetails["user_pseudo"];?></title>
-		<?php include "styles.php";?>
+		<?php include "styles.php";
+		if(isset($_SESSION["token"])){
+			if($userDetails["up_theme"] == '1'){?>
+		<link rel="stylesheet" href="assets/css/dark-theme.css">
+		<?php } else { ?>
+		<link rel="stylesheet" href="assets/css/light-theme.css">
+		<?php }
+		} else { ?>
+		<link rel="stylesheet" href="assets/css/light-theme.css">
+		<?php } ?>
 		<link rel="stylesheet" href="assets/css/fileinput.min.css">
 	</head>
 	<body>
