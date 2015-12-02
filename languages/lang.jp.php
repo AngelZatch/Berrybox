@@ -41,11 +41,11 @@ $lang["skip"] = "ネクスト";
 
 /** TOGGLES **/
 $lang["play_type"] = "プレイタイプ";
-$lang["play_type_tip"] = "";
+$lang["play_type_tip"] = "「オートプレイ」ビデオが終わる時に、次のビデオが自動で始まります。「マニュアルプレイ」ビデオが終わる時に、あなたは「ネクスト」ボタンを押して、次のビデオが始まります。";
 $lang["manual_play"] = "マニュアル";
 $lang["auto_play"] = "オート";
 $lang["submit_type"] = "ビデオ提出";
-$lang["submit_type_tip"] = "";
+$lang["submit_type_tip"] = "もしビデオ提出が「モデレーターだけ」のセッティングにされましたら、ノーマルユーザーがビデオ提出することができません。";
 $lang["submit_all"] = "みんな";
 $lang["submit_mod"] = "モデレーターだけ";
 
@@ -112,10 +112,13 @@ $lang["twitter"] = "ツイッター";
 /** MENU **/
 $lang["menu"] = "メインメニュー";
 $lang["my_profile"] = "プロファイル";
+$lang["public_profile"] = "パブリックプロファイル";
 $lang["leave"] = "ルームを出ます";
 $lang["warning_sync_admin"] = "注意！　シンクはあなたに基づいています。あなたはルームを出るとき、シンクが停止します。";
 
 /** PROFILE **/
+$lang["profile_settings"] = "プロファイル設定";
+$lang["profile_settings_tip"] = "ディスプレイ名、バイオとプロファイル画像をアップデートする。";
 $lang["display_name"] = "ディスプレイ名";
 $lang["display_name_tip"] = "ディスプレイ名をカスタマイズします";
 $lang["profile_picture"] = "プロファイル画像";
@@ -125,6 +128,10 @@ $lang["bio_tip"] = "あなたの事項商会〔400文字上限〕";
 $lang["default_lang"] = "デフォールト言語";
 $lang["lang_tip"] = "アプリのディスプレイ言語";
 $lang["save_changes"] = "セイブ";
+$lang["user_theme"] = "テーマ";
+$lang["theme_tip"] = "ダークテーマとか、ライトテーマを選択します。";
+$lang["dark"] = "ダーク";
+$lang["light"] = "ライト";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "このユーザーはバイオがない。";

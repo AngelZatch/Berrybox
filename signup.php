@@ -56,6 +56,7 @@ if(isset($_POST["signup"])){
 		<meta charset="UTF-8">
 		<title>Strawberry Music Streamer</title>
 		<?php include "styles.php";?>
+		<link rel="stylesheet" href="assets/css/light-theme.css">
 	</head>
 	<body>
 		<?php include "nav.php";?>

@@ -112,10 +112,13 @@ $lang["twitter"] = "Twitter";
 /** MENU **/
 $lang["menu"] = "Main menu";
 $lang["my_profile"] = "My profile";
+$lang["public_profile"] = "Public profile";
 $lang["leave"] = "Leave the room";
 $lang["warning_sync_admin"] = "Warning! The synchronization is based on you, the creator of the room. If you leave, the sync will stop.";
 
 /** PROFILE **/
+$lang["profile_settings"] = "Settings";
+$lang["profile_settings_tip"] = "Update your display name, your bio and your profile picture";
 $lang["display_name"] = "Display name";
 $lang["display_name_tip"] = "Customize your display name.";
 $lang["profile_picture"] = "Profile picture";
@@ -125,6 +128,10 @@ $lang["bio_tip"] = "Who you are in less than 400 characters.";
 $lang["default_lang"] = "Default language";
 $lang["lang_tip"] = "The language the whole application will display";
 $lang["save_changes"] = "Save changes";
+$lang["user_theme"] = "Theme";
+$lang["theme_tip"] = "Toggle between and dark and a light theme for Berrybox";
+$lang["dark"] = "Dark";
+$lang["light"] = "Light";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "This user doesn't have any bio";

@@ -2,6 +2,8 @@
 if(isset($_SESSION["username"])){
 	//If the user is connected
 	$userDetails = $db->query("SELECT * FROM user u
+							JOIN user_preferences up
+								ON u.user_token = up.up_user_id
 							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
 	$ppAdresss = "profile-pictures/".$userDetails["user_pp"];
 	//We get the default language of the user...
@@ -53,6 +55,7 @@ if(isset($_SESSION["username"])){
 				</a>
 				<ul class="dropdown-menu">
 					<li><a href="profile.php?id=<?php echo $_SESSION["token"];?>&lang=<?php echo $_GET["lang"];?>"><?php echo $lang["my_profile"];?></a></li>
+					<li><a href="user.php?id=<?php echo $_SESSION["token"];?>&lang=<?php echo $_GET["lang"];?>"><?php echo $lang["public_profile"];?></a></li>
 					<li><a href="logout.php"><?php echo $lang["log_out"];?></a></li>
 				</ul>
 			</li>

@@ -2,12 +2,25 @@
 session_start();
 require "functions/db_connect.php";
 $db = PDOFactory::getConnection();
+if(isset($_SESSION["token"])){
+	$userDetails = $db->query("SELECT * FROM user_preferences up
+							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+}
 ?>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Create a room</title>
-		<?php include "styles.php";?>
+		<?php include "styles.php";
+		if(isset($_SESSION["token"])){
+			if($userDetails["up_theme"] == '1'){?>
+		<link rel="stylesheet" href="assets/css/dark-theme.css">
+		<?php } else { ?>
+		<link rel="stylesheet" href="assets/css/light-theme.css">
+		<?php }
+		} else { ?>
+		<link rel="stylesheet" href="assets/css/light-theme.css">
+		<?php } ?>
 	</head>
 	<body>
 		<?php include "nav.php";?>
@@ -22,8 +35,8 @@ $db = PDOFactory::getConnection();
 				<div class="form-group">
 					<label for="" class="col-sm-3 control-label"><?php echo $lang["room_protection"];?></label>
 					<div class="col-lg-9">
-						<span class="btn btn-primary disabled btn-disabled" id="select-private" title="<?php echo $lang["private_tip"];?>"><span class="glyphicon glyphicon-headphones"></span> <?php echo $lang["level_private"];?></span>
-						<span class="btn btn-primary disabled btn-disabled" id="select-locked" role="button" title="<?php echo $lang["locked_tip"];?>"><span class="glyphicon glyphicon-eye-open"></span> <?php echo $lang["level_locked"];?></span>
+						<span class="btn btn-primary disabled" id="select-private" title="<?php echo $lang["private_tip"];?>"><span class="glyphicon glyphicon-headphones"></span> <?php echo $lang["level_private"];?></span>
+						<span class="btn btn-primary disabled" id="select-locked" role="button" title="<?php echo $lang["locked_tip"];?>"><span class="glyphicon glyphicon-eye-open"></span> <?php echo $lang["level_locked"];?></span>
 						<span class="btn btn-primary btn-disabled" id="select-public" title="<?php echo $lang["public_tip"];?>"><span class="glyphicon glyphicon-volume-up"></span> <?php echo $lang["level_public"];?></span>
 						<input type="hidden" id="protect-value" value="1">
 					</div>

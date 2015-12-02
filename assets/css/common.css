@@ -1,623 +1,252 @@
-#player{
-	width: 100%;
-	margin: 0 auto;
-}
-
-.navbar{
-	background-color: #3a3624;
-}
-
-.panel{
-	border-radius: 0px !important;
-}
-
-.room-info{
-	color: #e5e2d3;
-	white-space: nowrap;
-}
-
-.main {
-	margin-top: 80px;
-}
-
-input.form-control{
-	background-color: inherit;
-	border: 2px solid #444;
-	color: white;
-}
-
-.panel-chat {
-	height: inherit;
-	padding: 0 !important;
-	margin: 0 !important;
-	background-color: #302d22;
-	border: none;
-	border-left: 1px solid #050505;
-}
-
-.panel-heading,
-.panel-footer{
-	background-color: inherit !important;
-}
-
-.panel-heading{
-	color: #e0d5ac !important;
-}
-
-.panel-footer{
-	padding-bottom: 9px;
-}
-
-.chat-room {
-	text-align: center;
-}
-
-.chat-options{
-	color: #e0d5ac;
-}
-
-.message-time{
-	color: #B5B5B5;
-}
-
-.message-author{
-	font-weight: 900;
-}
-
-.room-dj {
-	font-weight: 700;
-}
-
-#body-chat {
-	overflow-y: scroll;
-	overflow-wrap: break-word;
-	height: 85.7vh;
-	font-size: 12.5px;
-}
-
-.room-title {
-	font-size: 22px;
-	margin-bottom: 5px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.user-room {
-	font-weight: 800;
-}
-
-#room-player {
-	margin-left: none;
-	padding-top: 14px;
-	padding-right: 0 !important;
-}
-
-#room-chat {
-	z-index: 3;
-	padding-right: 0;
-	height: 100vh;
-}
-
-.room-creator {
-	font-size: 14px;
-}
-
-#active-rooms-title {
-	font-size: 24px;
-	text-align: center;
-}
-
-.submit-required {
-	text-align: center;
-	font-size: 20px;
-}
-
-.color-cube {
-	height: 20px;
-	width: 20px;
-	display: inline-block;
-	cursor: pointer;
-}
-
-#color-67fc97 {
-	background-color: #67fc97;
-}
-
-#color-4e96f2 {
-	background-color: #4e96f2;
-}
-
-#color-db8bf7 {
-	background-color: #db8bf7;
-}
-
-#color-e416a1 {
-	background-color: #e416a1;
-}
-
-#color-1bddcf {
-	background-color: #1bddcf;
-}
-
-#color-31a03f {
-	background-color: #31a03f;
-}
-
-#color-fb4836 {
-	background-color: #fb4836;
-}
-
-#color-4b524d {
-	background-color: #4b524d;
-}
-
-#color-6a3b88 {
-	background-color: #6a3b88;
-}
-
-#color-a16ce8 {
-	background-color: #a16ce8;
-}
-
-#color-dfe092 {
-	background-color: #dfe092;
-}
-
-#color-c9c00c {
-	background-color: #c9c00c;
-}
-
-#color-707e66 {
-	background-color: #707e66;
-}
-
-#color-0954ee {
-	background-color: #0954ee;
-}
-
-#color-ad6337 {
-	background-color: #ad6337;
-}
-
-#color-5f1107 {
-	background-color: #5f1107;
-}
-
-#color-c372d4 {
-	background-color: #c372d4;
-}
-
-#color-e17db6 {
-	background-color: #e17db6;
-}
-
-#color-ca2004 {
-	background-color: #ca2004;
-}
-
-#color-4df847 {
-	background-color: #4df847;
-}
-
-#color-0c89a8 {
-	background-color: #0c89a8;
-}
-
-.btn-disabled {
-	cursor: pointer !important;
-}
-
-.moderation-option{
-	color: #888;
-	cursor: pointer;
-}
-
-.moderation-option:hover{
-	color: #DDD;
-}
-
-.moderation-option-enabled{
-	color: #DDD;
-	cursor: pointer;
-}
-
-.system-message{
-	color: #888;
-	font-style: italic;
-	font-weight: 500;
-}
-
-.system-alert,
-.sm-type-close{
-	color: #d61b1b;
-	font-weight: 700;
-}
-
-.system-success{
-	color: #87ce77;
-	font-weight: 600;
-}
-
-.system-warning{
-	color: #eded89;
-	font-weight: 600;
-}
-
-.whisper{
-	margin-left: -15px;
-	margin-right: -15px;
-	border-left: 5px #cf9930 solid;
-	background-color : #D5D5D5;
-	color: black;
-	padding-left: 10px;
-}
-
-.whisper > .message-time{
-	color: inherit;
-}
-
-#song-list {
-	z-index: 2;
-	display: none;
-}
-
-.panel-list {
-	height: inherit;
-	padding: 0 !important;
-	margin: 0 !important;
-}
-
-#body-song-list {
-	height: 93vh;
-	white-space: nowrap;
-	overflow-y: scroll;
-}
-
-.song-list-line{
-	text-overflow: ellipsis;
-	overflow: hidden;
-}
-
-.song-played > div > p > a{
-	color: #66573f;
-}
-
-.song-playing{
-	font-weight: 900;
-}
-
-.song-ignored > div > p > a{
-	color: red;
-}
-
-.full-panel {
-	padding-right: 0;
-	position: absolute;
-	top: 0;
-	right: 0;
-	height: 100vh;
-}
-
-#user-list {
-	z-index: 2;
-	display: none;
-}
-
-.button-glyph {
-	color: inherit;
-	cursor: pointer;
-	text-align: center;
-}
-
-.button-glyph:hover{
-	color: white;
-}
-
-#body-user-list {
-	height: 93vh;
-	overflow-y: scroll;
-}
-
-.emotion-glyph {
-	text-align: center;
-	font-size: 18px;
-}
-
-.emotion-like {
-	color: #494AFF;
-}
-
-.emotion-cry {
-	color: #60E5FF;
-}
-
-.emotion-love {
-	color: #FF2921;
-}
-
-.emotion-sleep {
-	color: #B694CC;
-}
-
-.emotion-energy {
-	color: #76FF48;
-}
-
-.emotion-intense {
-	color: #FF7000;
-}
-
-.mood-selectors {
-	display: none;
-}
-
-.mood-question {
-	font-size: 18px;
-	text-align: center;
-}
-
-.standard-message{
-	color: #e5e2d3;
-}
-
+/** Panels **/
+/* line 14, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .panel-room {
-	background-color: #302d22;
-	border: none;
-	border-left: 1px solid #050505;
-}
+  border-radius: 0;
+  border: none;
+  padding: 0;
+  margin: 0;
+  height: inherit; }
+  /* line 20, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  .panel-room .panel-heading {
+    color: #cf9930; }
 
-::-webkit-scrollbar{
-	background-color: #302D22;
-	width: 6px;
-}
+/* line 23, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.full-panel {
+  padding-right: 0;
+  position: absolute;
+  height: 100vh;
+  z-index: 2;
+  display: none; }
 
-::-webkit-scrollbar-thumb{
-	background-color: #14130e;
-	border-radius: 10px;
-}
+/* line 30, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+#room-chat {
+  z-index: 3;
+  padding-right: 0;
+  height: 100vh; }
 
-.btn-admin {
-	background-color: inherit;
-	color: inherit;
-}
+/* line 35, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.full-panel-body {
+  height: 95.7vh;
+  white-space: nowrap;
+  overflow-y: scroll; }
 
-.sync-on {
-	background-color: #cf9930;
-}
+/* line 40, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+#body-chat {
+  height: 89.7vh;
+  font-size: 12.5px;
+  overflow-y: scroll;
+  overflow-wrap: break-word; }
 
-.sync-off{
-	background-color: #9e865a;
-}
+/* line 46, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.button-glyph {
+  cursor: pointer;
+  text-align: center; }
 
-.dropdown-room {
-	background-color: inherit;
-}
+/* line 50, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.panel-heading, .panel-footer {
+  background-color: inherit !important; }
 
-.dropdown-link {
-	color: #e5e2d3 !important;
-}
+/* line 53, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.main {
+  margin-top: 80px; }
 
-#profile-picture-sample,
-.file-preview,
-.file-preview-frame{
-	width: 120px !important;
-	height: 120px !important;
-	border: 2px #444 solid !important;
-	border-radius: 60px !important;
-	overflow: hidden;
-	padding: 0 !important;
-	text-align: inherit;
-}
+/* line 56, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.system-message {
+  color: #888888;
+  font-style: italic;
+  font-weight: 500; }
 
-.file-preview-frame {
-	margin: 0 !important;
-	display: block !important;
-	border: none !important;
-}
+/* line 61, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.form-control {
+  background-color: inherit;
+  border: 1px solid #444; }
 
-.file-preview-image{
-	width: inherit !important;
-	height: auto !important;
-}
+/* line 65, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+#room-player {
+  padding-top: 14px;
+  padding-right: 0 !important;
+  height: 100vh; }
 
-.small-pp {
-	width: 35px;
-	height: 35px;
-	overflow: hidden;
-	border-radius: 20px;
-}
+/* line 70, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.room-info {
+  white-space: nowrap; }
 
-.dropdown-profile {
-	padding-top: 8px !important;
-	padding-bottom: 8px !important;
-}
-
-.nav>li>a.btn:hover{
-	background-color: #a67a26;
-}
-
-.nav>li>a:hover,
-.nav>li>a:active,
-.nav .open>a,
-.nav .open>a:hover,
-.nav .open>a:focus{
-	background-color: inherit;
-}
-
-.btn-nav {
-	margin-top: 10px;
-	padding-top: 5px !important;
-	padding-bottom: 5px !important;
-}
-
-.panel-active-room {
-	background-color: #23221d;
-}
-
+/** Profile pictures **/
+/* line 74, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-picture {
-	width: 55px;
-	height: 55px;
-	overflow: hidden;
-	border-radius: 28px;
-	float: left;
-	margin-right: 10px;
-}
+  height: 55px !important;
+  width: 55px !important;
+  border-radius: 27.5px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  float: left;
+  margin-right: 10px; }
 
+/* line 79, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .user-profile-picture {
-	width: 150px;
-	height: 150px;
-	overflow: hidden;
-	border-radius: 75px;
-	float: left;
-	margin-right: 10px;
-}
+  height: 150px !important;
+  width: 150px !important;
+  border-radius: 75px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  float: left;
+  margin-right: 10px; }
 
-.profile-picture {
-	width: inherit;
-}
-
-.btn{
-	background-color: inherit;
-}
-
-#menu-list {
-	z-index: 2;
-	display: none;
-}
-
-#options-list{
-	z-index: 2;
-	display: none;
-}
-
+/* line 84, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .menu-pp {
-	width: 50px;
-	height: inherit;
-	overflow: hidden;
-	border-radius: 25px;
-	float: left;
-	margin-right: 20px;
-}
+  height: 50px !important;
+  width: 50px !important;
+  border-radius: 25px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  float: left;
+  margin-right: 20px; }
 
-#user-name {
-	font-size: 18px;
-	line-height: 50px;
-	font-weight: 700;
-}
+/* line 89, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.small-pp {
+  height: 35px !important;
+  width: 35px !important;
+  border-radius: 17.5px !important;
+  overflow: hidden !important;
+  padding: 0 !important; }
 
-.connected-user {
-	height: 50px;
-	margin-bottom: 30px;
-}
+/* line 92, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+#profile-picture-sample, .file-preview, .file-preview-frame {
+  height: 120px !important;
+  width: 120px !important;
+  border-radius: 60px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  border: 2px solid #444 !important;
+  text-align: inherit; }
 
-option{
-	background-color: inherit;
-	color: black;
-}
+/** Room info **/
+/* line 98, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+#room-title {
+  font-size: 22px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis; }
 
-.modal-content{
-	background-color: #2D2C26 !important;
-}
-
-.modal-header{
-	display: none;
-}
-
-.list-rank{
-	text-transform: uppercase;
-	font-weight: 200;
-	font-size: 14px;
-	color: #888;
-}
-
-.user-profile-details {
-	min-height: 150px;
-	margin-bottom: 10px;
-}
-
-.stats-title {
-	font-size: 14px;
-}
-
-.stats-value {
-	padding-left: 20px;
-	font-size: 22px;
-	color: #ba8a2b;
-}
-
-.user-profile-name {
-	font-size: 28px;
-}
-
-.user-profile-bio {
-	font-style: italic;
-}
-
-.sm-type-play{
-	color: #7db8e0;
-}
-
-.sm-type-skip {
-	color: #eded89;
-}
-
+/* line 104, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .creator-stats {
-	float: right;
-	font-size: 20px;
-}
+  float: right;
+  font-size: 16px; }
 
-.toggle-off {
-	color: gray;
-}
+/** Chat **/
+/* line 109, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.whisper {
+  margin-left: -15px;
+  margin-right: -15px;
+  border-left: 5px #cf9930 solid;
+  background-color: #D5D5D5;
+  color: black;
+  padding-left: 10px; }
+  /* line 116, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  .whisper .message-time {
+    color: inherit; }
 
-.toggle-on{
-	color: #fff;
-	background-color: #31b0d5;
-}
+/* line 119, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.message-author {
+  font-weight: 800; }
 
-.btn-toggle:hover {
-	color: #fff;
-	background-color: inherit;
-}
+/* line 122, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.tip, .message-time {
+  color: #888888; }
 
+/* line 125, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.song-list-line {
+  text-overflow: ellipsis;
+  overflow: hidden; }
+
+/* line 129, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.song-playing {
+  font-weight: 900; }
+
+/* line 132, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.moderation-option {
+  color: #888888;
+  cursor: pointer; }
+
+/** Buttons **/
+/* line 137, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.btn-primary.disabled {
+  background-color: inherit;
+  color: #e2c283;
+  border: dashed 1px;
+  cursor: pointer; }
+
+/* line 143, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.btn {
+  background-color: inherit; }
+
+/* line 147, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+nav .btn {
+  margin-top: 10px;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important; }
+
+/* line 151, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+nav li > a.btn:hover, nav li > a.btn:focus {
+  background-color: #a67a26 !important; }
+
+/* line 153, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+nav li > a:hover, nav li > a:focus {
+  background-color: inherit !important; }
+
+/* line 157, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.nav li > a:hover, .nav li > a:focus {
+  background-color: inherit !important; }
+
+/* line 160, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .jumbotron {
-	text-align: center;
-}
+  text-align: center; }
 
+/* line 163, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.social-space {
+  align-content: center;
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px; }
+  /* line 168, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  .social-space div > p {
+    font-size: 32px; }
+  /* line 170, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  .social-space .btn {
+    background-color: #cf9930;
+    color: white; }
+  /* line 173, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  .social-space .btn:hover, .social-space .btn:focus {
+    background-color: #a67a26; }
+
+/* line 176, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.color-cube {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  cursor: pointer; }
+
+/* line 182, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-option {
-	margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
-.admin-option-toggle {
+/* line 185, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.bootstrap-switch-dark {
+  color: #FFFFFF;
+  background-color: #000000; }
 
-}
+/* line 189, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.bootstrap-switch-light {
+  color: #000;
+  background-color: #FFF; }
 
-.option-title {
-	font-size: 18px;
-	font-weight: 600;
-}
+/* line 193, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.page-title {
+  margin-bottom: 20px; }
 
-.tip {
-	color: #888;
-}
+/* line 196, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+#profile-title {
+  font-size: 30px;
+  margin: 0; }
 
-#social-space {
-	align-content: center;
-	text-align: center;
-	margin-top: 20px;
-	padding: 20px;
-	background-color: #d3d2cd !important;
-	color: #a3a197 !important;
-}
-
-#social-space>div>p{
-	font-size: 32px;
-}
-
-.btn-style-default {
-	background-color: #cf9930 !important;
-}
-
-.btn-style-default:hover{
-	background-color: #a67a26 !important;
-}
+/*# sourceMappingURL=common.css.map */

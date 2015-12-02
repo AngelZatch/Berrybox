@@ -3,6 +3,11 @@
 ## All profile pictures
 profile-pictures/*
 
+## dev files
+assets/css/*.sass
+assets/css/*.css.map
+.brackets.json
+
 ## Beta code
 generate_keys.php
 functions/db_connect.php

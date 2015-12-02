@@ -6,6 +6,14 @@ if(isset($_SESSION["token"])){
 	$queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
 								WHERE room_active = 1 AND (room_protection != 3 OR (room_protection = 3 AND room_creator = '$_SESSION[token]'))");
+	$userSettings = $db->query("SELECT * FROM user_preferences up
+							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+
+	if($userSettings["up_theme"] == "1"){
+		$theme = "dark";
+	} else {
+		$theme = "light";
+	}
 } else {
 	$queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
@@ -16,7 +24,12 @@ if(isset($_SESSION["token"])){
 	<head>
 		<meta charset="UTF-8">
 		<title>Berrybox</title>
-		<?php include "styles.php";?>
+		<?php include "styles.php";
+		if(isset($_SESSION["token"])){ ?>
+		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
+		<?php } else { ?>
+		<link rel="stylesheet" href="assets/css/light-theme.css">
+		<?php } ?>
 	</head>
 	<body>
 		<?php include "nav.php";?>
@@ -53,7 +66,8 @@ if(isset($_SESSION["token"])){
 					<a href="create_room.php" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
 				</div>
 			</div>
-			<div class="col-lg-12" id="social-space" style="background-color:white;">
+			<div class="col-lg-12 social-space">
+			<div class="col-lg-12 social-space">
 				<div class="col-lg-6 col-lg-offset-3">
 					<p><?php echo $lang["follow_us"];?></p>
 					<a href="http://twitter.com/AngelZatch" target="_blank" class="btn btn-primary btn-style-default"><?php echo $lang["twitter"];?></a>

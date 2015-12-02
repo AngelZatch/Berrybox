@@ -1,0 +1,201 @@
+#player{
+	width: 100%;
+	margin: 0 auto;
+}
+
+.user-room {
+	font-weight: 800;
+}
+
+#active-rooms-title {
+	font-size: 24px;
+	text-align: center;
+}
+
+.system-alert,
+.sm-type-close{
+	color: #d61b1b;
+	font-weight: 700;
+}
+
+.system-success{
+	color: #87ce77;
+	font-weight: 600;
+}
+
+.system-warning{
+	color: #eded89;
+	font-weight: 600;
+}
+
+.song-ignored > div > p > a{
+	color: red;
+}
+
+.emotion-glyph {
+	text-align: center;
+	font-size: 18px;
+}
+
+.emotion-like {
+	color: #494AFF;
+}
+
+.emotion-cry {
+	color: #60E5FF;
+}
+
+.emotion-love {
+	color: #FF2921;
+}
+
+.emotion-sleep {
+	color: #B694CC;
+}
+
+.emotion-energy {
+	color: #76FF48;
+}
+
+.emotion-intense {
+	color: #FF7000;
+}
+
+.mood-selectors {
+	display: none;
+}
+
+.mood-question {
+	font-size: 18px;
+	text-align: center;
+}
+
+::-webkit-scrollbar{
+	background-color: #302D22;
+	width: 6px;
+}
+
+::-webkit-scrollbar-thumb{
+	background-color: #14130e;
+	border-radius: 10px;
+}
+
+.btn-admin {
+	background-color: inherit;
+	color: inherit;
+}
+
+.sync-on {
+	background-color: #cf9930;
+}
+
+.sync-off{
+	background-color: #9e865a;
+}
+
+.dropdown-room {
+	background-color: inherit;
+}
+
+.dropdown-link {
+	color: #e5e2d3 !important;
+}
+
+.file-preview-frame {
+	margin: 0 !important;
+	display: block !important;
+	border: none !important;
+}
+
+.file-preview-image{
+	width: inherit !important;
+	height: auto !important;
+}
+
+.dropdown-profile {
+	padding-top: 8px !important;
+	padding-bottom: 8px !important;
+}
+
+.nav>li>a:active,
+.nav .open>a,
+.nav .open>a:hover,
+.nav .open>a:focus{
+	background-color: inherit;
+}
+
+.panel-active-room {
+	background-color: #23221d;
+}
+
+.profile-picture {
+	width: inherit;
+}
+
+#user-name {
+	font-size: 18px;
+	line-height: 50px;
+	font-weight: 700;
+}
+
+.connected-user {
+	height: 50px;
+	margin-bottom: 30px;
+}
+
+option{
+	background-color: inherit;
+	color: black;
+}
+
+.modal-header{
+	display: none;
+}
+
+.list-rank{
+	text-transform: uppercase;
+	font-weight: 200;
+	font-size: 14px;
+	color: #888;
+}
+
+.user-profile-details {
+	min-height: 150px;
+	margin-bottom: 10px;
+}
+
+.stats-title {
+	font-size: 14px;
+}
+
+.stats-value {
+	padding-left: 20px;
+	font-size: 22px;
+	color: #ba8a2b;
+}
+
+.user-profile-name {
+	font-size: 28px;
+}
+
+.user-profile-bio {
+	font-style: italic;
+}
+
+.sm-type-play{
+	color: #7db8e0;
+}
+
+.sm-type-skip {
+	color: #eded89;
+}
+
+.btn-toggle:hover {
+	color: #fff;
+	background-color: inherit;
+}
+
+.option-title {
+	font-size: 18px;
+	font-weight: 600;
+}

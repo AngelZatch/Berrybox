@@ -114,10 +114,13 @@ $lang["twitter"] = "Twitter";
 /** MENU **/
 $lang["menu"] = "Menu principal";
 $lang["my_profile"] = "Mon profil";
+$lang["public_profile"] = "Profil publique";
 $lang["leave"] = "Quitter le salon";
 $lang["warning_sync_admin"] = "Attention ! La synchronisation du salon est basée sur vous. Si vous quittez le salon, la synchro va s'arrêter pour tout le monde.";
 
 /** PROFILE **/
+$lang["profile_settings"] = "Paramètres du profil";
+$lang["profile_settings_tip"] = "Changez votre nom, votre biographie et votre image de profil";
 $lang["display_name"] = "Nom affiché";
 $lang["display_name_tip"] = "Personnalisez votre nom affiché.";
 $lang["profile_picture"] = "Image de profil";
@@ -127,6 +130,10 @@ $lang["bio_tip"] = "Parlez de vous en moins de 400 caractères.";
 $lang["default_lang"] = "Langue par défaut";
 $lang["lang_tip"] = "Langue d'affichage du site";
 $lang["save_changes"] = "Sauvegarder les changements";
+$lang["user_theme"] = "Thème";
+$lang["theme_tip"] = "Alternez entre un thème sombre et un thème clair pour Berrybox";
+$lang["dark"] = "Sombre";
+$lang["light"] = "Clair";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";

@@ -10,10 +10,17 @@ $roomDetails = $db->query("SELECT *
 $creatorStats = $db->query("SELECT *
 							FROM user_stats us
 							WHERE user_token = '$roomDetails[room_creator]'")->fetch(PDO::FETCH_ASSOC);
+$colorList = $db->query("SELECT * FROM name_colors");
 
 if(isset($_SESSION["token"])){
 	$userDetails = $db->query("SELECT * FROM user u
+							JOIN user_preferences up ON up.up_user_id = u.user_token
 							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+	if($userDetails["up_theme"] == "1"){ // userDetails only for this page. On all the other rooms, it's userSettings
+		$theme = "dark";
+	} else {
+		$theme = "light";
+	}
 	$ppAdresss = "profile-pictures/".$userDetails["user_pp"];
 } else {
 	include "functions/tools.php";
@@ -97,7 +104,12 @@ if(isset($_GET["lang"])){
 	<head>
 		<meta charset="UTF-8">
 		<title><?php echo $roomDetails["room_name"];?> | <?php echo $roomDetails["user_pseudo"];?> | Berrybox</title>
-		<?php include "styles.php";?>
+		<?php include "styles.php";
+		if(isset($_SESSION["token"])){ ?>
+		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
+		<?php } else { ?>
+		<link rel="stylesheet" href="assets/css/light-theme.css">
+		<?php } ?>
 		<link rel="stylesheet" href="assets/css/ekko-lightbox.min.css">
 	</head>
 	<body>
@@ -106,8 +118,8 @@ if(isset($_GET["lang"])){
 				<div class="room-picture">
 					<img src="profile-pictures/<?php echo $roomDetails["user_pp"];?>" class="profile-picture" title="<?php echo $roomDetails["user_pseudo"]." (".$lang["room_admin"].")";?>" alt="">
 				</div>
-				<p class="room-title"><?php echo $roomDetails["room_name"];?></p>
-				<p class="room-creator"> <a href="user.php?id=<?php echo $roomDetails["room_creator"];?>&lang=<?php echo $_GET["lang"];?>" target="_blank"><?php echo $roomDetails["user_pseudo"];?></a> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
+				<p id="room-title"><?php echo $roomDetails["room_name"];?></p>
+				<p> <a href="user.php?id=<?php echo $roomDetails["room_creator"];?>&lang=<?php echo $_GET["lang"];?>" target="_blank"><?php echo $roomDetails["user_pseudo"];?></a> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
 				<div class="room-admin">
 					<?php
 					if(isset($_SESSION["token"])){
@@ -151,7 +163,7 @@ if(isset($_GET["lang"])){
 					<div class="input-group">
 						<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
 						<span class="input-group-btn">
-							<button class="btn btn-primary btn-block play-url" data-toggle="modal"><?php echo $lang["submit_link"];?></button>
+							<button class="btn btn-primary play-url" data-toggle="modal"><?php echo $lang["submit_link"];?></button>
 						</span>
 					</div>
 					<?php } ?>
@@ -192,7 +204,7 @@ if(isset($_GET["lang"])){
 			</div>
 		</div>
 		<div class="col-lg-4 col-md-4" id="room-chat">
-			<div class="panel panel-default panel-room panel-chat">
+			<div class="panel panel-default panel-room">
 				<div class="panel-heading">
 					<div class="chat-options row">
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 toggle-menu-list button-glyph">
@@ -220,13 +232,13 @@ if(isset($_GET["lang"])){
 		<div class="col-lg-3 col-md-3 full-panel" id="song-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></div>
-				<div class="panel-body" id="body-song-list"></div>
+				<div class="panel-body full-panel-body" id="body-song-list"></div>
 			</div>
 		</div>
 		<div class="col-lg-2 col-md-2 full-panel" id="user-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-user"></span><span id="watch-count"></span> <?php echo $lang["watch_count"];?></div>
-				<div class="panel-body" id="body-user-list"></div>
+				<div class="panel-body full-panel-body" id="body-user-list"></div>
 			</div>
 		</div>
 		<div class="col-lg-3 col-md-3 full-panel" id="options-list">
@@ -235,27 +247,17 @@ if(isset($_GET["lang"])){
 				<div class="panel-body" id="body-options-list">
 					<div id="colors" class="room-option">
 						<p><?php echo $lang["color_pick"];?></p>
-						<div class="color-cube" id="color-67fc97"></div>
-						<div class="color-cube" id="color-4e96f2"></div>
-						<div class="color-cube" id="color-db8bf7"></div>
-						<div class="color-cube" id="color-e416a1"></div>
-						<div class="color-cube" id="color-1bddcf"></div>
-						<div class="color-cube" id="color-31a03f"></div>
-						<div class="color-cube" id="color-fb4836"></div>
-						<div class="color-cube" id="color-4b524d"></div>
-						<div class="color-cube" id="color-6a3b88"></div>
-						<div class="color-cube" id="color-a16ce8"></div>
-						<div class="color-cube" id="color-dfe092"></div>
-						<div class="color-cube" id="color-c9c00c"></div>
-						<div class="color-cube" id="color-707e66"></div>
-						<div class="color-cube" id="color-0954ee"></div>
-						<div class="color-cube" id="color-ad6337"></div>
-						<div class="color-cube" id="color-5f1107"></div>
-						<div class="color-cube" id="color-c372d4"></div>
-						<div class="color-cube" id="color-e17db6"></div>
-						<div class="color-cube" id="color-ca2004"></div>
-						<div class="color-cube" id="color-4df847"></div>
-						<div class="color-cube" id="color-0c89a8"></div>
+						<?php while($color = $colorList->fetch(PDO::FETCH_ASSOC)){
+	$colorValue = $color["color_value"];?>
+						<div class="color-cube" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
+						<?php } ?>
+					</div>
+					<div class="room-option">
+						<span class="option-title"><?php echo $lang["user_theme"];?></span><br>
+						<span style="float:right;">
+							<input type="checkbox" class="user-option-toggle" name="toggle-theme" <?php echo($userDetails["up_theme"]=='0')?'checked':'unchecked';?>>
+						</span>
+						<span class="tip"><?php echo $lang["theme_tip"];?></span>
 					</div>
 					<?php if($_SESSION["token"] == $roomDetails["room_creator"]){ ?>
 					<div class="room-option">
@@ -408,9 +410,8 @@ if(isset($_GET["lang"])){
 			offColor: 'warning',
 			onSwitchChange: function(){
 				var state = "<?php echo $roomDetails["room_submission_rights"];?>";
-				console.log(state);
+				/*console.log(state);*/
 				$.post("functions/toggle_submission_rights.php", {roomToken : "<?php echo $roomToken;?>", state : state}).done(function(data){
-					console.log(data);
 					if(data == 0){
 						window.submission = false;
 						sendMessage("<?php echo $roomToken;?>", 4, 1, "{submission_mod}");
@@ -421,6 +422,19 @@ if(isset($_GET["lang"])){
 				})
 			}
 		});
+		$(":regex(name,toggle-theme)").bootstrapSwitch({
+			size: 'small',
+			onText: '<?php echo $lang["light"];?>',
+			offText: '<?php echo $lang["dark"];?>',
+			onColor: 'light',
+			offColor: 'dark',
+			onSwitchChange: function(){
+				var state = "<?php echo $userDetails["up_theme"];?>";
+				$.post("functions/toggle_theme.php", {userToken : "<?php echo $_SESSION["token"];?>", state : state}).done(function(data){
+					location.reload();
+				})
+			}
+		})
 	}).on('click','.play-url', function(){
 		submitLink();
 	}).on('focus', '.url-box', function(){
@@ -659,7 +673,7 @@ if(isset($_GET["lang"])){
 		synchronize("<?php echo $roomToken;?>", userPower);
 	}
 	function onPlayerStateChange(event) {
-		console.log(window.autoplay);
+		/*console.log(window.autoplay);*/
 		if(window.sync == true && window.autoplay != false){
 			if (event.data == YT.PlayerState.ENDED) {
 				getNext(false);
