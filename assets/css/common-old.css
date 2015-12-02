@@ -148,10 +148,6 @@ option{
 	color: black;
 }
 
-.modal-content{
-	background-color: #2D2C26 !important;
-}
-
 .modal-header{
 	display: none;
 }

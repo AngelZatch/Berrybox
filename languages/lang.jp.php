@@ -112,10 +112,13 @@ $lang["twitter"] = "ツイッター";
 /** MENU **/
 $lang["menu"] = "メインメニュー";
 $lang["my_profile"] = "プロファイル";
+$lang["public_profile"] = "パブリックプロファイル";
 $lang["leave"] = "ルームを出ます";
 $lang["warning_sync_admin"] = "注意！　シンクはあなたに基づいています。あなたはルームを出るとき、シンクが停止します。";
 
 /** PROFILE **/
+$lang["profile_settings"] = "プロファイル設定";
+$lang["profile_settings_tip"] = "ディスプレイ名、バイオとプロファイル画像をアップデートする。";
 $lang["display_name"] = "ディスプレイ名";
 $lang["display_name_tip"] = "ディスプレイ名をカスタマイズします";
 $lang["profile_picture"] = "プロファイル画像";

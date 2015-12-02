@@ -112,10 +112,13 @@ $lang["twitter"] = "Twitter";
 /** MENU **/
 $lang["menu"] = "Main menu";
 $lang["my_profile"] = "My profile";
+$lang["public_profile"] = "Public profile";
 $lang["leave"] = "Leave the room";
 $lang["warning_sync_admin"] = "Warning! The synchronization is based on you, the creator of the room. If you leave, the sync will stop.";
 
 /** PROFILE **/
+$lang["profile_settings"] = "Settings";
+$lang["profile_settings_tip"] = "Update your display name, your bio and your profile picture";
 $lang["display_name"] = "Display name";
 $lang["display_name_tip"] = "Customize your display name.";
 $lang["profile_picture"] = "Profile picture";

@@ -16,6 +16,11 @@ if(isset($_SESSION["token"])){
 	$userDetails = $db->query("SELECT * FROM user u
 							JOIN user_preferences up ON up.up_user_id = u.user_token
 							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+	if($userDetails["up_theme"] == "1"){ // userDetails only for this page. On all the other rooms, it's userSettings
+		$theme = "dark";
+	} else {
+		$theme = "light";
+	}
 	$ppAdresss = "profile-pictures/".$userDetails["user_pp"];
 } else {
 	include "functions/tools.php";
@@ -100,13 +105,9 @@ if(isset($_GET["lang"])){
 		<meta charset="UTF-8">
 		<title><?php echo $roomDetails["room_name"];?> | <?php echo $roomDetails["user_pseudo"];?> | Berrybox</title>
 		<?php include "styles.php";
-		if(isset($_SESSION["token"])){
-			if($userDetails["up_theme"] == '1'){?>
-		<link rel="stylesheet" href="assets/css/dark-theme.css">
+		if(isset($_SESSION["token"])){ ?>
+		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
 		<?php } else { ?>
-		<link rel="stylesheet" href="assets/css/light-theme.css">
-		<?php }
-		} else { ?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 		<?php } ?>
 		<link rel="stylesheet" href="assets/css/ekko-lightbox.min.css">

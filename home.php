@@ -6,8 +6,14 @@ if(isset($_SESSION["token"])){
 	$queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
 								WHERE room_active = 1 AND (room_protection != 3 OR (room_protection = 3 AND room_creator = '$_SESSION[token]'))");
-	$userDetails = $db->query("SELECT * FROM user_preferences up
+	$userSettings = $db->query("SELECT * FROM user_preferences up
 							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+
+	if($userSettings["up_theme"] == "1"){
+		$theme = "dark";
+	} else {
+		$theme = "light";
+	}
 } else {
 	$queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
@@ -19,13 +25,9 @@ if(isset($_SESSION["token"])){
 		<meta charset="UTF-8">
 		<title>Berrybox</title>
 		<?php include "styles.php";
-		if(isset($_SESSION["token"])){
-			if($userDetails["up_theme"] == '1'){?>
-		<link rel="stylesheet" href="assets/css/dark-theme.css">
+		if(isset($_SESSION["token"])){ ?>
+		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
 		<?php } else { ?>
-		<link rel="stylesheet" href="assets/css/light-theme.css">
-		<?php }
-		} else { ?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 		<?php } ?>
 	</head>
