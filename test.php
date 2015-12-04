@@ -15,32 +15,28 @@ $queryActiveRooms = $db->query("SELECT * FROM rooms r
 	</head>
 	<body>
 		<div class="main">
-			<div class="form-group">
-				<div class="input-group">
-					<input type="text" placeholder="Write your youtube link here" class="form-control url-box">
-					<span class="input-group-btn">
-						<button class="btn btn-primary btn-block play-url" data-toggle="modal">Submit</button>
-					</span>
-				</div>
-			</div>
+			<?php
+			/*$played = $db->query("UPDATE roomHistory_bqtaygnaaxgdr7g
+					SET video_status='5'
+					WHERE history_link = 'KLqZ4AAypFE'");*/
+
+			$nextVideoState = $db->query("SELECT video_status, room_history_id
+											FROM roomHistory_bqtaygnaaxgdr7g
+											WHERE room_history_id =
+												(SELECT room_history_id
+													FROM roomHistory_bqtaygnaaxgdr7g
+													WHERE history_link='tzUuqu9vqCs'
+													AND video_status='2')+1")->fetch(PDO::FETCH_ASSOC);
+			//$played = $db->query("SELECT 26")->fetch(PDO::FETCH_ASSOC);
+			echo $nextVideoState["video_status"];
+			if($nextVideoState["video_status"] > 2){
+				$confirmIgnore = $db->query("UPDATE roomHistory_bqtaygnaaxgdr7g
+											SET video_status = '2'
+											WHERE room_history_id = '$nextVideoState[room_history_id]'")
+			}
+			/*echo $played;*/
+			?>
 		</div>
 		<?php include "scripts.php";?>
-		<script>
-			$(".play-url").click(function(){
-				var string = $(".url-box").val();
-
-				/** The ID of the video must be 11 characters long. So we have to find the only string of 11 characters not interrupted by any special character. **/
-				/** Example : https://www.youtube.com/watch?v=Akw-b0P4mKY **/
-				var reg = new RegExp(/\?v=([a-z0-9\-]+)\&?/i); // works for all youtube links except youtu.be type
-
-				/** First, we test the string for the most common type, using the regMatch **/
-				var res = reg.exec(string);
-				if(res == null){
-					var alt = new RegExp(/\.be\/([a-z0-9\-]+)\&?/i); // works for youtu.be type links
-					res = alt.exec(string);
-				}
-				alert(res[1]);
-			});
-		</script>
 	</body>
 </html>

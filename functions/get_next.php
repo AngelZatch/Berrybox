@@ -8,11 +8,33 @@ $prev = $_POST["lastPlayed"];
 $userPower = $_POST["userPower"];
 
 if($userPower == 2){
+	// Get ID of previous song
+	$playedID = $db->query("SELECT room_history_id
+							FROM roomHistory_$roomToken
+							WHERE history_link = '$prev'
+							AND video_status = '1'")->fetch(PDO::FETCH_ASSOC);
+
 	// Update status of previous video to 'played' (2)
 	$played = $db->query("UPDATE roomHistory_$roomToken
-					SET video_status='2'
-					WHERE history_link = '$prev'
-					AND video_status = '1'");
+					SET video_status = '2'
+					WHERE room_history_id = '$playedID[room_history_id]'");
+
+	// Check if next is a video to ignore (video_status to 3)
+	try{
+		$nextVideoState = $db->query("SELECT video_status, room_history_id
+									FROM roomHistory_$roomToken
+									WHERE room_history_id = '$playedID[room_history_id]' +1")->fetch(PDO::FETCH_ASSOC);
+
+		if($nextVideoState["video_status"] == '3'){
+			// If it is, the video is indicated as played.
+			$confirmIgnore = $db->query("UPDATE roomHistory_$roomToken
+										SET video_status = '2'
+										WHERE room_history_id = '$nextVideoState[room_history_id]'");
+		}
+	} catch (PDOException $e){
+		echo $e->getMessage();
+	}
+
 }
 
 // Get next video

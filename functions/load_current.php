@@ -16,10 +16,14 @@ if($load->rowCount() != 0){
 	$n["timestart"] = $loaded["history_start"];
 	echo json_encode($n);
 } else {
-	$load = $db->query("SELECT history_link, video_name, room_history_id, history_user FROM roomHistory_$token
-					WHERE video_status = 0
-					ORDER BY room_history_id DESC
-					LIMIT 1");
+	// Loaded the oldest non-played video
+	$load = $db->query("SELECT history_link, video_name, room_history_id, history_user
+						FROM roomHistory_$token
+						WHERE video_status = '0'
+						AND room_history_id = (SELECT room_history_id
+												FROM roomHistory_$token
+												WHERE video_status = '2'
+												ORDER BY room_history_id DESC LIMIT 1) +1");
 
 	$n = array();
 	$loaded = $load->fetch(PDO::FETCH_ASSOC);
