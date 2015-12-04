@@ -835,7 +835,7 @@ if(isset($_GET["lang"])){
 						message += "</div>";*/
 						} else if(songList[i].videoStatus == 3){
 							message += "<div class='col-lg-1'>";
-							message += "<span class='glyphicon glyphicon-leaf button-glyph' onClick=reinstateSong("+songList[i].entry+")></span>";
+							message += "<span class='glyphicon glyphicon-ok-circle button-glyph' onClick=reinstateSong("+songList[i].entry+")></span>";
 							message += "</div>";
 						}
 					}
