@@ -27,7 +27,7 @@ if(isset($_SESSION["token"])){
 	if(isset($_POST["login"])){
 		session_start();
 
-		$username = $_POST["login_name"];
+		$username = $_POST["username"];
 		$password = $_POST["login_pwd"];
 
 		$checkCredentials = $db->prepare("SELECT * FROM user WHERE user_pseudo=? AND user_pwd=?");
@@ -46,48 +46,41 @@ if(isset($_SESSION["token"])){
 	}
 	if(isset($_POST["signup"])){
 		$db = PDOFactory::getConnection();
+		$token = generateUserToken();
+		$color = "000000";
+		$pseudo = $_POST["username"];
+		$power = "1";;
 
-		$betaKey = $_POST["beta"];
-		$matchKey = $db->query("SELECT * FROM beta_keys WHERE key_value = '$betaKey' AND key_user IS NULL");
-		if($matchKey->rowCount() == 1){
-			$token = generateUserToken();
-			$color = "000000";
-			$access = "1";
-			$pseudo = $_POST["login_name"];
-			$power = "1";;
+		try{
+			$db->beginTransaction();
+			$newUser = $db->prepare("INSERT INTO user(user_token, user_pseudo, user_pwd) VALUES(:token, :pseudo, :pwd)");
+			$newUser->bindParam(':pseudo', $_POST["username"]);
+			$newUser->bindParam(':pwd', $_POST["login_pwd"]);
+			$newUser->bindParam(':token', $token);
+			$newUser->execute();
 
-			try{
-				$db->beginTransaction();
-				$newUser = $db->prepare("INSERT INTO user(user_token, user_pseudo, user_pwd, beta_access) VALUES(:token, :pseudo, :pwd, :access)");
-				$newUser->bindParam(':pseudo', $_POST["login_name"]);
-				$newUser->bindParam(':pwd', $_POST["login_pwd"]);
-				$newUser->bindParam(':token', $token);
-				$newUser->bindParam(':access', $access);
-				$newUser->execute();
-
-				$newPref = $db->prepare("INSERT INTO user_preferences(up_user_id, up_color)
+			$newPref = $db->prepare("INSERT INTO user_preferences(up_user_id, up_color)
 								VALUES(:token, :color)");
-				$newPref->bindParam(':token', $token);
-				$newPref->bindParam(':color', $color);
-				$newPref->execute();
+			$newPref->bindParam(':token', $token);
+			$newPref->bindParam(':color', $color);
+			$newPref->execute();
 
-				$newStats = $db->prepare("INSERT INTO user_stats(user_token) VALUES(:token)");
-				$newStats->bindParam(':token', $token);
-				$newStats->execute();
+			$newStats = $db->prepare("INSERT INTO user_stats(user_token) VALUES(:token)");
+			$newStats->bindParam(':token', $token);
+			$newStats->execute();
 
-				$useKey = $db->query("UPDATE beta_keys SET key_user='$token' WHERE key_value='$betaKey'");
-				$db->commit();
-				header('Location: home.php?lang='.$_GET["lang"]);
-				session_start();
-				$_SESSION["username"] = $pseudo;
-				$_SESSION["power"] = $power;
-				$_SESSION["token"] = $token;
-				$_SESSION["lang"] = "en";
-				header("Location: $_SERVER[REQUEST_URI]");
-			} catch(PDOException $e){
-				$db->rollBack();
-				echo $e->getMessage();
-			}
+			$useKey = $db->query("UPDATE beta_keys SET key_user='$token' WHERE key_value='$betaKey'");
+			$db->commit();
+			header('Location: home.php?lang='.$_GET["lang"]);
+			session_start();
+			$_SESSION["username"] = $pseudo;
+			$_SESSION["power"] = $power;
+			$_SESSION["token"] = $token;
+			$_SESSION["lang"] = "en";
+			header("Location: $_SERVER[REQUEST_URI]");
+		} catch(PDOException $e){
+			$db->rollBack();
+			echo $e->getMessage();
 		}
 	}
 }

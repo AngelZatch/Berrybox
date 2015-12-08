@@ -35,9 +35,9 @@ if(isset($_SESSION["token"])){
 				<div class="form-group">
 					<label for="" class="col-sm-3 control-label"><?php echo $lang["room_protection"];?></label>
 					<div class="col-lg-9">
-						<span class="btn btn-primary disabled" id="select-private" title="<?php echo $lang["private_tip"];?>"><span class="glyphicon glyphicon-headphones"></span> <?php echo $lang["level_private"];?></span>
-						<span class="btn btn-primary disabled" id="select-locked" role="button" title="<?php echo $lang["locked_tip"];?>"><span class="glyphicon glyphicon-eye-open"></span> <?php echo $lang["level_locked"];?></span>
-						<span class="btn btn-primary btn-disabled" id="select-public" title="<?php echo $lang["public_tip"];?>"><span class="glyphicon glyphicon-volume-up"></span> <?php echo $lang["level_public"];?></span>
+						<span class="btn btn-primary btn-switch disabled" id="select-private" title="<?php echo $lang["private_tip"];?>"><span class="glyphicon glyphicon-headphones"></span> <?php echo $lang["level_private"];?></span>
+						<span class="btn btn-primary btn-switch disabled" id="select-locked" role="button" title="<?php echo $lang["locked_tip"];?>"><span class="glyphicon glyphicon-eye-open"></span> <?php echo $lang["level_locked"];?></span>
+						<span class="btn btn-primary btn-switch btn-disabled" id="select-public" title="<?php echo $lang["public_tip"];?>"><span class="glyphicon glyphicon-volume-up"></span> <?php echo $lang["level_public"];?></span>
 						<input type="hidden" id="protect-value" value="1">
 					</div>
 				</div>

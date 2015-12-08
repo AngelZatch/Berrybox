@@ -170,7 +170,7 @@
 
 /** Buttons **/
 /* line 137, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.btn-primary.disabled {
+.btn-switch.disabled {
   background-color: inherit;
   color: #e2c283;
   border: dashed 1px;

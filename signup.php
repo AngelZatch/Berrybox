@@ -13,43 +13,34 @@ if(isset($_GET["lang"])){
 
 if(isset($_POST["signup"])){
 	$db = PDOFactory::getConnection();
+	$token = generateUserToken();
+	$color = "000000";
 
-	$betaKey = $_POST["beta"];
-	$matchKey = $db->query("SELECT * FROM beta_keys WHERE key_value = '$betaKey' AND key_user IS NULL");
-	if($matchKey->rowCount() == 1){
-		$token = generateUserToken();
-		$color = "000000";
-		$access = 1;
+	try{
+		$db->beginTransaction();
+		$newUser = $db->prepare("INSERT INTO user(user_token, user_pseudo, user_pwd) VALUES(:token, :pseudo, :pwd)");
+		$newUser->bindParam(':pseudo', $_POST["username"]);
+		$newUser->bindParam(':pwd', $_POST["password"]);
+		$newUser->bindParam(':token', $token);
+		$newUser->execute();
 
-		try{
-			$db->beginTransaction();
-			$newUser = $db->prepare("INSERT INTO user(user_token, user_pseudo, user_pwd, beta_access) VALUES(:token, :pseudo, :pwd, :access)");
-			$newUser->bindParam(':pseudo', $_POST["username"]);
-			$newUser->bindParam(':pwd', $_POST["password"]);
-			$newUser->bindParam(':token', $token);
-			$newUser->bindParam(':access', $access);
-			$newUser->execute();
-
-			$newPref = $db->prepare("INSERT INTO user_preferences(up_user_id, up_color)
+		$newPref = $db->prepare("INSERT INTO user_preferences(up_user_id, up_color)
 								VALUES(:token, :color)");
-			$newPref->bindParam(':token', $token);
-			$newPref->bindParam(':color', $color);
-			$newPref->execute();
+		$newPref->bindParam(':token', $token);
+		$newPref->bindParam(':color', $color);
+		$newPref->execute();
 
-			$newStats = $db->prepare("INSERT INTO user_stats(user_token) VALUES(:token)");
-			$newStats->bindParam(':token', $token);
-			$newStats->execute();
+		$newStats = $db->prepare("INSERT INTO user_stats(user_token) VALUES(:token)");
+		$newStats->bindParam(':token', $token);
+		$newStats->execute();
 
-			$useKey = $db->query("UPDATE beta_keys SET key_user='$token' WHERE key_value='$betaKey'");
-			$db->commit();
-			header('Location: home.php?lang='.$_GET["lang"]);
-		} catch(PDOException $e){
-			$db->rollBack();
-			echo $e->getMessage();
-		}
+		$db->commit();
+		header('Location: home.php?lang='.$_GET["lang"]);
+	} catch(PDOException $e){
+		$db->rollBack();
+		echo $e->getMessage();
 	}
 }
-
 ?>
 <html>
 	<head>
@@ -63,7 +54,7 @@ if(isset($_POST["signup"])){
 		<div class="main">
 			<div class="col-lg-7 col-lg-offset-2">
 				<form action="" method="post">
-					<div class="form-group">
+					<div class="form-group has-feedback" id="username-form-group">
 						<label for="username" class="control-label"><?php echo $lang["username"];?></label>
 						<input type="text" placeholder="Username" class="form-control" name="username">
 					</div>
@@ -71,18 +62,64 @@ if(isset($_POST["signup"])){
 						<label for="password" class="control-label"><?php echo $lang["password"];?></label>
 						<input type="password" class="form-control" name="password">
 					</div>
-					<div class="form-group">
+					<div class="form-group has-feedback" id="password-confirm-form-group">
 						<label for="password-confirm" class="control-label"><?php echo $lang["pwd_confirm"];?></label>
-						<input type="password" class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="beta" class="control-label"><?php echo $lang["beta_key"];?></label>
-						<input type="text" class="form-control" name="beta">
+						<input type="password" class="form-control" name="password-confirm">
 					</div>
 					<input type="submit" class="btn btn-primary btn-block" name="signup" value="<?php echo $lang["sign_up"];?>">
 				</form>
 			</div>
 		</div>
 		<?php include "scripts.php";?>
+		<script>
+			$(document).ready(function(){
+				var compare;
+				$(":regex(name,username)").on('keyup blur', function(){
+					var box = $(this);
+					var elementId = "#username-form-group";
+					removeFeedback(elementId);
+					//console.log("Letter typed");
+					if(compare){
+						clearTimeout(compare);
+						//console.log("There is a timeout. Clearing...");
+					}
+					compare = setTimeout(function(){
+						var string = box.val();
+						//console.log("timeout expired. Search with '"+string+"' query.");
+						$.post("functions/compare_user_string.php", {string : string}).done(function(data){
+							if(data == 1){
+								console.log("Success, you can use this username");
+								applySuccessFeedback(elementId);
+								$(":regex(name,signup)").removeClass("disabled");
+								$(":regex(name,signup)").removeAttr("disabled");
+							} else {
+								console.log("This username already exists");
+								applyErrorFeedback(elementId);
+								$(":regex(name,signup)").addClass("disabled");
+								$(":regex(name,signup)").attr("disabled", "disabled");
+							}
+						})
+					}, 1000);
+				})
+				$(":regex(name,password-confirm)").on('keyup blur', function(){
+					var box = $(this);
+					var elementId = "#password-confirm-form-group";
+					removeFeedback(elementId);
+					if(compare){
+						clearTimeout(compare);
+					}
+					compare = setTimeout(function(){
+						var string = box.val();
+						if(string != ""){
+							if(string == $(":regex(name,password)").val()){
+								applySuccessFeedback(elementId);
+							} else {
+								applyErrorFeedback(elementId);
+							}
+						}
+					}, 500);
+				})
+			})
+		</script>
 	</body>
 </html>
