@@ -20,10 +20,10 @@ if($load->rowCount() != 0){
 	$load = $db->query("SELECT history_link, video_name, room_history_id, history_user
 						FROM roomHistory_$token
 						WHERE video_status = '0'
-						AND room_history_id = (SELECT room_history_id
+						AND (room_history_id = (SELECT room_history_id
 												FROM roomHistory_$token
 												WHERE video_status = '2'
-												ORDER BY room_history_id DESC LIMIT 1) +1");
+												ORDER BY room_history_id DESC LIMIT 1) +1) OR room_history_id = '1'");
 
 	$n = array();
 	$loaded = $load->fetch(PDO::FETCH_ASSOC);
