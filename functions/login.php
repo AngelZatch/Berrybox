@@ -3,7 +3,7 @@ session_start();
 if(isset($_POST["login"])){
 	$db = PDOFactory::getConnection();
 
-	$username = $_POST["login_name"];
+	$username = $_POST["username"];
 	$password = $_POST["login_pwd"];
 
 	$checkCredentials = $db->prepare("SELECT * FROM user WHERE user_pseudo=? AND user_pwd=?");

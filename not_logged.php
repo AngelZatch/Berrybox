@@ -12,17 +12,13 @@ if(!isset($_GET["lang"])){
 	<div class="col-lg-10 col-lg-offset-1">
 		<p><?php echo $lang["no_credentials"];?></p>
 		<form action="" method="post">
-			<div class="form-group">
-				<label for="login_name" class="control-label"><?php echo $lang["username"];?></label>
-				<input type="text" placeholder="Username" class="form-control" name="login_name">
+			<div class="form-group has-feedback" id="username-form-group">
+				<label for="username" class="control-label"><?php echo $lang["username"];?></label>
+				<input type="text" placeholder="Username" class="form-control" name="username">
 			</div>
 			<div class="form-group">
 				<label for="login_pwd" class="control-label"><?php echo $lang["password"];?></label>
 				<input type="password" class="form-control" name="login_pwd">
-			</div>
-			<div class="form-group">
-				<label for="beta" class="control-label"><?php echo $lang["beta_sign"];?></label>
-				<input type="text" class="form-control" name="beta">
 			</div>
 			<div class="row">
 				<input type="submit" class="btn btn-primary col-lg-6" name="login" value="<?php echo $lang["log_in"];?>">
@@ -31,3 +27,37 @@ if(!isset($_GET["lang"])){
 		</form>
 	</div>
 </div>
+<script>
+	$(document).ready(function(){
+		var compare;
+		$(":regex(name,username)").on('keyup blur', function(){
+			var box = $(this);
+			var elementId = "#username-form-group";
+			removeFeedback(elementId);
+			//console.log("Letter typed");
+			if(compare){
+				clearTimeout(compare);
+				//console.log("There is a timeout. Clearing...");
+			}
+			compare = setTimeout(function(){
+				var string = box.val();
+				if(string != ""){
+					//console.log("timeout expired. Search with '"+string+"' query.");
+					$.post("functions/compare_user_string.php", {string : string}).done(function(data){
+						if(data == 1){
+							//console.log("Success");
+							applySuccessFeedback(elementId);
+							$(":regex(name,signup)").removeClass("disabled");
+							$(":regex(name,signup)").removeAttr("disabled");
+						} else {
+							//console.log("This username already exists");
+							applyWarningFeedback(elementId);
+							$(":regex(name,signup)").addClass("disabled");
+							$(":regex(name,signup)").attr("disabled", "disabled");
+						}
+					})
+				}
+			}, 1000);
+		})
+	})
+</script>

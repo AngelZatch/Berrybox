@@ -19,8 +19,8 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 			<div class="col-lg-7 col-lg-offset-2">
 				<form action="" method="post">
 					<div class="form-group">
-						<label for="login_name" class="control-label"><?php echo $lang["username"];?></label>
-						<input type="text" placeholder="Username" class="form-control" name="login_name">
+						<label for="username" class="control-label"><?php echo $lang["username"];?></label>
+						<input type="text" placeholder="Username" class="form-control" name="username">
 					</div>
 					<div class="form-group">
 						<label for="login_pwd" class="control-label"><?php echo $lang["password"];?></label>

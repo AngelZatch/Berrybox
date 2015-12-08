@@ -12,3 +12,22 @@ $(document).ready(function(){
 		return regex.test(jQuery(elem)[attr.method](attr.property));
 	}
 })
+function removeFeedback(elementId){
+	$(elementId).removeClass("has-error");
+	$(elementId).removeClass("has-success");
+	$(elementId).removeClass("has-warning");
+	$(elementId+">.form-control-feedback").remove();
+	$(elementId+">.error-message").remove();
+}
+function applySuccessFeedback(elementId){
+	$(elementId).addClass("has-success");
+	$(elementId).append("<span class='glyphicon glyphicon-ok form-control-feedback' aria-hidden='true'></span>");
+}
+function applyErrorFeedback(elementId){
+	$(elementId).addClass("has-error");
+	$(elementId).append("<span class='glyphicon glyphicon-remove form-control-feedback' aria-hidden='true'></span>");
+}
+function applyWarningFeedback(elementId){
+	$(elementId).addClass("has-warning");
+	$(elementId).append("<span class='glyphicon glyphicon-warning-sign form-control-feedback' aria-hidden='true'></span>");
+}
