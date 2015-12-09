@@ -23,7 +23,8 @@ if($load->rowCount() != 0){
 						AND (room_history_id = (SELECT room_history_id
 												FROM roomHistory_$token
 												WHERE video_status = '2'
-												ORDER BY room_history_id DESC LIMIT 1) +1) OR room_history_id = '1'");
+												ORDER BY room_history_id DESC LIMIT 1) +1)
+						OR (room_history_id = '1' AND video_status = '0')");
 
 	$n = array();
 	$loaded = $load->fetch(PDO::FETCH_ASSOC);
