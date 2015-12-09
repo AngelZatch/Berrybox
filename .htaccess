@@ -1,0 +1,9 @@
+Options -MultiViews
+RewriteEngine On
+RewriteRule ^([a-z]+)/room/([A-Za-z0-9-]+)/?$ room.php?id=$2&lang=$1 [NC,L] # Display room pages
+RewriteRule ^([a-z]+)/profile/([A-Za-z0-9-]+)/?$ profile.php?id=$2&lang=$1 [NC,L] # Display profile pages
+RewriteRule ^([a-z]+)/user/([A-Za-z0-9-]+)/?$ user.php?id=$2&lang=$1 [NC,L] # Display user pages
+RewriteRule ^([a-z]+)/home$ home.php?lang=$1 [NC,L] # Display home
+RewriteRule ^([a-z]+)/create$ create_room.php?lang=$1 [NC,L] # Room creation
+RewriteRule ^([a-z]+)/portal$ portal.php?lang=$1 [NC,L] # Portal
+RewriteRule ^([a-z]+)/signup$ signup.php?lang=$1 [NC,L] # Signup

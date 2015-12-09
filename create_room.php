@@ -11,6 +11,7 @@ if(isset($_SESSION["token"])){
 	<head>
 		<meta charset="UTF-8">
 		<title>Create a room</title>
+		<base href="../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){
 			if($userDetails["up_theme"] == '1'){?>
@@ -48,7 +49,7 @@ if(isset($_SESSION["token"])){
 					</div>
 				</div>
 				<span name="createRoom" class="btn btn-primary btn-block"><?php echo $lang["room_create"];?></span>
-				<a href="home.php?lang=<?php echo $lang;?>" class="btn btn-default btn-block"><?php echo $lang["cancel"];?></a>
+				<a href="<?php echo $_GET["lang"];?>/home" class="btn btn-default btn-block"><?php echo $lang["cancel"];?></a>
 			</form>
 		</div>
 		<?php include "scripts.php";?>
@@ -82,7 +83,7 @@ if(isset($_SESSION["token"])){
 				console.log(protect);
 				$.post("functions/room_create.php", {roomName : roomName, creator : user, protect : protect, password : password}).done(function(data){
 					console.log(data);
-					window.location.replace("room.php?id="+data+"&lang=<?php echo $_GET["lang"];?>");
+					window.location.replace("<?php echo $_GET["lang"];?>/room/"+data);
 				})
 			})
 		</script>

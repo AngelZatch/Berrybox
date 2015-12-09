@@ -15,7 +15,7 @@ if(isset($_SESSION["username"])){
 		if(isset($_GET["lang"])){
 			$base = substr_replace($_SERVER["REQUEST_URI"], $lang, -2);
 		} else {
-			$base = $_SERVER["REQUEST_URI"]."?lang=en";
+			$base = "en/".$_SERVER["REQUEST_URI"];
 		}
 		header("Location:$base");
 	} else {
@@ -25,7 +25,7 @@ if(isset($_SESSION["username"])){
 } else {
 	//If there's no user, the default display language is 'en'
 	if(!isset($_GET["lang"])){
-		$base = $_SERVER["REQUEST_URI"]."?lang=en";
+		$base = "en/".$_SERVER["REQUEST_URI"];
 		header("Location:$base");
 		include_once "languages/lang.en.php";
 	} else {
@@ -35,7 +35,7 @@ if(isset($_SESSION["username"])){
 ?>
 <nav class="navbar navbar-fixed-top">
 	<div class="container-fluid">
-		<a href="home.php?lang=<?php echo $_GET["lang"];?>" class="navbar-brand">Berrybox beta</a>
+		<a href="<?php echo $_GET["lang"];?>/home" class="navbar-brand">Berrybox beta</a>
 		<!--<form class="navbar-form navbar-left" role="search">
 <div class="form-group">
 <input type="text" class="form-control" name="search_terms" placeholder="Chercher une piste, un album, un artiste...">
@@ -45,7 +45,7 @@ if(isset($_SESSION["username"])){
 		<ul class="nav navbar-nav navbar-right">
 			<?php if(isset($_SESSION["username"])){ ?>
 			<li>
-				<a href="create_room.php?lang=<?php echo $_GET["lang"];?>" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
+				<a href="<?php echo $_GET["lang"];?>/create" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
 			</li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle dropdown-profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -54,20 +54,20 @@ if(isset($_SESSION["username"])){
 					</div>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="profile.php?id=<?php echo $_SESSION["token"];?>&lang=<?php echo $_GET["lang"];?>"><?php echo $lang["my_profile"];?></a></li>
-					<li><a href="user.php?id=<?php echo $_SESSION["token"];?>&lang=<?php echo $_GET["lang"];?>"><?php echo $lang["public_profile"];?></a></li>
+					<li><a href="<?php echo $_GET["lang"];?>/profile/<?php echo $_SESSION["token"];?>"><?php echo $lang["my_profile"];?></a></li>
+					<li><a href="<?php echo $_GET["lang"];?>/user/<?php echo $_SESSION["token"];?>"><?php echo $lang["public_profile"];?></a></li>
 					<li><a href="logout.php"><?php echo $lang["log_out"];?></a></li>
 				</ul>
 			</li>
 			<?php } else { ?>
-			<li><a href="portal.php?lang=<?php echo $_GET["lang"];?>" class="navbar-link"><?php echo $lang["log_in"];?></a></li>
-			<li><a href="signup.php?lang=<?php echo $_GET["lang"];?>" class="navbar-link"><?php echo $lang["sign_up"];?></a></li>
+			<li><a href="<?php echo $_GET["lang"];?>/portal" class="navbar-link"><?php echo $lang["log_in"];?></a></li>
+			<li><a href="<?php echo $_GET["lang"];?>/signup" class="navbar-link"><?php echo $lang["sign_up"];?></a></li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $lang["language_name"];?> <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="home.php?lang=en"><?php echo $lang["lang_en"];?></a></li>
-					<li><a href="home.php?lang=jp"><?php echo $lang["lang_jp"];?></a></li>
-					<li><a href="home.php?lang=fr"><?php echo $lang["lang_fr"];?></a></li>
+					<li><a href="en/home"><?php echo $lang["lang_en"];?></a></li>
+					<li><a href="jp/home"><?php echo $lang["lang_jp"];?></a></li>
+					<li><a href="fr/home"><?php echo $lang["lang_fr"];?></a></li>
 				</ul>
 			</li>
 			<?php } ?>
