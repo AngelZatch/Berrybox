@@ -24,6 +24,7 @@ if(isset($_SESSION["token"])){
 	<head>
 		<meta charset="UTF-8">
 		<title>Berrybox</title>
+		<base href="../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
 		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
@@ -39,7 +40,7 @@ if(isset($_SESSION["token"])){
 				<div class="jumbotron">
 					<h1><?php echo $lang["hello"];?></h1>
 					<p><?php echo $lang["berrybox_description"];?></p>
-					<p><a href="signup.php" class="btn btn-primary btn-block btn-lg"><?php echo $lang["get_started"];?></a></p>
+					<p><a href="<?php echo $_GET["lang"];?>/signup" class="btn btn-primary btn-block btn-lg"><?php echo $lang["get_started"];?></a></p>
 				</div>
 			</div>
 			<?php } ?>
@@ -50,23 +51,22 @@ if(isset($_SESSION["token"])){
 					<div class="panel panel-active-room">
 						<div class="panel-body">
 							<p class="col-lg-3"><?php echo $activeRooms["room_name"];?></p>
-							<p class="col-lg-3"><a href="user.php?id=<?php echo $activeRooms["user_token"];?>&lang=<?php echo $_GET["lang"];?>"><?php echo $activeRooms["user_pseudo"];?></a></p>
+							<p class="col-lg-3"><a href="<?php echo $_GET["lang"];?>/user/<?php echo $activeRooms["user_token"];?>"><?php echo $activeRooms["user_pseudo"];?></a></p>
 							<div class="col-lg-6">
 								<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
 								<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>
 								<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
 								<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
 								<?php } else { ?>
-								<a href="room.php?id=<?php echo $activeRooms["room_token"];?>&lang=<?php echo $_GET["lang"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+								<a href="<?php echo $_GET["lang"];?>/room/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 								<?php } ?>
 							</div>
 						</div>
 					</div>
 					<?php } ?>
-					<a href="create_room.php" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
+					<a href="<?php echo $_GET["lang"];?>/create" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
 				</div>
 			</div>
-			<div class="col-lg-12 social-space">
 			<div class="col-lg-12 social-space">
 				<div class="col-lg-6 col-lg-offset-3">
 					<p><?php echo $lang["follow_us"];?></p>

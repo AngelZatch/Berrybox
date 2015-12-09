@@ -8,10 +8,11 @@ if(isset($_GET["lang"])){
 
 	include_once "languages/lang.".$lang.".php";
 } else {
-	header("Location:portal.php?lang=en");
+	header("Location:en/portal");
 }
 
 if(isset($_POST["signup"])){
+	session_start();
 	$db = PDOFactory::getConnection();
 	$token = generateUserToken();
 	$color = "000000";
@@ -35,7 +36,11 @@ if(isset($_POST["signup"])){
 		$newStats->execute();
 
 		$db->commit();
-		header('Location: home.php?lang='.$_GET["lang"]);
+		$_SESSION["username"] = $_POST["username"];
+		$_SESSION["power"] = "0";
+		$_SESSION["token"] = $token;
+		$_SESSION["lang"] = "en";
+		header('Location: ../'.$_GET["lang"].'/home');
 	} catch(PDOException $e){
 		$db->rollBack();
 		echo $e->getMessage();
@@ -46,6 +51,7 @@ if(isset($_POST["signup"])){
 	<head>
 		<meta charset="UTF-8">
 		<title>Strawberry Music Streamer</title>
+		<base href="../">
 		<?php include "styles.php";?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 	</head>

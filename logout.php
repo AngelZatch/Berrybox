@@ -1,6 +1,6 @@
 <?php
 session_start();
 if(session_destroy()){
-	header("Location: home.php?lang=en");
+	header("Location: en/home");
 }
 ?>

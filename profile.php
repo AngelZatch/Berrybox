@@ -69,6 +69,7 @@ if(isset($_POST["submit"])){
 	<head>
 		<meta charset="UTF-8">
 		<title>My Profile</title>
+		<base href="../../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
 		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
@@ -84,7 +85,7 @@ if(isset($_POST["submit"])){
 				<p id="profile-title"><?php echo $lang["profile_settings"];?></p>
 				<span class="tip"><?php echo $lang["profile_settings_tip"];?></span>
 			</div>
-			<form action="profile.php?id=<?php echo $userToken;?>&lang=<?php echo $_SESSION["lang"];?>" class="form-horizontal" method="post" enctype="multipart/form-data">
+			<form action="<?php echo $_SESSION["lang"];?>/profile/<?php echo $userToken;?>" class="form-horizontal" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="username" class="col-sm-3 control-label"><?php echo $lang["display_name"];?></label>
 					<div class="col-sm-6">

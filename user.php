@@ -26,6 +26,7 @@ $profileDetails = $db->query("SELECT * FROM user u
 	<head>
 		<meta charset="UTF-8">
 		<title><?php echo $profileDetails["user_pseudo"];?></title>
+		<base href="../../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
 		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
