@@ -69,9 +69,8 @@ if(isset($_SESSION["token"])){
 			$newStats->bindParam(':token', $token);
 			$newStats->execute();
 
-			$useKey = $db->query("UPDATE beta_keys SET key_user='$token' WHERE key_value='$betaKey'");
 			$db->commit();
-			header('Location: home.php?lang='.$_GET["lang"]);
+			header('Location: '.$_GET["lang"].'/home');
 			session_start();
 			$_SESSION["username"] = $pseudo;
 			$_SESSION["power"] = $power;
@@ -90,13 +89,14 @@ if(isset($_GET["lang"])){
 
 	include_once "languages/lang.".$lang.".php";
 } else {
-	header("Location:room.php?id=$roomToken&lang=en");
+	header("Location:/en/room/$roomToken");
 }
 ?>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title><?php echo $roomDetails["room_name"];?> | <?php echo $roomDetails["user_pseudo"];?> | Berrybox</title>
+		<base href="../../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
 		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
@@ -112,7 +112,7 @@ if(isset($_GET["lang"])){
 					<img src="profile-pictures/<?php echo $roomDetails["user_pp"];?>" class="profile-picture" title="<?php echo $roomDetails["user_pseudo"]." (".$lang["room_admin"].")";?>" alt="">
 				</div>
 				<p id="room-title"><?php echo $roomDetails["room_name"];?></p>
-				<p> <a href="user.php?id=<?php echo $roomDetails["room_creator"];?>&lang=<?php echo $_GET["lang"];?>" target="_blank"><?php echo $roomDetails["user_pseudo"];?></a> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
+				<p> <a href="<?php echo $_GET["lang"];?>/user/<?php echo $roomDetails["room_creator"];?>" target="_blank"><?php echo $roomDetails["user_pseudo"];?></a> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
 				<div class="room-admin">
 					<?php
 					if(isset($_SESSION["token"])){
@@ -287,8 +287,8 @@ if(isset($_GET["lang"])){
 					</div>
 					<div class="menu-options row">
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="profile.php?id=<?php echo $_SESSION["token"];?>&lang=<?php echo $_SESSION["lang"];?>"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
-							<li><a href="home.php?lang=<?php echo $_SESSION["lang"];?>"><span class="glyphicon glyphicon-log-out col-lg-2"></span> <?php echo $lang["leave"];?></a></li>
+							<li><a href="<?php echo $_SESSION["lang"];?>/profile/<?php echo $_SESSION["token"];?>"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
+							<li><a href="<?php echo $_SESSION["lang"];?>/home"><span class="glyphicon glyphicon-log-out col-lg-2"></span> <?php echo $lang["leave"];?></a></li>
 							<li>
 								<?php if($_SESSION["token"] == $roomDetails["room_creator"]){ ?>
 								<p style="font-size:12px; padding:5px; text-align:center;"><?php echo $lang["warning_sync_admin"];?></p>
@@ -995,7 +995,7 @@ if(isset($_GET["lang"])){
 					if(messageList[i].destinationToken == "<?php echo $_SESSION["token"];?>"){
 						var message = "<p class='whisper'>";
 						message += "<span class='message-time'>"+messageTime+"</span> ";
-						message += "<a href='user.php?id="+messageList[i].authorToken+"&lang=<?php echo $_GET["lang"];?>' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].authorColor+";'>";
+						message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].authorToken+"' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].authorColor+";'>";
 						message += messageList[i].author;
 						message += "</span></a>";
 						message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
@@ -1005,7 +1005,7 @@ if(isset($_GET["lang"])){
 						var message = "<p class='whisper'>";
 						message += "<span class='message-time'>"+messageTime+"</span> ";
 						message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
-						message += "<a href='user.php?id="+messageList[i].destinationToken+"&lang=<?php echo $_GET["lang"];?>' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].destinationColor+";'>";
+						message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].destinationToken+"' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].destinationColor+";'>";
 						message += messageList[i].destination;
 						message += "</span></a> : ";
 						message += messageList[i].content;
@@ -1105,7 +1105,7 @@ if(isset($_GET["lang"])){
 							}
 						}
 					}
-					message += "<a href='user.php?id="+messageList[i].authorToken+"&lang=<?php echo $_GET["lang"];?>' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].authorColor+";'>";
+					message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].authorToken+"' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].authorColor+";'>";
 					message += messageList[i].author;
 					message += "</span></a>";
 					message += " : "+messageList[i].content+"<br/>";
