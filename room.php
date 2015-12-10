@@ -660,6 +660,19 @@ if(isset($_GET["lang"])){
 		window.chatHovered = true;
 	}).on('mouseleave', '#body-chat', function(){
 		window.chatHovered = false;
+	}).on('mouseenter', '#room-title', function(){
+		if(userPower == 2){
+			$(this).append(" <span class='glyphicon glyphicon-edit button-glyph' id='edit-title-button'></span>");
+		}
+	}).on('mouseleave', '#room-title', function(){
+		$("#edit-title-button").remove();
+	}).on('click', '#edit-title-button', function(){
+		var title = $("#room-title").text();
+		$("#room-title").replaceWith("<input type='text' class='form-control' style='width:61vw;margin-bottom:5px' id='edit-title-input' value='"+title+"'>");
+	}).on('blur', '#edit-title-input', function(){
+		var newTitle = $(this).val();
+		$.post("functions/retitle_room.php", {title : newTitle, roomToken : "<?php echo $roomToken;?>"});
+		$(this).replaceWith("<p id='room-title'>"+newTitle+"</p>");
 	})
 	function onPlayerReady(event){
 		sessionStorage.setItem("currently-playing", "");
@@ -715,6 +728,12 @@ if(isset($_GET["lang"])){
 		$.post("functions/get_room_state.php", {roomToken : roomToken}).done(function(data){
 			var states = JSON.parse(data);
 			window.roomState = states.room_active;
+
+			// Name of the room
+			console.log(states.room_name);
+			if($("#room-title").text() != states.room_name){
+				$("#room-title").text(states.room_name);
+			}
 
 			// Submission of videos
 			if(states.room_submission_rights == '0'){
