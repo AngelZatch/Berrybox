@@ -13,7 +13,7 @@ if(isset($_SESSION["username"])){
 	//... And if it doesn't match, we reload the page with the correct language.
 	if($currentLang != $lang){
 		if(isset($_GET["lang"])){
-			$base = substr_replace($_SERVER["REQUEST_URI"], $lang, -2);
+			$base = preg_replace("/\/([a-z]+)\/?/", "/".$lang."/", $_SERVER["REQUEST_URI"]);
 		} else {
 			$base = "en/".$_SERVER["REQUEST_URI"];
 		}
@@ -38,7 +38,7 @@ if(isset($_SESSION["username"])){
 		<a href="<?php echo $_GET["lang"];?>/home" class="navbar-brand">Berrybox beta</a>
 		<!--<form class="navbar-form navbar-left" role="search">
 <div class="form-group">
-<input type="text" class="form-control" name="search_terms" placeholder="Chercher une piste, un album, un artiste...">
+<input type="text" class="form-control" name="search_terms" placeholder="Search user, room...">
 </div>
 <button type="submit" class="btn btn-default">Rechercher</button>
 </form>-->
