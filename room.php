@@ -1008,135 +1008,139 @@ if(isset($_GET["lang"])){
 			for(var i = 0; i < messageList.length; i++){
 				var mTime = moment.utc(messageList[i].timestamp);
 				var messageTime = moment(mTime).local().format("HH:mm");
-				window.lastID = messageList[i].id;
-				if(messageList[i].scope == 6){
-					// Whispers
-					if(messageList[i].destinationToken == "<?php echo $_SESSION["token"];?>"){
-						var message = "<p class='whisper'>";
+				if(messageList[i].id != window.lastID){
+					window.lastID = messageList[i].id;
+					if(messageList[i].scope == 6){
+						// Whispers
+						if(messageList[i].destinationToken == "<?php echo $_SESSION["token"];?>"){
+							var message = "<p class='whisper'>";
+							message += "<span class='message-time'>"+messageTime+"</span> ";
+							message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].authorToken+"' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].authorColor+";'>";
+							message += messageList[i].author;
+							message += "</span></a>";
+							message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
+							message += messageList[i].content;
+							message += "</p>";
+						} else if(messageList[i].authorToken == "<?php echo $_SESSION["token"];?>"){
+							var message = "<p class='whisper'>";
+							message += "<span class='message-time'>"+messageTime+"</span> ";
+							message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
+							message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].destinationToken+"' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].destinationColor+";'>";
+							message += messageList[i].destination;
+							message += "</span></a> : ";
+							message += messageList[i].content;
+							message += "</p>";
+						} else {
+							var message = ""; // Clear message if whisper has nowhere to go
+						}
+					} else if(messageList[i].scope == 5){
+						// System messages viewable by only one user
+						if(messageList[i].destinationToken == "<?php echo $_SESSION["token"];?>"){
+							var message = "<p class='system-message system-alert'>";
+							message += "<span class='glyphicon glyphicon-exclamation-sign'></span> ";
+							message += messageList[i].content;
+							message += "</p>";
+						} else {
+							var message = ""; // Clear message
+						}
+					} else if(messageList[i].scope == 4){
+						// System messages viewable by everyone
+						var message = "<p class='system-message";
+						switch(messageList[i].subType){
+							case '1':
+								message += "'><span class='glyphicon glyphicon-info-sign'></span> ";
+								break;
+							case '2':
+								message += " sm-type-play'><span class='glyphicon glyphicon-play'></span> ";
+								break;
+							case '3':
+								message += " sm-type-skip'><span class='glyphicon glyphicon-step-forward'></span> ";
+								if(userPower != 2){
+									synchronize("<?php echo $roomToken;?>", userPower);
+								}
+								break;
+							case '4':
+								message += " sm-type-close'><span class='glyphicon glyphicon-remove-circle'></span> ";
+								break;
+							case '5':
+								message += " sm-type-ignore'><span class='glyphicon glyphicon-info-sign'></span> ";
+								break;
+							case '6':
+								message += " sm-type-reinstate'><span class='glyphicon glyphicon-info-sign'></span> ";
+								break;
+						}
+						message += messageList[i].content;
+						message += "</p>";
+					} else if(messageList[i].scope == 3){
+						// System messages viewable by the moderators
+						if(userPower == 2 || userPower == 3){
+							var message = "<p class='system-message'>";
+							message += "<span class='glyphicon glyphicon-exclamation-sign'></span> ";
+							message += messageList[i].content;
+							message += "</p>";
+						} else {
+							var message = ""; // Clear message
+						}
+					} else if(messageList[i].scope == 2){
+						// System messages viewable by the creator
+						if(userPower == 2){
+							var message = "<p class='system-message'>";
+							message += "<span class='glyphicon glyphicon-exclamation-sign'></span> ";
+							message += messageList[i].content;
+							message += "</p>";
+						} else {
+							var message = ""; // Clear message
+						}
+					} else if(messageList[i].scope == 1){
+						// Chat for everyone
+						var message = "<p class='standard-message'>";
 						message += "<span class='message-time'>"+messageTime+"</span> ";
+						if(messageList[i].status == 2){
+							// If author is creator
+							message += "<span class='glyphicon glyphicon-star' title='<?php echo $lang["room_admin"];?>'></span> ";
+						} else if(messageList[i].status == 3) {
+							// If author is a moderator
+							if((userPower == 2 || userPower == 3) && messageList[i].authorToken != "<?php echo $_SESSION["token"];?>"){
+								// If current user is a mod or an admin, he can timeout the mod
+								message += "<span class='glyphicon glyphicon-time moderation-option' title='<?php echo $lang["action_timeout"];?>' onClick=timeoutUser('"+messageList[i].authorToken+"')></span> ";
+								if(userPower == 2){
+									// Specific actions to the admin : ban & demote
+									message += "<span class='glyphicon glyphicon-fire moderation-option' title='<?php echo $lang["action_ban"];?>' onClick=banUser('"+messageList[i].authorToken+"')></span> ";
+									message += "<span class='glyphicon glyphicon-star-empty moderation-option-enabled' title='<?php echo $lang["action_demote"];?>' onClick=demoteUser('"+messageList[i].authorToken+"')></span> ";
+								}
+							}
+							else {
+								// If current user has no power here
+								message += "<span class='glyphicon glyphicon-star-empty' title='<?php echo $lang["room_mod"];?>'></span> ";
+							}
+						} else {
+							// If author is a standard user
+							if(userPower == 2 || userPower == 3){
+								// Mod & admin actions
+								message += "<span class='glyphicon glyphicon-time moderation-option' title='<?php echo $lang["action_timeout"];?>' onClick=timeoutUser('"+messageList[i].authorToken+"')></span> ";
+								message += "<span class='glyphicon glyphicon-fire moderation-option' title='<?php echo $lang["action_ban"];?>' onClick=banUser('"+messageList[i].authorToken+"')></span> ";
+								if(userPower == 2){
+									//Admin action
+									message += "<span class='glyphicon glyphicon-star-empty moderation-option' title='<?php echo $lang["action_promote"];?>' onClick=promoteUser('"+messageList[i].authorToken+"')></span> ";
+								}
+							}
+						}
 						message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].authorToken+"' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].authorColor+";'>";
 						message += messageList[i].author;
 						message += "</span></a>";
-						message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
-						message += messageList[i].content;
+						message += " : "+messageList[i].content+"<br/>";
 						message += "</p>";
-					} else if(messageList[i].authorToken == "<?php echo $_SESSION["token"];?>"){
-						var message = "<p class='whisper'>";
-						message += "<span class='message-time'>"+messageTime+"</span> ";
-						message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
-						message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].destinationToken+"' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].destinationColor+";'>";
-						message += messageList[i].destination;
-						message += "</span></a> : ";
-						message += messageList[i].content;
-						message += "</p>";
-					} else {
-						var message = ""; // Clear message if whisper has nowhere to go
 					}
-				} else if(messageList[i].scope == 5){
-					// System messages viewable by only one user
-					if(messageList[i].destinationToken == "<?php echo $_SESSION["token"];?>"){
-						var message = "<p class='system-message system-alert'>";
-						message += "<span class='glyphicon glyphicon-exclamation-sign'></span> ";
-						message += messageList[i].content;
-						message += "</p>";
-					} else {
-						var message = ""; // Clear message
-					}
-				} else if(messageList[i].scope == 4){
-					// System messages viewable by everyone
-					var message = "<p class='system-message";
-					switch(messageList[i].subType){
-						case '1':
-							message += "'><span class='glyphicon glyphicon-info-sign'></span> ";
-							break;
-						case '2':
-							message += " sm-type-play'><span class='glyphicon glyphicon-play'></span> ";
-							break;
-						case '3':
-							message += " sm-type-skip'><span class='glyphicon glyphicon-step-forward'></span> ";
-							if(userPower != 2){
-								synchronize("<?php echo $roomToken;?>", userPower);
-							}
-							break;
-						case '4':
-							message += " sm-type-close'><span class='glyphicon glyphicon-remove-circle'></span> ";
-							break;
-						case '5':
-							message += " sm-type-ignore'><span class='glyphicon glyphicon-info-sign'></span> ";
-							break;
-						case '6':
-							message += " sm-type-reinstate'><span class='glyphicon glyphicon-info-sign'></span> ";
-							break;
-					}
-					message += messageList[i].content;
-					message += "</p>";
-				} else if(messageList[i].scope == 3){
-					// System messages viewable by the moderators
-					if(userPower == 2 || userPower == 3){
-						var message = "<p class='system-message'>";
-						message += "<span class='glyphicon glyphicon-exclamation-sign'></span> ";
-						message += messageList[i].content;
-						message += "</p>";
-					} else {
-						var message = ""; // Clear message
-					}
-				} else if(messageList[i].scope == 2){
-					// System messages viewable by the creator
-					if(userPower == 2){
-						var message = "<p class='system-message'>";
-						message += "<span class='glyphicon glyphicon-exclamation-sign'></span> ";
-						message += messageList[i].content;
-						message += "</p>";
-					} else {
-						var message = ""; // Clear message
-					}
-				} else if(messageList[i].scope == 1){
-					// Chat for everyone
-					var message = "<p class='standard-message'>";
-					message += "<span class='message-time'>"+messageTime+"</span> ";
-					if(messageList[i].status == 2){
-						// If author is creator
-						message += "<span class='glyphicon glyphicon-star' title='<?php echo $lang["room_admin"];?>'></span> ";
-					} else if(messageList[i].status == 3) {
-						// If author is a moderator
-						if((userPower == 2 || userPower == 3) && messageList[i].authorToken != "<?php echo $_SESSION["token"];?>"){
-							// If current user is a mod or an admin, he can timeout the mod
-							message += "<span class='glyphicon glyphicon-time moderation-option' title='<?php echo $lang["action_timeout"];?>' onClick=timeoutUser('"+messageList[i].authorToken+"')></span> ";
-							if(userPower == 2){
-								// Specific actions to the admin : ban & demote
-								message += "<span class='glyphicon glyphicon-fire moderation-option' title='<?php echo $lang["action_ban"];?>' onClick=banUser('"+messageList[i].authorToken+"')></span> ";
-								message += "<span class='glyphicon glyphicon-star-empty moderation-option-enabled' title='<?php echo $lang["action_demote"];?>' onClick=demoteUser('"+messageList[i].authorToken+"')></span> ";
-							}
-						}
-						else {
-							// If current user has no power here
-							message += "<span class='glyphicon glyphicon-star-empty' title='<?php echo $lang["room_mod"];?>'></span> ";
-						}
-					} else {
-						// If author is a standard user
-						if(userPower == 2 || userPower == 3){
-							// Mod & admin actions
-							message += "<span class='glyphicon glyphicon-time moderation-option' title='<?php echo $lang["action_timeout"];?>' onClick=timeoutUser('"+messageList[i].authorToken+"')></span> ";
-							message += "<span class='glyphicon glyphicon-fire moderation-option' title='<?php echo $lang["action_ban"];?>' onClick=banUser('"+messageList[i].authorToken+"')></span> ";
-							if(userPower == 2){
-								//Admin action
-								message += "<span class='glyphicon glyphicon-star-empty moderation-option' title='<?php echo $lang["action_promote"];?>' onClick=promoteUser('"+messageList[i].authorToken+"')></span> ";
-							}
-						}
-					}
-					message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].authorToken+"' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].authorColor+";'>";
-					message += messageList[i].author;
-					message += "</span></a>";
-					message += " : "+messageList[i].content+"<br/>";
-					message += "</p>";
+					$("#body-chat").append(message);
+				} else {
+					console.log("Double fetch. Denied");
 				}
-				$("#body-chat").append(message);
+				if(!window.chatHovered){
+					$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
+				}
 			}
 		})
-		if(!window.chatHovered){
-			$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
-		}
-		// Once the function has done everything, it fires at timeout to restart the whole process in 2 seconds
+		// Once the function has done everything, it fires a timeout to restart the whole process in 2 seconds
 		setTimeout(loadChat, 2000, roomToken, userPower);
 	}
 	function timeoutUser(userToken){
