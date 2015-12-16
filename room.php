@@ -117,10 +117,13 @@ if(isset($_GET["lang"])){
 					<?php
 					if(isset($_SESSION["token"])){
 						if($_SESSION["token"] != $roomDetails["room_creator"]){?>
-					<button class="btn btn-default btn-admin sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync-on"];?></button>
+					<div class="room-buttons col-lg-2">
+						<button class="btn btn-default btn-admin sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync-on"];?></button>
+					</div>
 					<?php } else { ?>
-					<button class="btn btn-default btn-admin" onClick="getNext(true)"><span class="glyphicon glyphicon-step-forward"></span> <?php echo $lang["skip"];?></button>
-					<!--<div class="btn-group" id="dropdown-room-type">
+					<div class="room-buttons col-lg-2">
+						<button class="btn btn-default btn-admin" onClick="getNext(true)"><span class="glyphicon glyphicon-step-forward"></span> <?php echo $lang["skip"];?></button>
+						<!--<div class="btn-group" id="dropdown-room-type">
 <button class="btn btn-default btn-admin dropdown-toggle" id="room-type" data-toggle="dropdown">
 <?php switch($roomDetails["room_protection"] == 1){
 							case 1:?>
@@ -141,10 +144,14 @@ if(isset($_GET["lang"])){
 <li><a class="dropdown-link"><?php echo $lang["level_private"];?></a></li>
 </ul>
 </div>-->
+					</div>
 					<?php }
 					}?>
-					<!--<div class="creator-stats" style="margin-left:40px;"><span class="glyphicon glyphicon-heart"></span> <?php echo $creatorStats["stat_followers"];?></div>-->
-					<div class="creator-stats"><span class="glyphicon glyphicon-eye-open" title="<?php echo $lang["total_views"];?>"></span> <?php echo $creatorStats["stat_visitors"];?></div>
+					<div class="room-quick-messages col-lg-8"></div>
+					<div class="creator-stats col-lg-2">
+						<span class="glyphicon glyphicon-eye-open" title="<?php echo $lang["total_views"];?>"></span> <?php echo $creatorStats["stat_visitors"];?>
+						<!--<span class="glyphicon glyphicon-heart"></span> <?php echo $creatorStats["stat_followers"];?>-->
+					</div>
 				</div>
 			</div>
 			<div id="currently-playing">
@@ -709,7 +716,7 @@ if(isset($_GET["lang"])){
 			});
 		} else {
 			synchronize("<?php echo $roomToken;?>", userPower);
-			$("#body-chat").append("<p class='system-message'><span class='glyphicon glyphicon-refresh'></span> <?php echo $lang["synchronizing"];?></p>");
+			$(".room-quick-messages").append("<div class='system-message' id='message-synchro'><span class='glyphicon glyphicon-refresh'></span> <?php echo $lang["synchronizing"];?></div>");
 		}
 	}
 	function userState(roomToken, userToken){
@@ -787,6 +794,7 @@ if(isset($_GET["lang"])){
 		} else {
 			player.loadVideoById(id);
 		}
+		$("#message-synchro").remove();
 		sessionStorage.setItem("currently-playing", id);
 		$(".currently-name").empty();
 		$(".currently-name").html(title);

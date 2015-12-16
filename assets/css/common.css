@@ -130,8 +130,8 @@
 
 /* line 104, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .creator-stats {
-  float: right;
-  font-size: 16px; }
+  font-size: 16px;
+  text-align: right; }
 
 /** Chat **/
 /* line 109, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
@@ -248,5 +248,10 @@ nav li > a:hover, nav li > a:focus {
 #profile-title {
   font-size: 30px;
   margin: 0; }
+
+/* line 200, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.room-quick-messages {
+  text-align: center;
+  padding-top: 5px; }
 
 /*# sourceMappingURL=common.css.map */
