@@ -20,21 +20,23 @@ if($userPower == 2){
 					WHERE room_history_id = '$playedID[room_history_id]'");
 
 	// Check if next is a video to ignore (video_status to 3)
-	try{
+	$nextIgnored = true;
+	$i = 0;
+	while($nextIgnored){
+		$i++;
 		$nextVideoState = $db->query("SELECT video_status, room_history_id
 									FROM roomHistory_$roomToken
-									WHERE room_history_id = '$playedID[room_history_id]' +1")->fetch(PDO::FETCH_ASSOC);
+									WHERE room_history_id = '$playedID[room_history_id]' +$i")->fetch(PDO::FETCH_ASSOC);
 
 		if($nextVideoState["video_status"] == '3'){
 			// If it is, the video is indicated as played.
 			$confirmIgnore = $db->query("UPDATE roomHistory_$roomToken
 										SET video_status = '2'
 										WHERE room_history_id = '$nextVideoState[room_history_id]'");
+		} else {
+			$nextIgnored = false;
 		}
-	} catch (PDOException $e){
-		echo $e->getMessage();
 	}
-
 }
 
 // Get next video

@@ -64,7 +64,12 @@ if(isset($_SESSION["token"])){
 						</div>
 					</div>
 					<?php } ?>
+					<?php if(!isset($_SESSION["token"])) { ?>
+					<a href="<?php echo $_GET["lang"];?>/signup" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
+					<?php } else { ?>
 					<a href="<?php echo $_GET["lang"];?>/create" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
+					<?php } ?>
+
 				</div>
 			</div>
 			<div class="col-lg-12 social-space">
