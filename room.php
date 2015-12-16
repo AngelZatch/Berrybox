@@ -375,12 +375,15 @@ if(isset($_GET["lang"])){
 			}
 			// Watch the state of the user and of the room (refresh every 10s)
 			setTimeout(userState, 10000, roomToken, userToken);
+			// Keep PHP session alive (every 30 mins)
+			setInterval(function(){$.post("functions/refresh_session.php");},1800000);
 		})
 		// Get the number of people in the room (refresh every 30s)
 		getWatchCount(roomToken);
 		setInterval(getWatchCount, 30000, roomToken);
 		$(window).on('beforeunload', function(event){
 			var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
+			sessionStorage.removeItem("currently-playing");
 			$.post("functions/leave_room.php", {roomToken : "<?php echo $roomToken;?>", userToken : userToken});
 		})
 		$(":regex(name,toggle-autoplay)").bootstrapSwitch({
@@ -817,8 +820,10 @@ if(isset($_GET["lang"])){
 					if(previousSongState != songList[i].videoStatus){
 						switch(songList[i].videoStatus){
 							case '0':
-								var messageRank = "<p class='list-rank'><?php echo $lang["sl_upcoming"];?></p>";
-								$("#body-song-list").append(messageRank);
+								if(previousSongState != 3){
+									var messageRank = "<p class='list-rank'><?php echo $lang["sl_upcoming"];?></p>";
+									$("#body-song-list").append(messageRank);
+								}
 								break;
 							case '1':
 								message += "<p class='list-rank'><?php echo $lang["now_playing"];?></p>";
