@@ -729,7 +729,7 @@ if(isset($_GET["lang"])){
 			} else {
 				$("#body-chat").append("<p class='system-message system-alert'><?php echo $lang["room_closing"];?></p>");
 				setTimeout(function(){
-					window.location.replace("home.php?lang=<?php echo $_GET["lang"];?>");
+					window.location.replace("<?php echo $_GET["lang"];?>/home");
 				}, 3000);
 			}
 		})

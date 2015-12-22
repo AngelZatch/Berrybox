@@ -117,10 +117,14 @@ $lang["my_profile"] = "Mon profil";
 $lang["public_profile"] = "Profil publique";
 $lang["leave"] = "Quitter le salon";
 $lang["warning_sync_admin"] = "Attention ! La synchronisation du salon est basée sur vous. Si vous quittez le salon, la synchro va s'arrêter pour tout le monde.";
+$lang["room_reopen"] = "Réouvrir le salon.";
+$lang["room_delete"] = "Supprimer définitivement.";
 
 /** PROFILE **/
 $lang["profile_settings"] = "Paramètres du profil";
 $lang["profile_settings_tip"] = "Changez votre nom, votre biographie et votre image de profil";
+$lang["profile_history"] = "Historique";
+$lang["profile_history_tip"] = "Un salon fermé restera affiché sur cette page jusqu'au prochain Dimanche à 1 heure du matin.";
 $lang["display_name"] = "Nom affiché";
 $lang["display_name_tip"] = "Personnalisez votre nom affiché.";
 $lang["profile_picture"] = "Image de profil";

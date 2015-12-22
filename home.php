@@ -100,7 +100,7 @@ if(isset($_SESSION["token"])){
 							var roomToken = $(this).attr('id').substr(9);
 							$.post("functions/submit_password.php", {password : password, roomToken : roomToken}).success(function(data){
 								if(data == 1){
-									window.location.replace("room.php?id="+roomToken+"&lang=<?php echo $_GET["lang"];?>");
+									window.location.replace("<?php echo $_GET["lang"];?>/room/"+roomToken);
 								} else {
 									$("#password-"+roomToken).val('');
 									$("#password-"+roomToken).prev().show();

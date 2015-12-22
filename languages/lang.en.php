@@ -115,10 +115,14 @@ $lang["my_profile"] = "My profile";
 $lang["public_profile"] = "Public profile";
 $lang["leave"] = "Leave the room";
 $lang["warning_sync_admin"] = "Warning! The synchronization is based on you, the creator of the room. If you leave, the sync will stop.";
+$lang["room_reopen"] = "Reopen and join";
+$lang["room_delete"] = "Delete the room";
 
 /** PROFILE **/
 $lang["profile_settings"] = "Settings";
 $lang["profile_settings_tip"] = "Update your display name, your bio and your profile picture";
+$lang["profile_history"] = "History";
+$lang["profile_history_tip"] = "Any of your closed rooms will stay reachable until next Sunday 1am.";
 $lang["display_name"] = "Display name";
 $lang["display_name_tip"] = "Customize your display name.";
 $lang["profile_picture"] = "Profile picture";
