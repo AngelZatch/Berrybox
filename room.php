@@ -25,7 +25,9 @@ if(isset($_SESSION["token"])){
 } else {
 	include "functions/tools.php";
 	if(isset($_POST["login"])){
-		session_start();
+		if(!isset($_SESSION)){
+			session_start();
+		}
 
 		$username = $_POST["username"];
 		$password = $_POST["login_pwd"];
