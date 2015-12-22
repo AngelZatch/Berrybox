@@ -742,9 +742,11 @@ if(isset($_GET["lang"])){
 			window.roomState = states.room_active;
 
 			// Name of the room
-			console.log(states.room_name);
 			if($("#room-title").text() != states.room_name){
 				$("#room-title").text(states.room_name);
+			}
+			if(document.title != states.room_name){
+				document.title = states.room_name+" | <?php echo $roomDetails["user_pseudo"];?> | Berrybox";
 			}
 
 			// Submission of videos
