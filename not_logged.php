@@ -30,6 +30,8 @@ if(!isset($_GET["lang"])){
 <script>
 	$(document).ready(function(){
 		var compare;
+		$(":regex(name,signup)").addClass("disabled");
+		$(":regex(name,signup)").attr("disabled", "disabled");
 		$(":regex(name,username)").on('keyup blur', function(){
 			var box = $(this);
 			var elementId = "#username-form-group";
