@@ -1,35 +1,43 @@
-/* line 5, C:/xampp/htdocs/Berrybox/assets/dark-theme.sass */
+/* line 5, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 body {
   background-color: #101010;
   color: white; }
 
-/* line 9, C:/xampp/htdocs/Berrybox/assets/dark-theme.sass */
+/* line 9, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .navbar {
   background-color: #292929; }
 
-/* line 12, C:/xampp/htdocs/Berrybox/assets/dark-theme.sass */
+/* line 12, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .panel {
   background-color: #191206; }
 
-/* line 15, C:/xampp/htdocs/Berrybox/assets/dark-theme.sass */
+/* line 15, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .chat-options {
   color: #cf9930; }
 
-/* line 18, C:/xampp/htdocs/Berrybox/assets/dark-theme.sass */
+/* line 18, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .button-glyph:hover {
   color: #ddb86e; }
 
-/* line 21, C:/xampp/htdocs/Berrybox/assets/dark-theme.sass */
+/* line 21, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .song-played > div > p > a {
   color: #533d13; }
 
-/* line 24, C:/xampp/htdocs/Berrybox/assets/dark-theme.sass */
+/* line 24, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .moderation-option:hover {
   color: #a2a2a2; }
 
-/* line 27, C:/xampp/htdocs/Berrybox/assets/dark-theme.sass */
+/* line 27, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .moderation-option-enabled {
   color: #bbbbbb;
   cursor: pointer; }
+
+/* line 31, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.menu-popover {
+  background-color: #434343; }
+
+/* line 34, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.menu-popover > .popover-footer {
+  background-color: #5d5d5d; }
 
 /*# sourceMappingURL=dark-theme.css.map */

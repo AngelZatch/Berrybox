@@ -112,11 +112,13 @@ $lang["twitter"] = "Twitter";
 /** MENU **/
 $lang["menu"] = "Main menu";
 $lang["my_profile"] = "My profile";
-$lang["public_profile"] = "Public profile";
+$lang["public_profile"] = "My stats";
 $lang["leave"] = "Leave the room";
 $lang["warning_sync_admin"] = "Warning! The synchronization is based on you, the creator of the room. If you leave, the sync will stop.";
 $lang["room_reopen"] = "Reopen and join";
 $lang["room_delete"] = "Delete the room";
+$lang["status_open"] = "Open";
+$lang["status_closed"] = "Closed";
 
 /** PROFILE **/
 $lang["profile_settings"] = "Settings";

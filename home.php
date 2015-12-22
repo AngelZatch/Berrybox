@@ -34,7 +34,7 @@ if(isset($_SESSION["token"])){
 	</head>
 	<body>
 		<?php include "nav.php";?>
-		<div class="main row">
+		<div class="main">
 			<?php if(!isset($_SESSION["token"])) { ?>
 			<div class="container">
 				<div class="jumbotron">
@@ -44,39 +44,38 @@ if(isset($_SESSION["token"])){
 				</div>
 			</div>
 			<?php } ?>
-			<div id="large-block">
-				<p id="active-rooms-title"><?php echo $lang["active_room"];?></p>
-				<div class="container-fluid">
-					<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
-					<div class="panel panel-active-room">
-						<div class="panel-body">
-							<p class="col-lg-3"><?php echo $activeRooms["room_name"];?></p>
-							<p class="col-lg-3"><a href="<?php echo $_GET["lang"];?>/user/<?php echo $activeRooms["user_token"];?>"><?php echo $activeRooms["user_pseudo"];?></a></p>
-							<div class="col-lg-6">
-								<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
-								<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>
-								<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
-								<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
-								<?php } else { ?>
-								<a href="<?php echo $_GET["lang"];?>/room/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
-								<?php } ?>
-							</div>
+
+			<p id="active-rooms-title"><?php echo $lang["active_room"];?></p>
+			<div class="container-fluid">
+				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
+				<div class="panel panel-active-room">
+					<div class="panel-body">
+						<p class="col-lg-3"><?php echo $activeRooms["room_name"];?></p>
+						<p class="col-lg-3"><a href="<?php echo $_GET["lang"];?>/user/<?php echo $activeRooms["user_token"];?>"><?php echo $activeRooms["user_pseudo"];?></a></p>
+						<div class="col-lg-6">
+							<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
+							<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>
+							<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
+							<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
+							<?php } else { ?>
+							<a href="<?php echo $_GET["lang"];?>/room/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+							<?php } ?>
 						</div>
 					</div>
-					<?php } ?>
-					<?php if(!isset($_SESSION["token"])) { ?>
-					<a href="<?php echo $_GET["lang"];?>/signup" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
-					<?php } else { ?>
-					<a href="<?php echo $_GET["lang"];?>/create" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
-					<?php } ?>
+				</div>
+				<?php } ?>
+				<?php if(!isset($_SESSION["token"])) { ?>
+				<a href="<?php echo $_GET["lang"];?>/signup" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
+				<?php } else { ?>
+				<a href="<?php echo $_GET["lang"];?>/create" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
+				<?php } ?>
 
-				</div>
 			</div>
-			<div class="col-lg-12 social-space">
-				<div class="col-lg-6 col-lg-offset-3">
-					<p><?php echo $lang["follow_us"];?></p>
-					<a href="http://twitter.com/AngelZatch" target="_blank" class="btn btn-primary btn-style-default"><?php echo $lang["twitter"];?></a>
-				</div>
+		</div>
+		<div class="col-lg-12 social-space">
+			<div class="col-lg-6 col-lg-offset-3">
+				<p><?php echo $lang["follow_us"];?></p>
+				<a href="http://twitter.com/AngelZatch" target="_blank" class="btn btn-primary btn-style-default"><?php echo $lang["twitter"];?></a>
 			</div>
 		</div>
 		<?php include "scripts.php";?>

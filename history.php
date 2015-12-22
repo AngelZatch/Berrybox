@@ -56,14 +56,14 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 						<p class="col-lg-3"><?php echo $historyRooms["room_name"];?></p>
 						<?php if($historyRooms["room_active"] == '1'){ ?>
 						<p class="col-lg-3 label-status">
-							<span class="label label-success"><span class="glyphicon glyphicon-signal"></span> Open</span>
+							<span class="label label-success"><span class="glyphicon glyphicon-signal"></span> <?php echo $lang["status_open"];?></span>
 						</p>
 						<div class="col-lg-6">
 							<a href="<?php echo $_GET["lang"];?>/room/<?php echo $historyRooms["room_token"];?>" class="btn btn-primary"><?php echo $lang["room_join"];?></a>
 						</div>
 						<?php } else { ?>
 						<p class="col-lg-3 label-status">
-							<span class="label label-danger"><span class="glyphicon glyphicon-off"></span> Closed</span>
+							<span class="label label-danger"><span class="glyphicon glyphicon-off"></span> <?php echo $lang["status_closed"];?></span>
 						</p>
 						<div class="col-lg-6">
 							<a class="btn btn-primary" onClick="openRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_reopen"];?></a>
