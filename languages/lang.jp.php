@@ -115,10 +115,14 @@ $lang["my_profile"] = "プロファイル";
 $lang["public_profile"] = "パブリックプロファイル";
 $lang["leave"] = "ルームを出ます";
 $lang["warning_sync_admin"] = "注意！　シンクはあなたに基づいています。あなたはルームを出るとき、シンクが停止します。";
+$lang["room_reopen"] = "再び開きます";
+$lang["room_delete"] = "ルームを削除します";
 
 /** PROFILE **/
 $lang["profile_settings"] = "プロファイル設定";
 $lang["profile_settings_tip"] = "ディスプレイ名、バイオとプロファイル画像をアップデートする。";
+$lang["profile_history"] = "歴史";
+$lang["profile_history_tip"] = "あなたの閉めたルーム。このルームが次の日曜日の午前１時００まで残りされます。";
 $lang["display_name"] = "ディスプレイ名";
 $lang["display_name_tip"] = "ディスプレイ名をカスタマイズします";
 $lang["profile_picture"] = "プロファイル画像";

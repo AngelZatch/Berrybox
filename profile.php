@@ -81,9 +81,13 @@ if(isset($_POST["submit"])){
 	<body>
 		<?php include "nav.php";?>
 		<div class="main col-lg-12">
-			<div class="col-sm-offset-2 page-title">
+			<div class="col-sm-offset-2 col-sm-8 page-title">
 				<p id="profile-title"><?php echo $lang["profile_settings"];?></p>
 				<span class="tip"><?php echo $lang["profile_settings_tip"];?></span>
+				<ul class="nav nav-tabs" id="profile-menu">
+					<li role="presentation" class="active"><a href="<?php echo $_SESSION["lang"];?>/profile/<?php echo $_SESSION["token"];?>"><?php echo $lang["profile_settings"];?></a></li>
+					<li role="presentation"><a href="<?php echo $_SESSION["lang"];?>/history/<?php echo $_SESSION["token"];?>"><?php echo $lang["profile_history"];?></a></li>
+				</ul>
 			</div>
 			<form action="<?php echo $_SESSION["lang"];?>/profile/<?php echo $userToken;?>" class="form-horizontal" method="post" enctype="multipart/form-data">
 				<div class="form-group">

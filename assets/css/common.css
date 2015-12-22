@@ -242,7 +242,7 @@ nav li > a:hover, nav li > a:focus {
 
 /* line 193, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .page-title {
-  margin-bottom: 20px; }
+  margin-bottom: 50px; }
 
 /* line 196, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 #profile-title {
@@ -250,8 +250,16 @@ nav li > a:hover, nav li > a:focus {
   margin: 0; }
 
 /* line 200, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+#profile-menu {
+  margin-top: 20px; }
+
+/* line 203, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-quick-messages {
   text-align: center;
   padding-top: 5px; }
+
+/* line 207, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.label-status {
+  font-size: 20px; }
 
 /*# sourceMappingURL=common.css.map */
