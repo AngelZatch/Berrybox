@@ -11,7 +11,21 @@ $(document).ready(function(){
 			regex = new RegExp(matchParams.join('').replace(/^s+|s+$/g,''), regexFlags);
 		return regex.test(jQuery(elem)[attr.method](attr.property));
 	}
+	menuPopover = false;
+}).on('click', function(e){ // Simulate closure of popover
+	if(menuPopover == true){
+		$(".popover-trigger").click();
+		menuPopover = false;
+	}
+}).on('click', '.popover-trigger', function(e){ // Preventing previous event if user clicks on the trigger to actually show the popover
+	e.stopPropagation();
+	if(menuPopover == true){
+		menuPopover = false;
+	} else {
+		menuPopover = true;
+	}
 })
+
 function removeFeedback(elementId){
 	$(elementId).removeClass("has-error");
 	$(elementId).removeClass("has-success");

@@ -112,11 +112,13 @@ $lang["twitter"] = "ツイッター";
 /** MENU **/
 $lang["menu"] = "メインメニュー";
 $lang["my_profile"] = "プロファイル";
-$lang["public_profile"] = "パブリックプロファイル";
+$lang["public_profile"] = "パラメータ";
 $lang["leave"] = "ルームを出ます";
 $lang["warning_sync_admin"] = "注意！　シンクはあなたに基づいています。あなたはルームを出るとき、シンクが停止します。";
 $lang["room_reopen"] = "再び開きます";
 $lang["room_delete"] = "ルームを削除します";
+$lang["status_open"] = "開店";
+$lang["status_closed"] = "閉店";
 
 /** PROFILE **/
 $lang["profile_settings"] = "プロファイル設定";

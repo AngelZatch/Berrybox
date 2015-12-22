@@ -11,3 +11,4 @@ assets/css/*.css.map
 ## Beta code
 generate_keys.php
 functions/db_connect.php
+test.php

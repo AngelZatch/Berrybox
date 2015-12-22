@@ -47,17 +47,26 @@ if(isset($_SESSION["username"])){
 			<li>
 				<a href="<?php echo $_GET["lang"];?>/create" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
 			</li>
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle dropdown-profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			<li>
+				<a class="popover-trigger" data-toggle="popover-x" data-target="#user-menu" role="button" data-trigger="focus" data-placement="bottom bottom-right">
 					<div class="small-pp">
 						<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit;">
 					</div>
 				</a>
-				<ul class="dropdown-menu">
-					<li><a href="<?php echo $_GET["lang"];?>/profile/<?php echo $_SESSION["token"];?>"><?php echo $lang["my_profile"];?></a></li>
-					<li><a href="<?php echo $_GET["lang"];?>/user/<?php echo $_SESSION["token"];?>"><?php echo $lang["public_profile"];?></a></li>
-					<li><a href="logout.php"><?php echo $lang["log_out"];?></a></li>
-				</ul>
+				<div id="user-menu" class="popover popover-default popover-md menu-popover">
+					<div class="arrow"></div>
+					<div class="popover-content">
+						<div class="medium-pp">
+							<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit;">
+						</div>
+						<p class="user-menu-name">AngelZatch</p>
+						<a href="<?php echo $_GET["lang"];?>/profile/<?php echo $_SESSION["token"];?>" class="btn btn-primary no-margin"><?php echo $lang["my_profile"];?></a>
+						<a href="<?php echo $_GET["lang"];?>/user/<?php echo $_SESSION["token"];?>" class="btn btn-primary no-margin"><?php echo $lang["public_profile"];?></a>
+					</div>
+					<div class="popover-footer">
+						<a href="logout.php" class="btn btn-primary no-margin"><?php echo $lang["log_out"];?></a>
+					</div>
+				</div>
 			</li>
 			<?php } else { ?>
 			<li><a href="<?php echo $_GET["lang"];?>/portal" class="navbar-link"><?php echo $lang["log_in"];?></a></li>

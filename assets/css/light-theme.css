@@ -7,45 +7,62 @@ body {
 .navbar {
   background-color: #f2f2f2; }
 
-/* line 13, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 15, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.nav-tabs li.active a {
+  background-color: #f2f2f2;
+  color: black !important; }
+
+/* line 18, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.nav-tabs li.active :hover {
+  background-color: #e6e6e6 !important; }
+
+/* line 21, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .panel {
   background-color: #f2f2f2; }
 
-/* line 16, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 24, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .btn-primary {
   color: #cf9930; }
 
-/* line 19, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 27, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .btn-primary.disabled {
   color: white; }
 
-/* line 22, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 30, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .form-control {
   color: black; }
 
-/* line 25, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 33, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .chat-options {
   color: #cf9930; }
 
-/* line 28, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 36, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .button-glyph:hover {
   color: #916b22; }
 
-/* line 31, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 39, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .standard-message {
   color: #333333; }
 
-/* line 34, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 42, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .song-played > div > p > a {
   color: #e7cc98; }
 
-/* line 37, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 45, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .moderation-option:hover {
   color: #090909; }
 
-/* line 40, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 48, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .moderation-option-enabled {
   cursor: pointer;
   color: black !important; }
+
+/* line 52, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.menu-popover {
+  background-color: #ededed; }
+
+/* line 55, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.menu-popover > .popover-footer {
+  background-color: whitesmoke; }
 
 /*# sourceMappingURL=light-theme.css.map */

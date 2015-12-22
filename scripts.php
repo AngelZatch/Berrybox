@@ -5,4 +5,5 @@
 <script src="assets/js/bootstrap-switch.min.js"></script>
 <script src="assets/js/moment.js"></script>
 <script src="assets/js/moment-timezone.js"></script>
+<script src="assets/js/bootstrap-popover-x.min.js"></script>
 <script src="assets/js/tools.js"></script>
