@@ -71,34 +71,33 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 							<a href="<?php echo $_GET["lang"];?>/room/<?php echo $historyRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 						</div>
 						<?php } else { ?>
-						<p class="col-lg-3 label-status">
+						<p class="col-lg-1 label-status">
 							<span class="label label-danger"><span class="glyphicon glyphicon-off"></span> <?php echo $lang["status_closed"];?></span>
 						</p>
+						<div class="col-lg-5">
+							<a class="btn btn-primary" onClick="openRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_reopen"];?></a>
+							<a class="btn btn-danger" onClick="deleteRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_delete"];?></a>
+						</div>
+						<?php } ?>
 					</div>
-					<div class="col-lg-6">
-						<a class="btn btn-primary" onClick="openRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_reopen"];?></a>
-						<a class="btn btn-danger" onClick="deleteRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_delete"];?></a>
-					</div>
-					<?php } ?>
 				</div>
+				<?php } ?>
 			</div>
-			<?php } ?>
-		</div>
-		<?php include "scripts.php";?>
-		<script src="assets/js/fileinput.min.js"></script>
-		<script>
-			function openRoom(roomToken){
-				$.post("functions/reopen_room.php", {roomToken : roomToken}).done(function(data){
-					window.location.replace("<?php echo $_GET["lang"];?>/room/"+roomToken);
-				})
-			}
-			function deleteRoom(roomToken){
-				var panel = $("#panel-room-"+roomToken);
-				console.log(panel);
-				$.post("functions/delete_room.php", {roomToken : roomToken}).done(function(data){
-					panel.hide("500", function(){ panel.remove(); });
-				})
-			}
-		</script>
-	</body>
-</html>
+			<?php include "scripts.php";?>
+			<script src="assets/js/fileinput.min.js"></script>
+			<script>
+				function openRoom(roomToken){
+					$.post("functions/reopen_room.php", {roomToken : roomToken}).done(function(data){
+						window.location.replace("<?php echo $_GET["lang"];?>/room/"+roomToken);
+					})
+				}
+				function deleteRoom(roomToken){
+					var panel = $("#panel-room-"+roomToken);
+					console.log(panel);
+					$.post("functions/delete_room.php", {roomToken : roomToken}).done(function(data){
+						panel.hide("500", function(){ panel.remove(); });
+					})
+				}
+			</script>
+			</body>
+		</html>
