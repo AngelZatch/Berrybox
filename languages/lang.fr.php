@@ -146,6 +146,8 @@ $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";
 $lang["rooms_created"] = "Nombre de salon ouverts";
 $lang["songs_submitted"] = "Nombre de chansons validées";
 $lang["total_views"] = "Nombre total de spectateurs";
+$lang["opened_rooms"] = "Salons actuellement ouverts";
+$lang["no_opened_rooms"] = "Aucun salon";
 
 /** BETA **/
 $lang["beta_key"] = "Entrez votre clé beta ci-dessous pour avoir accès à l'application";

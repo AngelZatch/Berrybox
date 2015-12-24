@@ -21,6 +21,9 @@ $profileDetails = $db->query("SELECT * FROM user u
 							JOIN user_stats us ON u.user_token = us.user_token
 							WHERE u.user_token='$profileToken'")->fetch(PDO::FETCH_ASSOC);
 
+$queryactiveRooms = $db->query("SELECT * FROM rooms r
+							WHERE r.room_creator = '$profileToken' AND room_active = '1' AND room_protection != '3'");
+
 ?>
 <html>
 	<head>
@@ -61,8 +64,61 @@ $profileDetails = $db->query("SELECT * FROM user u
 					<p class="stats-value"><?php echo $profileDetails["stat_visitors"];?></p>
 				</div>
 			</div>
+			<div class="user-rooms">
+				<p id="profile-title"><?php echo $lang["opened_rooms"];?></p>
+				<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
+				<div class="panel panel-active-room">
+					<div class="panel-body">
+						<p class="col-lg-3"><?php echo $activeRooms["room_name"];?></p>
+						<p class="col-lg-3"><a href="<?php echo $_GET["lang"];?>/user/<?php echo $profileToken;?>"><?php echo $profileDetails["user_pseudo"];?></a></p>
+						<div class="col-lg-6">
+							<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
+							<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>
+							<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
+							<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
+							<?php } else { ?>
+							<a href="<?php echo $_GET["lang"];?>/room/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+							<?php } ?>
+						</div>
+					</div>
+				</div>
+				<?php } ?>
+			</div>
 		</div>
 		<?php include "scripts.php";?>
-		<script src="assets/js/fileinput.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				$(".password-protected").click(function(){
+					var joinButton = $(this);
+					joinButton.hide('200');
+					var passwordInput = $(this).prev();
+					passwordInput.show('200');
+					passwordInput.focus();
+				})
+				$('.password-input').on('focus',function(){
+					$(this).keyup(function(event){
+						if(event.keyCode == 27){
+							$(this).hide('200');
+							$(this).next().show('200');
+						}
+						if(event.keyCode == 13){
+							var password = $(this).val();
+							var roomToken = $(this).attr('id').substr(9);
+							$.post("functions/submit_password.php", {password : password, roomToken : roomToken}).success(function(data){
+								if(data == 1){
+									window.location.replace("<?php echo $_GET["lang"];?>/room/"+roomToken);
+								} else {
+									$("#password-"+roomToken).val('');
+									$("#password-"+roomToken).prev().show();
+								}
+							})
+						}
+					})
+				}).on('blur', function(){
+					$(this).hide('200');
+					$(this).next().show('200');
+				})
+			})
+		</script>
 	</body>
 </html>

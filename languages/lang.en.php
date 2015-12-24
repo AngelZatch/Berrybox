@@ -144,6 +144,8 @@ $lang["no_bio"] = "This user doesn't have any bio";
 $lang["rooms_created"] = "Number of opened rooms";
 $lang["songs_submitted"] = "Number of played songs";
 $lang["total_views"] = "Total number of spectators";
+$lang["opened_rooms"] = "Current opened rooms of this user";
+$lang["no_opened_rooms"] = "None";
 
 /** BETA **/
 $lang["beta_key"] = "To have access to the application, please enter your beta key here!";

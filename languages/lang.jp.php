@@ -144,6 +144,8 @@ $lang["no_bio"] = "このユーザーはバイオがない。";
 $lang["rooms_created"] = "始まったルームの数";
 $lang["songs_submitted"] = "プレイした曲の数";
 $lang["total_views"] = "視聴者数";
+$lang["opened_rooms"] = "ライブ中のルーム";
+$lang["no_opened_rooms"] = "空";
 
 /** BETA **/
 $lang["beta_key"] = "アプリにアクセスするには、下記のベータキーを入力してください。";
