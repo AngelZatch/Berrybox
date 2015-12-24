@@ -20,6 +20,8 @@ $lang["level_public"] = "パブリック";
 $lang["private_tip"] = "このルームが目に見えませんになる。";
 $lang["locked_tip"] = "このルームには、パスワードによるアクセスを持っている。";
 $lang["public_tip"] = "誰もこのルームに入ることができるようになる。";
+$lang["room_type"] = "ルームタイプ";
+$lang["description_limit"] = "説明 〔300文字以下〕";
 $lang["action_timeout"] = "このユーザーをミュートする。";
 $lang["action_ban"] = "このルームからこのユーザーを禁止する。";
 $lang["action_promote"] = "モデレーターにこのユーザーを促進する。";
@@ -85,6 +87,12 @@ $lang["sl_upcoming"] = "次";
 $lang["synchronizing"] = "シンク中…　しばらくお待ちください。";
 $lang["no_admin"] = "注意！このルームのクリエイターがいりません。シンクは不可能です。ビデオをシェアーするために、新しいルームを始めて下さい。";
 
+/** ROOM TYPES **/
+$lang["rt_music"] = "音楽";
+$lang["rt_science"] = "科学";
+$lang["rt_lol"] = "喜劇";
+$lang["rt_misc"] = "雑多";
+
 /** BUTTONS **/
 $lang["back"] = "戻る";
 
@@ -144,6 +152,8 @@ $lang["no_bio"] = "このユーザーはバイオがない。";
 $lang["rooms_created"] = "始まったルームの数";
 $lang["songs_submitted"] = "プレイした曲の数";
 $lang["total_views"] = "視聴者数";
+$lang["opened_rooms"] = "ライブ中のルーム";
+$lang["no_opened_rooms"] = "空";
 
 /** BETA **/
 $lang["beta_key"] = "アプリにアクセスするには、下記のベータキーを入力してください。";

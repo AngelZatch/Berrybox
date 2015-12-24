@@ -20,6 +20,8 @@ $lang["level_public"] = "Public";
 $lang["private_tip"] = "Ce salon ne sera pas visible par les autres utilisateurs";
 $lang["locked_tip"] = "L'accès à ce salon nécessitera un mot de password";
 $lang["public_tip"] = "Ce salon sera accessible à tout le monde";
+$lang["room_type"] = "Type de salon";
+$lang["description_limit"] = "Description (300 symboles max.)";
 $lang["action_timeout"] = "Mettre cet utilisateur en sourdine";
 $lang["action_ban"] = "Bannir cet utilisateur indéfiniment";
 $lang["action_promote"] = "Promouvoir cet utilisateur au rang de modérateur";
@@ -87,6 +89,12 @@ $lang["sl_upcoming"] = "Vidéos à venir";
 $lang["synchronizing"] = "Synchro en cours, merci de patienter un instant...";
 $lang["no_admin"] = "Attention ! L'administrateur du salon n'est actuellement pas présent. La synchronisation est par conséquent impossible. Si vous voulez partager des vidéos, veuillez créer un autre salon ou contacter le créateur de celui-ci directement.";
 
+/** ROOM TYPES **/
+$lang["rt_music"] = "Musique";
+$lang["rt_science"] = "Science";
+$lang["rt_lol"] = "Humour";
+$lang["rt_misc"] = "Divers";
+
 /** BUTTONS **/
 $lang["back"] = "Retour";
 
@@ -146,6 +154,8 @@ $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";
 $lang["rooms_created"] = "Nombre de salon ouverts";
 $lang["songs_submitted"] = "Nombre de chansons validées";
 $lang["total_views"] = "Nombre total de spectateurs";
+$lang["opened_rooms"] = "Salons actuellement ouverts";
+$lang["no_opened_rooms"] = "Aucun salon";
 
 /** BETA **/
 $lang["beta_key"] = "Entrez votre clé beta ci-dessous pour avoir accès à l'application";

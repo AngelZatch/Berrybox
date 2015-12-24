@@ -6,8 +6,10 @@ $creatorToken = $_POST["creator"];
 $roomName = $_POST["roomName"];
 $protect = $_POST["protect"];
 $password = $_POST["password"];
+$type = $_POST["type"];
+$description = $_POST["description"];
 
-$type = 1;
+$play_type = 1;
 $active = 1;
 $initialState = 2; // Administrator
 $date = date_create('now')->format('Y-m-d H:i:s');
@@ -18,12 +20,14 @@ $uniqueToken = generateReference(15);
 /** Create tables for the chat and history of all links posted. **/
 try{
 	$db->beginTransaction();
-	$newRoom = $db->prepare("INSERT INTO rooms(room_token, room_name, room_creator, room_play_type, room_protection, room_password, room_active)
-						VALUES(:token, :name, :creator, :type, :protection, :password, :active)");
+	$newRoom = $db->prepare("INSERT INTO rooms(room_token, room_name, room_creator, room_type, room_description, room_play_type, room_protection, room_password, room_active)
+						VALUES(:token, :name, :creator, :type, :description, :play_type, :protection, :password, :active)");
 	$newRoom->bindParam(':token', $uniqueToken);
 	$newRoom->bindParam(':name', $roomName);
 	$newRoom->bindParam(':creator', $creatorToken);
 	$newRoom->bindParam(':type', $type);
+	$newRoom->bindParam(':description', $description);
+	$newRoom->bindParam(':play_type', $play_type);
 	$newRoom->bindParam(':protection',$protect);
 	$newRoom->bindParam(':password', $password);
 	$newRoom->bindParam(':active', $active);

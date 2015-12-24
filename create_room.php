@@ -6,6 +6,8 @@ if(isset($_SESSION["token"])){
 	$userDetails = $db->query("SELECT * FROM user_preferences up
 							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
 }
+
+$queryTypes = $db->query("SELECT * FROM room_types");
 ?>
 <html>
 	<head>
@@ -48,6 +50,22 @@ if(isset($_SESSION["token"])){
 						<input type="text" placeholder="<?php echo $lang["password"];?>" class="form-control" name="password" id="password">
 					</div>
 				</div>
+				<div class="form-group">
+					<label for="roomType" class="col-sm-3 control-label"><?php echo $lang["room_type"];?></label>
+					<div class="col-lg-9">
+						<select name="roomType" id="" class="form-control">
+							<?php while($type = $queryTypes->fetch(PDO::FETCH_ASSOC)) { ?>
+								<option value="<?php echo $type["id"];?>"><?php echo $lang[$type["type"]];?></option>
+							<?php } ?>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="description" class="col-sm-3 control-label"><?php echo $lang["description_limit"];?></label>
+					<div class="col-lg-9">
+						<textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+					</div>
+				</div>
 				<span name="createRoom" class="btn btn-primary btn-block"><?php echo $lang["room_create"];?></span>
 				<a href="<?php echo $_GET["lang"];?>/home" class="btn btn-default btn-block"><?php echo $lang["cancel"];?></a>
 			</form>
@@ -80,9 +98,10 @@ if(isset($_SESSION["token"])){
 				var user = "<?php echo $_SESSION["token"];?>";
 				var protect = $("#protect-value").val();
 				var password = $("#password").val();
-				console.log(protect);
-				$.post("functions/room_create.php", {roomName : roomName, creator : user, protect : protect, password : password}).done(function(data){
-					console.log(data);
+				var type = $('[name=roomType]').val();
+				var description = $("#description").val();
+				console.log(description);
+				$.post("functions/room_create.php", {roomName : roomName, creator : user, protect : protect, password : password, type : type, description : description}).done(function(data){
 					window.location.replace("<?php echo $_GET["lang"];?>/room/"+data);
 				})
 			})

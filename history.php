@@ -22,6 +22,7 @@ $profileDetails = $db->query("SELECT * FROM user u
 							WHERE u.user_token='$profileToken'")->fetch(PDO::FETCH_ASSOC);
 
 $queryHistoryRooms = $db->query("SELECT * FROM rooms r
+							JOIN room_types rt ON r.room_type = rt.id
 							WHERE r.room_creator='$profileToken'");
 
 ?>
@@ -52,28 +53,36 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 			<div class="user-rooms col-sm-offset-2 col-sm-8">
 				<?php while($historyRooms = $queryHistoryRooms->fetch(PDO::FETCH_ASSOC)){?>
 				<div class="panel panel-active-room" id="panel-room-<?php echo $historyRooms["room_token"];?>">
-					<div class="panel-body">
-						<p class="col-lg-3"><?php echo $historyRooms["room_name"];?></p>
+					<div class="panel-body room-details">
+						<p class="col-lg-4"><?php echo $historyRooms["room_name"];?></p>
+						<p class="col-lg-2 room-type room-label">
+							<span class="label label-info"><?php echo $lang[$historyRooms["type"]];?></span>
+							<?php if($historyRooms["room_protection"] == '1') { ?>
+							<span class="label label-success"><?php echo $lang["level_public"];?></span>
+							<?php } else { ?>
+							<span class="label label-warning"><?php echo $lang["password"];?></span>
+							<?php } ?>
+						</p>
 						<?php if($historyRooms["room_active"] == '1'){ ?>
-						<p class="col-lg-3 label-status">
+						<p class="col-lg-1 label-status">
 							<span class="label label-success"><span class="glyphicon glyphicon-signal"></span> <?php echo $lang["status_open"];?></span>
 						</p>
-						<div class="col-lg-6">
-							<a href="<?php echo $_GET["lang"];?>/room/<?php echo $historyRooms["room_token"];?>" class="btn btn-primary"><?php echo $lang["room_join"];?></a>
+						<div class="col-lg-5">
+							<a href="<?php echo $_GET["lang"];?>/room/<?php echo $historyRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 						</div>
 						<?php } else { ?>
 						<p class="col-lg-3 label-status">
 							<span class="label label-danger"><span class="glyphicon glyphicon-off"></span> <?php echo $lang["status_closed"];?></span>
 						</p>
-						<div class="col-lg-6">
-							<a class="btn btn-primary" onClick="openRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_reopen"];?></a>
-							<a class="btn btn-danger" onClick="deleteRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_delete"];?></a>
-						</div>
-						<?php } ?>
 					</div>
+					<div class="col-lg-6">
+						<a class="btn btn-primary" onClick="openRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_reopen"];?></a>
+						<a class="btn btn-danger" onClick="deleteRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_delete"];?></a>
+					</div>
+					<?php } ?>
 				</div>
-				<?php } ?>
 			</div>
+			<?php } ?>
 		</div>
 		<?php include "scripts.php";?>
 		<script src="assets/js/fileinput.min.js"></script>
