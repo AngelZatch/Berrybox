@@ -22,6 +22,7 @@ $profileDetails = $db->query("SELECT * FROM user u
 							WHERE u.user_token='$profileToken'")->fetch(PDO::FETCH_ASSOC);
 
 $queryactiveRooms = $db->query("SELECT * FROM rooms r
+							JOIN room_types rt ON r.room_type = rt.id
 							WHERE r.room_creator = '$profileToken' AND room_active = '1' AND room_protection != '3'");
 
 ?>
@@ -69,8 +70,17 @@ $queryactiveRooms = $db->query("SELECT * FROM rooms r
 				<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
 				<div class="panel panel-active-room">
 					<div class="panel-body">
-						<p class="col-lg-3"><?php echo $activeRooms["room_name"];?></p>
-						<p class="col-lg-3"><a href="<?php echo $_GET["lang"];?>/user/<?php echo $profileToken;?>"><?php echo $profileDetails["user_pseudo"];?></a></p>
+						<p class="col-lg-4"><?php echo $activeRooms["room_name"];?></p>
+						<div class="room-details col-lg-2">
+							<p class="room-type room-label">
+								<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
+								<?php if($activeRooms["room_protection"] == '1') { ?>
+								<span class="label label-success"><?php echo $lang["level_public"];?></span>
+								<?php } else { ?>
+								<span class="label label-warning"><?php echo $lang["password"];?></span>
+								<?php } ?>
+							</p>
+						</div>
 						<div class="col-lg-6">
 							<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
 							<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>

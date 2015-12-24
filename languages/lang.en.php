@@ -20,6 +20,8 @@ $lang["level_public"] = "Public";
 $lang["private_tip"] = "This room will remain invisible to anyone";
 $lang["locked_tip"] = "Access to this room will require a password";
 $lang["public_tip"] = "This room will be visible to everyone";
+$lang["room_type"] = "Room type";
+$lang["description_limit"] = "Description (300 chars max.)";
 $lang["action_timeout"] = "Time this user out";
 $lang["action_ban"] = "Ban this user indefinitely";
 $lang["action_promote"] = "Promote this user to moderator";
@@ -85,6 +87,12 @@ $lang["sl_upcoming"] = "Upcoming videos";
 $lang["synchronizing"] = "Synchronization, please wait a moment.";
 $lang["no_admin"] = "Attention ! The creator is not present in the room. The synchronisation is therefore impossible. If you want to share videos in proper conditions, please create another room or contact the creator of this room directly.";
 
+/** ROOM TYPES **/
+$lang["rt_music"] = "Music";
+$lang["rt_science"] = "Science";
+$lang["rt_lol"] = "Comedy";
+$lang["rt_misc"] = "Other";
+
 /** BUTTONS **/
 $lang["back"] = "Back";
 
@@ -144,7 +152,7 @@ $lang["no_bio"] = "This user doesn't have any bio";
 $lang["rooms_created"] = "Number of opened rooms";
 $lang["songs_submitted"] = "Number of played songs";
 $lang["total_views"] = "Total number of spectators";
-$lang["opened_rooms"] = "Current opened rooms of this user";
+$lang["opened_rooms"] = "Currently opened rooms";
 $lang["no_opened_rooms"] = "None";
 
 /** BETA **/

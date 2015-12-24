@@ -5,6 +5,7 @@ $db = PDOFactory::getConnection();
 if(isset($_SESSION["token"])){
 	$queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
+								JOIN room_types rt ON r.room_type = rt.id
 								WHERE room_active = 1 AND (room_protection != 3 OR (room_protection = 3 AND room_creator = '$_SESSION[token]'))");
 	$userSettings = $db->query("SELECT * FROM user_preferences up
 							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
@@ -17,6 +18,7 @@ if(isset($_SESSION["token"])){
 } else {
 	$queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
+								JOIN room_types rt ON r.room_type = rt.id
 								WHERE room_active = 1 AND room_protection != 3");
 }
 ?>
@@ -48,22 +50,40 @@ if(isset($_SESSION["token"])){
 			<p id="active-rooms-title"><?php echo $lang["active_room"];?></p>
 			<div class="container-fluid">
 				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
-				<div class="panel panel-active-room">
-					<div class="panel-body">
-						<p class="col-lg-3"><?php echo $activeRooms["room_name"];?></p>
-						<p class="col-lg-3"><a href="<?php echo $_GET["lang"];?>/user/<?php echo $activeRooms["user_token"];?>"><?php echo $activeRooms["user_pseudo"];?></a></p>
-						<div class="col-lg-6">
-							<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
-							<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>
-							<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
-							<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
-							<?php } else { ?>
-							<a href="<?php echo $_GET["lang"];?>/room/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
-							<?php } ?>
+				<div class="col-lg-4">
+					<div class="panel panel-active-room">
+						<div class="panel-body">
+							<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
+							<div class="room-pp">
+								<img src="profile-pictures/<?php echo $activeRooms["user_pp"];?>" alt="<?php echo $activeRooms["user_pseudo"];?>" style="width:inherit;">
+							</div>
+							<div class="room-details">
+								<p><span class="room-creator"><a href="<?php echo $_GET["lang"];?>/user/<?php echo $activeRooms["user_token"];?>"><?php echo $activeRooms["user_pseudo"];?></a></span></p>
+								<p class="room-type room-label">
+									<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
+									<?php if($activeRooms["room_protection"] == '1') { ?>
+									<span class="label label-success"><?php echo $lang["level_public"];?></span>
+									<?php } else { ?>
+									<span class="label label-warning"><?php echo $lang["password"];?></span>
+									<?php } ?>
+								</p>
+							</div>
+							<p class="col-lg-12 room-description"><?php echo $activeRooms["room_description"];?></p>
+							<div class="col-lg-12">
+								<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
+								<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>
+								<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
+								<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
+								<?php } else { ?>
+								<a href="<?php echo $_GET["lang"];?>/room/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+								<?php } ?>
+							</div>
 						</div>
 					</div>
 				</div>
 				<?php } ?>
+			</div>
+			<div class="container-fluid">
 				<?php if(!isset($_SESSION["token"])) { ?>
 				<a href="<?php echo $_GET["lang"];?>/signup" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
 				<?php } else { ?>
