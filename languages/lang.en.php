@@ -103,6 +103,10 @@ $lang["back"] = "Back";
 $lang["log_out"] = "Log out";
 $lang["log_in"] = "Log in";
 $lang["sign_up"] = "Sign up";
+$lang["no_account"] = "Don't have any account?";
+$lang["already_account"] = "Already have an account?";
+$lang["sing_up_here"] = "Sign up here";
+$lang["log_in_here"] = "Log in here";
 
 /** LANGUAGES **/
 $lang["language_name"] = "Language";

@@ -103,6 +103,10 @@ $lang["back"] = "戻る";
 $lang["log_out"] = "ログアウト";
 $lang["log_in"] = "ログイン";
 $lang["sign_up"] = "サインアップ";
+$lang["no_account"] = "アカウントがまだありません？";
+$lang["already_account"] = "アカウントがあります？";
+$lang["sing_up_here"] = "サインアップはこちら";
+$lang["log_in_here"] = "ログインはこちら";
 
 /** LANGUAGES **/
 $lang["language_name"] = "言語";

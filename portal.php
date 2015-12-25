@@ -28,7 +28,7 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Strawberry Music Streamer</title>
+		<title>Log in | Berrybox</title>
 		<base href="../">
 		<?php include "styles.php";?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
@@ -36,18 +36,18 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 	<body>
 		<?php include "nav.php";?>
 		<div class="main">
-			<div class="col-lg-7 col-lg-offset-2">
+			<div class="col-lg-4 col-lg-offset-4">
+			<legend><?php echo $lang["log_in"];?></legend>
 				<form action="" method="post">
-					<div class="form-group">
-						<label for="username" class="control-label"><?php echo $lang["username"];?></label>
-						<input type="text" placeholder="Username" class="form-control" name="username">
+					<div class="form-group form-group-lg">
+						<input type="text" placeholder="<?php echo $lang["username"];?>" class="form-control" name="username">
 					</div>
-					<div class="form-group">
-						<label for="login_pwd" class="control-label"><?php echo $lang["password"];?></label>
-						<input type="password" class="form-control" name="login_pwd">
+					<div class="form-group form-group-lg">
+						<input type="password" placeholder="<?php echo $lang["password"];?>" class="form-control" name="login_pwd">
 					</div>
 					<input type="submit" class="btn btn-primary btn-block" name="login" value="<?php echo $lang["log_in"];?>">
 				</form>
+				<p style="text-align: center"><?php echo $lang["no_account"];?> <a href="<?php echo $_GET["lang"];?>/signup"><?php echo $lang["sing_up_here"];?></a></p>
 			</div>
 		</div>
 		<?php include "scripts.php";?>
