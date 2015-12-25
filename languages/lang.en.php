@@ -91,6 +91,9 @@ $lang["no_admin"] = "Attention ! The creator is not present in the room. The syn
 $lang["rt_music"] = "Music";
 $lang["rt_science"] = "Science";
 $lang["rt_lol"] = "Comedy";
+$lang["rt_sport"] = "Sports";
+$lang["rt_game"] = "Video Games";
+$lang["rt_live"] = "Live";
 $lang["rt_misc"] = "Other";
 
 /** BUTTONS **/
