@@ -15,7 +15,8 @@ if(isset($_POST["signup"])){
 	session_start();
 	$db = PDOFactory::getConnection();
 	$token = generateUserToken();
-	$color = "000000";
+	$colorID = rand(1,20);
+	$color = $db->query("SELECT color_value FROM name_colors WHERE number = $colorID")->fetch(PDO::FETCH_ASSOC);
 
 	try{
 		$db->beginTransaction();
@@ -28,7 +29,7 @@ if(isset($_POST["signup"])){
 		$newPref = $db->prepare("INSERT INTO user_preferences(up_user_id, up_color)
 								VALUES(:token, :color)");
 		$newPref->bindParam(':token', $token);
-		$newPref->bindParam(':color', $color);
+		$newPref->bindParam(':color', $color["color_value"]);
 		$newPref->execute();
 
 		$newStats = $db->prepare("INSERT INTO user_stats(user_token) VALUES(:token)");

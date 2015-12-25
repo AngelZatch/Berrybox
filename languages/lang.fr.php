@@ -93,6 +93,9 @@ $lang["no_admin"] = "Attention ! L'administrateur du salon n'est actuellement pa
 $lang["rt_music"] = "Musique";
 $lang["rt_science"] = "Science";
 $lang["rt_lol"] = "Humour";
+$lang["rt_sport"] = "Sport";
+$lang["rt_game"] = "Jeux";
+$lang["rt_live"] = "En direct";
 $lang["rt_misc"] = "Divers";
 
 /** BUTTONS **/

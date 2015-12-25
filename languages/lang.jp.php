@@ -91,6 +91,9 @@ $lang["no_admin"] = "注意！このルームのクリエイターがいりま�
 $lang["rt_music"] = "音楽";
 $lang["rt_science"] = "科学";
 $lang["rt_lol"] = "喜劇";
+$lang["rt_sport"] = "スポーツ";
+$lang["rt_game"] = "ゲーム";
+$lang["rt_live"] = "生放送";
 $lang["rt_misc"] = "雑多";
 
 /** BUTTONS **/

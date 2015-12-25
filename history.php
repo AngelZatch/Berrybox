@@ -83,21 +83,22 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 				</div>
 				<?php } ?>
 			</div>
-			<?php include "scripts.php";?>
-			<script src="assets/js/fileinput.min.js"></script>
-			<script>
-				function openRoom(roomToken){
-					$.post("functions/reopen_room.php", {roomToken : roomToken}).done(function(data){
-						window.location.replace("<?php echo $_GET["lang"];?>/room/"+roomToken);
-					})
-				}
-				function deleteRoom(roomToken){
-					var panel = $("#panel-room-"+roomToken);
-					console.log(panel);
-					$.post("functions/delete_room.php", {roomToken : roomToken}).done(function(data){
-						panel.hide("500", function(){ panel.remove(); });
-					})
-				}
-			</script>
-			</body>
-		</html>
+		</div>
+		<?php include "scripts.php";?>
+		<script src="assets/js/fileinput.min.js"></script>
+		<script>
+			function openRoom(roomToken){
+				$.post("functions/reopen_room.php", {roomToken : roomToken}).done(function(data){
+					window.location.replace("<?php echo $_GET["lang"];?>/room/"+roomToken);
+				})
+			}
+			function deleteRoom(roomToken){
+				var panel = $("#panel-room-"+roomToken);
+				console.log(panel);
+				$.post("functions/delete_room.php", {roomToken : roomToken}).done(function(data){
+					panel.hide("500", function(){ panel.remove(); });
+				})
+			}
+		</script>
+	</body>
+</html>

@@ -10,7 +10,7 @@ $roomDetails = $db->query("SELECT *
 $creatorStats = $db->query("SELECT *
 							FROM user_stats us
 							WHERE user_token = '$roomDetails[room_creator]'")->fetch(PDO::FETCH_ASSOC);
-$colorList = $db->query("SELECT * FROM name_colors");
+$colorList = $db->query("SELECT * FROM name_colors WHERE color_status = 0");
 
 if(isset($_SESSION["token"])){
 	$userDetails = $db->query("SELECT * FROM user u
@@ -1032,7 +1032,7 @@ if(isset($_GET["lang"])){
 						if(messageList[i].destinationToken == "<?php echo $_SESSION["token"];?>"){
 							var message = "<p class='whisper'>";
 							message += "<span class='message-time'>"+messageTime+"</span> ";
-							message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].authorToken+"' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].authorColor+";'>";
+							message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].authorToken+"' style='text-decoration:none;'><span class='message-author' style='color:#"+messageList[i].authorColor+";'>";
 							message += messageList[i].author;
 							message += "</span></a>";
 							message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
@@ -1042,7 +1042,7 @@ if(isset($_GET["lang"])){
 							var message = "<p class='whisper'>";
 							message += "<span class='message-time'>"+messageTime+"</span> ";
 							message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
-							message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].destinationToken+"' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].destinationColor+";'>";
+							message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].destinationToken+"' style='text-decoration:none;'><span class='message-author' style='color:#"+messageList[i].destinationColor+";'>";
 							message += messageList[i].destination;
 							message += "</span></a> : ";
 							message += messageList[i].content;
@@ -1142,7 +1142,7 @@ if(isset($_GET["lang"])){
 								}
 							}
 						}
-						message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].authorToken+"' style='text-decoration:none;'><span class='message-author' style='color:"+messageList[i].authorColor+";'>";
+						message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].authorToken+"' style='text-decoration:none;'><span class='message-author' style='color:#"+messageList[i].authorColor+";'>";
 						message += messageList[i].author;
 						message += "</span></a>";
 						message += " : "+messageList[i].content+"<br/>";
