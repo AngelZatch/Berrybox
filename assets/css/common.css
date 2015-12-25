@@ -330,4 +330,11 @@ nav li > a:hover, nav li > a:focus {
 .room-description {
   min-height: 80px; }
 
+/* line 260, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+legend {
+  font-size: 3em;
+  border: 0;
+  color: inherit;
+  text-align: center; }
+
 /*# sourceMappingURL=common.css.map */

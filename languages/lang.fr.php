@@ -105,6 +105,10 @@ $lang["back"] = "Retour";
 $lang["log_out"] = "Déconnexion";
 $lang["log_in"] = "Connexion";
 $lang["sign_up"] = "Inscription";
+$lang["no_account"] = "Pas encore de compte ?";
+$lang["already_account"] = "Déjà inscrit ?";
+$lang["sing_up_here"] = "Enregistrez-vous par ici";
+$lang["log_in_here"] = "Connectez-vous";
 
 /** LANGUAGES **/
 $lang["language_name"] = "Langue";

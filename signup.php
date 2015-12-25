@@ -59,22 +59,21 @@ if(isset($_POST["signup"])){
 	<body>
 		<?php include "nav.php";?>
 		<div class="main">
-			<div class="col-lg-7 col-lg-offset-2">
+			<div class="col-lg-4 col-lg-offset-4">
+			<legend><?php echo $lang["sign_up"];?></legend>
 				<form action="" method="post">
-					<div class="form-group has-feedback" id="username-form-group">
-						<label for="username" class="control-label"><?php echo $lang["username"];?></label>
-						<input type="text" placeholder="Username" class="form-control" name="username">
+					<div class="form-group form-group-lg has-feedback" id="username-form-group">
+						<input type="text" placeholder="<?php echo $lang["username"];?>" class="form-control" name="username">
 					</div>
-					<div class="form-group">
-						<label for="password" class="control-label"><?php echo $lang["password"];?></label>
-						<input type="password" class="form-control" name="password">
+					<div class="form-group form-group-lg">
+						<input type="password" placeholder="<?php echo $lang["password"];?>" class="form-control" name="password">
 					</div>
-					<div class="form-group has-feedback" id="password-confirm-form-group">
-						<label for="password-confirm" class="control-label"><?php echo $lang["pwd_confirm"];?></label>
-						<input type="password" class="form-control" name="password-confirm">
+					<div class="form-group form-group-lg has-feedback" id="password-confirm-form-group">
+						<input type="password" placeholder="<?php echo $lang["pwd_confirm"];?>" class="form-control" name="password-confirm">
 					</div>
 					<input type="submit" class="btn btn-primary btn-block" name="signup" value="<?php echo $lang["sign_up"];?>">
 				</form>
+				<p style="text-align: center"><?php echo $lang["already_account"];?> <a href="<?php echo $_GET["lang"];?>/portal"><?php echo $lang["log_in_here"];?></a></p>
 			</div>
 		</div>
 		<?php include "scripts.php";?>
