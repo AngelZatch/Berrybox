@@ -40,6 +40,7 @@ $lang["song_submit_success"] = "Votre vidéo a bien été ajoutée à la playlis
 $lang["invalid_link"] = "Le lien que vous avez soumis est invalide. Veuillez recommencer avec un lien valide";
 $lang["db_error"] = "Une erreur s'est produite pendant la soumission de votre lien. Veuillez recommencer.";
 $lang["skip"] = "Suivant";
+$lang["spam"] = "Vous devez attendre au moins 1 seconde avant d'envoyer un nouveau message";
 
 /** TOGGLES **/
 $lang["play_type"] = "Type de lecture";
@@ -88,6 +89,7 @@ $lang["sl_played"] = "Vidéos lues";
 $lang["sl_upcoming"] = "Vidéos à venir";
 $lang["synchronizing"] = "Synchro en cours, merci de patienter un instant...";
 $lang["no_admin"] = "Attention ! L'administrateur du salon n'est actuellement pas présent. La synchronisation est par conséquent impossible. Si vous voulez partager des vidéos, veuillez créer un autre salon ou contacter le créateur de celui-ci directement.";
+$lang["whisper"] = "Murmurer";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "Musique";

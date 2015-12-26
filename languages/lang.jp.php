@@ -40,6 +40,7 @@ $lang["song_submit_success"] = "あなたのビデオ曲は提出されました
 $lang["invalid_link"] = "あなたの提出したリンクは無効です。有効なリンクを提出してください。";
 $lang["db_error"] = "エラーがありました。もう一度リンクを提出してください。";
 $lang["skip"] = "ネクスト";
+$lang["spam"] = "新しいメッセージを送信するには、少なくとも1秒お待ちください";
 
 /** TOGGLES **/
 $lang["play_type"] = "プレイタイプ";
@@ -86,6 +87,7 @@ $lang["sl_played"] = "過去";
 $lang["sl_upcoming"] = "次";
 $lang["synchronizing"] = "シンク中…　しばらくお待ちください。";
 $lang["no_admin"] = "注意！このルームのクリエイターがいりません。シンクは不可能です。ビデオをシェアーするために、新しいルームを始めて下さい。";
+$lang["whisper"] = "囁く";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "音楽";

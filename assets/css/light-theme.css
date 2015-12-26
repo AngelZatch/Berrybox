@@ -65,4 +65,11 @@ body {
 .menu-popover > .popover-footer {
   background-color: whitesmoke; }
 
+/* line 58, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.user-card {
+  background-color: #d9d9d9; }
+  /* line 60, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+  .user-card .user-card-actions {
+    background-color: #e6e6e6; }
+
 /*# sourceMappingURL=light-theme.css.map */

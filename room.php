@@ -685,6 +685,37 @@ if(isset($_GET["lang"])){
 		var newTitle = $(this).val();
 		$.post("functions/retitle_room.php", {title : newTitle, roomToken : "<?php echo $roomToken;?>"});
 		$(this).replaceWith("<p id='room-title'>"+newTitle+"</p>");
+	}).on('click', '.author-linkback', function(){
+		var user = $(this).text();
+		var currentLine = $(this).parents("p");
+		$(".user-card").remove();
+		$.post("functions/fetch_user_card.php", {user : user}).done(function(data){
+			var details = JSON.parse(data);
+			var userCard = "<div class='user-card'>";
+			userCard += "<div class='user-card-info'>";
+			userCard += "<div class='medium-pp'>";
+			userCard += "<img src='"+details.user_pp+"' alt='' style='width:inherit'>";
+			userCard += "</div>";
+			userCard += "<p id='user-card-name'>"+details.user_pseudo+"<span class='glyphicon glyphicon-remove button-glyph' id='user-card-close'></span></p>";
+			userCard += "<div class='row user-card-stats'>";
+			userCard += "<div class='col-lg-3'><span class='glyphicon glyphicon-eye-open' title='<?php echo $lang["total_views"];?>'></span> "+details.visitors+"</div>";
+			userCard += "<div class='col-lg-3'><span class='glyphicon glyphicon-plus' title='<?php echo $lang["rooms_created"];?>'></span> "+details.rooms+"</div>";
+			userCard += "<div class='col-lg-3'><span class='glyphicon glyphicon-music' title='<?php echo $lang["songs_submitted"];?>'></span> "+details.songs+"</div>";
+			userCard += "</div>"; // user-card-stats
+			userCard += "</div>"; // user-card-info
+			userCard += "<div class='user-card-actions'>";
+			userCard += "<button class='btn btn-primary whisper-action'><?php echo $lang["whisper"];?></button>";
+			userCard += "</div>"; // user-card-actions
+			userCard += "</div>"; //user-card
+			currentLine.after(userCard);
+			$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
+		})
+	}).on('click', '#user-card-close', function(){
+		$(".user-card").remove();
+	}).on('click', '.whisper-action', function(){
+		var user = $("#user-card-name").text();
+		$(".chatbox").val("/w "+user+" ");
+		$(".chatbox").focus();
 	})
 	function onPlayerReady(event){
 		sessionStorage.setItem("currently-playing", "");
@@ -898,6 +929,7 @@ if(isset($_GET["lang"])){
 			} else {
 				$("#body-chat").append("<p class='system-message system-warning'></span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["db_error"];?></p>");
 			}
+			$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
 		})
 	}
 	function showMoodSelectors(){
@@ -980,8 +1012,8 @@ if(isset($_GET["lang"])){
 							$("#body-chat").append("<p class='system-message system-alert'><span class='glyphicon glyphicon-exclamation-sign'></span> <?php echo $lang["invalid_link"];?></p>");
 							break;
 					}
+					$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
 				});
-
 				// Empty URL box
 				$(".url-box").val('');
 			}
@@ -1032,7 +1064,7 @@ if(isset($_GET["lang"])){
 						if(messageList[i].destinationToken == "<?php echo $_SESSION["token"];?>"){
 							var message = "<p class='whisper'>";
 							message += "<span class='message-time'>"+messageTime+"</span> ";
-							message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].authorToken+"' style='text-decoration:none;'><span class='message-author' style='color:#"+messageList[i].authorColor+";'>";
+							message += "<a style='text-decoration:none;'><span class='message-author author-linkback' style='color:#"+messageList[i].authorColor+";'>";
 							message += messageList[i].author;
 							message += "</span></a>";
 							message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
@@ -1042,7 +1074,7 @@ if(isset($_GET["lang"])){
 							var message = "<p class='whisper'>";
 							message += "<span class='message-time'>"+messageTime+"</span> ";
 							message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
-							message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].destinationToken+"' style='text-decoration:none;'><span class='message-author' style='color:#"+messageList[i].destinationColor+";'>";
+							message += "<a style='text-decoration:none;'><span class='message-author author-linkback' style='color:#"+messageList[i].destinationColor+";'>";
 							message += messageList[i].destination;
 							message += "</span></a> : ";
 							message += messageList[i].content;
@@ -1142,7 +1174,7 @@ if(isset($_GET["lang"])){
 								}
 							}
 						}
-						message += "<a href='<?php echo $_GET["lang"];?>/user/"+messageList[i].authorToken+"' style='text-decoration:none;'><span class='message-author' style='color:#"+messageList[i].authorColor+";'>";
+						message += "<a style='text-decoration:none'><span class='message-author author-linkback' style='color:#"+messageList[i].authorColor+";'>";
 						message += messageList[i].author;
 						message += "</span></a>";
 						message += " : "+messageList[i].content+"<br/>";
