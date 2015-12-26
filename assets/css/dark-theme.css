@@ -40,4 +40,11 @@ body {
 .menu-popover > .popover-footer {
   background-color: #5d5d5d; }
 
+/* line 37, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.user-card {
+  background-color: #110c04; }
+  /* line 39, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  .user-card .user-card-actions {
+    background-color: #3e2e0e; }
+
 /*# sourceMappingURL=dark-theme.css.map */

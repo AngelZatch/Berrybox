@@ -40,6 +40,7 @@ $lang["song_submit_success"] = "Your song has been submitted into the playlist";
 $lang["invalid_link"] = "The link you submitted is invalid. Please submit a valid link";
 $lang["db_error"] = "There has been in an error in submitting your song. Please try again.";
 $lang["skip"] = "Next";
+$lang["spam"] = "You have to wait at least 1 second to post a new message";
 
 /** TOGGLES **/
 $lang["play_type"] = "Play type";
@@ -86,6 +87,7 @@ $lang["sl_played"] = "Played videos";
 $lang["sl_upcoming"] = "Upcoming videos";
 $lang["synchronizing"] = "Synchronization, please wait a moment.";
 $lang["no_admin"] = "Attention ! The creator is not present in the room. The synchronisation is therefore impossible. If you want to share videos in proper conditions, please create another room or contact the creator of this room directly.";
+$lang["whisper"] = "Whisper";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "Music";
