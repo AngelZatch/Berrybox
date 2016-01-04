@@ -250,9 +250,13 @@ if(isset($_GET["lang"])){
 					<div id="colors" class="room-option">
 						<p><?php echo $lang["color_pick"];?></p>
 						<?php while($color = $colorList->fetch(PDO::FETCH_ASSOC)){
-	$colorValue = $color["color_value"];?>
+	$colorValue = $color["color_value"];
+	if(strcasecmp($colorValue,$userDetails["up_color"]) == 0){?>
+						<div class="color-cube cube-selected" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
+						<?php } else { ?>
 						<div class="color-cube" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
-						<?php } ?>
+						<?php }
+}?>
 					</div>
 					<div class="room-option">
 						<span class="option-title"><?php echo $lang["user_theme"];?></span><br>
@@ -561,10 +565,13 @@ if(isset($_GET["lang"])){
 			right : position
 		}, 200);
 	}).on('click', '.color-cube', function(){
+		var cube = $(this);
 		var color = $(this).attr('id').substr(6,6);
 		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
 		$.post("functions/change_color.php", {userToken : userToken, color : color}).done(function(){
 			$(".close").click();
+			$(".color-cube").removeClass("cube-selected");
+			cube.addClass("cube-selected");
 		})
 	}).on('click', '#btn-synchro', function(){
 		var $b = $(this);

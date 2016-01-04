@@ -20,6 +20,7 @@ $lang["level_public"] = "Public";
 $lang["private_tip"] = "This room will remain invisible to anyone";
 $lang["locked_tip"] = "Access to this room will require a password";
 $lang["public_tip"] = "This room will be visible to everyone";
+$lang["speak_lang"] = "Main spoken language of the room";
 $lang["room_type"] = "Room type";
 $lang["description_limit"] = "Description (300 chars max.)";
 $lang["action_timeout"] = "Time this user out";

@@ -28,6 +28,7 @@ $queryTypes = $db->query("SELECT * FROM room_types");
 	<body>
 		<?php include "nav.php";?>
 		<div class="main col-lg-8 col-lg-offset-2">
+			<legend><?php echo $lang["room_create"];?></legend>
 			<form class="form-horizontal">
 				<div class="form-group">
 					<label for="roomName" class="col-sm-3 control-label"><?php echo $lang["room_name"];?></label>
@@ -55,8 +56,18 @@ $queryTypes = $db->query("SELECT * FROM room_types");
 					<div class="col-lg-9">
 						<select name="roomType" id="" class="form-control">
 							<?php while($type = $queryTypes->fetch(PDO::FETCH_ASSOC)) { ?>
-								<option value="<?php echo $type["id"];?>"><?php echo $lang[$type["type"]];?></option>
+							<option value="<?php echo $type["id"];?>"><?php echo $lang[$type["type"]];?></option>
 							<?php } ?>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="speakLang" class="col-lg-3 control-label"><?php echo $lang["speak_lang"];?></label>
+					<div class="col-lg-9">
+						<select name="speakLang" id="" class="form-control">
+							<option value="en" <?php if($userDetails["user_lang"]=="en") echo "selected='selected'";?>>English</option>
+							<option value="fr" <?php if($userDetails["user_lang"]=="fr") echo "selected='selected'";?>>Français</option>
+							<option value="jp" <?php if($userDetails["user_lang"]=="jp") echo "selected='selected'";?>>日本語</option>
 						</select>
 					</div>
 				</div>
@@ -99,9 +110,10 @@ $queryTypes = $db->query("SELECT * FROM room_types");
 				var protect = $("#protect-value").val();
 				var password = $("#password").val();
 				var type = $('[name=roomType]').val();
+				var language = $('[name=speakLang]').val();
 				var description = $("#description").val();
 				console.log(description);
-				$.post("functions/room_create.php", {roomName : roomName, creator : user, protect : protect, password : password, type : type, description : description}).done(function(data){
+				$.post("functions/room_create.php", {roomName : roomName, creator : user, protect : protect, password : password, type : type, language : language, description : description}).done(function(data){
 					window.location.replace("<?php echo $_GET["lang"];?>/room/"+data);
 				})
 			})
