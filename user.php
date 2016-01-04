@@ -70,8 +70,8 @@ $queryactiveRooms = $db->query("SELECT * FROM rooms r
 				<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
 				<div class="panel panel-active-room">
 					<div class="panel-body">
-						<p class="col-lg-4"><?php echo $activeRooms["room_name"];?></p>
-						<div class="room-details col-lg-2">
+						<p class="col-lg-5"><?php echo $activeRooms["room_name"];?></p>
+						<div class="room-details col-lg-3">
 							<p class="room-type room-label">
 								<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
 								<?php if($activeRooms["room_protection"] == '1') { ?>
@@ -79,9 +79,10 @@ $queryactiveRooms = $db->query("SELECT * FROM rooms r
 								<?php } else { ?>
 								<span class="label label-warning"><?php echo $lang["password"];?></span>
 								<?php } ?>
+								<span class="label label-lang"><?php echo $lang["lang_".$activeRooms["room_lang"]];?></span>
 							</p>
 						</div>
-						<div class="col-lg-6">
+						<div class="col-lg-4">
 							<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
 							<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>
 							<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
