@@ -20,6 +20,7 @@ $lang["level_public"] = "Public";
 $lang["private_tip"] = "Ce salon ne sera pas visible par les autres utilisateurs";
 $lang["locked_tip"] = "L'accès à ce salon nécessitera un mot de password";
 $lang["public_tip"] = "Ce salon sera accessible à tout le monde";
+$lang["speak_lang"] = "Langue principale du salon";
 $lang["room_type"] = "Type de salon";
 $lang["description_limit"] = "Description (300 symboles max.)";
 $lang["action_timeout"] = "Mettre cet utilisateur en sourdine";

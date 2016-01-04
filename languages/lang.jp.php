@@ -20,6 +20,7 @@ $lang["level_public"] = "パブリック";
 $lang["private_tip"] = "このルームが目に見えませんになる。";
 $lang["locked_tip"] = "このルームには、パスワードによるアクセスを持っている。";
 $lang["public_tip"] = "誰もこのルームに入ることができるようになる。";
+$lang["speak_lang"] = "ルームの主な話し言葉";
 $lang["room_type"] = "ルームタイプ";
 $lang["description_limit"] = "説明 〔300文字以下〕";
 $lang["action_timeout"] = "このユーザーをミュートする。";

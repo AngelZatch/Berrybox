@@ -66,6 +66,7 @@ if(isset($_SESSION["token"])){
 									<?php } else { ?>
 									<span class="label label-warning"><?php echo $lang["password"];?></span>
 									<?php } ?>
+									<span class="label label-danger"><?php echo $lang["lang_".$activeRooms["room_lang"]];?></span>
 								</p>
 							</div>
 							<p class="col-lg-12 room-description"><?php echo $activeRooms["room_description"];?></p>

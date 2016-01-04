@@ -47,4 +47,12 @@ body {
   .user-card .user-card-actions {
     background-color: #3e2e0e; }
 
+/* line 42, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.cube-selected {
+  border: 2px solid #FFF; }
+
+/* line 45, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.btn-default {
+  color: white; }
+
 /*# sourceMappingURL=dark-theme.css.map */
