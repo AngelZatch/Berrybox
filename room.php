@@ -48,8 +48,9 @@ if(isset($_SESSION["token"])){
 	}
 	if(isset($_POST["signup"])){
 		$db = PDOFactory::getConnection();
-		$token = generateUserToken();
-		$color = "000000";
+		$token = generateReference(6);
+		$colorID = rand(1,20);
+		$color = $db->query("SELECT color_value FROM name_colors WHERE number = $colorID")->fetch(PDO::FETCH_ASSOC);
 		$pseudo = $_POST["username"];
 		$power = "1";;
 
