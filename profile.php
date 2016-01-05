@@ -3,11 +3,11 @@ session_start();
 require "functions/db_connect.php";
 $db = PDOFactory::getConnection();
 
-$userToken = $_GET["id"];
 if(isset($_SESSION["token"])){
+	$userToken = $_SESSION["token"];
 	$userSettings = $db->query("SELECT *
 							FROM user_preferences up
-							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+							WHERE up_user_id='$userToken'")->fetch(PDO::FETCH_ASSOC);
 
 	if($userSettings["up_theme"] == "1"){
 		$theme = "dark";
@@ -18,6 +18,7 @@ if(isset($_SESSION["token"])){
 
 if(isset($_POST["submit"])){
 	$newPseudo = addslashes($_POST["username"]);
+	$newMail = $_POST["mail"];
 	$newBio = addslashes($_POST["bio"]);
 	$newLang = $_POST["default-lang"];
 	$newTheme = $_POST["default-theme"];
@@ -32,6 +33,7 @@ if(isset($_POST["submit"])){
 				//Writing in the table the modifications
 				$edit = $db->query("UPDATE user
 									SET user_pseudo = '$newPseudo',
+									user_mail = '$newMail',
 									user_bio = '$newBio',
 									user_lang = '$newLang'
 									WHERE user_token = '$userToken'");
@@ -44,6 +46,7 @@ if(isset($_POST["submit"])){
 				//Writing in the table the modifications
 				$edit = $db->query("UPDATE user
 									SET user_pseudo = '$newPseudo',
+									user_mail = '$newMail',
 									user_bio = '$newBio',
 									user_pp = '$picture',
 									user_lang = '$newLang'
@@ -56,6 +59,7 @@ if(isset($_POST["submit"])){
 	} else {
 		$edit = $db->query("UPDATE user
 							SET user_pseudo = '$newPseudo',
+							user_mail = '$newMail',
 							user_bio = '$newBio',
 							user_lang = '$newLang'
 							WHERE user_token = '$userToken'");
@@ -85,16 +89,23 @@ if(isset($_POST["submit"])){
 				<p id="profile-title"><?php echo $lang["profile_settings"];?></p>
 				<span class="tip"><?php echo $lang["profile_settings_tip"];?></span>
 				<ul class="nav nav-tabs" id="profile-menu">
-					<li role="presentation" class="active"><a href="<?php echo $_SESSION["lang"];?>/profile/<?php echo $_SESSION["token"];?>"><?php echo $lang["profile_settings"];?></a></li>
-					<li role="presentation"><a href="<?php echo $_SESSION["lang"];?>/history/<?php echo $_SESSION["token"];?>"><?php echo $lang["profile_history"];?></a></li>
+					<li role="presentation" class="active"><a href="<?php echo $_SESSION["lang"];?>/profile/settings"><?php echo $lang["profile_settings"];?></a></li>
+					<li role="presentation"><a href="<?php echo $_SESSION["lang"];?>/profile/history"><?php echo $lang["profile_history"];?></a></li>
+					<li role="presentation"><a href="<?php echo $_SESSION["lang"];?>/profile/security"><?php echo $lang["profile_security"];?></a></li>
 				</ul>
 			</div>
-			<form action="<?php echo $_SESSION["lang"];?>/profile/<?php echo $userToken;?>" class="form-horizontal" method="post" enctype="multipart/form-data">
+			<form action="<?php echo $_SESSION["lang"];?>/profile/settings" class="form-horizontal" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="username" class="col-sm-3 control-label"><?php echo $lang["display_name"];?></label>
 					<div class="col-sm-6">
 						<input type="text" name="username" class="form-control" aria-describedby="username-tip" value="<?php echo stripslashes($userDetails["user_pseudo"]);?>">
 						<span class="tip" id="username-tip"><?php echo $lang["display_name_tip"];?></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="mail" class="col-sm-3 control-label"><?php echo $lang["display_mail"];?></label>
+					<div class="col-sm-6">
+						<input type="mail" name="mail" class="form-control" value="<?php echo $userDetails["user_mail"];?>">
 					</div>
 				</div>
 				<div class="form-group">

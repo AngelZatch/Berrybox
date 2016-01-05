@@ -300,7 +300,7 @@ if(isset($_GET["lang"])){
 					</div>
 					<div class="menu-options row">
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="<?php echo $_SESSION["lang"];?>/profile/<?php echo $_SESSION["token"];?>"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
+							<li><a href="<?php echo $_SESSION["lang"];?>/profile/settings"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
 							<li><a href="<?php echo $_SESSION["lang"];?>/home"><span class="glyphicon glyphicon-log-out col-lg-2"></span> <?php echo $lang["leave"];?></a></li>
 							<li>
 								<?php if($_SESSION["token"] == $roomDetails["room_creator"]){ ?>

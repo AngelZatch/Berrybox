@@ -143,8 +143,11 @@ $lang["profile_settings"] = "Settings";
 $lang["profile_settings_tip"] = "Update your display name, your bio and your profile picture";
 $lang["profile_history"] = "History";
 $lang["profile_history_tip"] = "Any of your closed rooms will stay reachable until next Sunday 1am.";
+$lang["profile_security"] = "Security";
+$lang["profile_security_tip"] = "Change your password";
 $lang["display_name"] = "Display name";
 $lang["display_name_tip"] = "Customize your display name.";
+$lang["display_mail"] = "Mail address";
 $lang["profile_picture"] = "Profile picture";
 $lang["profile_picture_formats"] = "3Mo max. JPG & PNG formats supported";
 $lang["bio"] = "Bio";
@@ -164,6 +167,11 @@ $lang["songs_submitted"] = "Number of played songs";
 $lang["total_views"] = "Total number of spectators";
 $lang["opened_rooms"] = "Currently opened rooms";
 $lang["no_opened_rooms"] = "None";
+
+/** SECURITY **/
+$lang["old_password"] = "Current password";
+$lang["new_password"] = "New password";
+$lang["confirm_new_password"] = "Confirm new password";
 
 /** BETA **/
 $lang["beta_key"] = "To have access to the application, please enter your beta key here!";

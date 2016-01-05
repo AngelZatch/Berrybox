@@ -60,7 +60,7 @@ if(isset($_SESSION["username"])){
 							<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit;">
 						</div>
 						<p class="user-menu-name"><?php echo $userDetails["user_pseudo"];?></p>
-						<a href="<?php echo $_GET["lang"];?>/profile/<?php echo $_SESSION["token"];?>" class="btn btn-primary no-margin"><?php echo $lang["my_profile"];?></a>
+						<a href="<?php echo $_GET["lang"];?>/profile/settings" class="btn btn-primary no-margin"><?php echo $lang["my_profile"];?></a>
 						<a href="<?php echo $_GET["lang"];?>/user/<?php echo $_SESSION["token"];?>" class="btn btn-primary no-margin"><?php echo $lang["public_profile"];?></a>
 					</div>
 					<div class="popover-footer">
