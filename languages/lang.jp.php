@@ -143,8 +143,11 @@ $lang["profile_settings"] = "プロファイル設定";
 $lang["profile_settings_tip"] = "ディスプレイ名、バイオとプロファイル画像をアップデートする。";
 $lang["profile_history"] = "歴史";
 $lang["profile_history_tip"] = "あなたの閉めたルーム。このルームが次の日曜日の午前１時００まで残りされます。";
+$lang["profile_security"] = "セキュリティ";
+$lang["profile_security_tip"] = "パスワードを変更する。";
 $lang["display_name"] = "ディスプレイ名";
 $lang["display_name_tip"] = "ディスプレイ名をカスタマイズします";
+$lang["display_mail"] = "メールアドレス";
 $lang["profile_picture"] = "プロファイル画像";
 $lang["profile_picture_formats"] = "3MB上限. JPGとPNG形式は、サポートされています";
 $lang["bio"] = "バイオ";
@@ -164,6 +167,11 @@ $lang["songs_submitted"] = "プレイした曲の数";
 $lang["total_views"] = "視聴者数";
 $lang["opened_rooms"] = "ライブ中のルーム";
 $lang["no_opened_rooms"] = "空";
+
+/** SECURITY **/
+$lang["old_password"] = "Current password";
+$lang["new_password"] = "New password";
+$lang["confirm_new_password"] = "Confirm new password";
 
 /** BETA **/
 $lang["beta_key"] = "アプリにアクセスするには、下記のベータキーを入力してください。";

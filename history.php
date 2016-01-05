@@ -4,9 +4,10 @@ require "functions/db_connect.php";
 $db = PDOFactory::getConnection();
 
 if(isset($_SESSION["token"])){
+	$profileToken = $_SESSION["token"];
 	$userSettings = $db->query("SELECT *
 							FROM user_preferences up
-							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+							WHERE up_user_id='$profileToken'")->fetch(PDO::FETCH_ASSOC);
 
 	if($userSettings["up_theme"] == "1"){
 		$theme = "dark";
@@ -14,8 +15,6 @@ if(isset($_SESSION["token"])){
 		$theme = "light";
 	}
 }
-
-$profileToken = $_GET["id"];
 
 $profileDetails = $db->query("SELECT * FROM user u
 							JOIN user_stats us ON u.user_token = us.user_token
@@ -46,8 +45,9 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 				<p id="profile-title"><?php echo $lang["profile_history"];?></p>
 				<span class="tip"><?php echo $lang["profile_history_tip"];?></span>
 				<ul class="nav nav-tabs" id="profile-menu">
-					<li role="presentation"><a href="<?php echo $_SESSION["lang"];?>/profile/<?php echo $_SESSION["token"];?>"><?php echo $lang["profile_settings"];?></a></li>
-					<li role="presentation" class="active"><a href="<?php echo $_SESSION["lang"];?>/history/<?php echo $_SESSION["token"];?>"><?php echo $lang["profile_history"];?></a></li>
+					<li role="presentation"><a href="<?php echo $_SESSION["lang"];?>/profile/settings"><?php echo $lang["profile_settings"];?></a></li>
+					<li role="presentation" class="active"><a href="<?php echo $_SESSION["lang"];?>/profile/history"><?php echo $lang["profile_history"];?></a></li>
+					<li role="presentation"><a href="<?php echo $_SESSION["lang"];?>/profile/security"><?php echo $lang["profile_security"];?></a></li>
 				</ul>
 			</div>
 			<div class="user-rooms col-sm-offset-2 col-sm-8">
