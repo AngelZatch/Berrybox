@@ -2,7 +2,7 @@
 require_once "functions/db_connect.php";
 $db = PDOFactory::getConnection();
 if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
-	header("Location: ../$_SESSION[lang]/home");
+	header("Location: home");
 } else {
 	if(isset($_POST["login"])){
 		session_start();
