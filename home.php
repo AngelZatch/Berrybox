@@ -26,7 +26,6 @@ if(isset($_SESSION["token"])){
 	<head>
 		<meta charset="UTF-8">
 		<title>Berrybox</title>
-		<base href="../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
 		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
@@ -42,7 +41,7 @@ if(isset($_SESSION["token"])){
 				<div class="jumbotron">
 					<h1><?php echo $lang["hello"];?></h1>
 					<p><?php echo $lang["berrybox_description"];?></p>
-					<p><a href="<?php echo $_GET["lang"];?>/signup" class="btn btn-primary btn-block btn-lg"><?php echo $lang["get_started"];?></a></p>
+					<p><a href="<?php echo $lang;?>/signup" class="btn btn-primary btn-block btn-lg"><?php echo $lang["get_started"];?></a></p>
 				</div>
 			</div>
 			<?php } ?>
@@ -58,7 +57,7 @@ if(isset($_SESSION["token"])){
 								<img src="profile-pictures/<?php echo $activeRooms["user_pp"];?>" alt="<?php echo $activeRooms["user_pseudo"];?>" style="width:inherit;">
 							</div>
 							<div class="room-details">
-								<p><span class="room-creator"><a href="<?php echo $_GET["lang"];?>/user/<?php echo $activeRooms["user_token"];?>"><?php echo $activeRooms["user_pseudo"];?></a></span></p>
+								<p><span class="room-creator"><a href="user/<?php echo $activeRooms["user_pseudo"];?>"><?php echo $activeRooms["user_pseudo"];?></a></span></p>
 								<p class="room-type room-label">
 									<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
 									<?php if($activeRooms["room_protection"] == '1') { ?>
@@ -76,7 +75,7 @@ if(isset($_SESSION["token"])){
 								<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
 								<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
 								<?php } else { ?>
-								<a href="<?php echo $_GET["lang"];?>/room/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+								<a href="room/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 								<?php } ?>
 							</div>
 						</div>
@@ -86,9 +85,9 @@ if(isset($_SESSION["token"])){
 			</div>
 			<div class="container-fluid">
 				<?php if(!isset($_SESSION["token"])) { ?>
-				<a href="<?php echo $_GET["lang"];?>/signup" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
+				<a href="signup" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
 				<?php } else { ?>
-				<a href="<?php echo $_GET["lang"];?>/create" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
+				<a href="create" class="btn btn-primary btn-block btn-lg"><?php echo $lang["home_create_room"];?></a>
 				<?php } ?>
 
 			</div>
@@ -120,7 +119,7 @@ if(isset($_SESSION["token"])){
 							var roomToken = $(this).attr('id').substr(9);
 							$.post("functions/submit_password.php", {password : password, roomToken : roomToken}).success(function(data){
 								if(data == 1){
-									window.location.replace("<?php echo $_GET["lang"];?>/room/"+roomToken);
+									window.location.replace("room/"+roomToken);
 								} else {
 									$("#password-"+roomToken).val('');
 									$("#password-"+roomToken).prev().show();

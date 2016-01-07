@@ -29,7 +29,7 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 	<head>
 		<meta charset="UTF-8">
 		<title><?php echo $profileDetails["user_pseudo"];?></title>
-		<base href="../../">
+		<base href="../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
 		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
@@ -45,9 +45,9 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 				<p id="profile-title"><?php echo $lang["profile_history"];?></p>
 				<span class="tip"><?php echo $lang["profile_history_tip"];?></span>
 				<ul class="nav nav-tabs" id="profile-menu">
-					<li role="presentation"><a href="<?php echo $_SESSION["lang"];?>/profile/settings"><?php echo $lang["profile_settings"];?></a></li>
-					<li role="presentation" class="active"><a href="<?php echo $_SESSION["lang"];?>/profile/history"><?php echo $lang["profile_history"];?></a></li>
-					<li role="presentation"><a href="<?php echo $_SESSION["lang"];?>/profile/security"><?php echo $lang["profile_security"];?></a></li>
+					<li role="presentation"><a href="profile/settings"><?php echo $lang["profile_settings"];?></a></li>
+					<li role="presentation" class="active"><a href="profile/history"><?php echo $lang["profile_history"];?></a></li>
+					<li role="presentation"><a href="profile/security"><?php echo $lang["profile_security"];?></a></li>
 				</ul>
 			</div>
 			<div class="user-rooms col-sm-offset-2 col-sm-8">
@@ -69,7 +69,7 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 							<span class="label label-success"><span class="glyphicon glyphicon-signal"></span> <?php echo $lang["status_open"];?></span>
 						</p>
 						<div class="col-lg-3">
-							<a href="<?php echo $_GET["lang"];?>/room/<?php echo $historyRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+							<a href="room/<?php echo $historyRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 						</div>
 						<?php } else { ?>
 						<p class="col-lg-1 label-status">
@@ -90,7 +90,7 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 		<script>
 			function openRoom(roomToken){
 				$.post("functions/reopen_room.php", {roomToken : roomToken}).done(function(data){
-					window.location.replace("<?php echo $_GET["lang"];?>/room/"+roomToken);
+					window.location.replace("room/"+roomToken);
 				})
 			}
 			function deleteRoom(roomToken){

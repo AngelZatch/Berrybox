@@ -22,6 +22,11 @@ if(isset($_SESSION["token"])){
 		$theme = "light";
 	}
 	$ppAdresss = "profile-pictures/".$userDetails["user_pp"];
+	$userLang = $userDetails["user_lang"];
+	if($userLang == ""){
+		$userLang = "en";
+	}
+	include_once "languages/lang.".$userLang.".php";
 } else {
 	include "functions/tools.php";
 	if(isset($_POST["login"])){
@@ -73,7 +78,7 @@ if(isset($_SESSION["token"])){
 			$newStats->execute();
 
 			$db->commit();
-			header('Location: '.$_GET["lang"].'/home');
+			header('Location: home');
 			session_start();
 			$_SESSION["username"] = $pseudo;
 			$_SESSION["power"] = $power;
@@ -86,20 +91,12 @@ if(isset($_SESSION["token"])){
 		}
 	}
 }
-if(isset($_GET["lang"])){
-	$lang = $_GET["lang"];
-	$_SESSION["lang"] = $lang;
-
-	include_once "languages/lang.".$lang.".php";
-} else {
-	header("Location:/en/room/$roomToken");
-}
 ?>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title><?php echo $roomDetails["room_name"];?> | <?php echo $roomDetails["user_pseudo"];?> | Berrybox</title>
-		<base href="../../">
+		<base href="../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
 		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
@@ -115,7 +112,7 @@ if(isset($_GET["lang"])){
 					<img src="profile-pictures/<?php echo $roomDetails["user_pp"];?>" class="profile-picture" title="<?php echo $roomDetails["user_pseudo"]." (".$lang["room_admin"].")";?>" alt="">
 				</div>
 				<p id="room-title"><?php echo $roomDetails["room_name"];?></p>
-				<p> <a href="<?php echo $_GET["lang"];?>/user/<?php echo $roomDetails["room_creator"];?>" target="_blank"><?php echo $roomDetails["user_pseudo"];?></a> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
+				<p> <a href="user/<?php echo $roomDetails["user_pseudo"];?>" target="_blank"><?php echo $roomDetails["user_pseudo"];?></a> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
 				<div class="room-admin">
 					<?php
 					if(isset($_SESSION["token"])){
@@ -301,8 +298,8 @@ if(isset($_GET["lang"])){
 					</div>
 					<div class="menu-options row">
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="<?php echo $_SESSION["lang"];?>/profile/settings"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
-							<li><a href="<?php echo $_SESSION["lang"];?>/home"><span class="glyphicon glyphicon-log-out col-lg-2"></span> <?php echo $lang["leave"];?></a></li>
+							<li><a href="profile/settings"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
+							<li><a href="home"><span class="glyphicon glyphicon-log-out col-lg-2"></span> <?php echo $lang["leave"];?></a></li>
 							<li>
 								<?php if($_SESSION["token"] == $roomDetails["room_creator"]){ ?>
 								<p style="font-size:12px; padding:5px; text-align:center;"><?php echo $lang["warning_sync_admin"];?></p>
@@ -314,7 +311,7 @@ if(isset($_GET["lang"])){
 			</div>
 		</div>
 		<?php } else { ?>
-		<a href="not_logged.php?lang=<?php echo $_GET["lang"];?>" id="no-credentials"></a>
+		<a href="not_logged.php?lang=en" id="no-credentials"></a>
 		<?php } ?>
 		<?php include "scripts.php";?>
 		<script src="assets/js/ekko-lightbox.min.js"></script>
@@ -770,7 +767,7 @@ if(isset($_GET["lang"])){
 			} else {
 				$("#body-chat").append("<p class='system-message system-alert'><?php echo $lang["room_closing"];?></p>");
 				setTimeout(function(){
-					window.location.replace("<?php echo $_GET["lang"];?>/home");
+					window.location.replace("home");
 				}, 3000);
 			}
 		})
@@ -1056,7 +1053,7 @@ if(isset($_GET["lang"])){
 		}
 	}
 	function loadChat(roomToken, userPower){
-		var lang = "<?php echo $_GET["lang"];?>";
+		var lang = "<?php echo $userLang;?>";
 		if(!window.lastID){
 			window.lastID = 0;
 		}
@@ -1154,28 +1151,29 @@ if(isset($_GET["lang"])){
 						message += "<span class='message-time'>"+messageTime+"</span> ";
 						if(messageList[i].status == 2){
 							// If author is creator
-							message += "<span class='glyphicon glyphicon-star' title='<?php echo $lang["room_admin"];?>'></span> ";
+							message += "<span class='chat-icon' title='<?php echo $lang["room_admin"];?>'><img src='assets/berrybox-creator-logo.png'><span> ";
 						} else if(messageList[i].status == 3) {
 							// If author is a moderator
 							if((userPower == 2 || userPower == 3) && messageList[i].authorToken != "<?php echo $_SESSION["token"];?>"){
 								// If current user is a mod or an admin, he can timeout the mod
-								message += "<span class='glyphicon glyphicon-time moderation-option' title='<?php echo $lang["action_timeout"];?>' onClick=timeoutUser('"+messageList[i].authorToken+"')></span> ";
+								/*message += "<span class='glyphicon glyphicon-time moderation-option' title='<?php echo $lang["action_timeout"];?>' onClick=timeoutUser('"+messageList[i].authorToken+"')></span> ";*/
 								if(userPower == 2){
 									// Specific actions to the admin : ban & demote
-									message += "<span class='glyphicon glyphicon-fire moderation-option' title='<?php echo $lang["action_ban"];?>' onClick=banUser('"+messageList[i].authorToken+"')></span> ";
+									/*message += "<span class='glyphicon glyphicon-fire moderation-option' title='<?php echo $lang["action_ban"];?>' onClick=banUser('"+messageList[i].authorToken+"')></span> ";*/
+									message += "<span class='chat-icon' title='<?php echo $lang["room_mod"];?>'><img src='assets/berrybox-moderator-logo.png'><span> ";
 									message += "<span class='glyphicon glyphicon-star-empty moderation-option-enabled' title='<?php echo $lang["action_demote"];?>' onClick=demoteUser('"+messageList[i].authorToken+"')></span> ";
 								}
 							}
 							else {
 								// If current user has no power here
-								message += "<span class='glyphicon glyphicon-star-empty' title='<?php echo $lang["room_mod"];?>'></span> ";
+								message += "<span class='chat-icon' title='<?php echo $lang["room_mod"];?>'><img src='assets/berrybox-moderator-logo.png'><span> ";
 							}
 						} else {
 							// If author is a standard user
 							if(userPower == 2 || userPower == 3){
 								// Mod & admin actions
-								message += "<span class='glyphicon glyphicon-time moderation-option' title='<?php echo $lang["action_timeout"];?>' onClick=timeoutUser('"+messageList[i].authorToken+"')></span> ";
-								message += "<span class='glyphicon glyphicon-fire moderation-option' title='<?php echo $lang["action_ban"];?>' onClick=banUser('"+messageList[i].authorToken+"')></span> ";
+								/*message += "<span class='glyphicon glyphicon-time moderation-option' title='<?php echo $lang["action_timeout"];?>' onClick=timeoutUser('"+messageList[i].authorToken+"')></span> ";
+								message += "<span class='glyphicon glyphicon-fire moderation-option' title='<?php echo $lang["action_ban"];?>' onClick=banUser('"+messageList[i].authorToken+"')></span> ";*/
 								if(userPower == 2){
 									//Admin action
 									message += "<span class='glyphicon glyphicon-star-empty moderation-option' title='<?php echo $lang["action_promote"];?>' onClick=promoteUser('"+messageList[i].authorToken+"')></span> ";

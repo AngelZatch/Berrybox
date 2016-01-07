@@ -2,11 +2,7 @@
 require_once "functions/db_connect.php";
 $db = PDOFactory::getConnection();
 
-if(!isset($_GET["lang"])){
-	include_once "languages/lang.en.php";
-} else {
-	include_once "languages/lang.".$_GET["lang"].".php";
-}
+include_once "languages/lang.en.php";
 ?>
 <div class="row">
 	<div class="col-lg-10 col-lg-offset-1">

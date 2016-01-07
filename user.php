@@ -19,18 +19,18 @@ $profileToken = $_GET["id"];
 
 $profileDetails = $db->query("SELECT * FROM user u
 							JOIN user_stats us ON u.user_token = us.user_token
-							WHERE u.user_token='$profileToken'")->fetch(PDO::FETCH_ASSOC);
+							WHERE u.user_pseudo='$profileToken'")->fetch(PDO::FETCH_ASSOC);
 
 $queryactiveRooms = $db->query("SELECT * FROM rooms r
 							JOIN room_types rt ON r.room_type = rt.id
-							WHERE r.room_creator = '$profileToken' AND room_active = '1' AND room_protection != '3'");
+							WHERE r.room_creator = '$profileDetails[user_token]' AND room_active = '1' AND room_protection != '3'");
 
 ?>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title><?php echo $profileDetails["user_pseudo"];?></title>
-		<base href="../../">
+		<base href="../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
 		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
@@ -88,7 +88,7 @@ $queryactiveRooms = $db->query("SELECT * FROM rooms r
 							<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
 							<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
 							<?php } else { ?>
-							<a href="<?php echo $_GET["lang"];?>/room/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+							<a href="room/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 							<?php } ?>
 						</div>
 					</div>
@@ -117,7 +117,7 @@ $queryactiveRooms = $db->query("SELECT * FROM rooms r
 							var roomToken = $(this).attr('id').substr(9);
 							$.post("functions/submit_password.php", {password : password, roomToken : roomToken}).success(function(data){
 								if(data == 1){
-									window.location.replace("<?php echo $_GET["lang"];?>/room/"+roomToken);
+									window.location.replace("room/"+roomToken);
 								} else {
 									$("#password-"+roomToken).val('');
 									$("#password-"+roomToken).prev().show();

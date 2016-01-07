@@ -363,4 +363,13 @@ legend {
 .label-lang {
   background-color: #e416a1; }
 
+/* line 285, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.chat-icon {
+  width: 17px;
+  height: 17px; }
+  /* line 288, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  .chat-icon img {
+    width: inherit;
+    margin-bottom: 2px; }
+
 /*# sourceMappingURL=common.css.map */

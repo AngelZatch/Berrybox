@@ -2,15 +2,6 @@
 require_once "functions/db_connect.php";
 include "functions/tools.php";
 
-if(isset($_GET["lang"])){
-	$lang = $_GET["lang"];
-	$_SESSION["lang"] = $lang;
-
-	include_once "languages/lang.".$lang.".php";
-} else {
-	header("Location:en/portal");
-}
-
 if(isset($_POST["signup"])){
 	session_start();
 	$db = PDOFactory::getConnection();
@@ -41,7 +32,7 @@ if(isset($_POST["signup"])){
 		$_SESSION["power"] = "0";
 		$_SESSION["token"] = $token;
 		$_SESSION["lang"] = "en";
-		header('Location: ../'.$_GET["lang"].'/home');
+		header('Location: home');
 	} catch(PDOException $e){
 		$db->rollBack();
 		echo $e->getMessage();
@@ -52,7 +43,6 @@ if(isset($_POST["signup"])){
 	<head>
 		<meta charset="UTF-8">
 		<title>Strawberry Music Streamer</title>
-		<base href="../">
 		<?php include "styles.php";?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 	</head>
@@ -73,7 +63,7 @@ if(isset($_POST["signup"])){
 					</div>
 					<input type="submit" class="btn btn-primary btn-block" name="signup" value="<?php echo $lang["sign_up"];?>">
 				</form>
-				<p style="text-align: center"><?php echo $lang["already_account"];?> <a href="<?php echo $_GET["lang"];?>/portal"><?php echo $lang["log_in_here"];?></a></p>
+				<p style="text-align: center"><?php echo $lang["already_account"];?> <a href="portal"><?php echo $lang["log_in_here"];?></a></p>
 			</div>
 		</div>
 		<?php include "scripts.php";?>
