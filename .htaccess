@@ -1,13 +1,13 @@
 Options -MultiViews
 RewriteEngine On
-RewriteRule ^([a-z]+)/room/([A-Za-z0-9-]+)/?$ room.php?id=$2&lang=$1 [NC,L] # Display room pages
-RewriteRule ^([a-z]+)/user/([A-Za-z0-9-]+)/?$ user.php?id=$2&lang=$1 [NC,L] # Display user pages
+RewriteRule ^room/([A-Za-z0-9-]+)/?$ room.php?id=$1 [NC,L] # Display room pages
+RewriteRule ^user/([A-Za-z0-9-]+)/?$ user.php?id=$1 [NC,L] # Display user pages
 # 1 argument
-RewriteRule ^([a-z]+)/home$ home.php?lang=$1 [NC,L] # Display home
-RewriteRule ^([a-z]+)/create$ create_room.php?lang=$1 [NC,L] # Room creation
-RewriteRule ^([a-z]+)/portal$ portal.php?lang=$1 [NC,L] # Portal
-RewriteRule ^([a-z]+)/signup$ signup.php?lang=$1 [NC,L] # Signup
+RewriteRule ^home$ home.php [NC,L] # Display home
+RewriteRule ^create$ create_room.php [NC,L] # Room creation
+RewriteRule ^portal$ portal.php [NC,L] # Portal
+RewriteRule ^signup$ signup.php [NC,L] # Signup
 # sub-pages
-RewriteRule ^([a-z]+)/profile/settings$ profile.php?lang=$1 [NC,L] # Profile
-RewriteRule ^([a-z]+)/profile/history$ history.php?lang=$1 [NC,L] # Profile
-RewriteRule ^([a-z]+)/profile/security$ security.php?lang=$1 [NC,L] # Profile
+RewriteRule ^profile/settings$ profile.php [NC,L] # Profile
+RewriteRule ^profile/history$ history.php [NC,L] # Profile
+RewriteRule ^profile/security$ security.php [NC,L] # Profile

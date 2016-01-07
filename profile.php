@@ -73,7 +73,7 @@ if(isset($_POST["submit"])){
 	<head>
 		<meta charset="UTF-8">
 		<title>My Profile</title>
-		<base href="../../">
+		<base href="../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
 		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
@@ -90,11 +90,11 @@ if(isset($_POST["submit"])){
 				<span class="tip"><?php echo $lang["profile_settings_tip"];?></span>
 				<ul class="nav nav-tabs" id="profile-menu">
 					<li role="presentation" class="active"><a href="<?php echo $_SESSION["lang"];?>/profile/settings"><?php echo $lang["profile_settings"];?></a></li>
-					<li role="presentation"><a href="<?php echo $_SESSION["lang"];?>/profile/history"><?php echo $lang["profile_history"];?></a></li>
-					<li role="presentation"><a href="<?php echo $_SESSION["lang"];?>/profile/security"><?php echo $lang["profile_security"];?></a></li>
+					<li role="presentation"><a href="profile/history"><?php echo $lang["profile_history"];?></a></li>
+					<li role="presentation"><a href="profile/security"><?php echo $lang["profile_security"];?></a></li>
 				</ul>
 			</div>
-			<form action="<?php echo $_SESSION["lang"];?>/profile/settings" class="form-horizontal" method="post" enctype="multipart/form-data">
+			<form action="profile/settings" class="form-horizontal" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="username" class="col-sm-3 control-label"><?php echo $lang["display_name"];?></label>
 					<div class="col-sm-6">

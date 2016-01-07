@@ -2,7 +2,7 @@
 require_once "functions/db_connect.php";
 $db = PDOFactory::getConnection();
 if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
-	header("Location:$_SESSION[lang]/home");
+	header("Location: ../$_SESSION[lang]/home");
 } else {
 	if(isset($_POST["login"])){
 		session_start();
@@ -20,7 +20,7 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 			$_SESSION["power"] = $credentials["user_power"];
 			$_SESSION["token"] = $credentials["user_token"];
 			$_SESSION["lang"] = $credentials["user_lang"];
-			header("Location: ../$credentials[user_lang]/home");
+			header("Location: home");
 		}
 	}
 }
@@ -29,7 +29,6 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 	<head>
 		<meta charset="UTF-8">
 		<title>Log in | Berrybox</title>
-		<base href="../">
 		<?php include "styles.php";?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 	</head>
@@ -47,7 +46,7 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 					</div>
 					<input type="submit" class="btn btn-primary btn-block" name="login" value="<?php echo $lang["log_in"];?>">
 				</form>
-				<p style="text-align: center"><?php echo $lang["no_account"];?> <a href="<?php echo $_GET["lang"];?>/signup"><?php echo $lang["sing_up_here"];?></a></p>
+				<p style="text-align: center"><?php echo $lang["no_account"];?> <a href="signup"><?php echo $lang["sing_up_here"];?></a></p>
 			</div>
 		</div>
 		<?php include "scripts.php";?>

@@ -13,7 +13,6 @@ $queryTypes = $db->query("SELECT * FROM room_types");
 	<head>
 		<meta charset="UTF-8">
 		<title>Create a room</title>
-		<base href="../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){
 			if($userDetails["up_theme"] == '1'){?>
@@ -78,7 +77,7 @@ $queryTypes = $db->query("SELECT * FROM room_types");
 					</div>
 				</div>
 				<span name="createRoom" class="btn btn-primary btn-block"><?php echo $lang["room_create"];?></span>
-				<a href="<?php echo $_GET["lang"];?>/home" class="btn btn-default btn-block"><?php echo $lang["cancel"];?></a>
+				<a href="home" class="btn btn-default btn-block"><?php echo $lang["cancel"];?></a>
 			</form>
 		</div>
 		<?php include "scripts.php";?>
@@ -114,7 +113,7 @@ $queryTypes = $db->query("SELECT * FROM room_types");
 				var description = $("#description").val();
 				console.log(description);
 				$.post("functions/room_create.php", {roomName : roomName, creator : user, protect : protect, password : password, type : type, language : language, description : description}).done(function(data){
-					window.location.replace("<?php echo $_GET["lang"];?>/room/"+data);
+					window.location.replace("room/"+data);
 				})
 			})
 		</script>
