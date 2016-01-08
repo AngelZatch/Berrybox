@@ -52,6 +52,8 @@ $lang["submit_type"] = "Envoi de vidéos";
 $lang["submit_type_tip"] = "Si la soumission est restreinte à 'modérateurs', les utilisateurs standard ne pourront plus soumettre de vidéos.";
 $lang["submit_all"] = "Libre";
 $lang["submit_mod"] = "Modérateurs";
+$lang["room_params"] = "Changer la description du salon";
+$lang["room_params_tip"] = "Modifiez la langue principale parlée, le type de contenu des vidéos et la description du salon";
 
 /** CHAT **/
 $lang["post_chat"] = "Envoyer";

@@ -20,7 +20,7 @@ $lang["level_public"] = "Public";
 $lang["private_tip"] = "This room will remain invisible to anyone";
 $lang["locked_tip"] = "Access to this room will require a password";
 $lang["public_tip"] = "This room will be visible to everyone";
-$lang["speak_lang"] = "Main spoken language of the room";
+$lang["speak_lang"] = "Main language";
 $lang["room_type"] = "Room type";
 $lang["description_limit"] = "Description (300 chars max.)";
 $lang["action_timeout"] = "Time this user out";
@@ -52,6 +52,8 @@ $lang["submit_type"] = "Submission rights";
 $lang["submit_type_tip"] = "In 'Mod only', standard users won't be able to submit videos anymore";
 $lang["submit_all"] = "Everyone";
 $lang["submit_mod"] = "Mods only";
+$lang["room_params"] = "Change room description";
+$lang["room_params_tip"] = "Change the main spoken language, the type of video content and the text description of the room";
 
 /** CHAT **/
 $lang["post_chat"] = "Chat";
@@ -155,6 +157,7 @@ $lang["bio_tip"] = "Who you are in less than 400 characters.";
 $lang["default_lang"] = "Default language";
 $lang["lang_tip"] = "The language the whole application will display";
 $lang["save_changes"] = "Save changes";
+$lang["save_changes_feedback"] = "Saved";
 $lang["user_theme"] = "Theme";
 $lang["theme_tip"] = "Toggle between and dark and a light theme for Berrybox";
 $lang["dark"] = "Dark";
