@@ -52,6 +52,8 @@ $lang["submit_type"] = "ビデオ提出";
 $lang["submit_type_tip"] = "もしビデオ提出が「モデレーターだけ」のセッティングにされましたら、ノーマルユーザーがビデオ提出することができません。";
 $lang["submit_all"] = "みんな";
 $lang["submit_mod"] = "モデレーターだけ";
+$lang["room_params"] = "ルームの説明を編集します";
+$lang["room_params_tip"] = "主な話し言葉やルームタイプやルーム説明を編集します";
 
 /** CHAT **/
 $lang["post_chat"] = "チャット";
@@ -155,6 +157,7 @@ $lang["bio_tip"] = "あなたの事項商会〔400文字上限〕";
 $lang["default_lang"] = "デフォールト言語";
 $lang["lang_tip"] = "アプリのディスプレイ言語";
 $lang["save_changes"] = "セイブ";
+$lang["save_changes_feedback"] = "セイブしました";
 $lang["user_theme"] = "テーマ";
 $lang["theme_tip"] = "ダークテーマとか、ライトテーマを選択します。";
 $lang["dark"] = "ダーク";

@@ -283,8 +283,8 @@ if(isset($_SESSION["token"])){
 						<span class="tip"><?php echo $lang["submit_type_tip"];?></span>
 					</div>
 					<div class="room-option">
-						<span class="option-title">Changer les paramètres du salon</span><br>
-						<span class="tip">Langage principale, type de contenu</span>
+						<span class="option-title"><?php echo $lang["room_params"];?></span><br>
+						<span class="tip"><?php echo $lang["room_params_tip"];?></span>
 						<form class="form-horizontal">
 							<div class="form-group">
 								<label for="speakLang" class="col-lg-4 control-label"><?php echo $lang["speak_lang"];?></label>
