@@ -857,6 +857,7 @@ if(isset($_SESSION["token"])){
 				var previousSongState = -1;
 				for(var i = 0; i < songList.length; i++){
 					var message = "";
+					var songName = songList[i].videoName.replace(/'/g, "\&#39");
 					if(previousSongState != songList[i].videoStatus){
 						switch(songList[i].videoStatus){
 							case '0':
@@ -886,7 +887,7 @@ if(isset($_SESSION["token"])){
 						var message = "<div class='row song-upcoming'>";
 						message += "<div class='col-lg-9'>";
 					}
-					message += "<p class='song-list-line'><a href='https://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title="+songList[i].videoName+">"+songList[i].videoName+"</a></p></div>";
+					message += "<p class='song-list-line'><a href='https://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songName+"'>"+songList[i].videoName+"</a></p></div>";
 					if(userPower == 2 || userPower == 3){
 						if(songList[i].videoStatus == 0){
 							message += "<div class='col-lg-1'>";
