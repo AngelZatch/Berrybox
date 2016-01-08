@@ -11,6 +11,7 @@ $creatorStats = $db->query("SELECT *
 							FROM user_stats us
 							WHERE user_token = '$roomDetails[room_creator]'")->fetch(PDO::FETCH_ASSOC);
 $colorList = $db->query("SELECT * FROM name_colors WHERE color_status = 0");
+$queryTypes = $db->query("SELECT * FROM room_types");
 
 if(isset($_SESSION["token"])){
 	$userDetails = $db->query("SELECT * FROM user u
@@ -257,26 +258,65 @@ if(isset($_SESSION["token"])){
 }?>
 					</div>
 					<div class="room-option">
-						<span class="option-title"><?php echo $lang["user_theme"];?></span><br>
-						<span style="float:right;">
-							<input type="checkbox" class="user-option-toggle" name="toggle-theme" <?php echo($userDetails["up_theme"]=='0')?'checked':'unchecked';?>>
-						</span>
+						<div class="option-title"><?php echo $lang["user_theme"];?>
+							<span style="float:right;">
+								<input type="checkbox" class="user-option-toggle" name="toggle-theme" <?php echo($userDetails["up_theme"]=='0')?'checked':'unchecked';?>>
+							</span>
+						</div>
 						<span class="tip"><?php echo $lang["theme_tip"];?></span>
 					</div>
 					<?php if($_SESSION["token"] == $roomDetails["room_creator"]){ ?>
 					<div class="room-option">
-						<span class="option-title"><?php echo $lang["play_type"];?></span><br>
-						<span style="float: right;">
-							<input type="checkbox" class="admin-option-toggle" name="toggle-autoplay" <?php echo($roomDetails["room_play_type"]=='1')?'unchecked':'checked';?>>
-						</span>
+						<div class="option-title"><?php echo $lang["play_type"];?>
+							<span style="float: right;">
+								<input type="checkbox" class="admin-option-toggle" name="toggle-autoplay" <?php echo($roomDetails["room_play_type"]=='1')?'unchecked':'checked';?>>
+							</span>
+						</div>
 						<span class="tip"><?php echo $lang["play_type_tip"];?></span>
 					</div>
 					<div class="room-option">
-						<span class="option-title"><?php echo $lang["submit_type"];?></span><br>
-						<span style="float: right;">
-							<input type="checkbox" class="admin-option-toggle" name="toggle-submit" <?php echo($roomDetails["room_submission_rights"]=='1')?'checked':'unchecked';?>>
-						</span>
+						<div class="option-title"><?php echo $lang["submit_type"];?>
+							<span style="float: right;">
+								<input type="checkbox" class="admin-option-toggle" name="toggle-submit" <?php echo($roomDetails["room_submission_rights"]=='1')?'checked':'unchecked';?>>
+							</span>
+						</div>
 						<span class="tip"><?php echo $lang["submit_type_tip"];?></span>
+					</div>
+					<div class="room-option">
+						<span class="option-title">Changer les paramètres du salon</span><br>
+						<span class="tip">Langage principale, type de contenu</span>
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label for="speakLang" class="col-lg-4 control-label"><?php echo $lang["speak_lang"];?></label>
+								<div class="col-lg-8">
+									<select name="speakLang" id="" class="form-control">
+										<option value="en" <?php if($roomDetails["room_lang"]=="en") echo "selected='selected'";?>>English</option>
+										<option value="fr" <?php if($roomDetails["room_lang"]=="fr") echo "selected='selected'";?>>Français</option>
+										<option value="jp" <?php if($roomDetails["room_lang"]=="jp") echo "selected='selected'";?>>日本語</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="roomType" class="col-sm-4 control-label"><?php echo $lang["room_type"];?></label>
+								<div class="col-lg-8">
+									<select name="roomType" id="" class="form-control">
+										<?php while($type = $queryTypes->fetch(PDO::FETCH_ASSOC)) {
+	if($type["id"] == $roomDetails["room_type"]){?>
+										<option value="<?php echo $type["id"];?>" selected="selected"><?php echo $lang[$type["type"]];?></option>
+										<?php } else { ?>
+										<option value="<?php echo $type["id"];?>"><?php echo $lang[$type["type"]];?></option>
+										<?php } } ?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="description" class="col-sm-4 control-label"><?php echo $lang["description_limit"];?></label>
+								<div class="col-lg-8">
+									<textarea name="description" id="description" cols="30" rows="5" class="form-control"><?php echo $roomDetails["room_description"];?></textarea>
+								</div>
+							</div>
+						</form>
+						<button class="btn btn-primary btn-block" id="save-room-button" onClick="saveRoomChanges('<?php echo $roomToken;?>')"><?php echo $lang["save_changes"];?></button>
 					</div>
 					<span class="option-title"><?php echo $lang["close_room"];?></span><br>
 					<span class="tip"><?php echo $lang["close_room_tip"];?></span>
@@ -1233,6 +1273,20 @@ if(isset($_SESSION["token"])){
 			$("#watch-count").empty();
 			$("#watch-count").append(" "+data);
 		})
+	}
+	function saveRoomChanges(roomToken){
+		var language = $('[name=speakLang]').val();
+		var description = $("#description").val();
+		var type = $('[name=roomType]').val();
+		$.post("functions/edit_room.php", {type : type, language : language, description : description, roomToken : roomToken}).done(function(){
+			$("#save-room-button").blur();
+			$("#save-room-button").text("<?php echo $lang["save_changes_feedback"];?>");
+			$("#save-room-button").switchClass("btn-primary", "btn-success feedback", 200, "easeOutBack");
+			setTimeout(function(){
+				$("#save-room-button").switchClass("btn-success feedback", "btn-primary", 1000, "easeInQuad")
+				$("#save-room-button").text("<?php echo $lang["save_changes"];?>");
+			}, 1500);
+		});
 	}
 	function closeRoom(roomToken){
 		sendMessage(roomToken, 4, 4, "{close_room_5}");
