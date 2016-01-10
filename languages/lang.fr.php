@@ -83,6 +83,7 @@ $lang["room_creator"] = "Créateur de la box";
 $lang["now_playing"] = "Vidéo en cours";
 $lang["watch_count"] = "Spectateurs";
 $lang["playlist"] = "Liste des chansons";
+$lang["playlist_filter"] = "Filtrez la liste des chansons";
 $lang["sync-on"] = "Synchro ON";
 $lang["sync-off"] = "Synchro OFF";
 $lang["ul_admin"] = "Créateur";

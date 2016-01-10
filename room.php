@@ -170,7 +170,7 @@ if(isset($_SESSION["token"])){
 					<?php } ?>
 				</div>
 				<div class="col-lg-6 mood-selectors">
-					<p class="mood-question">Do you like this song?</p>
+					<p class="mood-question"><?php echo $lang["mood-question"];?></p>
 					<div class="col-lg-2">
 						<p class="emotion-glyph emotion-like button-glyph" onClick="voteMood('like')">
 							<span class="glyphicon glyphicon-thumbs-up"></span>
@@ -233,7 +233,11 @@ if(isset($_SESSION["token"])){
 		<div class="col-lg-3 col-md-3 full-panel" id="song-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></div>
-				<div class="panel-body full-panel-body" id="body-song-list"></div>
+				<div class="panel-body panel-section">
+					<input type="text" class="form-control" id="playlist-filter" placeholder="Filter the playlist">
+				</div>
+				<div class="panel-body full-panel-body" id="body-song-list">
+				</div>
 			</div>
 		</div>
 		<div class="col-lg-2 col-md-2 full-panel" id="user-list">
@@ -482,6 +486,15 @@ if(isset($_SESSION["token"])){
 				})
 			}
 		})
+		// Dynamic filtering of the playlist
+		$('#playlist-filter').on('keyup', function(){
+			var $rows = $('.playlist-entry');
+			var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+			$rows.show().filter(function(){
+				var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+				return !~text.indexOf(val);
+			}).hide();
+		});
 	}).on('click','.play-url', function(){
 		submitLink();
 	}).on('focus', '.url-box', function(){
@@ -915,16 +928,16 @@ if(isset($_SESSION["token"])){
 						}
 					}
 					if(songList[i].videoStatus == 2){
-						message += "<div class='row song-played'>";
+						message += "<div class='row playlist-entry song-played'>";
 						message += "<div class='col-lg-10'>";
 					} else if(songList[i].videoStatus == 1){
-						message += "<div class='row song-playing'>";
+						message += "<div class='row playlist-entry song-playing'>";
 						message += "<div class='col-lg-12'>";
 					} else if(songList[i].videoStatus == 3){
-						message += "<div class='row song-ignored'>";
+						message += "<div class='row playlist-entry song-ignored'>";
 						message += "<div class='col-lg-9'>";
 					} else {
-						var message = "<div class='row song-upcoming'>";
+						var message = "<div class='row playlist-entry song-upcoming'>";
 						message += "<div class='col-lg-9'>";
 					}
 					message += "<p class='song-list-line'><a href='https://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songName+"'>"+songList[i].videoName+"</a></p></div>";

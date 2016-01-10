@@ -81,6 +81,7 @@ $lang["room_mod"] = "ボックスモデレータ";
 $lang["now_playing"] = "プレイ中";
 $lang["watch_count"] = "観衆カウント";
 $lang["playlist"] = "プレイリスト";
+$lang["playlist_filter"] = "プレイリストをフィルタリングします";
 $lang["sync-on"] = "シンク オン";
 $lang["sync-off"] = "シンク　オフ";
 $lang["ul_admin"] = "クリエイター";

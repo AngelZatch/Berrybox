@@ -81,6 +81,7 @@ $lang["room_mod"] = "Room moderator";
 $lang["now_playing"] = "Now playing";
 $lang["watch_count"] = "Spectators";
 $lang["playlist"] = "Playlist";
+$lang["playlist_filter"] = "Filter the playlist";
 $lang["sync-on"] = "Sync ON";
 $lang["sync-off"] = "Sync OFF";
 $lang["ul_admin"] = "Creator";
