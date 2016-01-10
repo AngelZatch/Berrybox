@@ -6,22 +6,22 @@ $lang = array();
 $lang["hello"] = "Hello and welcome to Berrybox!";
 $lang["berrybox_description"] = "Berrybox is a simple application to share and watch youtube videos together!";
 $lang["get_started"] = "Join the community";
-$lang["home_create_room"] = "Want to create a new room? Click here!";
+$lang["home_create_room"] = "Want to open a new box? Click here!";
 
 /** ROOM ADMIN **/
 $lang["room_join"] = "Join";
-$lang["room_create"] = "Create a new room";
-$lang["active_room"] = "Active rooms";
-$lang["room_name"] = "Name of the room";
+$lang["room_create"] = "Create a new box";
+$lang["active_room"] = "Active boxes";
+$lang["room_name"] = "Name of the box";
 $lang["room_protection"] = "Protection level";
 $lang["level_private"] = "Private";
 $lang["level_locked"] = "Locked";
 $lang["level_public"] = "Public";
-$lang["private_tip"] = "This room will remain invisible to anyone";
-$lang["locked_tip"] = "Access to this room will require a password";
-$lang["public_tip"] = "This room will be visible to everyone";
+$lang["private_tip"] = "This box will remain invisible to anyone";
+$lang["locked_tip"] = "Access to this box will require a password";
+$lang["public_tip"] = "This box will be visible to everyone";
 $lang["speak_lang"] = "Main language";
-$lang["room_type"] = "Room type";
+$lang["room_type"] = "Box type";
 $lang["description_limit"] = "Description (300 chars max.)";
 $lang["action_timeout"] = "Time this user out";
 $lang["action_ban"] = "Ban this user indefinitely";
@@ -30,16 +30,16 @@ $lang["action_demote"] = "Demote this user";
 $lang["timeout_message_admin_first_part"] = "User has been timeouted (";
 $lang["timeout_message_admin_second_part"] = " times)";
 $lang["timeout_message_user"] = "You have been timeouted and therefore won't be able to post messages and/or submit videos";
-$lang["ignore_song"] = "Ignore this song";
-$lang["song_up"] = "Move this song up the queue";
-$lang["song_down"] = "Move this song down the queue";
-$lang["close_room"] = "Close the room";
-$lang["close_room_tip"] = "Closing the room will deactivate video submission, video play and every user will be kicked out of the room 5 minutes after the action. This action is irreversible";
-$lang["room_closing"] = "The room is closing. You will now be redirected outside.";
-$lang["change_type"] = "Change the type of the room";
-$lang["song_submit_success"] = "Your song has been submitted into the playlist";
+$lang["ignore_song"] = "Ignore this video";
+$lang["song_up"] = "Move this video up the queue";
+$lang["song_down"] = "Move this video down the queue";
+$lang["close_room"] = "Close the box";
+$lang["close_room_tip"] = "Closing the box will deactivate video submission, play and the box will no longer be accessible by users. This action is irreversible";
+$lang["room_closing"] = "This box is closed. Please leave the box.";
+$lang["change_type"] = "Change the type of the box";
+$lang["song_submit_success"] = "Your video has been submitted into the playlist";
 $lang["invalid_link"] = "The link you submitted is invalid. Please submit a valid link";
-$lang["db_error"] = "There has been in an error in submitting your song. Please try again.";
+$lang["db_error"] = "There has been in an error in submitting your video. Please try again.";
 $lang["skip"] = "Next";
 $lang["spam"] = "You have to wait at least 1 second to post a new message";
 
@@ -60,11 +60,11 @@ $lang["post_chat"] = "Chat";
 $lang["chat_placeholder"] = "Write a message";
 $lang["chat_settings"] = "Chat and room settings";
 $lang["color_pick"] = "Pick a color for your username";
-$lang["welcome"] = "Welcome in the chat room! To submit a video, please paste any YouTube link in the box under the player.";
+$lang["welcome"] = "Welcome in the box! To submit a video, please paste any YouTube link in the input under the player.";
 
 /** MOOD **/
-$lang["mood-question"] = "So, what do you think of this song?";
-$lang["like"] = "I like the song";
+$lang["mood-question"] = "So, what do you think of this video?";
+$lang["like"] = "I like it";
 $lang["cry"] = "It makes me sad";
 $lang["love"] = "It makes me melancholic";
 $lang["intense"] = "It's intense!";
@@ -74,8 +74,8 @@ $lang["energy"] = "I'm full of energy!!";
 /** ROOM **/
 $lang["youtube_message"] = "Submit your YouTube link here";
 $lang["submit_link"] = "Submit";
-$lang["no_submit"] = "Please <a href='signup.php?lang=en'>register</a> or <a href='portal.php?lang=en'>log in</a> to submit links";
-$lang["no_chat"] = "Please <a href='signup.php?lang=en'>register</a> or <a href='portal.php?lang=en'>log in</a> to post messages";
+$lang["no_submit"] = "Please <a href='../signup'>register</a> or <a href='../portal'>log in</a> to submit links";
+$lang["no_chat"] = "Please <a href='../signup'>register</a> or <a href='../portal'>log in</a> to post messages";
 $lang["room_admin"] = "Room creator";
 $lang["room_mod"] = "Room moderator";
 $lang["now_playing"] = "Now playing";
@@ -89,7 +89,7 @@ $lang["ul_users"] = "Listeners";
 $lang["sl_played"] = "Played videos";
 $lang["sl_upcoming"] = "Upcoming videos";
 $lang["synchronizing"] = "Synchronization, please wait a moment.";
-$lang["no_admin"] = "Attention ! The creator is not present in the room. The synchronisation is therefore impossible. If you want to share videos in proper conditions, please create another room or contact the creator of this room directly.";
+$lang["no_admin"] = "Warning ! The creator is not present in the box. The synchronisation is therefore impossible. If you want to share videos in proper conditions, please create another box or contact the creator of this box directly.";
 $lang["whisper"] = "Whisper";
 
 /** ROOM TYPES **/
@@ -125,7 +125,7 @@ $lang["password"] = "Password";
 $lang["pwd_confirm"] = "Please confirm your password";
 $lang["cancel"] = "Cancel";
 $lang["wrong_password"] = "Wrong password. Please try again";
-$lang["no_credentials"] = "Oops! It appears you're not registered. Please log in or sign up to access the room.";
+$lang["no_credentials"] = "Oops! It appears you're not registered. Please log in or sign up to access the box.";
 $lang["follow_us"] = "Follow Berrybox for latest news";
 $lang["twitter"] = "Twitter";
 
@@ -133,10 +133,10 @@ $lang["twitter"] = "Twitter";
 $lang["menu"] = "Main menu";
 $lang["my_profile"] = "My profile";
 $lang["public_profile"] = "My stats";
-$lang["leave"] = "Leave the room";
-$lang["warning_sync_admin"] = "Warning! The synchronization is based on you, the creator of the room. If you leave, the sync will stop.";
+$lang["leave"] = "Leave the box";
+$lang["warning_sync_admin"] = "Warning! The synchronization is based on you, the creator of the box. If you leave, the sync will stop and no video will play anymore.";
 $lang["room_reopen"] = "Reopen and join";
-$lang["room_delete"] = "Delete the room";
+$lang["room_delete"] = "Delete the box";
 $lang["status_open"] = "Open";
 $lang["status_closed"] = "Closed";
 
@@ -144,7 +144,7 @@ $lang["status_closed"] = "Closed";
 $lang["profile_settings"] = "Settings";
 $lang["profile_settings_tip"] = "Update your display name, your bio and your profile picture";
 $lang["profile_history"] = "History";
-$lang["profile_history_tip"] = "Any of your closed rooms will stay reachable until next Sunday 1am.";
+$lang["profile_history_tip"] = "Any of your closed boxes will stay reachable until next Sunday 1am.";
 $lang["profile_security"] = "Security";
 $lang["profile_security_tip"] = "Change your password";
 $lang["display_name"] = "Display name";
@@ -165,10 +165,10 @@ $lang["light"] = "Light";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "This user doesn't have any bio";
-$lang["rooms_created"] = "Number of opened rooms";
-$lang["songs_submitted"] = "Number of played songs";
+$lang["rooms_created"] = "Number of opened boxes";
+$lang["songs_submitted"] = "Number of played videos";
 $lang["total_views"] = "Total number of spectators";
-$lang["opened_rooms"] = "Currently opened rooms";
+$lang["opened_rooms"] = "Currently opened boxes";
 $lang["no_opened_rooms"] = "None";
 
 /** SECURITY **/

@@ -6,20 +6,20 @@ $lang = array();
 $lang["hello"] = "Bienvenue sur Berrybox!";
 $lang["berrybox_description"] = "Berrybox est une application simple pour partager des vidéos et les regarder en synchronisation!";
 $lang["get_started"] = "Rejoindre l'expérience Berrybox";
-$lang["home_create_room"] = "Envie de créer un nouveau salon ? C'est par ici !";
+$lang["home_create_room"] = "Envie de créer une nouvelle box ? C'est par ici !";
 
 /** ROOM ADMIN **/
 $lang["room_join"] = "Rejoindre";
-$lang["room_create"] = "Créer un salon";
-$lang["active_room"] = "Salons actifs";
-$lang["room_name"] = "Nom du salon";
+$lang["room_create"] = "Créer une box";
+$lang["active_room"] = "Boxes actives";
+$lang["room_name"] = "Nom de la box";
 $lang["room_protection"] = "Niveau de protection";
 $lang["level_private"] = "Privé";
 $lang["level_locked"] = "Protégé par mot de passe";
 $lang["level_public"] = "Public";
-$lang["private_tip"] = "Ce salon ne sera pas visible par les autres utilisateurs";
-$lang["locked_tip"] = "L'accès à ce salon nécessitera un mot de password";
-$lang["public_tip"] = "Ce salon sera accessible à tout le monde";
+$lang["private_tip"] = "Cette box ne sera pas visible par les autres utilisateurs";
+$lang["locked_tip"] = "L'accès à cette box nécessitera un mot de password";
+$lang["public_tip"] = "Cette box sera accessible à tout le monde";
 $lang["speak_lang"] = "Langue principale";
 $lang["room_type"] = "Type";
 $lang["description_limit"] = "Description (300 sym. max.)";
@@ -33,10 +33,10 @@ $lang["timeout_message_user"] = "Vous avez été mis en sourdine et ne pourrez p
 $lang["ignore_song"] = "Ignorer cette musique";
 $lang["song_up"] = "Déplacer cette chanson vers le haut de la file d'attente";
 $lang["song_down"] = "Déplacer cette chanson vers le bas de la file d'attente";
-$lang["close_room"] = "Fermer le salon";
-$lang["close_room_tip"] = "La fermeture du salon désactivera la soumission et la lecture de vidéos, et tous les utilisateurs seront exclus du salon 5 minutes après. Cette action est irréversible";
-$lang["room_closing"] = "Ce salon ferme. Vous allez maintenant être redirigé dehors.";
-$lang["change_type"] = "Changer le type du salon";
+$lang["close_room"] = "Fermer la box";
+$lang["close_room_tip"] = "La fermeture de la box désactivera la soumission et la lecture de vidéos, ainsi que l'accès à la box.";
+$lang["room_closing"] = "Cette box est fermée. Veuillez quitter la box.";
+$lang["change_type"] = "Changer le type de la bx";
 $lang["song_submit_success"] = "Votre vidéo a bien été ajoutée à la playlist";
 $lang["invalid_link"] = "Le lien que vous avez soumis est invalide. Veuillez recommencer avec un lien valide";
 $lang["db_error"] = "Une erreur s'est produite pendant la soumission de votre lien. Veuillez recommencer.";
@@ -52,18 +52,18 @@ $lang["submit_type"] = "Envoi de vidéos";
 $lang["submit_type_tip"] = "Si la soumission est restreinte à 'modérateurs', les utilisateurs standard ne pourront plus soumettre de vidéos.";
 $lang["submit_all"] = "Libre";
 $lang["submit_mod"] = "Modérateurs";
-$lang["room_params"] = "Changer la description du salon";
-$lang["room_params_tip"] = "Modifiez la langue principale parlée, le type de contenu des vidéos et la description du salon";
+$lang["room_params"] = "Changer la description de la box";
+$lang["room_params_tip"] = "Modifiez la langue principale parlée, le type de contenu des vidéos et la description de la box";
 
 /** CHAT **/
 $lang["post_chat"] = "Envoyer";
 $lang["chat_placeholder"] = "Ecrire un message";
-$lang["chat_settings"] = "Paramètres du chat et du salon";
+$lang["chat_settings"] = "Paramètres du chat et de la box";
 $lang["color_pick"] = "Choisissez une couleur pour votre nom";
-$lang["welcome"] = "Bienvenue dans le salon ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur.";
+$lang["welcome"] = "Bienvenue dans cette box ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur.";
 
 /** MOOD **/
-$lang["mood-question"] = "Que pensez-vous de la musique ?";
+$lang["mood-question"] = "Que pensez-vous de la vidéo ?";
 $lang["like"] = "J'aime";
 $lang["cry"] = "Elle me rend triste";
 $lang["love"] = "Elle me rend mélancolique";
@@ -75,11 +75,11 @@ $lang["energy"] = "Je suis plein d'énergie !!";
 /** ROOM **/
 $lang["youtube_message"] = "Envoyer un lien YouTube";
 $lang["submit_link"] = "Envoyer";
-$lang["no_submit"] = "Veuillez vous <a href='signup.php?lang=fr'>inscrire</a> ou vous <a href='portal.php?lang=fr'>connecter</a> pour envoyer des liens";
-$lang["no_chat"] = "Veuillez vous <a href='signup.php?lang=fr'>inscrire</a> ou vous <a href='portal.php?lang=fr'>connecter</a> pour poster des messages";
+$lang["no_submit"] = "Veuillez vous <a href='../signup'>inscrire</a> ou vous <a href='../portal'>connecter</a> pour envoyer des liens";
+$lang["no_chat"] = "Veuillez vous <a href='../signup'>inscrire</a> ou vous <a href='../portal'>connecter</a> pour poster des messages";
 $lang["room_admin"] = "Administrateur";
 $lang["room_mod"] = "Modérateur";
-$lang["room_creator"] = "Créateur du salon";
+$lang["room_creator"] = "Créateur de la box";
 $lang["now_playing"] = "Vidéo en cours";
 $lang["watch_count"] = "Spectateurs";
 $lang["playlist"] = "Liste des chansons";
@@ -91,7 +91,7 @@ $lang["ul_users"] = "Spectateurs";
 $lang["sl_played"] = "Vidéos lues";
 $lang["sl_upcoming"] = "Vidéos à venir";
 $lang["synchronizing"] = "Synchro en cours, merci de patienter un instant...";
-$lang["no_admin"] = "Attention ! L'administrateur du salon n'est actuellement pas présent. La synchronisation est par conséquent impossible. Si vous voulez partager des vidéos, veuillez créer un autre salon ou contacter le créateur de celui-ci directement.";
+$lang["no_admin"] = "Attention ! L'administrateur de la box n'est actuellement pas présent. La synchronisation est par conséquent impossible. Si vous voulez partager des vidéos, veuillez créer une autre box ou contacter le créateur de cette box directement.";
 $lang["whisper"] = "Murmurer";
 
 /** ROOM TYPES **/
@@ -127,7 +127,7 @@ $lang["password"] = "Mot de passe";
 $lang["pwd_confirm"] = "Veuillez confirmer votre mot de passe";
 $lang["cancel"] = "Annuler";
 $lang["wrong_password"] = "Mot de passe erroné";
-$lang["no_credentials"] = "Ah ! On dirait que vous n'êtes pas enregistré. Enregistrez-vous ou connectez-vous simplement pour accéder au salon.";
+$lang["no_credentials"] = "Ah ! On dirait que vous n'êtes pas enregistré. Enregistrez-vous ou connectez-vous simplement pour accéder à la box.";
 $lang["follow_us"] = "Suivez l'actualité de Berrybox";
 $lang["twitter"] = "Twitter";
 
@@ -136,17 +136,17 @@ $lang["menu"] = "Menu principal";
 $lang["my_profile"] = "Mon profil";
 $lang["public_profile"] = "Mes stats";
 $lang["leave"] = "Quitter le salon";
-$lang["warning_sync_admin"] = "Attention ! La synchronisation du salon est basée sur vous. Si vous quittez le salon, la synchro va s'arrêter pour tout le monde.";
-$lang["room_reopen"] = "Réouvrir le salon.";
+$lang["warning_sync_admin"] = "Attention ! La synchronisation de la box est basée sur vous. Si vous quittez la box, la synchro va s'arrêter pour tout le monde et plus aucune vidéo ne sera jouée.";
+$lang["room_reopen"] = "Réouvrir la box.";
 $lang["room_delete"] = "Supprimer définitivement.";
-$lang["status_open"] = "Ouvert";
-$lang["status_closed"] = "Fermé";
+$lang["status_open"] = "Ouverte";
+$lang["status_closed"] = "Fermée";
 
 /** PROFILE **/
 $lang["profile_settings"] = "Paramètres du profil";
 $lang["profile_settings_tip"] = "Changez votre nom, votre biographie et votre image de profil";
 $lang["profile_history"] = "Historique";
-$lang["profile_history_tip"] = "Un salon fermé restera affiché sur cette page jusqu'au prochain Dimanche à 1 heure du matin.";
+$lang["profile_history_tip"] = "Une box fermée restera affichée sur cette page jusqu'au prochain Dimanche à 1 heure du matin.";
 $lang["profile_security"] = "Securité";
 $lang["profile_security_tip"] = "Changez votre mot de passe";
 $lang["display_name"] = "Nom affiché";
@@ -167,16 +167,16 @@ $lang["light"] = "Clair";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";
-$lang["rooms_created"] = "Nombre de salon ouverts";
-$lang["songs_submitted"] = "Nombre de chansons validées";
+$lang["rooms_created"] = "Nombre de boxes ouvertes";
+$lang["songs_submitted"] = "Nombre de vidéos jouées";
 $lang["total_views"] = "Nombre total de spectateurs";
-$lang["opened_rooms"] = "Salons actuellement ouverts";
-$lang["no_opened_rooms"] = "Aucun salon";
+$lang["opened_rooms"] = "Boxes actuellement ouvertes";
+$lang["no_opened_rooms"] = "Aucune box";
 
 /** SECURITY **/
-$lang["old_password"] = "Current password";
-$lang["new_password"] = "New password";
-$lang["confirm_new_password"] = "Confirm new password";
+$lang["old_password"] = "Mot de passe actuel";
+$lang["new_password"] = "Nouveau mot de passe";
+$lang["confirm_new_password"] = "Confirmez votre nouveau mot de passe";
 
 /** BETA **/
 $lang["beta_key"] = "Entrez votre clé beta ci-dessous pour avoir accès à l'application";
