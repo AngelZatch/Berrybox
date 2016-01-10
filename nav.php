@@ -19,7 +19,7 @@ if(isset($_SESSION["token"])){
 ?>
 <nav class="navbar navbar-fixed-top">
 	<div class="container-fluid">
-		<a href="home" class="navbar-brand">Berrybox beta</a>
+		<a href="home" class="navbar-brand">Berrybox</a>
 		<!--<form class="navbar-form navbar-left" role="search">
 <div class="form-group">
 <input type="text" class="form-control" name="search_terms" placeholder="Search user, room...">
