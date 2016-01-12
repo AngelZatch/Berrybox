@@ -52,15 +52,16 @@ $lang["submit_type"] = "Submission rights";
 $lang["submit_type_tip"] = "In 'Mod only', standard users won't be able to submit videos anymore";
 $lang["submit_all"] = "Everyone";
 $lang["submit_mod"] = "Mods only";
-$lang["room_params"] = "Change room description";
-$lang["room_params_tip"] = "Change the main spoken language, the type of video content and the text description of the room";
+$lang["room_params"] = "Change box description";
+$lang["room_params_tip"] = "Change the main spoken language, the type of video content and the text description of the box";
 
 /** CHAT **/
 $lang["post_chat"] = "Chat";
 $lang["chat_placeholder"] = "Write a message";
-$lang["chat_settings"] = "Chat and room settings";
+$lang["chat_settings"] = "Chat and box settings";
 $lang["color_pick"] = "Pick a color for your username";
 $lang["welcome"] = "Welcome in the box! To submit a video, please paste any YouTube link in the input under the player.";
+$lang["welcome_admin"] = "Welcome in your box! To submit a video, please paste any YouTube link in the input under the player. Please note that you are the creator and therefore administrator of this box. If you leave it without closing it, video synchronisation and play will stop for your users.";
 
 /** MOOD **/
 $lang["mood-question"] = "So, what do you think of this video?";
@@ -76,8 +77,8 @@ $lang["youtube_message"] = "Submit your YouTube link here";
 $lang["submit_link"] = "Submit";
 $lang["no_submit"] = "Please <a href='../signup'>register</a> or <a href='../portal'>log in</a> to submit links";
 $lang["no_chat"] = "Please <a href='../signup'>register</a> or <a href='../portal'>log in</a> to post messages";
-$lang["room_admin"] = "Room creator";
-$lang["room_mod"] = "Room moderator";
+$lang["room_admin"] = "Box creator";
+$lang["room_mod"] = "Box moderator";
 $lang["now_playing"] = "Now playing";
 $lang["watch_count"] = "Spectators";
 $lang["playlist"] = "Playlist";

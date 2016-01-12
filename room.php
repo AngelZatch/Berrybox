@@ -208,6 +208,7 @@ if(isset($_SESSION["token"])){
 			<div class="panel panel-default panel-room">
 				<div class="panel-heading">
 					<div class="chat-options row">
+						<div class="col-lg-12 room-brand"><a href="home">Berrybox</a></div>
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 toggle-menu-list button-glyph">
 							<span class="glyphicon glyphicon-dashboard" title="<?php echo $lang["menu"];?>"></span>
 						</div>
@@ -392,10 +393,15 @@ if(isset($_SESSION["token"])){
 			return $.post("functions/join_room.php", {roomToken : roomToken, userToken : userToken});
 		}
 		joinRoom(roomToken, userToken).done(function(result){
-			// Load the chat
-			$("#body-chat").append("<p class='system-message'><?php echo $lang["welcome"];?></p>");
-			loadChat(roomToken, result);
+			// Get power of the user
 			window.userPower = result;
+			// Load the chat
+			if(window.userPower == 2){
+				$("#body-chat").append("<p class='system-message'><?php echo $lang["welcome_admin"];?></p>");
+			} else {
+				$("#body-chat").append("<p class='system-message'><?php echo $lang["welcome"];?></p>");
+			}
+			loadChat(roomToken, result);
 			// Load the history of all submitted songs in this room (once, it will be refreshed if the user toggles the panel)
 			loadSongHistory(roomToken, result);
 			// Load all the active users in the room (once, it will be refreshed if the user toggles the panel)
