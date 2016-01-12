@@ -55,7 +55,7 @@ textarea {
 
 /* line 65, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 #body-chat {
-  height: 89.7vh;
+  height: 85.2vh;
   font-size: 12.5px;
   overflow-y: scroll;
   overflow-wrap: break-word; }
@@ -403,5 +403,16 @@ legend {
   font-family: 'geometria_lightlight';
   font-size: 20px;
   font-weight: 800; }
+
+/* line 322, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.room-brand {
+  font-family: 'geometria_lightlight';
+  text-align: center;
+  font-size: 21px;
+  font-weight: 800;
+  margin-bottom: 15px; }
+  /* line 328, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  .room-brand a {
+    text-decoration: none; }
 
 /*# sourceMappingURL=common.css.map */

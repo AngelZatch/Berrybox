@@ -45,7 +45,7 @@ $lang["spam"] = "Vous devez attendre au moins 1 seconde avant d'envoyer un nouve
 
 /** TOGGLES **/
 $lang["play_type"] = "Type de lecture";
-$lang["play_type_tip"] = "En lecture manuelle, l'enchaînement des vidéos doit être déclenché par l'administrateur du salon.";
+$lang["play_type_tip"] = "En lecture manuelle, l'enchaînement des vidéos doit être déclenché par l'administrateur de la box.";
 $lang["manual_play"] = "Manuelle";
 $lang["auto_play"] = "Auto";
 $lang["submit_type"] = "Envoi de vidéos";
@@ -61,6 +61,7 @@ $lang["chat_placeholder"] = "Ecrire un message";
 $lang["chat_settings"] = "Paramètres du chat et de la box";
 $lang["color_pick"] = "Choisissez une couleur pour votre nom";
 $lang["welcome"] = "Bienvenue dans cette box ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur.";
+$lang["welcome_admin"] = "Bienvenue dans votre box ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur. Vous êtes le créateur de cette box. Si vous la quittez sans la fermer, la lecture et la synchronisation des vidéos s'arrêtera pour tous vos utilisateurs.";
 
 /** MOOD **/
 $lang["mood-question"] = "Que pensez-vous de la vidéo ?";
@@ -136,7 +137,7 @@ $lang["twitter"] = "Twitter";
 $lang["menu"] = "Menu principal";
 $lang["my_profile"] = "Mon profil";
 $lang["public_profile"] = "Mes stats";
-$lang["leave"] = "Quitter le salon";
+$lang["leave"] = "Quitter la box";
 $lang["warning_sync_admin"] = "Attention ! La synchronisation de la box est basée sur vous. Si vous quittez la box, la synchro va s'arrêter pour tout le monde et plus aucune vidéo ne sera jouée.";
 $lang["room_reopen"] = "Réouvrir la box.";
 $lang["room_delete"] = "Supprimer définitivement.";
