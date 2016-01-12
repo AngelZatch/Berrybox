@@ -71,7 +71,7 @@ if(isset($_SESSION["token"])){
 			$newPref = $db->prepare("INSERT INTO user_preferences(up_user_id, up_color)
 								VALUES(:token, :color)");
 			$newPref->bindParam(':token', $token);
-			$newPref->bindParam(':color', $color);
+			$newPref->bindParam(':color', $color["color_value"]);
 			$newPref->execute();
 
 			$newStats = $db->prepare("INSERT INTO user_stats(user_token) VALUES(:token)");
