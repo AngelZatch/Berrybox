@@ -7,6 +7,7 @@ profile-pictures/*
 assets/css/*.sass
 assets/css/*.css.map
 .brackets.json
+db_modifs.txt
 
 ## Beta code
 generate_keys.php
