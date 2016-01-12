@@ -39,7 +39,10 @@ $lang["room_closing"] = "This box is closed. Please leave the box.";
 $lang["change_type"] = "Change the type of the box";
 $lang["song_submit_success"] = "Your video has been submitted into the playlist";
 $lang["invalid_link"] = "The link you submitted is invalid. Please submit a valid link";
-$lang["db_error"] = "There has been in an error in submitting your video. Please try again.";
+$lang["no_fetch"] = "Your video has been submitted to the playlist, but its name could not be retrieved. You can fill the missing information in the input box below:";
+$lang["fill_placeholder"] = "Name of the video you submitted";
+$lang["fill_missing"] = "Fill";
+$lang["info_fill_success"] = "Thank you for submitting the missing information. Your submission will be reviewed by our team!";
 $lang["skip"] = "Next";
 $lang["spam"] = "You have to wait at least 1 second to post a new message";
 

@@ -509,6 +509,17 @@ if(isset($_SESSION["token"])){
 				submitLink();
 			}
 		})
+	}).on('click', '.send-info', function(){
+		fillInfo();
+	}).on('click', '.cancel-info', function(){
+		var id = $(this).attr("id").substr(12);
+		$("#warning-"+id).remove();
+	}).on('focus', '.info-box', function(){
+		$(this).keypress(function(event){
+			if(event.which == 13){
+				fillInfo();
+			}
+		})
 	}).on('focus', '.chatbox', function(){
 		$.post("functions/get_user_list.php", {roomToken : "<?php echo $roomToken;?>"}).done(function(data){
 			var userList = JSON.parse(data);
@@ -992,7 +1003,7 @@ if(isset($_SESSION["token"])){
 			if(data == "1"){
 				$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["song_submit_success"];?></p>");
 			} else {
-				$("#body-chat").append("<p class='system-message system-warning'></span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["db_error"];?></p>");
+				$("#body-chat").append("<p class='system-message system-warning'></span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["no_fetch"];?></p>");
 			}
 			$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
 		})
@@ -1064,17 +1075,18 @@ if(isset($_SESSION["token"])){
 
 				// Post URL into room history
 				$.post("functions/post_history.php", {url : id, roomToken : roomToken}).done(function(code){
+					console.log(code);
 					switch(code){
 						case '1': // success code
 							$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["song_submit_success"];?></p>");
 							break;
 
-						case '2': //db error code
-							$("#body-chat").append("<p class='system-message system-warning'></span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["db_error"];?></p>");
-							break;
-
 						case '3': // Invalid link code
 							$("#body-chat").append("<p class='system-message system-alert'><span class='glyphicon glyphicon-exclamation-sign'></span> <?php echo $lang["invalid_link"];?></p>");
+							break;
+
+						default: // success code but the info are incomplete
+							$("#body-chat").append("<div id='warning-"+code+"'><p class='system-message system-warning'><span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["no_fetch"];?><div class='input-group info-box-group'><input type='text' placeholder='<?php echo $lang["fill_placeholder"];?>' class='form-control info-box' id='info-"+code+"'><span class='input-group-btn'><button class='btn btn-primary send-info'><?php echo $lang["fill_missing"];?></button><button class='btn btn-danger cancel-info' id='cancel-info-"+code+"'>Cancel</button></div></div>");
 							break;
 					}
 					$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
@@ -1083,6 +1095,14 @@ if(isset($_SESSION["token"])){
 				$(".url-box").val('');
 			}
 		}
+	}
+	function fillInfo(){
+		var name = $(".info-box").val();
+		var id = $(".info-box").attr("id").substr(5);
+		$.post("functions/fill_info.php", {index : id, name : name}).done(function(data){
+			$("#warning-"+id).remove();
+			$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["info_fill_success"];?></p>");
+		})
 	}
 	function sendMessage(roomToken, scope, type, message, destination){
 		if(message == 'chatbox' && scope == 1){

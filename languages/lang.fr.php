@@ -39,7 +39,10 @@ $lang["room_closing"] = "Cette box est fermée. Veuillez quitter la box.";
 $lang["change_type"] = "Changer le type de la bx";
 $lang["song_submit_success"] = "Votre vidéo a bien été ajoutée à la playlist";
 $lang["invalid_link"] = "Le lien que vous avez soumis est invalide. Veuillez recommencer avec un lien valide";
-$lang["db_error"] = "Une erreur s'est produite pendant la soumission de votre lien. Veuillez recommencer.";
+$lang["no_fetch"] = "Votre vidéo a bien été ajoutée à la playlist. Cependant, son titre n'a pas pu être obtenu. Vous pouvez, si vous le souhaitez, renseigner cette information manquant dans l'input ci-dessous : ";
+$lang["fill_placeholder"] = "Nom de la vidéo que vous avez soumise";
+$lang["fill_missing"] = "Envoyer";
+$lang["info_fill_success"] = "Merci d'avoir complété les informations !";
 $lang["skip"] = "Suivant";
 $lang["spam"] = "Vous devez attendre au moins 1 seconde avant d'envoyer un nouveau message";
 
