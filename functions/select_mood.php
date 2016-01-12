@@ -7,5 +7,5 @@ $id = $_POST["id"];
 
 $song = $db->query("UPDATE song_base
 					SET emotion_$mood = emotion_$mood + 1
-					WHERE link = '$id'");
+					WHERE song_base_id = '$id'");
 ?>

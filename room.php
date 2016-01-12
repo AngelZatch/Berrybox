@@ -808,7 +808,7 @@ if(isset($_SESSION["token"])){
 				if(data != ""){
 					var songInfo = JSON.parse(data);
 					if(songInfo.link != null){
-						playSong(songInfo.link, songInfo.title, 0);
+						playSong(songInfo.index, songInfo.link, songInfo.title, 0);
 					}
 				} else {
 					synchronize("<?php echo $roomToken;?>", userPower);
@@ -873,8 +873,8 @@ if(isset($_SESSION["token"])){
 		$.post("functions/load_current.php", {roomToken : roomToken, userPower : userPower}).done(function(data){
 			var songInfo = JSON.parse(data);
 			if(songInfo.link != null){
-				if(songInfo.link != sessionStorage.getItem("currently-playing")){
-					playSong(songInfo.link, songInfo.title, songInfo.timestart);
+				if(songInfo.index != sessionStorage.getItem("currently-playing")){
+					playSong(songInfo.index, songInfo.link, songInfo.title, songInfo.timestart);
 				} else {
 					window.videoPending = setTimeout(synchronize, 3000, "<?php echo $roomToken;?>", userPower);
 				}
@@ -883,7 +883,7 @@ if(isset($_SESSION["token"])){
 			}
 		})
 	}
-	function playSong(id, title, timestart){
+	function playSong(index, id, title, timestart){
 		if(timestart != 0){
 			//console.log("timestamp : "+timestart);
 			var sTime = moment.utc(timestart).add(4, 's');
@@ -897,14 +897,14 @@ if(isset($_SESSION["token"])){
 			player.loadVideoById(id);
 		}
 		$("#message-synchro").remove();
-		sessionStorage.setItem("currently-playing", id);
+		sessionStorage.setItem("currently-playing", index);
 		$(".currently-name").empty();
 		$(".currently-name").html(title);
 		var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
 		if(userToken == "<?php echo $roomDetails["room_creator"];?>" && (timestart == 0 || timeDelta <= 3)){
 			var message = "{now_playing}"+title;
 			sendMessage("<?php echo $roomToken;?>", 4, 2, message);
-			$.post("functions/register_song.php", {id : id});
+			$.post("functions/register_song.php", {index : index});
 		}
 	}
 	function loadSongHistory(roomToken, userPower){
@@ -941,10 +941,10 @@ if(isset($_SESSION["token"])){
 						message += "<div class='col-lg-12'>";
 					} else if(songList[i].videoStatus == 3){
 						message += "<div class='row playlist-entry song-ignored'>";
-						message += "<div class='col-lg-9'>";
+						message += "<div class='col-lg-10'>";
 					} else {
 						var message = "<div class='row playlist-entry song-upcoming'>";
-						message += "<div class='col-lg-9'>";
+						message += "<div class='col-lg-10'>";
 					}
 					message += "<p class='song-list-line'><a href='https://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songName+"'>"+songList[i].videoName+"</a></p></div>";
 					if(userPower == 2 || userPower == 3){
