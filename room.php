@@ -1153,11 +1153,17 @@ if(isset($_SESSION["token"])){
 							message += messageList[i].author;
 							message += "</span></a>";
 							message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
+							message += "<a style='text-decoration:none;'><span class='message-author author-linkback' style='color:#"+messageList[i].destinationColor+";'>";
+							message += messageList[i].destination;
+							message += "</span></a> : ";
 							message += messageList[i].content;
 							message += "</p>";
 						} else if(messageList[i].authorToken == "<?php echo $_SESSION["token"];?>"){
 							var message = "<p class='whisper'>";
 							message += "<span class='message-time'>"+messageTime+"</span> ";
+							message += "<a style='text-decoration:none;'><span class='message-author author-linkback' style='color:#"+messageList[i].authorColor+";'>";
+							message += messageList[i].author;
+							message += "</span></a>";
 							message += "<span class='glyphicon glyphicon-chevron-right'></span> ";
 							message += "<a style='text-decoration:none;'><span class='message-author author-linkback' style='color:#"+messageList[i].destinationColor+";'>";
 							message += messageList[i].destination;
