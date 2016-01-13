@@ -79,33 +79,37 @@ textarea {
   margin-top: 80px; }
 
 /* line 86, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.main-maintenance {
+  margin-top: 150px; }
+
+/* line 89, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .system-message {
   color: #888888;
   font-style: italic;
   font-weight: 500; }
 
-/* line 91, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 94, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .system-warning {
   color: #F0AD4E;
   font-weight: 600; }
 
-/* line 95, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 98, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .form-control {
   background-color: inherit;
   border: 1px solid #444; }
 
-/* line 99, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 102, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 #room-player {
   padding-top: 14px;
   padding-right: 0 !important;
   height: 100vh; }
 
-/* line 104, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 107, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-info {
   white-space: nowrap; }
 
 /** Profile pictures **/
-/* line 108, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 111, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-picture {
   height: 55px !important;
   width: 55px !important;
@@ -115,7 +119,7 @@ textarea {
   float: left;
   margin-right: 10px; }
 
-/* line 113, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 116, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .user-profile-picture {
   height: 150px !important;
   width: 150px !important;
@@ -125,7 +129,7 @@ textarea {
   float: left;
   margin-right: 10px; }
 
-/* line 118, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 121, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .menu-pp {
   height: 50px !important;
   width: 50px !important;
@@ -135,7 +139,7 @@ textarea {
   float: left;
   margin-right: 20px; }
 
-/* line 123, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 126, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .small-pp {
   height: 35px !important;
   width: 35px !important;
@@ -143,7 +147,7 @@ textarea {
   overflow: hidden !important;
   padding: 0 !important; }
 
-/* line 126, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 129, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .medium-pp {
   height: 60px !important;
   width: 60px !important;
@@ -153,7 +157,7 @@ textarea {
   float: left;
   margin-right: 20px; }
 
-/* line 131, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 134, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-pp {
   height: 50px !important;
   width: 50px !important;
@@ -164,7 +168,7 @@ textarea {
   margin-left: 10px;
   margin-right: 20px; }
 
-/* line 137, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 140, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 #profile-picture-sample, .file-preview, .file-preview-frame {
   height: 120px !important;
   width: 120px !important;
@@ -175,252 +179,261 @@ textarea {
   text-align: inherit; }
 
 /** Room info **/
-/* line 143, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 146, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 #room-title {
   font-size: 22px;
   margin-bottom: 5px;
   overflow: hidden;
   text-overflow: ellipsis; }
 
-/* line 149, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 152, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .creator-stats {
   font-size: 16px;
   text-align: right; }
 
 /** Chat **/
-/* line 154, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 157, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .whisper {
   margin-left: -15px;
   margin-right: -15px;
   border-left: 5px #cf9930 solid;
   background-color: #D5D5D5;
   color: black;
-  padding-left: 10px; }
-  /* line 161, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  padding: 3px 0 1px 10px; }
+  /* line 164, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   .whisper .message-time {
     color: inherit; }
 
-/* line 164, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 167, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .message-author {
   font-weight: 700;
   cursor: pointer; }
 
-/* line 168, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 171, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .tip, .message-time {
   color: #888888; }
 
-/* line 171, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 174, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .song-list-line {
   text-overflow: ellipsis;
   overflow: hidden; }
 
-/* line 175, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 178, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .song-playing {
   font-weight: 900; }
 
-/* line 178, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 181, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .moderation-option {
   color: #888888;
   cursor: pointer; }
 
 /** Buttons **/
-/* line 183, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 186, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .btn-switch.disabled {
   background-color: inherit;
   color: #e2c283;
   border: dashed 1px;
   cursor: pointer; }
 
-/* line 189, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 192, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .btn {
   background-color: inherit; }
 
-/* line 192, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 195, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .btn-success.feedback {
   background-color: #449d44 !important; }
 
-/* line 196, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 199, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 nav .btn {
   margin-top: 10px;
   padding-top: 5px !important;
   padding-bottom: 5px !important; }
 
-/* line 200, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 203, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 nav li > a.btn:hover, nav li > a.btn:focus {
   background-color: #a67a26 !important; }
 
-/* line 202, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 205, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 nav li > a:hover, nav li > a:focus {
   background-color: inherit !important; }
 
-/* line 206, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 209, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .nav li > a:hover, .nav li > a:focus {
   background-color: inherit !important; }
 
-/* line 209, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 212, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .jumbotron {
   text-align: center; }
 
-/* line 212, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 215, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .social-space {
   align-content: center;
   text-align: center;
   margin-top: 20px;
   padding: 20px; }
-  /* line 217, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  /* line 220, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   .social-space div > p {
     font-size: 32px; }
-  /* line 219, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  /* line 222, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   .social-space .btn {
     background-color: #cf9930;
     color: white; }
-  /* line 222, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  /* line 225, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   .social-space .btn:hover, .social-space .btn:focus {
     background-color: #a67a26; }
 
-/* line 225, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 228, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .color-cube {
   height: 25px;
   width: 25px;
   display: inline-block;
   cursor: pointer; }
 
-/* line 230, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 233, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-option {
   margin-bottom: 20px; }
 
-/* line 233, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 236, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .bootstrap-switch-dark {
   color: #FFFFFF;
   background-color: #000000; }
 
-/* line 237, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 240, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .bootstrap-switch-light {
   color: #000;
   background-color: #FFF; }
 
-/* line 241, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 244, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .page-title {
   margin-bottom: 50px; }
 
-/* line 244, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 247, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 #profile-title {
   font-size: 30px;
   margin: 0; }
 
-/* line 248, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 251, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 #profile-menu {
   margin-top: 20px; }
 
-/* line 251, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 254, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-quick-messages {
   text-align: center;
   padding-top: 5px; }
 
-/* line 255, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 258, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .label-status {
   font-size: 20px; }
 
 /** Menu popover **/
-/* line 259, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 262, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .popover-trigger {
   padding-top: 7px !important;
   padding-bottom: 0 !important; }
 
-/* line 263, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 266, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .user-menu-name {
   font-size: 17px;
   font-weight: 700; }
 
-/* line 267, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 270, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-name {
   font-size: 22px;
   margin-bottom: 20px; }
 
-/* line 271, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 274, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-details {
   font-size: 14px; }
-  /* line 273, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  /* line 276, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   .room-details .room-creator {
     font-size: 1.4em; }
-  /* line 275, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  /* line 278, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   .room-details .room-type {
     font-size: 1.3em; }
 
-/* line 278, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 281, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-label {
   margin-top: -5px; }
 
-/* line 281, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 284, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-description {
   min-height: 80px; }
 
-/* line 284, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 287, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 legend {
   font-size: 3em;
   border: 0;
   color: inherit;
   text-align: center; }
 
-/* line 290, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 293, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .user-card {
   border: 1px solid #888888;
   margin-bottom: 10px;
   font-size: 1.2em; }
-  /* line 294, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  /* line 297, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   .user-card .user-card-info {
     padding: 10px; }
-    /* line 296, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+    /* line 299, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
     .user-card .user-card-info #user-card-name {
       font-size: 1.5em; }
-    /* line 298, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+    /* line 301, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
     .user-card .user-card-info #user-card-close {
       float: right; }
-    /* line 300, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+    /* line 303, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
     .user-card .user-card-info .user-card-stats > div {
       padding-left: 0 !important; }
-  /* line 302, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  /* line 305, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   .user-card .user-card-actions {
     padding: 10px; }
 
-/* line 305, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 308, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .label-lang {
   background-color: #e416a1; }
 
-/* line 308, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 311, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .chat-icon {
   width: 17px;
   height: 17px; }
-  /* line 311, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  /* line 314, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   .chat-icon img {
     width: inherit;
     margin-bottom: 2px; }
 
-/* line 315, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 318, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .option-title {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 5px; }
 
 /** Nav **/
-/* line 321, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 324, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .navbar-brand {
   font-family: 'geometria_lightlight';
   font-size: 20px;
   font-weight: 800; }
 
-/* line 326, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 329, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .room-brand {
   font-family: 'geometria_lightlight';
   text-align: center;
   font-size: 21px;
   font-weight: 800;
   margin-bottom: 15px; }
-  /* line 332, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  /* line 335, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   .room-brand a {
     text-decoration: none; }
 
-/* line 335, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 338, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.maintenance-brand {
+  font-size: 100px;
+  font-family: 'geometria_lightlight';
+  text-align: center;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: #cf9930; }
+
+/* line 346, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .alert-message {
   font-size: 18px;
   text-align: center; }
