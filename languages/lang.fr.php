@@ -186,4 +186,5 @@ $lang["confirm_new_password"] = "Confirmez votre nouveau mot de passe";
 /** BETA **/
 $lang["beta_key"] = "Entrez votre clé beta ci-dessous pour avoir accès à l'application";
 $lang["beta_sign"] = "Si vous vous enregistrez, veuillez entrer votre clé beta ci-dessous";
+$lang["maintenance"] = "Berrybox sera en maintenance le <strong>15 Janvier entre minuit et 3 heures du matin UTC</strong>. Pendant la maintenance, tout accès à Berrybox sera impossible. Après cette maintenance, toutes les boxes créées seront supprimées. Veuillez nous excuser pour la gêne occasionnée.";
 ?>

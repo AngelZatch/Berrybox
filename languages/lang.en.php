@@ -184,4 +184,5 @@ $lang["confirm_new_password"] = "Confirm new password";
 /** BETA **/
 $lang["beta_key"] = "To have access to the application, please enter your beta key here!";
 $lang["beta_sign"] = "If you're signing up, please enter your beta key below";
+$lang["maintenance"] = "Berrybox will go under maintenance on <strong>Jan. 15 from 12:00 to 3:00 AM UTC</strong>. During the maintenance, you won't be able to access Berrybox. After this maintenance, all existing boxes will be deleted. Please excuse us for the inconvenience.";
 ?>
