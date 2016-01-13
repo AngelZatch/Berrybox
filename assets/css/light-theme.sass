@@ -1,0 +1,64 @@
+$gray-base: #FFFFFF
+$gray-darker-soft: darken($gray-base, 5%)
+$yellow-base: #cf9930
+$system-color: #888888
+
+body
+	background-color: $gray-base
+	color: black
+
+.navbar
+	background-color: $gray-darker-soft
+
+.nav-tabs
+	li.active
+		a
+			background-color: $gray-darker-soft
+			color: black !important
+		:hover
+			background-color: darken($gray-darker-soft, 5%) !important
+
+.panel
+	background-color: $gray-darker-soft
+
+.btn-primary
+	color: $yellow-base
+
+.btn-danger
+	color: black
+
+.form-control
+	color: black
+
+.chat-options
+	color: $yellow-base
+
+.button-glyph:hover
+	color: darken($yellow-base, 15%)
+
+.standard-message
+	color: darken($gray-base, 80%)
+
+.song-played>div>p>a
+	color: lighten($yellow-base, 25%)
+
+.moderation-option:hover
+	color: darken($system-color, 50%)
+
+.moderation-option-enabled
+	cursor: pointer
+	color: black !important
+
+.menu-popover
+	background-color: darken($gray-base, 7%);
+
+.menu-popover>.popover-footer
+	background-color: darken($gray-base, 4%);
+
+.user-card
+	background-color: darken($gray-darker-soft, 10%)
+	.user-card-actions
+		background-color: darken($gray-darker-soft, 5%)
+
+.cube-selected
+	border: 2px solid #101010

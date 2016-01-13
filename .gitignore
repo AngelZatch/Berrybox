@@ -4,7 +4,7 @@
 profile-pictures/*
 
 ## dev files
-assets/css/*.sass
+assets/css/*.css
 assets/css/*.css.map
 .brackets.json
 db_modifs.txt
