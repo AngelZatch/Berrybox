@@ -52,17 +52,21 @@ $queryactiveRooms = $db->query("SELECT * FROM rooms r
 				</div>
 			</div>
 			<div class="user-profile-stats">
-				<div class="col-lg-4 col-md-4">
+				<div class="col-lg-3 col-md-3">
 					<p class="stats-title"><?php echo $lang["rooms_created"];?></p>
 					<p class="stats-value"><?php echo $profileDetails["stat_rooms_created"];?></p>
 				</div>
-				<div class="col-lg-4 col-md-4">
+				<div class="col-lg-3 col-md-3">
 					<p class="stats-title"><?php echo $lang["songs_submitted"];?></p>
 					<p class="stats-value"><?php echo $profileDetails["stat_songs_submitted"];?></p>
 				</div>
-				<div class="col-lg-4 col-md-4">
+				<div class="col-lg-3 col-md-3">
 					<p class="stats-title"><?php echo $lang["total_views"];?></p>
 					<p class="stats-value"><?php echo $profileDetails["stat_visitors"];?></p>
+				</div>
+				<div class="col-lg-3 col-md-3">
+					<p class="stats-title"><?php echo $lang["total_followers"];?></p>
+					<p class="stats-value"><?php echo $profileDetails["stat_followers"];?></p>
 				</div>
 			</div>
 			<div class="user-rooms">

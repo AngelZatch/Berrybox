@@ -27,6 +27,11 @@ if(isset($_SESSION["token"])){
 	if($userLang == ""){
 		$userLang = "en";
 	}
+	if($_SESSION["token"] != $roomDetails["user_token"]){
+		$userFollow = $db->query("SELECT * FROM user_follow uf
+								WHERE user_following = '$_SESSION[token]'
+								AND user_followed = '$roomDetails[user_token]'")->rowCount();
+	}
 	include_once "languages/lang.".$userLang.".php";
 } else {
 	include "functions/tools.php";
@@ -119,39 +124,22 @@ if(isset($_SESSION["token"])){
 					if(isset($_SESSION["token"])){
 						if($_SESSION["token"] != $roomDetails["room_creator"]){?>
 					<div class="room-buttons col-lg-2">
-						<button class="btn btn-default btn-admin sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync-on"];?></button>
+						<?php if($userFollow == 1){ ?>
+						<button class="btn btn-primary btn-active" id="unfollow"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
+						<?php } else { ?>
+						<button class="btn btn-primary" id="follow"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['follow'];?></button>
+						<?php } ?>
 					</div>
 					<?php } else { ?>
 					<div class="room-buttons col-lg-2">
 						<button class="btn btn-default btn-admin" onClick="getNext(true)"><span class="glyphicon glyphicon-step-forward"></span> <?php echo $lang["skip"];?></button>
-						<!--<div class="btn-group" id="dropdown-room-type">
-<button class="btn btn-default btn-admin dropdown-toggle" id="room-type" data-toggle="dropdown">
-<?php switch($roomDetails["room_protection"] == 1){
-							case 1:?>
-<span class="glyphicon glyphicon-volume-up"></span> <?php echo $lang["level_public"];?>
-<?php break;
-							case 2: ?>
-<span class="glyphicon glyphicon-eye-open"></span> <?php echo $lang["level_protected"];?>
-<?php break;
-							case 3: ?>
-<span class="glyphicon glyphicon-headphones"></span> <?php echo $lang["level_private"];?>
-<?php break;
-						} ?>
-<span class="caret"></span>
-</button>
-<ul class="dropdown-menu dropdown-room">
-<li><a class="dropdown-link"><?php echo $lang["level_public"];?></a></li>
-<li><a class="dropdown-link"><?php echo $lang["level_locked"];?></a></li>
-<li><a class="dropdown-link"><?php echo $lang["level_private"];?></a></li>
-</ul>
-</div>-->
 					</div>
 					<?php }
 					}?>
 					<div class="room-quick-messages col-lg-8"></div>
 					<div class="creator-stats col-lg-2">
 						<span class="glyphicon glyphicon-eye-open" title="<?php echo $lang["total_views"];?>"></span> <?php echo $creatorStats["stat_visitors"];?>
-						<!--<span class="glyphicon glyphicon-heart"></span> <?php echo $creatorStats["stat_followers"];?>-->
+						<span class="glyphicon glyphicon-heart"></span> <?php echo $creatorStats["stat_followers"];?>
 					</div>
 				</div>
 			</div>
@@ -326,6 +314,12 @@ if(isset($_SESSION["token"])){
 					<span class="option-title"><?php echo $lang["close_room"];?></span><br>
 					<span class="tip"><?php echo $lang["close_room_tip"];?></span>
 					<button class="btn btn-danger btn-admin btn-block" onClick="closeRoom('<?php echo $roomToken;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
+					<?php } else { ?>
+					<div class="room-option">
+						<span class="option-title"><?php echo $lang["sync"];?></span><br>
+						<span class="tip"><?php echo $lang["sync_tip"];?></span>
+						<button class="btn btn-default btn-admin btn-block sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync-on"];?></button>
+					</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -773,9 +767,10 @@ if(isset($_SESSION["token"])){
 			userCard += "</div>";
 			userCard += "<p id='user-card-name'>"+details.user_pseudo+"<span class='glyphicon glyphicon-remove button-glyph' id='user-card-close'></span></p>";
 			userCard += "<div class='row user-card-stats'>";
-			userCard += "<div class='col-lg-3'><span class='glyphicon glyphicon-eye-open' title='<?php echo $lang["total_views"];?>'></span> "+details.visitors+"</div>";
-			userCard += "<div class='col-lg-3'><span class='glyphicon glyphicon-plus' title='<?php echo $lang["rooms_created"];?>'></span> "+details.rooms+"</div>";
-			userCard += "<div class='col-lg-3'><span class='glyphicon glyphicon-music' title='<?php echo $lang["songs_submitted"];?>'></span> "+details.songs+"</div>";
+			userCard += "<div class='col-lg-2'><span class='glyphicon glyphicon-heart' title='<?php echo $lang["total_followers"];?>'></span> "+details.followers+"</div>";
+			userCard += "<div class='col-lg-2'><span class='glyphicon glyphicon-eye-open' title='<?php echo $lang["total_views"];?>'></span> "+details.visitors+"</div>";
+			userCard += "<div class='col-lg-2'><span class='glyphicon glyphicon-plus' title='<?php echo $lang["rooms_created"];?>'></span> "+details.rooms+"</div>";
+			userCard += "<div class='col-lg-2'><span class='glyphicon glyphicon-music' title='<?php echo $lang["songs_submitted"];?>'></span> "+details.songs+"</div>";
 			userCard += "</div>"; // user-card-stats
 			userCard += "</div>"; // user-card-info
 			userCard += "<div class='user-card-actions'>";
@@ -791,6 +786,31 @@ if(isset($_SESSION["token"])){
 		var user = $("#user-card-name").text();
 		$(".chatbox").val("/w "+user+" ");
 		$(".chatbox").focus();
+	}).on('mouseenter', '#unfollow', function(){
+		var text = "<span class='glyphicon glyphicon-minus'></span> <?php echo $lang['unfollow'];?>";
+		$("#unfollow").html(text);
+		$("#unfollow").removeClass("btn-active");
+		$("#unfollow").addClass("btn-danger");
+	}).on('mouseleave', '#unfollow', function(){
+		var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['following'];?>";
+		$("#unfollow").html(text);
+		$("#unfollow").removeClass("btn-danger");
+		$("#unfollow").addClass("btn-active");
+	}).on('click', '#unfollow', function(){
+		$.post("functions/unfollow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : '<?php echo $roomDetails["user_token"];?>'}).done(function(data){
+			$("#unfollow").removeClass("btn-active");
+			var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['follow'];?>";
+			$("#unfollow").html(text);
+			$("#unfollow").removeClass("btn-danger");
+			$("#unfollow").attr("id", "follow");
+		})
+	}).on('click', '#follow', function(){
+		$.post("functions/follow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : '<?php echo $roomDetails["user_token"];?>'}).done(function(data){
+			$("#follow").addClass("btn-active");
+			var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['following'];?>";
+			$("#follow").html(text);
+			$("#follow").attr("id", "unfollow");
+		})
 	})
 	function onPlayerReady(event){
 		sessionStorage.setItem("currently-playing", "");

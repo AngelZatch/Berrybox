@@ -7,6 +7,7 @@ RewriteRule ^home$ home.php [NC,L] # Display home
 RewriteRule ^create$ create_room.php [NC,L] # Room creation
 RewriteRule ^portal$ portal.php [NC,L] # Portal
 RewriteRule ^signup$ signup.php [NC,L] # Signup
+RewriteRule ^follow$ follow.php [NC,L] # Follow page
 # sub-pages
 RewriteRule ^profile/settings$ profile.php [NC,L] # Profile
 RewriteRule ^profile/history$ history.php [NC,L] # Profile

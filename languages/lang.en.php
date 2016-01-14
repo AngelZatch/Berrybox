@@ -86,8 +86,6 @@ $lang["now_playing"] = "Now playing";
 $lang["watch_count"] = "Spectators";
 $lang["playlist"] = "Playlist";
 $lang["playlist_filter"] = "Filter the playlist";
-$lang["sync-on"] = "Sync ON";
-$lang["sync-off"] = "Sync OFF";
 $lang["ul_admin"] = "Creator";
 $lang["ul_mods"] = "Moderators";
 $lang["ul_users"] = "Listeners";
@@ -108,6 +106,9 @@ $lang["rt_misc"] = "Other";
 
 /** BUTTONS **/
 $lang["back"] = "Back";
+$lang["follow"] = "Follow";
+$lang["following"] = "Following";
+$lang["unfollow"] = "Unfollow";
 
 /** ACTIONS **/
 $lang["log_out"] = "Log out";
@@ -167,12 +168,17 @@ $lang["user_theme"] = "Theme";
 $lang["theme_tip"] = "Toggle between and dark and a light theme for Berrybox";
 $lang["dark"] = "Dark";
 $lang["light"] = "Light";
+$lang["sync"] = "Synchronisation";
+$lang["sync_tip"] = "When disabled, the next video won't play automatically and you will stay on current video. You can catch up at any moment.";
+$lang["sync-on"] = "Synchro ON";
+$lang["sync-off"] = "Synchro OFF";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "This user doesn't have any bio";
 $lang["rooms_created"] = "Number of opened boxes";
 $lang["songs_submitted"] = "Number of played videos";
 $lang["total_views"] = "Total number of spectators";
+$lang["total_followers"] = "Followers";
 $lang["opened_rooms"] = "Currently opened boxes";
 $lang["no_opened_rooms"] = "None";
 

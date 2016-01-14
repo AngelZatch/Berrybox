@@ -88,8 +88,6 @@ $lang["now_playing"] = "Vidéo en cours";
 $lang["watch_count"] = "Spectateurs";
 $lang["playlist"] = "Liste des chansons";
 $lang["playlist_filter"] = "Filtrez la liste des chansons";
-$lang["sync-on"] = "Synchro ON";
-$lang["sync-off"] = "Synchro OFF";
 $lang["ul_admin"] = "Créateur";
 $lang["ul_mods"] = "Modérateurs";
 $lang["ul_users"] = "Spectateurs";
@@ -110,6 +108,9 @@ $lang["rt_misc"] = "Divers";
 
 /** BUTTONS **/
 $lang["back"] = "Retour";
+$lang["follow"] = "Suivre";
+$lang["following"] = "Suit";
+$lang["unfollow"] = "Ne plus suivre";
 
 /** ACTIONS **/
 $lang["log_out"] = "Déconnexion";
@@ -169,12 +170,18 @@ $lang["user_theme"] = "Thème";
 $lang["theme_tip"] = "Alternez entre un thème sombre et un thème clair pour Berrybox";
 $lang["dark"] = "Sombre";
 $lang["light"] = "Clair";
+$lang["sync"] = "Synchronisation";
+$lang["sync_tip"] = "Si vous désactivez la synchronisation, la prochaine vidéo ne sera pas lancée automatiquement et vous resterez sur la vidéo actuelle. Vous pourrez rattraper à tout moment";
+$lang["sync-on"] = "Synchro ON";
+$lang["sync-off"] = "Synchro OFF";
+
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";
 $lang["rooms_created"] = "Nombre de boxes ouvertes";
 $lang["songs_submitted"] = "Nombre de vidéos jouées";
 $lang["total_views"] = "Nombre total de spectateurs";
+$lang["total_followers"] = "Abonnés";
 $lang["opened_rooms"] = "Boxes actuellement ouvertes";
 $lang["no_opened_rooms"] = "Aucune box";
 

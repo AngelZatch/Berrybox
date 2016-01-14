@@ -87,8 +87,6 @@ $lang["now_playing"] = "プレイ中";
 $lang["watch_count"] = "観衆カウント";
 $lang["playlist"] = "プレイリスト";
 $lang["playlist_filter"] = "プレイリストをフィルタリングします";
-$lang["sync-on"] = "シンク オン";
-$lang["sync-off"] = "シンク　オフ";
 $lang["ul_admin"] = "クリエイター";
 $lang["ul_mods"] = "モデレーターズ";
 $lang["ul_users"] = "リサナーズ";
@@ -109,6 +107,9 @@ $lang["rt_misc"] = "雑多";
 
 /** BUTTONS **/
 $lang["back"] = "戻る";
+$lang["follow"] = "ユーザー登録";
+$lang["following"] = "登録済み";
+$lang["unfollow"] = "登録解除";
 
 /** ACTIONS **/
 $lang["log_out"] = "ログアウト";
@@ -168,12 +169,17 @@ $lang["user_theme"] = "テーマ";
 $lang["theme_tip"] = "ダークテーマとか、ライトテーマを選択します。";
 $lang["dark"] = "ダーク";
 $lang["light"] = "ライト";
+$lang["sync"] = "シンクロ";
+$lang["sync_tip"] = "シンクロがオフにするなら、次のビデオが始まりません。";
+$lang["sync-on"] = "シンク オン";
+$lang["sync-off"] = "シンク　オフ";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "このユーザーはバイオがない。";
 $lang["rooms_created"] = "始まったボックスの数";
 $lang["songs_submitted"] = "プレイした曲の数";
 $lang["total_views"] = "視聴者数";
+$lang["total_followers"] = "フォロワー者数";
 $lang["opened_rooms"] = "ライブ中のボックス";
 $lang["no_opened_rooms"] = "空";
 
