@@ -4,21 +4,24 @@ $db = PDOFactory::getConnection();
 
 $token = $_POST["roomToken"];
 $userPower = $_POST["userPower"];
-$load = $db->query("SELECT history_link, video_name, history_start FROM roomHistory_$token
+$load = $db->query("SELECT video_index, history_start, link, video_name FROM roomHistory_$token rh
+					JOIN song_base sb ON rh.video_index = sb.song_base_id
 					WHERE video_status = 1
 					ORDER BY room_history_id DESC
 					LIMIT 1");
 if($load->rowCount() != 0){
 	$n = array();
 	$loaded = $load->fetch(PDO::FETCH_ASSOC);
-	$n["link"] = $loaded["history_link"];
+	$n["index"] = $loaded["video_index"];
+	$n["link"] = $loaded["link"];
 	$n["title"] = stripslashes($loaded["video_name"]);
 	$n["timestart"] = $loaded["history_start"];
 	echo json_encode($n);
 } else {
 	// Loaded the oldest non-played video
-	$load = $db->query("SELECT history_link, video_name, room_history_id, history_user
-						FROM roomHistory_$token
+	$load = $db->query("SELECT video_index, room_history_id, history_user, link, video_name
+						FROM roomHistory_$token rh
+						JOIN song_base sb ON rh.video_index = sb.song_base_id
 						WHERE video_status = '0'
 						AND (room_history_id = (SELECT room_history_id
 												FROM roomHistory_$token
@@ -28,7 +31,8 @@ if($load->rowCount() != 0){
 
 	$n = array();
 	$loaded = $load->fetch(PDO::FETCH_ASSOC);
-	$n["link"] = $loaded["history_link"];
+	$n["index"] = $loaded["video_index"];
+	$n["link"] = $loaded["link"];
 	$n["title"] = stripslashes($loaded["video_name"]);
 	$time = date_create('now', new datetimezone('UTC'))->format('Y-m-d H:i:s');
 	$n["timestart"] = $time;

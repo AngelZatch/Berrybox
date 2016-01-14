@@ -39,7 +39,10 @@ $lang["room_closing"] = "Cette box est fermée. Veuillez quitter la box.";
 $lang["change_type"] = "Changer le type de la bx";
 $lang["song_submit_success"] = "Votre vidéo a bien été ajoutée à la playlist";
 $lang["invalid_link"] = "Le lien que vous avez soumis est invalide. Veuillez recommencer avec un lien valide";
-$lang["db_error"] = "Une erreur s'est produite pendant la soumission de votre lien. Veuillez recommencer.";
+$lang["no_fetch"] = "Votre vidéo a bien été ajoutée à la playlist. Cependant, son titre n'a pas pu être obtenu. Vous pouvez, si vous le souhaitez, renseigner cette information manquant dans l'input ci-dessous : ";
+$lang["fill_placeholder"] = "Nom de la vidéo que vous avez soumise";
+$lang["fill_missing"] = "Envoyer";
+$lang["info_fill_success"] = "Merci d'avoir complété les informations !";
 $lang["skip"] = "Suivant";
 $lang["spam"] = "Vous devez attendre au moins 1 seconde avant d'envoyer un nouveau message";
 
@@ -85,8 +88,6 @@ $lang["now_playing"] = "Vidéo en cours";
 $lang["watch_count"] = "Spectateurs";
 $lang["playlist"] = "Liste des chansons";
 $lang["playlist_filter"] = "Filtrez la liste des chansons";
-$lang["sync-on"] = "Synchro ON";
-$lang["sync-off"] = "Synchro OFF";
 $lang["ul_admin"] = "Créateur";
 $lang["ul_mods"] = "Modérateurs";
 $lang["ul_users"] = "Spectateurs";
@@ -107,6 +108,9 @@ $lang["rt_misc"] = "Divers";
 
 /** BUTTONS **/
 $lang["back"] = "Retour";
+$lang["follow"] = "Suivre";
+$lang["following"] = "Suit";
+$lang["unfollow"] = "Ne plus suivre";
 
 /** ACTIONS **/
 $lang["log_out"] = "Déconnexion";
@@ -139,8 +143,8 @@ $lang["my_profile"] = "Mon profil";
 $lang["public_profile"] = "Mes stats";
 $lang["leave"] = "Quitter la box";
 $lang["warning_sync_admin"] = "Attention ! La synchronisation de la box est basée sur vous. Si vous quittez la box, la synchro va s'arrêter pour tout le monde et plus aucune vidéo ne sera jouée.";
-$lang["room_reopen"] = "Réouvrir la box.";
-$lang["room_delete"] = "Supprimer définitivement.";
+$lang["room_reopen"] = "Réouvrir";
+$lang["room_delete"] = "Supprimer";
 $lang["status_open"] = "Ouverte";
 $lang["status_closed"] = "Fermée";
 
@@ -166,12 +170,18 @@ $lang["user_theme"] = "Thème";
 $lang["theme_tip"] = "Alternez entre un thème sombre et un thème clair pour Berrybox";
 $lang["dark"] = "Sombre";
 $lang["light"] = "Clair";
+$lang["sync"] = "Synchronisation";
+$lang["sync_tip"] = "Si vous désactivez la synchronisation, la prochaine vidéo ne sera pas lancée automatiquement et vous resterez sur la vidéo actuelle. Vous pourrez rattraper à tout moment";
+$lang["sync-on"] = "Synchro ON";
+$lang["sync-off"] = "Synchro OFF";
+
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";
 $lang["rooms_created"] = "Nombre de boxes ouvertes";
 $lang["songs_submitted"] = "Nombre de vidéos jouées";
 $lang["total_views"] = "Nombre total de spectateurs";
+$lang["total_followers"] = "Abonnés";
 $lang["opened_rooms"] = "Boxes actuellement ouvertes";
 $lang["no_opened_rooms"] = "Aucune box";
 

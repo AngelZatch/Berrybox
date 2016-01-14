@@ -1,13 +1,21 @@
 Options -MultiViews
 RewriteEngine On
-RewriteRule ^room/([A-Za-z0-9-]+)/?$ room.php?id=$1 [NC,L] # Display room pages
+RewriteRule ^box/([A-Za-z0-9-]+)/?$ box.php?id=$1 [NC,L] # Display room pages
 RewriteRule ^user/([A-Za-z0-9-]+)/?$ user.php?id=$1 [NC,L] # Display user pages
 # 1 argument
 RewriteRule ^home$ home.php [NC,L] # Display home
 RewriteRule ^create$ create_room.php [NC,L] # Room creation
 RewriteRule ^portal$ portal.php [NC,L] # Portal
 RewriteRule ^signup$ signup.php [NC,L] # Signup
+RewriteRule ^follow$ follow.php [NC,L] # Follow page
 # sub-pages
 RewriteRule ^profile/settings$ profile.php [NC,L] # Profile
 RewriteRule ^profile/history$ history.php [NC,L] # Profile
 RewriteRule ^profile/security$ security.php [NC,L] # Profile
+
+#Maintenance ON
+RewriteCond %{REQUEST_URI} !/maintenance.php$
+RewriteRule !^(assets|bootstrap)($|/) /Berrybox/maintenance.php [R=302,NC,L] # Display maintenance page
+#Maintnance OFF
+#RewriteRule ^(maintenance)$ /Berrybox/home [R=302,NC,L] # Display home
+#RewriteRule ^(maintenance.php)$ /Berrybox/home [R=302,NC,L] # Display home

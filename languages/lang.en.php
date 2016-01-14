@@ -39,7 +39,10 @@ $lang["room_closing"] = "This box is closed. Please leave the box.";
 $lang["change_type"] = "Change the type of the box";
 $lang["song_submit_success"] = "Your video has been submitted into the playlist";
 $lang["invalid_link"] = "The link you submitted is invalid. Please submit a valid link";
-$lang["db_error"] = "There has been in an error in submitting your video. Please try again.";
+$lang["no_fetch"] = "Your video has been submitted to the playlist, but its name could not be retrieved. You can fill the missing information in the input box below:";
+$lang["fill_placeholder"] = "Name of the video you submitted";
+$lang["fill_missing"] = "Fill";
+$lang["info_fill_success"] = "Thank you for submitting the missing information. Your submission will be reviewed by our team!";
 $lang["skip"] = "Next";
 $lang["spam"] = "You have to wait at least 1 second to post a new message";
 
@@ -83,8 +86,6 @@ $lang["now_playing"] = "Now playing";
 $lang["watch_count"] = "Spectators";
 $lang["playlist"] = "Playlist";
 $lang["playlist_filter"] = "Filter the playlist";
-$lang["sync-on"] = "Sync ON";
-$lang["sync-off"] = "Sync OFF";
 $lang["ul_admin"] = "Creator";
 $lang["ul_mods"] = "Moderators";
 $lang["ul_users"] = "Listeners";
@@ -105,6 +106,9 @@ $lang["rt_misc"] = "Other";
 
 /** BUTTONS **/
 $lang["back"] = "Back";
+$lang["follow"] = "Follow";
+$lang["following"] = "Following";
+$lang["unfollow"] = "Unfollow";
 
 /** ACTIONS **/
 $lang["log_out"] = "Log out";
@@ -164,12 +168,17 @@ $lang["user_theme"] = "Theme";
 $lang["theme_tip"] = "Toggle between and dark and a light theme for Berrybox";
 $lang["dark"] = "Dark";
 $lang["light"] = "Light";
+$lang["sync"] = "Synchronisation";
+$lang["sync_tip"] = "When disabled, the next video won't play automatically and you will stay on current video. You can catch up at any moment.";
+$lang["sync-on"] = "Synchro ON";
+$lang["sync-off"] = "Synchro OFF";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "This user doesn't have any bio";
 $lang["rooms_created"] = "Number of opened boxes";
 $lang["songs_submitted"] = "Number of played videos";
 $lang["total_views"] = "Total number of spectators";
+$lang["total_followers"] = "Followers";
 $lang["opened_rooms"] = "Currently opened boxes";
 $lang["no_opened_rooms"] = "None";
 

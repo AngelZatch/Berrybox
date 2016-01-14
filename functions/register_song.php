@@ -2,15 +2,12 @@
 include "db_connect.php";
 $db = PDOFactory::getConnection();
 
-$id = $_POST["id"];
+$index = $_POST["index"];
 
-// We register the song into the song_base table for stats
+// We add one submission to the song_base
 try{
-$update = $db->query("INSERT INTO song_base(link, submissions)
-						VALUES ('$id', 1)
-						ON DUPLICATE KEY UPDATE
-						submissions = submissions + 1");
-	echo $id;
+$update = $db->query("UPDATE song_base SET submissions = submissions + 1
+						WHERE song_base_id = '$index'");
 } catch(PDOException $e){
 	echo $e->getMessage();
 }

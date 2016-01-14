@@ -52,17 +52,21 @@ $queryactiveRooms = $db->query("SELECT * FROM rooms r
 				</div>
 			</div>
 			<div class="user-profile-stats">
-				<div class="col-lg-4 col-md-4">
+				<div class="col-lg-3 col-md-3">
 					<p class="stats-title"><?php echo $lang["rooms_created"];?></p>
 					<p class="stats-value"><?php echo $profileDetails["stat_rooms_created"];?></p>
 				</div>
-				<div class="col-lg-4 col-md-4">
+				<div class="col-lg-3 col-md-3">
 					<p class="stats-title"><?php echo $lang["songs_submitted"];?></p>
 					<p class="stats-value"><?php echo $profileDetails["stat_songs_submitted"];?></p>
 				</div>
-				<div class="col-lg-4 col-md-4">
+				<div class="col-lg-3 col-md-3">
 					<p class="stats-title"><?php echo $lang["total_views"];?></p>
 					<p class="stats-value"><?php echo $profileDetails["stat_visitors"];?></p>
+				</div>
+				<div class="col-lg-3 col-md-3">
+					<p class="stats-title"><?php echo $lang["total_followers"];?></p>
+					<p class="stats-value"><?php echo $profileDetails["stat_followers"];?></p>
 				</div>
 			</div>
 			<div class="user-rooms">
@@ -88,7 +92,7 @@ $queryactiveRooms = $db->query("SELECT * FROM rooms r
 							<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
 							<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
 							<?php } else { ?>
-							<a href="room/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+							<a href="box/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 							<?php } ?>
 						</div>
 					</div>
@@ -117,7 +121,7 @@ $queryactiveRooms = $db->query("SELECT * FROM rooms r
 							var roomToken = $(this).attr('id').substr(9);
 							$.post("functions/submit_password.php", {password : password, roomToken : roomToken}).success(function(data){
 								if(data == 1){
-									window.location.replace("room/"+roomToken);
+									window.location.replace("box/"+roomToken);
 								} else {
 									$("#password-"+roomToken).val('');
 									$("#password-"+roomToken).prev().show();

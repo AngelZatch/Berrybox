@@ -15,6 +15,7 @@ $d["user_pp"] = "profile-pictures/".$details["user_pp"];
 $d["rooms"] = $details["stat_rooms_created"];
 $d["songs"] = $details["stat_songs_submitted"];
 $d["visitors"] = $details["stat_visitors"];
+$d["followers"] = $details["stat_followers"];
 
 echo json_encode($d);
 ?>

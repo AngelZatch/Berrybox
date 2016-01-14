@@ -37,7 +37,7 @@ while($message = $load->fetch(PDO::FETCH_ASSOC)){
 	$m["status"] = $permission["room_user_state"];
 	$m["authorColor"] = $message["up_color"];
 	if($message["message_destination"] != ''){
-		$destination = $db->query("SELECT *
+		$destination = $db->query("SELECT user_pseudo, up_color
 									FROM user u
 									JOIN user_preferences up ON u.user_token = up.up_user_id
 									WHERE user_token = '$message[message_destination]'")->fetch(PDO::FETCH_ASSOC);
@@ -46,6 +46,7 @@ while($message = $load->fetch(PDO::FETCH_ASSOC)){
 	}
 	$m["destinationToken"] = $message["message_destination"];
 	$m["authorToken"] = $message["message_author"];
+	$m["authorPower"] = $message["user_power"];
 	$m["timestamp"] = $message["message_time"];
 
 	$contentRaw = $message["message_contents"];

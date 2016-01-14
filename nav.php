@@ -29,6 +29,9 @@ if(isset($_SESSION["token"])){
 		<ul class="nav navbar-nav navbar-right">
 			<?php if(isset($_SESSION["username"])){ ?>
 			<li>
+				<a href="follow"><?php echo $lang["following"];?></a>
+			</li>
+			<li>
 				<a href="create" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
 			</li>
 			<li>

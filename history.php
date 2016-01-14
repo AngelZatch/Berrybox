@@ -69,7 +69,7 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 							<span class="label label-success"><span class="glyphicon glyphicon-signal"></span> <?php echo $lang["status_open"];?></span>
 						</p>
 						<div class="col-lg-3">
-							<a href="room/<?php echo $historyRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+							<a href="box/<?php echo $historyRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 						</div>
 						<?php } else { ?>
 						<p class="col-lg-1 label-status">
@@ -90,7 +90,7 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 		<script>
 			function openRoom(roomToken){
 				$.post("functions/reopen_room.php", {roomToken : roomToken}).done(function(data){
-					window.location.replace("room/"+roomToken);
+					window.location.replace("box/"+roomToken);
 				})
 			}
 			function deleteRoom(roomToken){
