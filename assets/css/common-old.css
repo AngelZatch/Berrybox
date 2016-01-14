@@ -10,33 +10,8 @@
 	font-style: normal;
 }
 
-#player{
-	width: 100%;
-	margin: 0 auto;
-}
-
 .user-room {
 	font-weight: 800;
-}
-
-#active-rooms-title {
-	font-size: 24px;
-	text-align: center;
-}
-
-.system-alert,
-.sm-type-close{
-	color: #d61b1b;
-	font-weight: 700;
-}
-
-.system-success{
-	color: #87ce77;
-	font-weight: 600;
-}
-
-.song-ignored > div > p > a{
-	color: red;
 }
 
 .emotion-glyph {
@@ -131,70 +106,13 @@
 	background-color: inherit;
 }
 
-.panel-active-room {
-	background-color: #23221d;
-}
-
-.profile-picture {
-	width: inherit;
-}
-
-#user-name {
-	font-size: 18px;
-	line-height: 50px;
-	font-weight: 700;
-}
-
 .connected-user {
 	height: 50px;
 	margin-bottom: 30px;
 }
 
-option{
-	background-color: inherit;
-	color: black;
-}
-
 .modal-header{
 	display: none;
-}
-
-.list-rank{
-	text-transform: uppercase;
-	font-weight: 200;
-	font-size: 14px;
-	color: #888;
-}
-
-.user-profile-details {
-	min-height: 150px;
-	margin-bottom: 10px;
-}
-
-.stats-title {
-	font-size: 14px;
-}
-
-.stats-value {
-	padding-left: 20px;
-	font-size: 22px;
-	color: #ba8a2b;
-}
-
-.user-profile-name {
-	font-size: 28px;
-}
-
-.user-profile-bio {
-	font-style: italic;
-}
-
-.sm-type-play{
-	color: #7db8e0;
-}
-
-.sm-type-skip {
-	color: #D08AC3;
 }
 
 .btn-toggle:hover {

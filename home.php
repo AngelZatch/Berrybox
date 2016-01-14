@@ -50,7 +50,7 @@ if(isset($_SESSION["token"])){
 				<p class="alert-message"><?php echo $lang["maintenance"];?></p>
 			</div>
 
-			<p id="active-rooms-title"><?php echo $lang["active_room"];?></p>
+			<legend><?php echo $lang["active_room"];?></legend>
 			<div class="container-fluid">
 				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
 				<div class="col-lg-4">
@@ -79,7 +79,7 @@ if(isset($_SESSION["token"])){
 								<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
 								<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
 								<?php } else { ?>
-								<a href="room/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+								<a href="box/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 								<?php } ?>
 							</div>
 						</div>
@@ -123,7 +123,7 @@ if(isset($_SESSION["token"])){
 							var roomToken = $(this).attr('id').substr(9);
 							$.post("functions/submit_password.php", {password : password, roomToken : roomToken}).success(function(data){
 								if(data == 1){
-									window.location.replace("room/"+roomToken);
+									window.location.replace("box/"+roomToken);
 								} else {
 									$("#password-"+roomToken).val('');
 									$("#password-"+roomToken).prev().show();

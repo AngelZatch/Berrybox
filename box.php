@@ -923,6 +923,7 @@ if(isset($_SESSION["token"])){
 			// Gets the whole history of the room
 			$.post("functions/get_history.php", {roomToken : roomToken}).done(function(data){
 				var songList = JSON.parse(data);
+				var uVideos = 0, pVideos = 0;
 				$("#body-song-list").empty();
 				var previousSongState = -1;
 				for(var i = 0; i < songList.length; i++){
@@ -932,7 +933,7 @@ if(isset($_SESSION["token"])){
 						switch(songList[i].videoStatus){
 							case '0':
 								if(previousSongState != 3){
-									var messageRank = "<p class='list-rank'><?php echo $lang["sl_upcoming"];?></p>";
+									var messageRank = "<p class='list-rank' id='list-upcoming'><?php echo $lang["sl_upcoming"];?></p>";
 									$("#body-song-list").append(messageRank);
 								}
 								break;
@@ -940,13 +941,14 @@ if(isset($_SESSION["token"])){
 								message += "<p class='list-rank'><?php echo $lang["now_playing"];?></p>";
 								break;
 							case '2':
-								message += "<p class='list-rank'><?php echo $lang["sl_played"];?></p>";
+								message += "<p class='list-rank' id='list-played'><?php echo $lang["sl_played"];?></p>";
 								break;
 						}
 					}
 					if(songList[i].videoStatus == 2){
 						message += "<div class='row playlist-entry song-played'>";
 						message += "<div class='col-lg-10'>";
+						pVideos++;
 					} else if(songList[i].videoStatus == 1){
 						message += "<div class='row playlist-entry song-playing'>";
 						message += "<div class='col-lg-12'>";
@@ -956,6 +958,7 @@ if(isset($_SESSION["token"])){
 					} else {
 						var message = "<div class='row playlist-entry song-upcoming'>";
 						message += "<div class='col-lg-10'>";
+						uVideos++;
 					}
 					message += "<p class='song-list-line'><a href='https://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songName+"'>"+songList[i].videoName+"</a></p></div>";
 					if(userPower == 2 || userPower == 3){
@@ -982,6 +985,8 @@ if(isset($_SESSION["token"])){
 					previousSongState = songList[i].videoStatus;
 					$("#body-song-list").append(message);
 				}
+				$("#list-upcoming").append(" ("+uVideos+")");
+				$("#list-played").append(" ("+pVideos+")");
 			})
 			setTimeout(loadSongHistory, 8000, roomToken, userPower);
 		}

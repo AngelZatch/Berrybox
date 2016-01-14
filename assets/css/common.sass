@@ -1,6 +1,11 @@
 $yellow-base: #cf9930
 $yellow-darker: darken($yellow-base, 10%)
 $system-color: #888888
+$success-color: #87CE77
+$warning-color: #F0AD4E
+$danger-color: #D9534F
+$skip-color: #D08AC3
+$play-color: #7DB8E0
 $whisper-color: #D5D5D5
 
 /** @font-face
@@ -34,6 +39,10 @@ $whisper-color: #D5D5D5
 
 textarea
 	resize: none
+
+option
+	background-color: inherit
+	color: black
 
 /** Panels **/
 .panel-room
@@ -79,21 +88,39 @@ textarea
 	padding-bottom: 0
 
 /****/
-
 .main
 	margin-top: 80px
 
 .main-maintenance
 	margin-top: 150px
 
+#player
+	width: 100%
+	margin: 0 auto;
+
+/** System Messages **/
 .system-message
 	color: $system-color
 	font-style: italic
 	font-weight: 500
 
 .system-warning
-	color: #F0AD4E
+	color: $warning-color
 	font-weight: 600
+
+.system-alert, .sm-type-close
+	color: #D61B1B
+	font-weight: 700
+
+.system-success
+	color: $success-color
+	font-weight: 600
+
+.sm-type-play
+	color: $play-color
+
+.sm-type-skip
+	color: $skip-color
 
 .form-control
 	background-color: inherit
@@ -142,6 +169,9 @@ textarea
 	border: 2px solid #444 !important
 	text-align: inherit
 
+.profile-picture
+	width: inherit
+
 /** Room info **/
 #room-title
 	font-size: 22px
@@ -171,6 +201,13 @@ textarea
 .tip, .message-time
 	color: $system-color
 
+/** Playlist **/
+.list-rank
+	text-transform: uppercase
+	font-weight: 200
+	font-size: 14px
+	color: $system-color
+
 .song-list-line
 	text-overflow: ellipsis
 	overflow: hidden
@@ -178,9 +215,18 @@ textarea
 .song-playing
 	font-weight: 900
 
+.song-ignored > div > p > a
+	color: $danger-color;
+
 .moderation-option
 	color: $system-color
 	cursor: pointer
+
+/** User menu **/
+#user-name
+	font-size: 18px
+	line-height: 50px
+	font-weight: 700
 
 /** Buttons **/
 .btn-switch.disabled
@@ -346,3 +392,23 @@ legend
 .alert-message
 	font-size: 18px
 	text-align: center
+
+/** User page **/
+.user-profile-details
+	min-height: 150px
+	margin-bottom: 10px
+
+.stats-title
+	font-size: 14px
+
+.stats-value
+	padding-left: 20px
+	font-size: 22px
+	color: $yellow-base
+
+.user-profile-name
+	font-size: 28px
+
+.user-profile-bio
+	font-style: italic
+

@@ -113,7 +113,7 @@ $queryTypes = $db->query("SELECT * FROM room_types");
 				var description = $("#description").val();
 				console.log(description);
 				$.post("functions/room_create.php", {roomName : roomName, creator : user, protect : protect, password : password, type : type, language : language, description : description}).done(function(data){
-					window.location.replace("room/"+data);
+					window.location.replace("box/"+data);
 				})
 			})
 		</script>
