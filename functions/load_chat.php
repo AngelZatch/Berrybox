@@ -46,6 +46,7 @@ while($message = $load->fetch(PDO::FETCH_ASSOC)){
 	}
 	$m["destinationToken"] = $message["message_destination"];
 	$m["authorToken"] = $message["message_author"];
+	$m["authorPower"] = $message["user_power"];
 	$m["timestamp"] = $message["message_time"];
 
 	$contentRaw = $message["message_contents"];

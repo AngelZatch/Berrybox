@@ -1271,6 +1271,9 @@ if(isset($_SESSION["token"])){
 								}
 							}
 						}
+						if(messageList[i].authorPower == "1"){
+							message += "<span class='chat-icon' title='Staff'><img src='assets/berrybox-staff-logo.png'></span> ";
+						}
 						message += "<a style='text-decoration:none'><span class='message-author author-linkback' style='color:#"+messageList[i].authorColor+";'>";
 						message += messageList[i].author;
 						message += "</span></a>";

@@ -142,8 +142,8 @@ $lang["my_profile"] = "Mon profil";
 $lang["public_profile"] = "Mes stats";
 $lang["leave"] = "Quitter la box";
 $lang["warning_sync_admin"] = "Attention ! La synchronisation de la box est basée sur vous. Si vous quittez la box, la synchro va s'arrêter pour tout le monde et plus aucune vidéo ne sera jouée.";
-$lang["room_reopen"] = "Réouvrir la box.";
-$lang["room_delete"] = "Supprimer définitivement.";
+$lang["room_reopen"] = "Réouvrir";
+$lang["room_delete"] = "Supprimer";
 $lang["status_open"] = "Ouverte";
 $lang["status_closed"] = "Fermée";
 
