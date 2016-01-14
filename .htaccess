@@ -14,8 +14,8 @@ RewriteRule ^profile/history$ history.php [NC,L] # Profile
 RewriteRule ^profile/security$ security.php [NC,L] # Profile
 
 #Maintenance ON
-#RewriteCond %{REQUEST_URI} !/maintenance.php$
-#RewriteRule !^(assets|bootstrap)($|/) /Berrybox/maintenance.php [R=302,NC,L] # Display maintenance page
+RewriteCond %{REQUEST_URI} !/maintenance.php$
+RewriteRule !^(assets|bootstrap)($|/) /Berrybox/maintenance.php [R=302,NC,L] # Display maintenance page
 #Maintnance OFF
-RewriteRule ^(maintenance)$ /Berrybox/home [R=302,NC,L] # Display home
-RewriteRule ^(maintenance.php)$ /Berrybox/home [R=302,NC,L] # Display home
+#RewriteRule ^(maintenance)$ /Berrybox/home [R=302,NC,L] # Display home
+#RewriteRule ^(maintenance.php)$ /Berrybox/home [R=302,NC,L] # Display home
