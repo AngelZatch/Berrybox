@@ -28,7 +28,6 @@ if(strlen($link) == 11){
 			$pending = "1";
 		}
 
-
 		// The video info is then uploaded in the base
 		$uploadToBase = $db->prepare("INSERT INTO song_base(link, video_name, pending)
 			VALUES(:link, :title, :pending)");
@@ -43,8 +42,8 @@ if(strlen($link) == 11){
 		// We get existing details from the video base
 		$checkBase = $db->query("SELECT * FROM song_base WHERE link = '$link'")->fetch(PDO::FETCH_ASSOC);
 		$baseIndex = $checkBase["song_base_id"];
-		if($checkBase["pending"] == "1" && $checkBase["video_name"] != "-" && $checkBase["video_name"] != ""){
-			$pending = "0"; // If the video is still pending but there's a name, then it's awaiting verification
+		if($checkBase["video_name"] != "-"){
+			$pending = "0"; // If there's a name, no need to check
 		} else {
 			$pending = "1"; // If not, then the name has to be filled
 		}
@@ -61,11 +60,11 @@ if(strlen($link) == 11){
 
 	// If info are not missing, result is 1 (success code). If not, it's the entry of the video in the song base (need for info)
 	if($pending == "0"){
-		echo "1";
+		echo "ok";
 	} else {
 		echo $baseIndex;
 	}
 } else {
-	echo "3"; // Invalid link code
+	echo "error"; // Invalid link code
 }
 ?>

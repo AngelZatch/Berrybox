@@ -1102,11 +1102,11 @@ if(isset($_SESSION["token"])){
 				$.post("functions/post_history.php", {url : id, roomToken : roomToken}).done(function(code){
 					console.log(code);
 					switch(code){
-						case '1': // success code
+						case 'ok': // success code
 							$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["song_submit_success"];?></p>");
 							break;
 
-						case '3': // Invalid link code
+						case 'error': // Invalid link code
 							$("#body-chat").append("<p class='system-message system-alert'><span class='glyphicon glyphicon-exclamation-sign'></span> <?php echo $lang["invalid_link"];?></p>");
 							break;
 
