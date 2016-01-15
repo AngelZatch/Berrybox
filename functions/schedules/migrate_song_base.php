@@ -9,8 +9,11 @@ for($i = 0; $i < sizeof($tokens); $i++){
 	$querySongs = $db->query("SELECT history_link, video_name FROM roomHistory_$tokens[$i]");
 
 	while($song = $querySongs->fetch(PDO::FETCH_ASSOC)){
-		$edit = $db->query("UPDATE song_base SET video_name = '$song[video_name]' WHERE link = '$song[history_link]'");
+		try{
+			$edit = $db->query("UPDATE song_base SET video_name = '$song[video_name]' WHERE link = '$song[history_link]'");
+		} catch(PDOException $e){
+			echo $e->getMessage();
+		}
 	}
-
 }
 ?>
