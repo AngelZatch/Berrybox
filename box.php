@@ -10,7 +10,6 @@ $roomDetails = $db->query("SELECT *
 $creatorStats = $db->query("SELECT *
 							FROM user_stats us
 							WHERE user_token = '$roomDetails[room_creator]'")->fetch(PDO::FETCH_ASSOC);
-$colorList = $db->query("SELECT * FROM name_colors WHERE color_status = 0");
 $queryTypes = $db->query("SELECT * FROM room_types");
 
 if(isset($_SESSION["token"])){
@@ -32,6 +31,7 @@ if(isset($_SESSION["token"])){
 								WHERE user_following = '$_SESSION[token]'
 								AND user_followed = '$roomDetails[user_token]'")->rowCount();
 	}
+	$colorList = $db->query("SELECT * FROM name_colors WHERE color_status <= '$userDetails[user_power]'");
 	include_once "languages/lang.".$userLang.".php";
 } else {
 	include "functions/tools.php";
@@ -239,16 +239,18 @@ if(isset($_SESSION["token"])){
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["chat_settings"];?></div>
 				<div class="panel-body" id="body-options-list">
-					<div id="colors" class="room-option">
-						<p><?php echo $lang["color_pick"];?></p>
-						<?php while($color = $colorList->fetch(PDO::FETCH_ASSOC)){
+					<div class="room-option">
+						<div class="option-title"><?php echo $lang["color_pick"];?></div>
+						<span class="tip"><?php echo $lang["color_tip"];?></span><br>
+						<div id="colors">
+							<?php while($color = $colorList->fetch(PDO::FETCH_ASSOC)){
 	$colorValue = $color["color_value"];
 	if(strcasecmp($colorValue,$userDetails["up_color"]) == 0){?>
-						<div class="color-cube cube-selected" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
-						<?php } else { ?>
-						<div class="color-cube" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
-						<?php }
-}?>
+							<div class="color-cube cube-selected" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
+							<?php } else { ?>
+							<div class="color-cube" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
+							<?php }
+}?></div>
 					</div>
 					<div class="room-option">
 						<div class="option-title"><?php echo $lang["user_theme"];?>
@@ -1165,7 +1167,7 @@ if(isset($_SESSION["token"])){
 		if(message == 'chatbox' && scope == 1){
 			var fullString = $(".chatbox").val();
 			var actionToken = $(".chatbox").val().substr(0,1);
-			if(actionToken == '/'){
+			if(actionToken == '/'){ // Detection de macros
 				var action = $(".chatbox").val().substr(1).split(" ");
 				if(action[0] == 'w'){
 					scope = 6;

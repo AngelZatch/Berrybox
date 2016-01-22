@@ -35,7 +35,7 @@ if(isset($_SESSION["token"])){
 	</head>
 	<body>
 		<?php include "nav.php";?>
-		<div class="main-home">
+		<div class="main">
 			<?php if(!isset($_SESSION["token"])) { ?>
 			<div class="jumbotron jumbotron-home">
 				<h1><?php echo $lang["hello"];?></h1>
