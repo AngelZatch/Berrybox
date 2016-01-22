@@ -4,7 +4,7 @@
 $lang = array();
 /** HOME **/
 $lang["hello"] = "Bienvenue sur Berrybox!";
-$lang["berrybox_description"] = "Berrybox est une application simple pour partager des vidéos et les regarder en synchronisation!";
+$lang["berrybox_description"] = "Partagez et regardez YouTube ensemble.";
 $lang["get_started"] = "Rejoindre l'expérience Berrybox";
 $lang["home_create_room"] = "Envie de créer une nouvelle box ? C'est par ici !";
 
@@ -63,6 +63,7 @@ $lang["post_chat"] = "Envoyer";
 $lang["chat_placeholder"] = "Ecrire un message";
 $lang["chat_settings"] = "Paramètres du chat et de la box";
 $lang["color_pick"] = "Choisissez une couleur pour votre nom";
+$lang["color_tip"] = "Votre nom sera affiché dans la couleur que vous aurez choisi.";
 $lang["welcome"] = "Bienvenue dans cette box ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur.";
 $lang["welcome_admin"] = "Bienvenue dans votre box ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur. Vous êtes le créateur de cette box. Si vous la quittez sans la fermer, la lecture et la synchronisation des vidéos s'arrêtera pour tous vos utilisateurs.";
 
@@ -181,6 +182,7 @@ $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";
 $lang["rooms_created"] = "Nombre de boxes ouvertes";
 $lang["songs_submitted"] = "Nombre de vidéos jouées";
 $lang["total_views"] = "Nombre total de spectateurs";
+$lang["total_followers"] = "Abonnés";
 $lang["total_followers"] = "Abonnés";
 $lang["opened_rooms"] = "Boxes actuellement ouvertes";
 $lang["no_opened_rooms"] = "Aucune box";

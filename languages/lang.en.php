@@ -3,8 +3,8 @@
 
 $lang = array();
 /** HOME **/
-$lang["hello"] = "Hello and welcome to Berrybox!";
-$lang["berrybox_description"] = "Berrybox is a simple application to share and watch youtube videos together!";
+$lang["hello"] = "Welcome to Berrybox!";
+$lang["berrybox_description"] = "Share and watch youtube videos together.";
 $lang["get_started"] = "Join the community";
 $lang["home_create_room"] = "Want to open a new box? Click here!";
 
@@ -63,6 +63,7 @@ $lang["post_chat"] = "Chat";
 $lang["chat_placeholder"] = "Write a message";
 $lang["chat_settings"] = "Chat and box settings";
 $lang["color_pick"] = "Pick a color for your username";
+$lang["color_tip"] = "Your username in chat will be displayed in the color you'll have chosen";
 $lang["welcome"] = "Welcome in the box! To submit a video, please paste any YouTube link in the input under the player.";
 $lang["welcome_admin"] = "Welcome in your box! To submit a video, please paste any YouTube link in the input under the player. Please note that you are the creator and therefore administrator of this box. If you leave it without closing it, video synchronisation and play will stop for your users.";
 
