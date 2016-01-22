@@ -25,6 +25,9 @@ $queryactiveRooms = $db->query("SELECT * FROM rooms r
 							JOIN room_types rt ON r.room_type = rt.id
 							WHERE r.room_creator = '$profileDetails[user_token]' AND room_active = '1' AND room_protection != '3'");
 
+$userFollow = $db->query("SELECT * FROM user_follow uf
+								WHERE user_following = '$_SESSION[token]'
+								AND user_followed = '$profileDetails[user_token]'")->rowCount();
 ?>
 <html>
 	<head>
@@ -45,6 +48,13 @@ $queryactiveRooms = $db->query("SELECT * FROM rooms r
 			<div class="user-profile-details">
 				<div class="user-profile-picture">
 					<img src="profile-pictures/<?php echo $profileDetails["user_pp"];?>" class="profile-picture">
+				</div>
+				<div class="user-actions">
+					<?php if($userFollow == 1){ ?>
+					<button class="btn btn-primary btn-active btn-unfollow" id="user-page-unfollow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
+					<?php } else { ?>
+					<button class="btn btn-primary btn-follow" id="user-page-follow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['follow'];?></button>
+					<?php } ?>
 				</div>
 				<p class="user-profile-name"><?php echo $profileDetails["user_pseudo"];?></p>
 				<div class="user-profile-bio">
@@ -132,6 +142,36 @@ $queryactiveRooms = $db->query("SELECT * FROM rooms r
 				}).on('blur', function(){
 					$(this).hide('200');
 					$(this).next().show('200');
+				})
+				$(document).on('mouseenter', '#user-page-unfollow', function(){
+					var text = "<span class='glyphicon glyphicon-minus'></span> <?php echo $lang['unfollow'];?>";
+					$("#user-page-unfollow").html(text);
+					$("#user-page-unfollow").removeClass("btn-active");
+					$("#user-page-unfollow").addClass("btn-danger");
+				}).on('mouseleave', '#user-page-unfollow', function(){
+					var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['following'];?>";
+					$("#user-page-unfollow").html(text);
+					$("#user-page-unfollow").removeClass("btn-danger");
+					$("#user-page-unfollow").addClass("btn-active");
+				}).on('click', '#user-page-unfollow', function(){
+					$.post("functions/unfollow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : '<?php echo $profileToken;?>'}).done(function(data){
+						$("#user-page-unfollow").removeClass("btn-active");
+						var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['follow'];?>";
+						$("#user-page-unfollow").html(text);
+						$("#user-page-unfollow").removeClass("btn-danger");
+						$("#user-page-unfollow").removeClass("btn-unfollow");
+						$("#user-page-unfollow").addClass("btn-follow");
+						$("#user-page-unfollow").attr("id", "#user-page-follow");
+					})
+				}).on('click', '#user-page-follow', function(){
+					$.post("functions/follow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : '<?php echo $profileToken;?>'}).done(function(data){
+						$("#user-page-follow").addClass("btn-active");
+						var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['following'];?>";
+						$("#user-page-follow").html(text);
+						$("#user-page-follow").removeClass("btn-follow");
+						$("#user-page-follow").addClass("btn-unfollow");
+						$("#user-page-follow").attr("id", "#user-page-unfollow");
+					})
 				})
 			})
 		</script>

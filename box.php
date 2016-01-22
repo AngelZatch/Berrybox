@@ -125,9 +125,9 @@ if(isset($_SESSION["token"])){
 						if($_SESSION["token"] != $roomDetails["room_creator"]){?>
 					<div class="room-buttons col-lg-2">
 						<?php if($userFollow == 1){ ?>
-						<button class="btn btn-primary btn-active" id="unfollow"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
+						<button class="btn btn-primary btn-active btn-unfollow" id="box-title-unfollow" value="<?php echo $roomDetails["user_pseudo"];?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
 						<?php } else { ?>
-						<button class="btn btn-primary" id="follow"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['follow'];?></button>
+						<button class="btn btn-primary btn-follow" id="box-title-follow" value="<?php echo $roomDetails["user_pseudo"];?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['follow'];?></button>
 						<?php } ?>
 					</div>
 					<?php } else { ?>
@@ -773,9 +773,16 @@ if(isset($_SESSION["token"])){
 			userCard += "<div class='col-lg-2'><span class='glyphicon glyphicon-music' title='<?php echo $lang["songs_submitted"];?>'></span> "+details.songs+"</div>";
 			userCard += "</div>"; // user-card-stats
 			userCard += "</div>"; // user-card-info
-			userCard += "<div class='user-card-actions'>";
-			userCard += "<button class='btn btn-primary whisper-action'><?php echo $lang["whisper"];?></button>";
-			userCard += "</div>"; // user-card-actions
+			if(details.user_pseudo != '<?php echo $userDetails["user_pseudo"];?>'){
+				userCard += "<div class='user-card-actions'>";
+				userCard += "<button class='btn btn-primary whisper-action'><?php echo $lang["whisper"];?></button>"; // whisper action
+				if(details.following == 1){
+					userCard += "<button class='btn btn-primary btn-active btn-unfollow' id='user-card-unfollow' value='"+details.user_pseudo+"'><span class='glyphicon glyphicon-heart'></span> <?php echo $lang["following"];?></button>";
+				} else {
+					userCard += "<button class='btn btn-primary btn-follow' id='user-card-follow' value='"+details.user_pseudo+"'><span class='glyphicon glyphicon-heart'></span> <?php echo $lang["follow"];?></button>";
+				} // follow action
+				userCard += "</div>"; // user-card-actions
+			}
 			userCard += "</div>"; //user-card
 			currentLine.after(userCard);
 			$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
@@ -786,30 +793,55 @@ if(isset($_SESSION["token"])){
 		var user = $("#user-card-name").text();
 		$(".chatbox").val("/w "+user+" ");
 		$(".chatbox").focus();
-	}).on('mouseenter', '#unfollow', function(){
+	}).on('mouseenter', '.btn-unfollow', function(){
+		var id = $(this).attr("id");
 		var text = "<span class='glyphicon glyphicon-minus'></span> <?php echo $lang['unfollow'];?>";
-		$("#unfollow").html(text);
-		$("#unfollow").removeClass("btn-active");
-		$("#unfollow").addClass("btn-danger");
-	}).on('mouseleave', '#unfollow', function(){
+		$("#"+id).html(text);
+		$("#"+id).removeClass("btn-active");
+		$("#"+id).addClass("btn-danger");
+	}).on('mouseleave', '.btn-unfollow', function(){
+		var id = $(this).attr("id");
 		var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['following'];?>";
-		$("#unfollow").html(text);
-		$("#unfollow").removeClass("btn-danger");
-		$("#unfollow").addClass("btn-active");
-	}).on('click', '#unfollow', function(){
-		$.post("functions/unfollow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : '<?php echo $roomDetails["user_token"];?>'}).done(function(data){
-			$("#unfollow").removeClass("btn-active");
+		$("#"+id).html(text);
+		$("#"+id).removeClass("btn-danger");
+		$("#"+id).addClass("btn-active");
+	}).on('click', '.btn-unfollow', function(){
+		var followedToken = $(this).attr("value");
+		var id = $(this).attr("id");
+		$.post("functions/unfollow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : followedToken}).done(function(data){
+			$("#"+id).removeClass("btn-active");
 			var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['follow'];?>";
-			$("#unfollow").html(text);
-			$("#unfollow").removeClass("btn-danger");
-			$("#unfollow").attr("id", "follow");
+			$("#"+id).html(text);
+			$("#"+id).removeClass("btn-danger");
+			$("#"+id).removeClass("btn-unfollow");
+			$("#"+id).addClass("btn-follow");
+			$("#"+id).attr("id", id.substr(0, id.length - 6)+"follow");
+			if(followedToken == '<?php echo $roomDetails["user_pseudo"];?>'){
+				$("#box-title-unfollow").removeClass("btn-active");
+				$("#box-title-unfollow").html(text);
+				$("#box-title-unfollow").removeClass("btn-danger");
+				$("#box-title-unfollow").removeClass("btn-unfollow");
+				$("#box-title-unfollow").addClass("btn-follow");
+				$("#box-title-unfollow").attr("id", "box-title-follow");
+			}
 		})
-	}).on('click', '#follow', function(){
-		$.post("functions/follow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : '<?php echo $roomDetails["user_token"];?>'}).done(function(data){
-			$("#follow").addClass("btn-active");
+	}).on('click', '.btn-follow', function(){
+		var followedToken = $(this).attr("value");
+		var id = $(this).attr("id");
+		$.post("functions/follow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : followedToken}).done(function(data){
+			$("#"+id).addClass("btn-active");
 			var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['following'];?>";
-			$("#follow").html(text);
-			$("#follow").attr("id", "unfollow");
+			$("#"+id).html(text);
+			$("#"+id).removeClass("btn-follow");
+			$("#"+id).addClass("btn-unfollow");
+			$("#"+id).attr("id", id.substr(0, id.length - 8)+"unfollow");
+			if(followedToken == '<?php echo $roomDetails["user_pseudo"];?>'){
+				$("#box-title-follow").addClass("btn-active");
+				$("#box-title-follow").html(text);
+				$("#box-title-follow").removeClass("btn-follow");
+				$("#box-title-follow").addClass("btn-unfollow");
+				$("#box-title-follow").attr("id", "box-title-unfollow");
+			}
 		})
 	})
 	function onPlayerReady(event){
