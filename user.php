@@ -49,6 +49,7 @@ $userFollow = $db->query("SELECT * FROM user_follow uf
 				<div class="user-profile-picture">
 					<img src="profile-pictures/<?php echo $profileDetails["user_pp"];?>" class="profile-picture">
 				</div>
+				<?php if($_SESSION["username"] != $profileToken){ ?>
 				<div class="user-actions">
 					<?php if($userFollow == 1){ ?>
 					<button class="btn btn-primary btn-active btn-unfollow" id="user-page-unfollow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
@@ -56,6 +57,7 @@ $userFollow = $db->query("SELECT * FROM user_follow uf
 					<button class="btn btn-primary btn-follow" id="user-page-follow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['follow'];?></button>
 					<?php } ?>
 				</div>
+				<?php } ?>
 				<p class="user-profile-name"><?php echo $profileDetails["user_pseudo"];?></p>
 				<div class="user-profile-bio">
 					<?php echo ($profileDetails["user_bio"])?$profileDetails["user_bio"]:$lang["no_bio"];?>

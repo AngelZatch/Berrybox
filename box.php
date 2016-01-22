@@ -767,7 +767,7 @@ if(isset($_SESSION["token"])){
 			userCard += "<div class='medium-pp'>";
 			userCard += "<img src='"+details.user_pp+"' alt='' style='width:inherit'>";
 			userCard += "</div>";
-			userCard += "<p id='user-card-name'>"+details.user_pseudo+"<span class='glyphicon glyphicon-remove button-glyph' id='user-card-close'></span></p>";
+			userCard += "<p id='user-card-name'><a href='user/"+details.user_pseudo+"' target='_blank'>"+details.user_pseudo+"</a><span class='glyphicon glyphicon-remove button-glyph' id='user-card-close'></span></p>";
 			userCard += "<div class='row user-card-stats'>";
 			userCard += "<div class='col-lg-2'><span class='glyphicon glyphicon-heart' title='<?php echo $lang["total_followers"];?>'></span> "+details.followers+"</div>";
 			userCard += "<div class='col-lg-2'><span class='glyphicon glyphicon-eye-open' title='<?php echo $lang["total_views"];?>'></span> "+details.visitors+"</div>";
