@@ -7,6 +7,7 @@ $danger-color: #D9534F
 $skip-color: #D08AC3
 $play-color: #7DB8E0
 $whisper-color: #D5D5D5
+$avatar-size-preview: 120px
 
 /** @font-face
 	font-family: 'geometria_lightlight'
@@ -164,13 +165,34 @@ option
 	margin-left: 10px
 	margin-right: 20px
 
-#profile-picture-sample, .file-preview, .file-preview-frame
-	+circle-size(120px)
+#profile-picture-sample
+	+circle-size($avatar-size-preview)
 	border: 2px solid #444 !important
 	text-align: inherit
 
+#avatar-container
+	.file-input
+		.file-preview
+			+circle-size($avatar-size-preview)
+
+.file-preview-frame
+	width: $avatar-size-preview !important
+	padding: 0 !important
+
 .profile-picture
 	width: inherit
+
+#banner
+	.file-preview-frame
+		border-radius: 0
+		box-shadow: none
+		overflow: visible
+		width: 100% !important
+		img
+			margin-top: -30%
+	.file-default-preview
+		img
+			margin-top: -30%
 
 /** Room info **/
 #room-title
@@ -216,7 +238,7 @@ option
 	font-weight: 900
 
 .song-ignored > div > p > a
-	color: $danger-color;
+	color: $danger-color
 
 .moderation-option
 	color: $system-color
@@ -257,7 +279,7 @@ nav
 
 .nav
 	li>a:hover, li>a:focus
-			background-color: inherit !important
+		background-color: inherit !important
 
 .jumbotron
 	text-align: center
@@ -416,9 +438,15 @@ legend
 	text-align: center
 
 /** User page **/
-.user-profile-details
+.user-profile-container
 	min-height: 150px
-	margin-bottom: 10px
+	position: absolute
+	bottom: 0
+	left: 0
+	right: 0
+	padding: 30px
+	z-index: 2
+	background-color: rgba(0,0,0,.70)
 
 .stats-title
 	font-size: 14px
@@ -436,4 +464,14 @@ legend
 
 .user-actions
 	float: right
+	.file-preview
+		display: none
 
+.banner-container
+	height: 500px
+	overflow: hidden
+	position: relative
+	margin-top: -30px
+	margin-bottom: 20px
+	img
+		width: 100%

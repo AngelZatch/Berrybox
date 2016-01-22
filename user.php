@@ -13,6 +13,15 @@ if(isset($_SESSION["token"])){
 	} else {
 		$theme = "light";
 	}
+
+	if(isset($_POST["submit"])){
+		if($_FILES["profile-banner"]["name"]){
+			$picture = $_SESSION["token"].".".pathinfo($_FILES["profile-banner"]["name"], PATHINFO_EXTENSION);
+			move_uploaded_file($_FILES["profile-banner"]["tmp_name"], "profile-banners/".$picture);
+			//Writing in the table the modifications
+			$edit = $db->query("UPDATE user SET	user_banner = '$picture' WHERE user_token = '$_SESSION[token]'");
+		}
+	}
 }
 
 $profileToken = $_GET["id"];
@@ -44,26 +53,45 @@ $userFollow = $db->query("SELECT * FROM user_follow uf
 	</head>
 	<body>
 		<?php include "nav.php";?>
-		<div class="main col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
-			<div class="user-profile-details">
-				<div class="user-profile-picture">
-					<img src="profile-pictures/<?php echo $profileDetails["user_pp"];?>" class="profile-picture">
-				</div>
-				<?php if($_SESSION["username"] != $profileToken){ ?>
-				<div class="user-actions">
-					<?php if($userFollow == 1){ ?>
-					<button class="btn btn-primary btn-active btn-unfollow" id="user-page-unfollow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
+		<div class="main">
+			<div class="banner-container">
+				<?php if($profileToken == $_SESSION["username"]){ ?>
+				<form action="user/<?php echo $profileToken;?>" method="post" enctype="multipart/form-data">
+					<div id="banner">
+					</div>
 					<?php } else { ?>
-					<button class="btn btn-primary btn-follow" id="user-page-follow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['follow'];?></button>
+					<div id="banner">
+						<img src="profile-banners/<?php echo $profileDetails['user_banner'];?>">
+					</div>
 					<?php } ?>
-				</div>
+					<div class="user-profile-container">
+						<div class="user-profile-details col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
+							<div class="user-profile-picture">
+								<img src="profile-pictures/<?php echo $profileDetails["user_pp"];?>" class="profile-picture">
+							</div>
+							<div class="user-actions">
+								<?php if(isset($_SESSION["username"]) && $_SESSION["username"] != $profileToken){ ?>
+								<?php if($userFollow == 1){ ?>
+								<button class="btn btn-primary btn-active btn-unfollow" id="user-page-unfollow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
+								<?php } else { ?>
+								<button class="btn btn-primary btn-follow" id="user-page-follow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['follow'];?></button>
+								<?php } ?>
+								<?php } else { ?>
+								<input type="file" id="banner-input" name="profile-banner" class="file-loading">
+								<input type="submit" class="btn btn-success btn-block" name="submit" value="<?php echo $lang["save_changes"];?>">
+								<?php } ?>
+							</div>
+							<p class="user-profile-name"><?php echo $profileDetails["user_pseudo"];?></p>
+							<div class="user-profile-bio">
+								<?php echo ($profileDetails["user_bio"])?$profileDetails["user_bio"]:$lang["no_bio"];?>
+							</div>
+						</div>
+					</div>
+					<?php if($profileToken == $_SESSION["username"]){ ?>
+				</form>
 				<?php } ?>
-				<p class="user-profile-name"><?php echo $profileDetails["user_pseudo"];?></p>
-				<div class="user-profile-bio">
-					<?php echo ($profileDetails["user_bio"])?$profileDetails["user_bio"]:$lang["no_bio"];?>
-				</div>
 			</div>
-			<div class="user-profile-stats">
+			<div class="user-profile-stats col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
 				<div class="col-lg-3 col-md-3">
 					<p class="stats-title"><?php echo $lang["rooms_created"];?></p>
 					<p class="stats-value"><?php echo $profileDetails["stat_rooms_created"];?></p>
@@ -81,7 +109,7 @@ $userFollow = $db->query("SELECT * FROM user_follow uf
 					<p class="stats-value"><?php echo $profileDetails["stat_followers"];?></p>
 				</div>
 			</div>
-			<div class="user-rooms">
+			<div class="user-rooms col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
 				<p id="profile-title"><?php echo $lang["opened_rooms"];?></p>
 				<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
 				<div class="panel panel-active-room">
@@ -113,6 +141,7 @@ $userFollow = $db->query("SELECT * FROM user_follow uf
 			</div>
 		</div>
 		<?php include "scripts.php";?>
+		<script src="assets/js/fileinput.min.js"></script>
 		<script>
 			$(document).ready(function(){
 				$(".password-protected").click(function(){
@@ -145,35 +174,50 @@ $userFollow = $db->query("SELECT * FROM user_follow uf
 					$(this).hide('200');
 					$(this).next().show('200');
 				})
-				$(document).on('mouseenter', '#user-page-unfollow', function(){
-					var text = "<span class='glyphicon glyphicon-minus'></span> <?php echo $lang['unfollow'];?>";
-					$("#user-page-unfollow").html(text);
+				if('<?php echo $profileToken;?>' == '<?php echo $_SESSION["username"];?>'){
+					$("#banner-input").fileinput({
+						overwriteInitial: true,
+						defaultPreviewContent: '<img src="profile-banners/<?php echo $profileDetails["user_banner"];?>">',
+						showClose: false,
+						showCaption: false,
+						initialPreviewShowDelete: true,
+						browseIcon: '',
+						browseLabel: '<?php echo $lang["change_banner"];?>',
+						removeLabel: '<?php echo $lang["cancel"];?>',
+						removeClass: 'btn btn-danger',
+						elPreviewImage: '#banner',
+						layoutTemplates: {main2: '{browse} {remove}'},
+						allowedFileExtensions: ["jpg", "png", "jpeg"]
+					})
+				}
+			}).on('mouseenter', '#user-page-unfollow', function(){
+				var text = "<span class='glyphicon glyphicon-minus'></span> <?php echo $lang['unfollow'];?>";
+				$("#user-page-unfollow").html(text);
+				$("#user-page-unfollow").removeClass("btn-active");
+				$("#user-page-unfollow").addClass("btn-danger");
+			}).on('mouseleave', '#user-page-unfollow', function(){
+				var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['following'];?>";
+				$("#user-page-unfollow").html(text);
+				$("#user-page-unfollow").removeClass("btn-danger");
+				$("#user-page-unfollow").addClass("btn-active");
+			}).on('click', '#user-page-unfollow', function(){
+				$.post("functions/unfollow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : '<?php echo $profileToken;?>'}).done(function(data){
 					$("#user-page-unfollow").removeClass("btn-active");
-					$("#user-page-unfollow").addClass("btn-danger");
-				}).on('mouseleave', '#user-page-unfollow', function(){
-					var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['following'];?>";
+					var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['follow'];?>";
 					$("#user-page-unfollow").html(text);
 					$("#user-page-unfollow").removeClass("btn-danger");
-					$("#user-page-unfollow").addClass("btn-active");
-				}).on('click', '#user-page-unfollow', function(){
-					$.post("functions/unfollow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : '<?php echo $profileToken;?>'}).done(function(data){
-						$("#user-page-unfollow").removeClass("btn-active");
-						var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['follow'];?>";
-						$("#user-page-unfollow").html(text);
-						$("#user-page-unfollow").removeClass("btn-danger");
-						$("#user-page-unfollow").removeClass("btn-unfollow");
-						$("#user-page-unfollow").addClass("btn-follow");
-						$("#user-page-unfollow").attr("id", "#user-page-follow");
-					})
-				}).on('click', '#user-page-follow', function(){
-					$.post("functions/follow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : '<?php echo $profileToken;?>'}).done(function(data){
-						$("#user-page-follow").addClass("btn-active");
-						var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['following'];?>";
-						$("#user-page-follow").html(text);
-						$("#user-page-follow").removeClass("btn-follow");
-						$("#user-page-follow").addClass("btn-unfollow");
-						$("#user-page-follow").attr("id", "#user-page-unfollow");
-					})
+					$("#user-page-unfollow").removeClass("btn-unfollow");
+					$("#user-page-unfollow").addClass("btn-follow");
+					$("#user-page-unfollow").attr("id", "#user-page-follow");
+				})
+			}).on('click', '#user-page-follow', function(){
+				$.post("functions/follow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : '<?php echo $profileToken;?>'}).done(function(data){
+					$("#user-page-follow").addClass("btn-active");
+					var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['following'];?>";
+					$("#user-page-follow").html(text);
+					$("#user-page-follow").removeClass("btn-follow");
+					$("#user-page-follow").addClass("btn-unfollow");
+					$("#user-page-follow").attr("id", "#user-page-unfollow");
 				})
 			})
 		</script>
