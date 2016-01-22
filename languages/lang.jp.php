@@ -149,7 +149,7 @@ $lang["status_open"] = "開店";
 $lang["status_closed"] = "閉店";
 
 /** PROFILE **/
-$lang["profile_settings"] = "プロファイル設定";
+$lang["my_settings"] = "プロファイル設定";
 $lang["profile_settings_tip"] = "ディスプレイ名、バイオとプロファイル画像をアップデートする。";
 $lang["profile_history"] = "歴史";
 $lang["profile_history_tip"] = "あなたの閉めたボックス。このボックスが次の日曜日の午前１時００まで残りされます。";
@@ -183,6 +183,7 @@ $lang["total_views"] = "視聴者数";
 $lang["total_followers"] = "フォロワー者数";
 $lang["opened_rooms"] = "ライブ中のボックス";
 $lang["no_opened_rooms"] = "空";
+$lang["change_banner"] = "プロファイルバナーを変える";
 
 /** SECURITY **/
 $lang["old_password"] = "現在のパスワード";

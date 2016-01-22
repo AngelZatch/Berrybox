@@ -47,8 +47,8 @@ if(isset($_SESSION["token"])){
 							<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit;">
 						</div>
 						<p class="user-menu-name"><?php echo $userDetails["user_pseudo"];?></p>
-						<a href="profile/settings" class="btn btn-primary no-margin"><?php echo $lang["my_profile"];?></a>
-						<a href="user/<?php echo $_SESSION["username"];?>" class="btn btn-primary no-margin"><?php echo $lang["public_profile"];?></a>
+						<a href="profile/settings" class="btn btn-primary no-margin"><?php echo $lang["my_settings"];?></a>
+						<a href="user/<?php echo $_SESSION["username"];?>" class="btn btn-primary no-margin"><?php echo $lang["my_profile"];?></a>
 					</div>
 					<div class="popover-footer">
 						<a href="logout.php" class="btn btn-primary no-margin"><?php echo $lang["log_out"];?></a>

@@ -150,7 +150,7 @@ $lang["status_open"] = "Ouverte";
 $lang["status_closed"] = "Fermée";
 
 /** PROFILE **/
-$lang["profile_settings"] = "Paramètres du profil";
+$lang["my_settings"] = "Paramètres du profil";
 $lang["profile_settings_tip"] = "Changez votre nom, votre biographie et votre image de profil";
 $lang["profile_history"] = "Historique";
 $lang["profile_history_tip"] = "Une box fermée restera affichée sur cette page jusqu'au prochain Dimanche à 1 heure du matin.";
@@ -176,7 +176,6 @@ $lang["sync_tip"] = "Si vous désactivez la synchronisation, la prochaine vidéo
 $lang["sync-on"] = "Synchro ON";
 $lang["sync-off"] = "Synchro OFF";
 
-
 /** OTHER PROFILE **/
 $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";
 $lang["rooms_created"] = "Nombre de boxes ouvertes";
@@ -186,6 +185,7 @@ $lang["total_followers"] = "Abonnés";
 $lang["total_followers"] = "Abonnés";
 $lang["opened_rooms"] = "Boxes actuellement ouvertes";
 $lang["no_opened_rooms"] = "Aucune box";
+$lang["change_banner"] = "Changer la bannière de profil";
 
 /** SECURITY **/
 $lang["old_password"] = "Mot de passe actuel";

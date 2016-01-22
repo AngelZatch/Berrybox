@@ -86,10 +86,10 @@ if(isset($_POST["submit"])){
 		<?php include "nav.php";?>
 		<div class="main col-lg-12">
 			<div class="col-sm-offset-2 col-sm-8 page-title">
-				<p id="profile-title"><?php echo $lang["profile_settings"];?></p>
+				<p id="profile-title"><?php echo $lang["my_settings"];?></p>
 				<span class="tip"><?php echo $lang["profile_settings_tip"];?></span>
 				<ul class="nav nav-tabs" id="profile-menu">
-					<li role="presentation" class="active"><a href="<?php echo $_SESSION["lang"];?>/profile/settings"><?php echo $lang["profile_settings"];?></a></li>
+					<li role="presentation" class="active"><a href="<?php echo $_SESSION["lang"];?>/profile/settings"><?php echo $lang["my_settings"];?></a></li>
 					<li role="presentation"><a href="profile/history"><?php echo $lang["profile_history"];?></a></li>
 					<li role="presentation"><a href="profile/security"><?php echo $lang["profile_security"];?></a></li>
 				</ul>
@@ -112,7 +112,7 @@ if(isset($_POST["submit"])){
 					<label for="profile-picture" class="col-sm-3 control-label"><?php echo $lang["profile_picture"];?></label>
 					<div class="col-sm-6">
 						<div id="kv-avatar-errors" class="center-block" style="width:800px;display:none;"></div>
-						<div class="kv-avatar">
+						<div id="avatar-container">
 							<input type="file" id="avatar" name="profile-picture" class="file-loading">
 						</div>
 						<span class="tip" id="username-tip"><?php echo $lang["profile_picture_formats"];?></span>
@@ -164,6 +164,7 @@ if(isset($_POST["submit"])){
 				browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
 				removeTitle: 'Cancel or reset changes',
 				elErrorContainers: '#kv-avatar-errors',
+				elPreviewContainer: '#avatar-container',
 				msgErrorClass: 'alert alert-block alert-danger',
 				defaultPreviewContent: '<img src="<?php echo $ppAdresss;?>" style="width:118px;">',
 				layoutTemplates: {main2: '{preview} {browse}' },

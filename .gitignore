@@ -2,6 +2,7 @@
 
 ## All profile pictures
 profile-pictures/*
+profile-banners/*
 
 ## dev files
 assets/css/*.css

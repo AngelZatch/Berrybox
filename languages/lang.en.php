@@ -148,7 +148,7 @@ $lang["status_open"] = "Open";
 $lang["status_closed"] = "Closed";
 
 /** PROFILE **/
-$lang["profile_settings"] = "Settings";
+$lang["my_settings"] = "Settings";
 $lang["profile_settings_tip"] = "Update your display name, your bio and your profile picture";
 $lang["profile_history"] = "History";
 $lang["profile_history_tip"] = "Any of your closed boxes will stay reachable until next Sunday 1am.";
@@ -182,6 +182,7 @@ $lang["total_views"] = "Total number of spectators";
 $lang["total_followers"] = "Followers";
 $lang["opened_rooms"] = "Currently opened boxes";
 $lang["no_opened_rooms"] = "None";
+$lang["change_banner"] = "Change profile banner";
 
 /** SECURITY **/
 $lang["old_password"] = "Current password";

@@ -76,4 +76,8 @@ body {
 .cube-selected {
   border: 2px solid #101010; }
 
+/* line 66, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.user-profile-container {
+  color: white !important; }
+
 /*# sourceMappingURL=light-theme.css.map */
