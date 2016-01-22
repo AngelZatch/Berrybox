@@ -4,7 +4,7 @@
 $lang = array();
 /** HOME **/
 $lang["hello"] = "Bienvenue sur Berrybox!";
-$lang["berrybox_description"] = "Berrybox est une application simple pour partager des vidéos et les regarder en synchronisation!";
+$lang["berrybox_description"] = "Partagez et regardez YouTube ensemble.";
 $lang["get_started"] = "Rejoindre l'expérience Berrybox";
 $lang["home_create_room"] = "Envie de créer une nouvelle box ? C'est par ici !";
 

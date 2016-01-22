@@ -3,8 +3,8 @@
 
 $lang = array();
 /** HOME **/
-$lang["hello"] = "Hello and welcome to Berrybox!";
-$lang["berrybox_description"] = "Berrybox is a simple application to share and watch youtube videos together!";
+$lang["hello"] = "Welcome to Berrybox!";
+$lang["berrybox_description"] = "Share and watch youtube videos together.";
 $lang["get_started"] = "Join the community";
 $lang["home_create_room"] = "Want to open a new box? Click here!";
 

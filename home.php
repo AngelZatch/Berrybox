@@ -35,14 +35,12 @@ if(isset($_SESSION["token"])){
 	</head>
 	<body>
 		<?php include "nav.php";?>
-		<div class="main">
+		<div class="main-home">
 			<?php if(!isset($_SESSION["token"])) { ?>
-			<div class="container">
-				<div class="jumbotron">
-					<h1><?php echo $lang["hello"];?></h1>
-					<p><?php echo $lang["berrybox_description"];?></p>
-					<p><a href="<?php echo $lang;?>/signup" class="btn btn-primary btn-block btn-lg"><?php echo $lang["get_started"];?></a></p>
-				</div>
+			<div class="jumbotron jumbotron-home">
+				<h1><?php echo $lang["hello"];?></h1>
+				<h2><?php echo $lang["berrybox_description"];?></h2>
+				<p><a href="<?php echo $lang;?>/signup" class="btn btn-primary btn-lg"><?php echo $lang["get_started"];?></a></p>
 			</div>
 			<?php } ?>
 <!--			<div class="alert alert-danger">
