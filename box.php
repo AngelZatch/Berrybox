@@ -3,10 +3,17 @@ session_start();
 include "functions/db_connect.php";
 $db = PDOFactory::getConnection();
 $roomToken = $_GET["id"];
-$roomDetails = $db->query("SELECT *
+$checkRoomExistence = $db->query("SELECT *
 							FROM rooms r
 							JOIN user u ON r.room_creator = u.user_token
-							WHERE room_token = '$roomToken'")->fetch(PDO::FETCH_ASSOC);
+							WHERE room_token = '$roomToken'");
+
+if($checkRoomExistence->rowCount() != "0"){ // Check for box existence.
+	$roomDetails = $checkRoomExistence->fetch(PDO::FETCH_ASSOC);
+} else {
+	header('Location: ../404');
+}
+
 $creatorStats = $db->query("SELECT *
 							FROM user_stats us
 							WHERE user_token = '$roomDetails[room_creator]'")->fetch(PDO::FETCH_ASSOC);

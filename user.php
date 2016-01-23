@@ -3,6 +3,22 @@ session_start();
 require "functions/db_connect.php";
 $db = PDOFactory::getConnection();
 
+$profileToken = $_GET["id"];
+
+$checkUserExistence = $db->query("SELECT * FROM user u
+							JOIN user_stats us ON u.user_token = us.user_token
+							WHERE u.user_pseudo='$profileToken'");
+
+if($checkUserExistence->rowCount() != "0"){ // Check for box existence.
+	$profileDetails = $checkUserExistence->fetch(PDO::FETCH_ASSOC);
+} else {
+	header('Location: ../404');
+}
+
+$queryactiveRooms = $db->query("SELECT * FROM rooms r
+							JOIN room_types rt ON r.room_type = rt.id
+							WHERE r.room_creator = '$profileDetails[user_token]' AND room_active = '1' AND room_protection != '3'");
+
 if(isset($_SESSION["token"])){
 	$userSettings = $db->query("SELECT *
 							FROM user_preferences up
@@ -22,21 +38,10 @@ if(isset($_SESSION["token"])){
 			$edit = $db->query("UPDATE user SET	user_banner = '$picture' WHERE user_token = '$_SESSION[token]'");
 		}
 	}
-}
-
-$profileToken = $_GET["id"];
-
-$profileDetails = $db->query("SELECT * FROM user u
-							JOIN user_stats us ON u.user_token = us.user_token
-							WHERE u.user_pseudo='$profileToken'")->fetch(PDO::FETCH_ASSOC);
-
-$queryactiveRooms = $db->query("SELECT * FROM rooms r
-							JOIN room_types rt ON r.room_type = rt.id
-							WHERE r.room_creator = '$profileDetails[user_token]' AND room_active = '1' AND room_protection != '3'");
-
-$userFollow = $db->query("SELECT * FROM user_follow uf
+	$userFollow = $db->query("SELECT * FROM user_follow uf
 								WHERE user_following = '$_SESSION[token]'
 								AND user_followed = '$profileDetails[user_token]'")->rowCount();
+}
 ?>
 <html>
 	<head>
@@ -55,7 +60,7 @@ $userFollow = $db->query("SELECT * FROM user_follow uf
 		<?php include "nav.php";?>
 		<div class="main">
 			<div class="banner-container">
-				<?php if($profileToken == $_SESSION["username"]){ ?>
+				<?php if(isset($_SESSION["username"]) && $profileToken == $_SESSION["username"]){ ?>
 				<form action="user/<?php echo $profileToken;?>" method="post" enctype="multipart/form-data">
 					<div id="banner">
 					</div>
@@ -70,15 +75,17 @@ $userFollow = $db->query("SELECT * FROM user_follow uf
 								<img src="profile-pictures/<?php echo $profileDetails["user_pp"];?>" class="profile-picture">
 							</div>
 							<div class="user-actions">
-								<?php if(isset($_SESSION["username"]) && $_SESSION["username"] != $profileToken){ ?>
+								<?php if(isset($_SESSION["username"])){
+	if($_SESSION["username"] != $profileToken){ ?>
 								<?php if($userFollow == 1){ ?>
 								<button class="btn btn-primary btn-active btn-unfollow" id="user-page-unfollow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
 								<?php } else { ?>
 								<button class="btn btn-primary btn-follow" id="user-page-follow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['follow'];?></button>
-								<?php } ?>
-								<?php } else { ?>
+								<?php } } else { ?>
 								<input type="file" id="banner-input" name="profile-banner" class="file-loading">
 								<input type="submit" class="btn btn-success btn-block" name="submit" value="<?php echo $lang["save_changes"];?>">
+								<?php } } else { ?>
+								<a href="signup" class="btn btn-primary">Register to follow this user</a>
 								<?php } ?>
 							</div>
 							<p class="user-profile-name"><?php echo $profileDetails["user_pseudo"];?></p>
@@ -174,22 +181,20 @@ $userFollow = $db->query("SELECT * FROM user_follow uf
 					$(this).hide('200');
 					$(this).next().show('200');
 				})
-				if('<?php echo $profileToken;?>' == '<?php echo $_SESSION["username"];?>'){
-					$("#banner-input").fileinput({
-						overwriteInitial: true,
-						defaultPreviewContent: '<img src="profile-banners/<?php echo $profileDetails["user_banner"];?>">',
-						showClose: false,
-						showCaption: false,
-						initialPreviewShowDelete: true,
-						browseIcon: '',
-						browseLabel: '<?php echo $lang["change_banner"];?>',
-						removeLabel: '<?php echo $lang["cancel"];?>',
-						removeClass: 'btn btn-danger',
-						elPreviewImage: '#banner',
-						layoutTemplates: {main2: '{browse} {remove}'},
-						allowedFileExtensions: ["jpg", "png", "jpeg"]
-					})
-				}
+				$("#banner-input").fileinput({
+					overwriteInitial: true,
+					defaultPreviewContent: '<img src="profile-banners/<?php echo $profileDetails["user_banner"];?>">',
+					showClose: false,
+					showCaption: false,
+					initialPreviewShowDelete: true,
+					browseIcon: '',
+					browseLabel: '<?php echo $lang["change_banner"];?>',
+					removeLabel: '<?php echo $lang["cancel"];?>',
+					removeClass: 'btn btn-danger',
+					elPreviewImage: '#banner',
+					layoutTemplates: {main2: '{browse} {remove}'},
+					allowedFileExtensions: ["jpg", "png", "jpeg"]
+				})
 			}).on('mouseenter', '#user-page-unfollow', function(){
 				var text = "<span class='glyphicon glyphicon-minus'></span> <?php echo $lang['unfollow'];?>";
 				$("#user-page-unfollow").html(text);
@@ -200,7 +205,11 @@ $userFollow = $db->query("SELECT * FROM user_follow uf
 				$("#user-page-unfollow").html(text);
 				$("#user-page-unfollow").removeClass("btn-danger");
 				$("#user-page-unfollow").addClass("btn-active");
-			}).on('click', '#user-page-unfollow', function(){
+			})
+		</script>
+		<?php if(isset($_SESSION["token"])){ ?>
+		<script>
+			$(document).on('click', '#user-page-unfollow', function(){
 				$.post("functions/unfollow_user.php", {userFollowing : '<?php echo $_SESSION["token"];?>', userFollowed : '<?php echo $profileToken;?>'}).done(function(data){
 					$("#user-page-unfollow").removeClass("btn-active");
 					var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['follow'];?>";
@@ -221,5 +230,6 @@ $userFollow = $db->query("SELECT * FROM user_follow uf
 				})
 			})
 		</script>
+		<?php } ?>
 	</body>
 </html>
