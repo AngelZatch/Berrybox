@@ -14,7 +14,7 @@ RewriteRule ^profile/history$ history.php [NC,L] # Profile
 RewriteRule ^profile/security$ security.php [NC,L] # Profile
 
 #Erreurs
-ErrorDocument 404 /Berrybox/404.php
+ErrorDocument 404 /404.php
 
 #Maintenance ON
 #RewriteCond %{REQUEST_URI} !/maintenance.php$
