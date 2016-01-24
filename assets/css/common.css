@@ -605,4 +605,13 @@ legend {
   font-size: 50px;
   font-family: 'geometria_lightlight'; }
 
+/** No credentials on box **/
+/* line 489, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+#no-credentials {
+  font-size: 20px;
+  text-align: center; }
+  /* line 492, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  #no-credentials form {
+    display: inline; }
+
 /*# sourceMappingURL=common.css.map */

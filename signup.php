@@ -32,7 +32,11 @@ if(isset($_POST["signup"])){
 		$_SESSION["power"] = "0";
 		$_SESSION["token"] = $token;
 		$_SESSION["lang"] = "en";
-		header('Location: home');
+		if(isset($_POST["box-token-redirect"])){
+			header("Location: box/".$_POST["box-token-redirect"]);
+		} else {
+			header("Location: home");
+		}
 	} catch(PDOException $e){
 		$db->rollBack();
 		echo $e->getMessage();
@@ -50,7 +54,7 @@ if(isset($_POST["signup"])){
 		<?php include "nav.php";?>
 		<div class="main">
 			<div class="col-lg-4 col-lg-offset-4">
-			<legend><?php echo $lang["sign_up"];?></legend>
+				<legend><?php echo $lang["sign_up"];?></legend>
 				<form action="" method="post">
 					<div class="form-group form-group-lg has-feedback" id="username-form-group">
 						<input type="text" placeholder="<?php echo $lang["username"];?>" class="form-control" name="username">
@@ -61,6 +65,9 @@ if(isset($_POST["signup"])){
 					<div class="form-group form-group-lg has-feedback" id="password-confirm-form-group">
 						<input type="password" placeholder="<?php echo $lang["pwd_confirm"];?>" class="form-control" name="password-confirm">
 					</div>
+					<?php if(isset($_POST["box-token"])){ ?>
+					<input type="hidden" name="box-token-redirect" value="<?php echo $_POST["box-token"];?>">
+					<?php } ?>
 					<input type="submit" class="btn btn-primary btn-block" name="signup" value="<?php echo $lang["sign_up"];?>">
 				</form>
 				<p style="text-align: center"><?php echo $lang["already_account"];?> <a href="portal"><?php echo $lang["log_in_here"];?></a></p>

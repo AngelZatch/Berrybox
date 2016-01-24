@@ -133,7 +133,7 @@ $lang["password"] = "パスワード";
 $lang["pwd_confirm"] = "パスワードを確認して下さい。";
 $lang["cancel"] = "キャンセル";
 $lang["wrong_password"] = "間違いましたパスワード";
-$lang["no_credentials"] = "あれ？あなたはログインしていませんように見えます。お願い、ボックスにアクセスするには、ログインまたはサインアップしてください。";
+$lang["no_credentials"] = "ビデオを提出したい？みんなと一緒にチャットしたい？ベリボックスに参加します！";
 $lang["follow_us"] = "ベリボックスのニュースはこちらです";
 $lang["twitter"] = "ツイッター";
 

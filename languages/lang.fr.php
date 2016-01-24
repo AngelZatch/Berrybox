@@ -134,7 +134,7 @@ $lang["password"] = "Mot de passe";
 $lang["pwd_confirm"] = "Veuillez confirmer votre mot de passe";
 $lang["cancel"] = "Annuler";
 $lang["wrong_password"] = "Mot de passe erroné";
-$lang["no_credentials"] = "Ah ! On dirait que vous n'êtes pas enregistré. Enregistrez-vous ou connectez-vous simplement pour accéder à la box.";
+$lang["no_credentials"] = "Envie de partager des vidéos et de discuter avec tout le monde ? Rejoignez-la communauté !";
 $lang["follow_us"] = "Suivez l'actualité de Berrybox";
 $lang["twitter"] = "Twitter";
 

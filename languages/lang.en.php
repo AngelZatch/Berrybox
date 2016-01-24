@@ -132,7 +132,7 @@ $lang["password"] = "Password";
 $lang["pwd_confirm"] = "Please confirm your password";
 $lang["cancel"] = "Cancel";
 $lang["wrong_password"] = "Wrong password. Please try again";
-$lang["no_credentials"] = "Oops! It appears you're not registered. Please log in or sign up to access the box.";
+$lang["no_credentials"] = "Want to submit videos, chat and more? Log in or register!";
 $lang["follow_us"] = "Follow Berrybox for latest news";
 $lang["twitter"] = "Twitter";
 
