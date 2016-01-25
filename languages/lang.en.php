@@ -146,6 +146,10 @@ $lang["room_reopen"] = "Reopen and join";
 $lang["room_delete"] = "Delete the box";
 $lang["status_open"] = "Open";
 $lang["status_closed"] = "Closed";
+$lang["search"] = "Search";
+$lang["user_match"] = "user(s) matching your search";
+$lang["goto_user"] = "Go to user";
+$lang["box_match"] = "box(es) matching your search";
 
 /** PROFILE **/
 $lang["my_settings"] = "Settings";

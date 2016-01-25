@@ -50,8 +50,8 @@ if(isset($_SESSION["token"])){
 			<div class="container-fluid">
 				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
 				<div class="col-lg-4">
-					<div class="panel panel-active-room">
-						<div class="panel-body">
+					<div class="panel">
+						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
 							<div class="room-pp">
 								<img src="profile-pictures/<?php echo $activeRooms["user_pp"];?>" alt="<?php echo $activeRooms["user_pseudo"];?>" style="width:inherit;">

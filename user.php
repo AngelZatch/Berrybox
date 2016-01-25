@@ -119,7 +119,7 @@ if(isset($_SESSION["token"])){
 			<div class="user-rooms col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
 				<p id="profile-title"><?php echo $lang["opened_rooms"];?></p>
 				<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
-				<div class="panel panel-active-room">
+				<div class="panel box-entry">
 					<div class="panel-body">
 						<p class="col-lg-5"><?php echo $activeRooms["room_name"];?></p>
 						<div class="room-details col-lg-3">

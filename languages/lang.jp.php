@@ -147,6 +147,10 @@ $lang["room_reopen"] = "再び開きます";
 $lang["room_delete"] = "ボックスを削除します";
 $lang["status_open"] = "開店";
 $lang["status_closed"] = "閉店";
+$lang["search"] = "探索";
+$lang["user_match"] = "ユーザーが基準を合わせる";
+$lang["goto_user"] = "ユーザーページへ";
+$lang["user_match"] = "ボックスが基準を合わせる";
 
 /** PROFILE **/
 $lang["my_settings"] = "プロファイル設定";

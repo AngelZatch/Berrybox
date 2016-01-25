@@ -80,4 +80,18 @@ body {
 .user-profile-container {
   color: white !important; }
 
+/* line 69, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.user-entry, .box-entry {
+  background-color: #f2f2f2; }
+  /* line 71, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+  .user-entry a, .box-entry a {
+    color: black; }
+  /* line 73, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+  .user-entry:hover, .box-entry:hover {
+    background-color: #e6e6e6;
+    color: black; }
+  /* line 76, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+  .user-entry:active, .box-entry:active {
+    background-color: #d9d9d9; }
+
 /*# sourceMappingURL=light-theme.css.map */
