@@ -3,6 +3,7 @@
 ## All profile pictures
 profile-pictures/*
 profile-banners/*
+!profile-pictures/default-pp.png
 
 ## dev files
 assets/css/*.css
