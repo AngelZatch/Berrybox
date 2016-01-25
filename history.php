@@ -52,7 +52,7 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 			</div>
 			<div class="user-rooms col-sm-offset-2 col-sm-8">
 				<?php while($historyRooms = $queryHistoryRooms->fetch(PDO::FETCH_ASSOC)){?>
-				<div class="panel panel-active-room" id="panel-room-<?php echo $historyRooms["room_token"];?>">
+				<div class="panel box-entry" id="panel-room-<?php echo $historyRooms["room_token"];?>">
 					<div class="panel-body room-details">
 						<p class="col-lg-5"><?php echo $historyRooms["room_name"];?></p>
 						<p class="col-lg-3 room-type room-label">

@@ -20,13 +20,10 @@ if(isset($_SESSION["token"])){
 <nav class="navbar navbar-fixed-top">
 	<div class="container-fluid">
 		<a href="home" class="navbar-brand">Berrybox</a>
-		<!--<form class="navbar-form navbar-left" role="search">
-<div class="form-group">
-<input type="text" class="form-control" name="search_terms" placeholder="Search user, room...">
-</div>
-<button type="submit" class="btn btn-default">Rechercher</button>
-</form>-->
 		<ul class="nav navbar-nav navbar-right">
+			<form action="search" method="post" class="navbar-form navbar-left" role="search">
+				<input type="text" class="form-control" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
+			</form>
 			<?php if(isset($_SESSION["username"])){ ?>
 			<li>
 				<a href="follow"><?php echo $lang["following"];?></a>
@@ -59,13 +56,13 @@ if(isset($_SESSION["token"])){
 			<li><a href="portal" class="navbar-link"><?php echo $lang["log_in"];?></a></li>
 			<li><a href="signup" class="navbar-link"><?php echo $lang["sign_up"];?></a></li>
 			<!--<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $lang["language_name"];?> <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="/home"><?php echo $lang["lang_en"];?></a></li>
-					<li><a href="/home"><?php echo $lang["lang_jp"];?></a></li>
-					<li><a href="/home"><?php echo $lang["lang_fr"];?></a></li>
-				</ul>
-			</li>-->
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $lang["language_name"];?> <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="/home"><?php echo $lang["lang_en"];?></a></li>
+<li><a href="/home"><?php echo $lang["lang_jp"];?></a></li>
+<li><a href="/home"><?php echo $lang["lang_fr"];?></a></li>
+</ul>
+</li>-->
 			<?php } ?>
 		</ul>
 	</div>

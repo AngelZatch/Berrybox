@@ -55,4 +55,18 @@ body {
 .btn-default {
   color: white; }
 
+/* line 48, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.user-entry, .box-entry {
+  background-color: #292929; }
+  /* line 50, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  .user-entry a, .box-entry a {
+    color: white; }
+  /* line 52, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  .user-entry:hover, .box-entry:hover {
+    background-color: #434343;
+    color: white; }
+  /* line 55, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  .user-entry:active, .box-entry:active {
+    background-color: #5d5d5d; }
+
 /*# sourceMappingURL=dark-theme.css.map */

@@ -148,6 +148,10 @@ $lang["room_reopen"] = "Réouvrir";
 $lang["room_delete"] = "Supprimer";
 $lang["status_open"] = "Ouverte";
 $lang["status_closed"] = "Fermée";
+$lang["search"] = "Recherche";
+$lang["user_match"] = "utilisateur(s) correspond(ent) à vos critères";
+$lang["goto_user"] = "Aller à l'utilisateur";
+$lang["box_match"] = "box(es) correspond(ent) à vos critères";
 
 /** PROFILE **/
 $lang["my_settings"] = "Paramètres du profil";

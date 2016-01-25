@@ -40,7 +40,7 @@ if(isset($_SESSION["token"])){
 				?>
 				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
 				<div class="col-lg-4">
-					<div class="panel panel-active-room">
+					<div class="panel box-entry">
 						<div class="panel-body">
 							<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
 							<div class="room-pp">
