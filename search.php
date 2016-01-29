@@ -79,7 +79,7 @@ $queryMatchingUsers = $db->query("SELECT * FROM user u WHERE user_pseudo LIKE '%
 				<div class="container-fluid">
 					<?php while ($activeRooms = $queryMatchingBoxes->fetch(PDO::FETCH_ASSOC)){ ?>
 					<div class="col-lg-6">
-						<div class="panel">
+						<div class="panel" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
 							<div class="panel-body box-entry">
 								<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
 								<div class="room-pp">
