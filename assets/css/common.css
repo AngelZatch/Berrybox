@@ -654,9 +654,10 @@ legend {
 /* line 521, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .box-entry {
   padding: 30px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  cursor: pointer; }
 
-/* line 525, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 526, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .search-bio {
   margin-bottom: 10px; }
 

@@ -46,17 +46,17 @@ if(isset($_SESSION["token"])){
 			<div class="jumbotron jumbotron-home">
 				<h1><?php echo $lang["hello"];?></h1>
 				<h2><?php echo $lang["berrybox_description"];?></h2>
-				<p><a href="<?php echo $lang;?>/signup" class="btn btn-primary btn-lg"><?php echo $lang["get_started"];?></a></p>
+				<p><a href="signup" class="btn btn-primary btn-lg"><?php echo $lang["get_started"];?></a></p>
 			</div>
 			<?php } ?>
-<!--			<div class="alert alert-danger">
-				<p class="alert-message"><?php echo $lang["maintenance"];?></p>
-			</div>-->
+			<!--			<div class="alert alert-danger">
+<p class="alert-message"><?php echo $lang["maintenance"];?></p>
+</div>-->
 			<legend><?php echo $lang["active_room"];?></legend>
 			<div class="container-fluid">
 				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
 				<div class="col-lg-4">
-					<div class="panel">
+					<div class="panel" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
 						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
 							<div class="room-pp">

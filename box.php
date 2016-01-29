@@ -42,67 +42,6 @@ if(isset($_SESSION["token"])){
 	include_once "languages/lang.".$userLang.".php";
 } else {
 	include "functions/tools.php";
-	if(isset($_POST["login"])){
-		if(!isset($_SESSION)){
-			session_start();
-		}
-
-		$username = $_POST["username"];
-		$password = $_POST["login_pwd"];
-
-		$checkCredentials = $db->prepare("SELECT * FROM user WHERE user_pseudo=? AND user_pwd=?");
-		$checkCredentials->bindParam(1, $username);
-		$checkCredentials->bindParam(2, $password);
-		$checkCredentials->execute();
-
-		if($checkCredentials->rowCount() == 1){
-			$credentials = $checkCredentials->fetch(PDO::FETCH_ASSOC);
-			$_SESSION["username"] = $credentials["user_pseudo"];
-			$_SESSION["power"] = $credentials["user_power"];
-			$_SESSION["token"] = $credentials["user_token"];
-			$_SESSION["lang"] = $credentials["user_lang"];
-			header("Location: $_SERVER[REQUEST_URI]");
-		}
-	}
-	if(isset($_POST["signup"])){
-		$db = PDOFactory::getConnection();
-		$token = generateReference(6);
-		$colorID = rand(1,20);
-		$color = $db->query("SELECT color_value FROM name_colors WHERE number = $colorID")->fetch(PDO::FETCH_ASSOC);
-		$pseudo = $_POST["username"];
-		$power = "1";;
-
-		try{
-			$db->beginTransaction();
-			$newUser = $db->prepare("INSERT INTO user(user_token, user_pseudo, user_pwd) VALUES(:token, :pseudo, :pwd)");
-			$newUser->bindParam(':pseudo', $_POST["username"]);
-			$newUser->bindParam(':pwd', $_POST["login_pwd"]);
-			$newUser->bindParam(':token', $token);
-			$newUser->execute();
-
-			$newPref = $db->prepare("INSERT INTO user_preferences(up_user_id, up_color)
-								VALUES(:token, :color)");
-			$newPref->bindParam(':token', $token);
-			$newPref->bindParam(':color', $color["color_value"]);
-			$newPref->execute();
-
-			$newStats = $db->prepare("INSERT INTO user_stats(user_token) VALUES(:token)");
-			$newStats->bindParam(':token', $token);
-			$newStats->execute();
-
-			$db->commit();
-			header('Location: home');
-			session_start();
-			$_SESSION["username"] = $pseudo;
-			$_SESSION["power"] = $power;
-			$_SESSION["token"] = $token;
-			$_SESSION["lang"] = "en";
-			header("Location: $_SERVER[REQUEST_URI]");
-		} catch(PDOException $e){
-			$db->rollBack();
-			echo $e->getMessage();
-		}
-	}
 	include_once "languages/lang.en.php";
 }
 ?>

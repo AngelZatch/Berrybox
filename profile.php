@@ -97,7 +97,7 @@ if(isset($_POST["submit"])){
 			<form action="profile/settings" class="form-horizontal" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="username" class="col-sm-3 control-label"><?php echo $lang["display_name"];?></label>
-					<div class="col-sm-6">
+					<div class="col-sm-6 has-feedback" id="username-form-group">
 						<input type="text" name="username" class="form-control" aria-describedby="username-tip" value="<?php echo stripslashes($userDetails["user_pseudo"]);?>">
 						<span class="tip" id="username-tip"><?php echo $lang["display_name_tip"];?></span>
 					</div>
@@ -170,6 +170,27 @@ if(isset($_POST["submit"])){
 				layoutTemplates: {main2: '{preview} {browse}' },
 				allowedFileExtensions: ["jpg", "png"]
 			});
+			$(document).ready(function(){
+				var patternUserReg = /^<?php echo $userDetails['user_pseudo'];?>$/i;
+				$(":regex(name,username)").on('keydown', function(e){
+					if(e.which === 32) return false;
+				}).on('keyup blur', function(e){
+					var modifiedUsername = $(this).val();
+					var elementId = "#username-form-group";
+					removeFeedback(elementId);
+					if(patternUserReg.exec(modifiedUsername) !== null){
+						//console.log("Match");
+						applySuccessFeedback(elementId);
+						$(":regex(name,submit)").removeClass("disabled");
+						$(":regex(name,submit)").removeAttr("disabled");
+					} else {
+						//console.log("Not match...");
+						applyErrorFeedback(elementId);
+						$(":regex(name,submit)").addClass("disabled");
+						$(":regex(name,submit)").attr("disabled", "disabled");
+					}
+				})
+			})
 		</script>
 	</body>
 </html>
