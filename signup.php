@@ -103,6 +103,8 @@ if(isset($_POST["signup"])){
 							}
 						})
 					}, 1000);
+				}).on('keydown', function(e){
+					if(e.which === 32) return false;
 				})
 				$(":regex(name,password-confirm)").on('keyup blur', function(){
 					var box = $(this);
