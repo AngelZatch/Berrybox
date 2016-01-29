@@ -427,7 +427,17 @@ if(isset($_SESSION["token"])){
 					} else {
 						$("#body-chat").append("<p class='system-message'><?php echo $lang["welcome"];?></p>");
 					}
-					loadChat(roomToken, result);
+					function fetchEmotes(){
+						return $.post("functions/fetch_emotes.php");
+					}
+					fetchEmotes().done(function(data){
+						var emoteList = JSON.parse(data);
+						var emotes = [];
+						for(var i = 0; i < emoteList.length; i++){
+							emotes.push(emoteList[i].emoteText);
+						}
+						loadChat(roomToken, result, emotes);
+					})
 					// Load the history of all submitted songs in this room (once, it will be refreshed if the user toggles the panel)
 					loadSongHistory(roomToken, result);
 					// Load all the active users in the room (once, it will be refreshed if the user toggles the panel)
@@ -519,7 +529,17 @@ if(isset($_SESSION["token"])){
 				window.userToken = "-1";
 				window.userPower = "1";
 				$("#body-chat").append("<p class='system-message'><?php echo $lang["welcome"];?></p>");
-				loadChat(roomToken, 1);
+				function fetchEmotes(){
+					return $.post("functions/fetch_emotes.php");
+				}
+				fetchEmotes().done(function(data){
+					var emoteList = JSON.parse(data);
+					var emotes = [];
+					for(var i = 0; i < emoteList.length; i++){
+						emotes.push(emoteList[i].emoteText);
+					}
+					loadChat(roomToken, 1, emotes);
+				})
 				loadSongHistory(roomToken, 1);
 				// Load all the active users in the room (once, it will be refreshed if the user toggles the panel)
 				loadUsers(roomToken);
@@ -1298,7 +1318,7 @@ if(isset($_SESSION["token"])){
 					}
 				}
 			}
-			function loadChat(roomToken, userPower){
+			function loadChat(roomToken, userPower, emotes){
 				var lang = "<?php echo (isset($userLang))?$userLang:"en";?>";
 				if(!window.lastID){
 					window.lastID = 0;
@@ -1310,6 +1330,20 @@ if(isset($_SESSION["token"])){
 						var messageTime = moment(mTime).local().format("HH:mm");
 						if(messageList[i].id != window.lastID){
 							window.lastID = messageList[i].id;
+							//Emotes
+							var splitMessage = messageList[i].content.split(' ');
+							//console.log(splitMessage);
+							for(var j = 0; j < emotes.length; j++){
+								for(var k = 0; k < splitMessage.length; k++){
+									if(splitMessage[k] == emotes[j]){
+										var emoteMessage = splitMessage[k].replace(splitMessage[k], "<img src='assets/emotes/"+emotes[j]+".png' class='chat-emote' title='"+emotes[j]+"'>");
+										splitMessage[k] = emoteMessage;
+									}
+								}
+							}
+							//console.log(splitMessage);
+							messageList[i].content = splitMessage.join(" ");
+							//Display
 							if(messageList[i].scope == 6){
 								// Whispers
 								if(messageList[i].destinationToken == userToken){
@@ -1451,7 +1485,7 @@ if(isset($_SESSION["token"])){
 					}
 				})
 				// Once the function has done everything, it fires a timeout to restart the whole process in 2 seconds
-				setTimeout(loadChat, 2000, roomToken, userPower);
+				setTimeout(loadChat, 2000, roomToken, userPower, emotes);
 			}
 			function getWatchCount(roomToken){
 				$.post("functions/get_watch_count.php", {token : roomToken}).done(function(data){
