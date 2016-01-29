@@ -26,6 +26,12 @@ if(isset($_SESSION["token"])){
 	<head>
 		<meta charset="UTF-8">
 		<title>Berrybox</title>
+		<meta content="Berrybox is an app to share and watch YouTube videos together. Users can share their favorite videos, chat and react about them in real time.">
+		<meta content="Berrybox" property="og:site_name">
+		<meta content="Berrybox" property="og:title">
+		<meta content="Berrybox is an app to share, watch and react to YouTube videos together." property="og:description">
+		<meta content="http://berrybox.tv/home" property="og:url">
+		<meta content="website" property="og:type">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
 		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">
