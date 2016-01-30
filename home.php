@@ -101,7 +101,7 @@ if(isset($_SESSION["token"])){
 		<div class="col-lg-12 social-space">
 			<div class="col-lg-6 col-lg-offset-3">
 				<p><?php echo $lang["follow_us"];?></p>
-				<a href="http://twitter.com/AngelZatch" target="_blank" class="btn btn-primary"><?php echo $lang["twitter"];?></a>
+				<a href="http://twitter.com/BerryboxTV" target="_blank" class="btn btn-primary"><?php echo $lang["twitter"];?></a>
 			</div>
 		</div>
 		<?php include "scripts.php";?>
