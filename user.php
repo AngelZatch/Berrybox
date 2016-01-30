@@ -15,11 +15,11 @@ if($checkUserExistence->rowCount() != "0"){ // Check for box existence.
 	header('Location: ../404');
 }
 
-$queryactiveRooms = $db->query("SELECT * FROM rooms r
-							JOIN room_types rt ON r.room_type = rt.id
-							WHERE r.room_creator = '$profileDetails[user_token]' AND room_active = '1' AND room_protection != '3'");
-
 if(isset($_SESSION["token"])){
+	$queryactiveRooms = $db->query("SELECT * FROM rooms r
+							JOIN room_types rt ON r.room_type = rt.id
+							WHERE r.room_creator = '$profileDetails[user_token]' AND room_active = '1'");
+
 	$userSettings = $db->query("SELECT *
 							FROM user_preferences up
 							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
@@ -41,6 +41,10 @@ if(isset($_SESSION["token"])){
 	$userFollow = $db->query("SELECT * FROM user_follow uf
 								WHERE user_following = '$_SESSION[token]'
 								AND user_followed = '$profileDetails[user_token]'")->rowCount();
+} else {
+	$queryactiveRooms = $db->query("SELECT * FROM rooms r
+							JOIN room_types rt ON r.room_type = rt.id
+							WHERE r.room_creator = '$profileDetails[user_token]' AND room_active = '1' AND room_protection != '3'");
 }
 ?>
 <html>
@@ -127,8 +131,10 @@ if(isset($_SESSION["token"])){
 								<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
 								<?php if($activeRooms["room_protection"] == '1') { ?>
 								<span class="label label-success"><?php echo $lang["level_public"];?></span>
-								<?php } else { ?>
+								<?php } else if($activeRooms["room_protection"] == '1') { ?>
 								<span class="label label-warning"><?php echo $lang["password"];?></span>
+								<?php } else { ?>
+								<span class="label label-danger"><?php echo $lang["level_private"];?></span>
 								<?php } ?>
 								<span class="label label-lang"><?php echo $lang["lang_".$activeRooms["room_lang"]];?></span>
 							</p>

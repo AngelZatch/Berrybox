@@ -5,10 +5,9 @@ $db = PDOFactory::getConnection();
 $lang = $_POST["lang"];
 $token = $_POST["token"];
 $lastId = $_POST["lastMessageID"];
-// To reduce the stress on the client, messages from the last 30 minutes are loaded.
+// To reduce the stress on the client, messages from the last 5 seconds are loaded.
 date_default_timezone_set('UTC');
-$now = date('Y-m-d H:i:s', time());
-$limitDate = date('Y-m-d H:i:s', time() - 30 * 60);
+$limitDate = date('Y-m-d H:i:s', time() - 5);
 
 // To further reduce the amount of data exchanged, the function will only return additional messages sent after the first loading.
 if($lastId > 0){
@@ -22,7 +21,7 @@ if($lastId > 0){
 						FROM roomChat_$token s
 						LEFT JOIN user u ON s.message_author = u.user_token
 						LEFT JOIN user_preferences up ON s.message_author=up.up_user_id
-					WHERE message_time <= '$now' AND message_time > '$limitDate'
+					WHERE message_time > '$limitDate'
 					ORDER BY message_time ASC");
 }
 $messageList = array();

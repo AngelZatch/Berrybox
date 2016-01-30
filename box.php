@@ -317,7 +317,7 @@ if(isset($_SESSION["token"])){
 					<form action="search" method="post" target="_blank" role="search">
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-							<input type="text" class="form-control" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
+							<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
 						</div>
 					</form>
 					<div class="menu-options row">

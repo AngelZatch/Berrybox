@@ -80,8 +80,10 @@ if(isset($_SESSION["token"])){
 									<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
 									<?php if($activeRooms["room_protection"] == '1') { ?>
 									<span class="label label-success"><?php echo $lang["level_public"];?></span>
-									<?php } else { ?>
+									<?php } else if($activeRooms["room_protection"] == '1') { ?>
 									<span class="label label-warning"><?php echo $lang["password"];?></span>
+									<?php } else { ?>
+									<span class="label label-danger"><?php echo $lang["level_private"];?></span>
 									<?php } ?>
 									<span class="label label-lang"><?php echo $lang["lang_".$activeRooms["room_lang"]];?></span>
 								</p>

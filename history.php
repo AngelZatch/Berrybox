@@ -59,8 +59,10 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 							<span class="label label-info"><?php echo $lang[$historyRooms["type"]];?></span>
 							<?php if($historyRooms["room_protection"] == '1') { ?>
 							<span class="label label-success"><?php echo $lang["level_public"];?></span>
-							<?php } else { ?>
+							<?php } else if($historyRooms["room_protection"] == '1') { ?>
 							<span class="label label-warning"><?php echo $lang["password"];?></span>
+							<?php } else { ?>
+							<span class="label label-danger"><?php echo $lang["level_private"];?></span>
 							<?php } ?>
 							<span class="label label-lang"><?php echo $lang["lang_".$historyRooms["room_lang"]];?></span>
 						</p>

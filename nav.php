@@ -23,8 +23,8 @@ if(isset($_SESSION["token"])){
 		<ul class="nav navbar-nav navbar-right">
 			<form action="search" method="post" class="navbar-form navbar-left" role="search">
 				<div class="input-group">
-				<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-				<input type="text" class="form-control" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+					<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
 				</div>
 			</form>
 			<?php if(isset($_SESSION["username"])){ ?>
