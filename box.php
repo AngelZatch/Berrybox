@@ -49,6 +49,11 @@ if(isset($_SESSION["token"])){
 	<head>
 		<meta charset="UTF-8">
 		<title><?php echo $roomDetails["room_name"];?> | <?php echo $roomDetails["user_pseudo"];?> | Berrybox</title>
+		<meta content="Berrybox" name="description">
+		<meta content="Berrybox" property="og:site_name">
+		<meta content="Berrybox" property="og:title">
+		<meta content="Berrybox is an app to share, watch and react to YouTube videos together." property="og:description">
+		<meta content="website" property="og:type">
 		<base href="../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
@@ -301,7 +306,7 @@ if(isset($_SESSION["token"])){
 		<div class="col-lg-2 col-md-3 full-panel" id="menu-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-dashboard" title=""></span> <?php echo $lang["menu"];?></div>
-				<div class="panel-body" style="height: 93vh;">
+				<div class="panel-body" style="height: 85vh;">
 					<?php if(isset($_SESSION["username"])){ ?>
 					<div class="connected-user">
 						<div class="menu-pp">
@@ -309,18 +314,25 @@ if(isset($_SESSION["token"])){
 						</div>
 						<p id="user-name"><?php echo $userDetails["user_pseudo"];?></p>
 					</div>
+					<form action="search" method="post" target="_blank" role="search">
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+							<input type="text" class="form-control" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
+						</div>
+					</form>
 					<div class="menu-options row">
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="profile/settings"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
-							<li><a href="home"><span class="glyphicon glyphicon-log-out col-lg-2"></span> <?php echo $lang["leave"];?></a></li>
-							<li>
-								<?php if($_SESSION["token"] == $roomDetails["room_creator"]){ ?>
-								<p style="font-size:12px; padding:5px; text-align:center;"><?php echo $lang["warning_sync_admin"];?></p>
-								<?php } ?>
-							</li>
+							<li><a href="profile/settings"><span class="glyphicon glyphicon-wrench col-lg-2"></span> <?php echo $lang["my_settings"];?></a></li>
+							<li><a href="user/<?php echo $userDetails['user_pseudo'];?>"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
+							<li><a href="follow"><span class="glyphicon glyphicon-heart col-lg-2"></span> <?php echo $lang["following"];?></a></li>
 						</ul>
 					</div>
 					<?php } ?>
+				</div>
+				<div class="panel-footer no-border">
+					<div class="menu-logo">
+						<img src="assets/berrybox-logo-grey.png" alt="">
+					</div>
 				</div>
 			</div>
 		</div>
