@@ -22,7 +22,10 @@ if(isset($_SESSION["token"])){
 		<a href="home" class="navbar-brand">Berrybox</a>
 		<ul class="nav navbar-nav navbar-right">
 			<form action="search" method="post" class="navbar-form navbar-left" role="search">
+				<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
 				<input type="text" class="form-control" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
+				</div>
 			</form>
 			<?php if(isset($_SESSION["username"])){ ?>
 			<li>
