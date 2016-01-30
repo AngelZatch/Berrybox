@@ -54,11 +54,23 @@ if(isset($_SESSION["token"])){
 </div>-->
 			<legend><?php echo $lang["active_room"];?></legend>
 			<div class="container-fluid">
-				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
+				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){
+	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[room_token] rh
+												JOIN song_base sb ON sb.song_base_id = rh.video_index
+												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+				?>
 				<div class="col-lg-4">
 					<div class="panel" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
 						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
+							<div class="col-lg-12 room-thumbnail">
+								<img src="http://img.youtube.com/vi/<?php echo $roomInfo["link"];?>/0.jpg" alt="">
+								<?php if($roomInfo["video_status"] == 1){ ?>
+								<p id="current-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["now_playing_home"].stripslashes($roomInfo["video_name"]);?></p>
+								<?php } else {?>
+								<p id="previous-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["recently_played"].stripslashes($roomInfo["video_name"]);?></p>
+								<?php } ?>
+							</div>
 							<div class="room-pp">
 								<img src="profile-pictures/<?php echo $activeRooms["user_pp"];?>" alt="<?php echo $activeRooms["user_pseudo"];?>" style="width:inherit;">
 							</div>
@@ -107,6 +119,7 @@ if(isset($_SESSION["token"])){
 		<?php include "scripts.php";?>
 		<script>
 			$(document).ready(function(){
+				var autorefresh = setTimeout(function(){location.reload();}, 60000);
 				$(".password-protected").click(function(){
 					var joinButton = $(this);
 					joinButton.hide('200');
@@ -137,6 +150,10 @@ if(isset($_SESSION["token"])){
 					$(this).hide('200');
 					$(this).next().show('200');
 				})
+				document.onmousemove = function(){
+					clearTimeout(autorefresh);
+					autorefresh = setTimeout(function(){location.reload();}, 60000);
+				}
 			})
 		</script>
 	</body>

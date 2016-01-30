@@ -7,6 +7,8 @@ $lang["hello"] = "Welcome to Berrybox!";
 $lang["berrybox_description"] = "Share and watch youtube videos together.";
 $lang["get_started"] = "Join the community";
 $lang["home_create_room"] = "Want to open a new box? Click here!";
+$lang["recently_played"] = "Recently played: ";
+$lang["now_playing_home"] = "Now playing: ";
 
 /** ROOM ADMIN **/
 $lang["room_join"] = "Join";

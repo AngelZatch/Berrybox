@@ -7,6 +7,8 @@ $lang["hello"] = "ベリボックスへようこそ！";
 $lang["berrybox_description"] = "みんな一緒に、ベリボックスでビデオを見ましょう！";
 $lang["get_started"] = "始まります";
 $lang["home_create_room"] = "新しいボックスを始まりたい？はい、このボタンをクリックしてください。";
+$lang["recently_played"] = "前のビデオ : ";
+$lang["now_playing_home"] = "今のビデオ : ";
 
 /** ROOM ADMIN **/
 $lang["room_join"] = "入ります";
