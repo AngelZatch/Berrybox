@@ -119,7 +119,7 @@ legend {
   font-weight: 700; }
 
 /* line 123, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.system-success {
+.system-success, .sm-type-open {
   color: #87CE77;
   font-weight: 600; }
 
@@ -657,50 +657,54 @@ legend {
   text-align: center; }
 
 /* line 525, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-#not-found-message {
+#not-found-message, .closed-box-text {
   text-align: center;
   font-size: 50px;
   font-family: 'geometria_lightlight'; }
 
+/* line 530, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.closed-box-text {
+  display: none; }
+
 /** No credentials on box **/
-/* line 531, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 535, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 #no-credentials {
   font-size: 20px;
   text-align: center; }
-  /* line 534, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  /* line 538, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   #no-credentials form {
     display: inline; }
 
 /** SEARCH **/
-/* line 538, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 542, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .search-matching-title {
   font-size: 21px; }
 
-/* line 541, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 545, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .user-entry {
   text-align: center;
   padding: 30px 15px 30px 15px;
   border-radius: 5px; }
-  /* line 545, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  /* line 549, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   .user-entry a:hover {
     text-decoration: none; }
 
-/* line 548, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 552, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .box-entry {
   padding: 30px;
   border-radius: 5px;
   cursor: pointer; }
 
-/* line 553, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 557, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .search-bio {
   margin-bottom: 10px; }
 
-/* line 556, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+/* line 560, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .menu-logo {
   text-align: center;
   margin: 20px;
   height: 40px; }
-  /* line 560, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+  /* line 564, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
   .menu-logo img {
     height: inherit; }
 

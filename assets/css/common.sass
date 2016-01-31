@@ -120,7 +120,7 @@ legend
 	color: #D61B1B
 	font-weight: 700
 
-.system-success
+.system-success, .sm-type-open
 	color: $success-color
 	font-weight: 600
 
@@ -526,6 +526,10 @@ legend
 	text-align: center
 	font-size: 50px
 	font-family: 'geometria_lightlight'
+
+.closed-box-text
+	@extend #not-found-message
+	display: none
 
 /** No credentials on box **/
 #no-credentials
