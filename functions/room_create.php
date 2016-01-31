@@ -57,7 +57,7 @@ video_status TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0 : queued / 1 : playing /
 	$newChat = $db->query("CREATE TABLE roomChat_$uniqueToken(
 message_id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 message_scope TINYINT(1) COMMENT '1 : all / 2 : creator / 3 : moderators / 4 : system / 5 : solo / 6: whisper',
-message_type TINYINT(1) COMMENT '(subtype of scope 4); 1 : normal / 2 : play / 3 : skip / 4 : close / 5 : ignore / 6 : reinstate',
+message_type TINYINT(1) COMMENT '(subtype of scope 4); 1 : normal / 2 : play / 3 : skip / 4 : close / 5 : ignore / 6 : reinstate / 7 : reopen',
 message_author VARCHAR(10) NOT NULL,
 message_destination VARCHAR(10),
 message_time DATETIME,

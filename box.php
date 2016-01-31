@@ -157,6 +157,7 @@ if(isset($_SESSION["token"])){
 					</div>
 				</div>
 			</div>
+			<p class='alert alert-danger closed-box-text'><?php echo $lang["room_closing"];?></p>
 		</div>
 		<div class="col-lg-4 col-md-4" id="room-chat">
 			<div class="panel panel-default panel-room">
@@ -289,9 +290,31 @@ if(isset($_SESSION["token"])){
 						</form>
 						<button class="btn btn-primary btn-block" id="save-room-button" onClick="saveRoomChanges('<?php echo $roomToken;?>')"><?php echo $lang["save_changes"];?></button>
 					</div>
-					<span class="option-title"><?php echo $lang["close_room"];?></span><br>
-					<span class="tip"><?php echo $lang["close_room_tip"];?></span>
-					<button class="btn btn-danger btn-admin btn-block" onClick="closeRoom('<?php echo $roomToken;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
+					<?php if($roomDetails["room_active"] == 1){ ?>
+					<div class="room-option" id="close-option" >
+						<span class="option-title"><?php echo $lang["close_room"];?></span><br>
+						<span class="tip"><?php echo $lang["close_room_tip"];?></span>
+						<button class="btn btn-danger btn-admin btn-block" onClick="closeRoom('<?php echo $roomToken;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
+					</div>
+					<div class="room-option" id="open-option" style="display:none">
+						<span class="option-title"><?php echo $lang["open_room"];?></span><br>
+						<span class="tip"><?php echo $lang["open_room_tip"];?></span>
+						<button class="btn btn-success btn-admin btn-block" onClick="openRoom('<?php echo $roomToken;?>')"><span class="
+							glyphicon glyphicon-play-circle"></span> <?php echo $lang["open_room"];?></button>
+					</div>
+					<?php } else { ?>
+					<div class="room-option" id="close-option" style="display:none">
+						<span class="option-title"><?php echo $lang["close_room"];?></span><br>
+						<span class="tip"><?php echo $lang["close_room_tip"];?></span>
+						<button class="btn btn-danger btn-admin btn-block" onClick="closeRoom('<?php echo $roomToken;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
+					</div>
+					<div class="room-option" id="open-option">
+						<span class="option-title"><?php echo $lang["open_room"];?></span><br>
+						<span class="tip"><?php echo $lang["open_room_tip"];?></span>
+						<button class="btn btn-success btn-admin btn-block" onClick="openRoom('<?php echo $roomToken;?>')"><span class="
+							glyphicon glyphicon-play-circle"></span> <?php echo $lang["open_room"];?></button>
+					</div>
+					<?php } ?>
 					<?php } else { ?>
 					<div class="room-option">
 						<span class="option-title"><?php echo $lang["sync"];?></span><br>
@@ -317,7 +340,7 @@ if(isset($_SESSION["token"])){
 					<form action="search" method="post" target="_blank" role="search">
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-							<input type="text" class="form-control" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
+							<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
 						</div>
 					</form>
 					<div class="menu-options row">
@@ -913,8 +936,12 @@ if(isset($_SESSION["token"])){
 				});
 			}
 			function closeRoom(roomToken){
-				sendMessage(roomToken, 4, 4, "{close_room_5}");
+				sendMessage(roomToken, 4, 4, "{close_room}");
 				$.post("functions/close_room.php", {roomToken : roomToken, userToken : userToken});
+			}
+			function openRoom(roomToken){
+				sendMessage(roomToken, 4, 7, "{reopen_room}");
+				$.post("functions/reopen_room.php", {roomToken : roomToken, userToken : userToken});
 			}
 			function ignoreSong(id){
 				$.post("functions/ignore_song.php", {roomToken : "<?php echo $roomToken;?>", id : id}).done(function(data){
@@ -1081,6 +1108,18 @@ if(isset($_SESSION["token"])){
 					// State active of the room
 					if(window.roomState == 0){
 						$(".under-video").hide('1000');
+						$(".closed-box-text").show('500');
+						if(userPower == 2){
+							$("#close-option").hide();
+							$("#open-option").show();
+						}
+					} else {
+						$(".closed-box-text").hide('500');
+						$(".under-video").show('1000');
+						if(userPower == 2){
+							$("#close-option").show();
+							$("#open-option").hide();
+						}
 					}
 					// Watch the state of the room every 10 seconds
 					setTimeout(watchRoom, 10000, roomToken);
@@ -1168,25 +1207,27 @@ if(isset($_SESSION["token"])){
 								uVideos++;
 							}
 							message += "<p class='song-list-line'><a href='https://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songName+"'>"+songList[i].videoName+"</a></p></div>";
-							if(userPower == 2 || userPower == 3){
-								if(songList[i].videoStatus == 0){
-									message += "<div class='col-lg-1'>";
-									message += "<span class='glyphicon glyphicon-ban-circle button-glyph' onClick=ignoreSong("+songList[i].entry+")></span>";
-									message += "</div>";
-									/*message += "<div class='col-lg-1'>";
+							if(window.roomState == 1){
+								if(userPower == 2 || userPower == 3){
+									if(songList[i].videoStatus == 0){
+										message += "<div class='col-lg-1'>";
+										message += "<span class='glyphicon glyphicon-ban-circle button-glyph' onClick=ignoreSong("+songList[i].entry+")></span>";
+										message += "</div>";
+										/*message += "<div class='col-lg-1'>";
 						message += "<span class='glyphicon glyphicon-arrow-up'></span>";
 						message += "</div>";
 						message += "<div class='col-lg-1'>";
 						message += "<span class='glyphicon glyphicon-arrow-down'></span>";
 						message += "</div>";*/
-								} else if(songList[i].videoStatus == 3){
-									message += "<div class='col-lg-1'>";
-									message += "<span class='glyphicon glyphicon-ok-circle button-glyph' onClick=reinstateSong("+songList[i].entry+")></span>";
-									message += "</div>";
+									} else if(songList[i].videoStatus == 3){
+										message += "<div class='col-lg-1'>";
+										message += "<span class='glyphicon glyphicon-ok-circle button-glyph' onClick=reinstateSong("+songList[i].entry+")></span>";
+										message += "</div>";
+									}
 								}
-							}
-							if(songList[i].videoStatus == 2 && userToken != -1){
-								message += "<div class='col-lg-1'><span class='glyphicon glyphicon-repeat button-glyph' onClick=requeueSong("+songList[i].entry+")></span></div>";
+								if(songList[i].videoStatus == 2 && userToken != -1){
+									message += "<div class='col-lg-1'><span class='glyphicon glyphicon-repeat button-glyph' onClick=requeueSong("+songList[i].entry+")></span></div>";
+								}
 							}
 							message += "</div>";
 							previousSongState = songList[i].videoStatus;
@@ -1358,6 +1399,9 @@ if(isset($_SESSION["token"])){
 										break;
 									case '6':
 										message += " sm-type-reinstate'><span class='glyphicon glyphicon-info-sign'></span> ";
+										break;
+									case '7':
+										message += " sm-type-open'><span class='glyphicon glyphicon-play-circle'></span> ";
 										break;
 								}
 								message += messageList[i].content;

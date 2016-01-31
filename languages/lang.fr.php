@@ -7,6 +7,8 @@ $lang["hello"] = "Bienvenue sur Berrybox!";
 $lang["berrybox_description"] = "Partagez et regardez YouTube ensemble.";
 $lang["get_started"] = "Rejoindre l'expérience Berrybox";
 $lang["home_create_room"] = "Envie de créer une nouvelle box ? C'est par ici !";
+$lang["recently_played"] = "Partagée récemment : ";
+$lang["now_playing_home"] = "En cours : ";
 
 /** ROOM ADMIN **/
 $lang["room_join"] = "Rejoindre";
@@ -36,6 +38,8 @@ $lang["song_down"] = "Déplacer cette chanson vers le bas de la file d'attente";
 $lang["close_room"] = "Fermer la box";
 $lang["close_room_tip"] = "La fermeture de la box désactivera la soumission et la lecture de vidéos, ainsi que l'accès à la box.";
 $lang["room_closing"] = "Cette box est fermée. Veuillez quitter la box.";
+$lang["open_room"] = "Réouvrir la box";
+$lang["open_room_tip"] = "Vous réactiverez la soumission de vidéos, la lecture et les utilisateurs auront de nouveau accès à cette box.";
 $lang["change_type"] = "Changer le type de la bx";
 $lang["song_submit_success"] = "Votre vidéo a bien été ajoutée à la playlist";
 $lang["invalid_link"] = "Le lien que vous avez soumis est invalide. Veuillez recommencer avec un lien valide";

@@ -120,7 +120,7 @@ legend
 	color: #D61B1B
 	font-weight: 700
 
-.system-success
+.system-success, .sm-type-open
 	color: $success-color
 	font-weight: 600
 
@@ -133,6 +133,7 @@ legend
 .form-control
 	background-color: inherit
 	border: 1px solid #444
+	color: inherit
 
 #room-player
 	padding-top: 14px
@@ -384,6 +385,25 @@ nav
 	font-size: 22px
 	margin-bottom: 20px
 
+.room-thumbnail
+	margin-bottom: 15px
+	img
+		display: block
+		height: inherit
+		margin: 0 auto
+	p
+		text-overflow: ellipsis
+		overflow: hidden
+		white-space: nowrap
+
+#current-play
+	font-weight: 700
+	color: $success-color
+
+#previous-play
+	font-style: italic
+	color: darken(white, 40%)
+
 .room-details
 	font-size: 14px
 	.room-creator
@@ -433,6 +453,10 @@ legend
 	font-family: 'geometria_lightlight'
 	font-size: 20px
 	font-weight: 800
+
+.search-input
+	border-left: none
+	padding-left: 0
 
 .room-brand
 	font-family: 'geometria_lightlight'
@@ -502,6 +526,10 @@ legend
 	text-align: center
 	font-size: 50px
 	font-family: 'geometria_lightlight'
+
+.closed-box-text
+	@extend #not-found-message
+	display: none
 
 /** No credentials on box **/
 #no-credentials
