@@ -1068,7 +1068,7 @@ if(isset($_SESSION["token"])){
 				$.post("functions/get_user_state.php", {roomToken : roomToken, userToken : userToken}).done(function(data){
 					if(data == 1){
 						setTimeout(userState, 10000, roomToken, userToken);
-					} else {
+					} else if(data == 2) {
 						$("#body-chat").append("<p class='system-message system-alert'><?php echo $lang["room_closing"];?></p>");
 						setTimeout(function(){
 							window.location.replace("home");
