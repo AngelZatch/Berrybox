@@ -1,7 +1,4 @@
 # Strawberry Ignoring files
-
-.htaccess
-
 ## All profile pictures
 profile-pictures/*
 profile-banners/*
