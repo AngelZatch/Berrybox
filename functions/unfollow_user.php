@@ -13,7 +13,11 @@ try{
 	$follow->bindParam(':followed', $solveToken["user_token"]);
 	$follow->execute();
 
-	$updateFollowCount = $db->query("UPDATE user_stats SET stat_followers = stat_followers - 1 WHERE user_token = '$userFollowed'");
+		$updateFollowCount = $db->prepare("UPDATE user_stats
+									SET stat_followers = stat_followers - 1
+									WHERE user_token = :user_followed");
+	$updateFollowCount->bindParam(':user_followed', $solveToken["user_token"]);
+	$updateFollowCount->execute();
 	$db->commit();
 	echo "1"; // Success code
 } catch (PDOException $e){
