@@ -4,7 +4,7 @@ body {
   color: black; }
 
 /* line 10, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
-.navbar {
+.navbar, .footer, .social-space {
   background-color: #f2f2f2; }
 
 /* line 15, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
@@ -93,5 +93,7 @@ body {
   /* line 76, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
   .user-entry:active, .box-entry:active {
     background-color: #d9d9d9; }
+
+/** FOOTER **/
 
 /*# sourceMappingURL=light-theme.css.map */

@@ -4,7 +4,7 @@ body {
   color: white; }
 
 /* line 9, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
-.navbar {
+.navbar, .footer, .social-space {
   background-color: #292929; }
 
 /* line 12, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
@@ -68,5 +68,7 @@ body {
   /* line 55, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
   .user-entry:active, .box-entry:active {
     background-color: #5d5d5d; }
+
+/** FOOTER **/
 
 /*# sourceMappingURL=dark-theme.css.map */
