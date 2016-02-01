@@ -6,7 +6,7 @@ if(isset($_SESSION["token"])){
 	$queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
 								JOIN room_types rt ON r.room_type = rt.id
-								WHERE room_active = 1 AND (room_protection != 3 OR (room_protection = 3 AND room_creator = '$_SESSION[token]'))");
+								WHERE room_active = 1 AND (room_protection != 2 OR (room_protection = 2 AND room_creator = '$_SESSION[token]'))");
 	$userSettings = $db->query("SELECT * FROM user_preferences up
 							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
 
@@ -19,7 +19,7 @@ if(isset($_SESSION["token"])){
 	$queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
 								JOIN room_types rt ON r.room_type = rt.id
-								WHERE room_active = 1 AND room_protection != 3");
+								WHERE room_active = 1 AND room_protection != 2");
 }
 ?>
 <html>
@@ -60,7 +60,7 @@ if(isset($_SESSION["token"])){
 												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 				?>
 				<div class="col-lg-4">
-					<div class="panel" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
+					<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
 						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
 							<div class="col-lg-12 room-thumbnail">
@@ -80,8 +80,6 @@ if(isset($_SESSION["token"])){
 									<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
 									<?php if($activeRooms["room_protection"] == '1') { ?>
 									<span class="label label-success"><?php echo $lang["level_public"];?></span>
-									<?php } else if($activeRooms["room_protection"] == '1') { ?>
-									<span class="label label-warning"><?php echo $lang["password"];?></span>
 									<?php } else { ?>
 									<span class="label label-danger"><?php echo $lang["level_private"];?></span>
 									<?php } ?>
@@ -90,13 +88,7 @@ if(isset($_SESSION["token"])){
 							</div>
 							<p class="col-lg-12 room-description"><?php echo $activeRooms["room_description"];?></p>
 							<div class="col-lg-12">
-								<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
-								<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>
-								<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
-								<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
-								<?php } else { ?>
 								<a href="box/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
-								<?php } ?>
 							</div>
 						</div>
 					</div>
@@ -122,36 +114,6 @@ if(isset($_SESSION["token"])){
 		<script>
 			$(document).ready(function(){
 				var autorefresh = setTimeout(function(){location.reload();}, 60000);
-				$(".password-protected").click(function(){
-					var joinButton = $(this);
-					joinButton.hide('200');
-					var passwordInput = $(this).prev();
-					passwordInput.show('200');
-					passwordInput.focus();
-				})
-				$('.password-input').on('focus',function(){
-					$(this).keyup(function(event){
-						if(event.keyCode == 27){
-							$(this).hide('200');
-							$(this).next().show('200');
-						}
-						if(event.keyCode == 13){
-							var password = $(this).val();
-							var roomToken = $(this).attr('id').substr(9);
-							$.post("functions/submit_password.php", {password : password, roomToken : roomToken}).success(function(data){
-								if(data == 1){
-									window.location.replace("box/"+roomToken);
-								} else {
-									$("#password-"+roomToken).val('');
-									$("#password-"+roomToken).prev().show();
-								}
-							})
-						}
-					})
-				}).on('blur', function(){
-					$(this).hide('200');
-					$(this).next().show('200');
-				})
 				document.onmousemove = function(){
 					clearTimeout(autorefresh);
 					autorefresh = setTimeout(function(){location.reload();}, 60000);

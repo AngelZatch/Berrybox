@@ -36,7 +36,7 @@ if(isset($_SESSION["token"])){
 	$queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
 								JOIN room_types rt ON r.room_type = rt.id
-								WHERE room_active = 1 AND room_protection != 3 AND room_creator = '$followedUsers[user_token]'");
+								WHERE room_active = 1 AND room_protection != 2 AND room_creator = '$followedUsers[user_token]'");
 				?>
 				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
 				<div class="col-lg-4">

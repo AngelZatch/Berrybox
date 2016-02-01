@@ -17,6 +17,7 @@ if($checkUserExistence->rowCount() != "0"){ // Check for box existence.
 
 if(isset($_SESSION["token"])){
 	$queryactiveRooms = $db->query("SELECT * FROM rooms r
+							JOIN user u ON r.room_creator = u.user_token
 							JOIN room_types rt ON r.room_type = rt.id
 							WHERE r.room_creator = '$profileDetails[user_token]' AND room_active = '1'");
 
@@ -43,8 +44,9 @@ if(isset($_SESSION["token"])){
 								AND user_followed = '$profileDetails[user_token]'")->rowCount();
 } else {
 	$queryactiveRooms = $db->query("SELECT * FROM rooms r
+							JOIN user u ON r.room_creator = u.user_token
 							JOIN room_types rt ON r.room_type = rt.id
-							WHERE r.room_creator = '$profileDetails[user_token]' AND room_active = '1' AND room_protection != '3'");
+							WHERE r.room_creator = '$profileDetails[user_token]' AND room_active = 1 AND room_protection != 2");
 }
 ?>
 <html>
@@ -122,31 +124,42 @@ if(isset($_SESSION["token"])){
 			</div>
 			<div class="user-rooms col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
 				<p id="profile-title"><?php echo $lang["opened_rooms"];?></p>
-				<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
-				<div class="panel box-entry" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
-					<div class="panel-body">
-						<p class="col-lg-5"><?php echo $activeRooms["room_name"];?></p>
-						<div class="room-details col-lg-3">
-							<p class="room-type room-label">
-								<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
-								<?php if($activeRooms["room_protection"] == '1') { ?>
-								<span class="label label-success"><?php echo $lang["level_public"];?></span>
-								<?php } else if($activeRooms["room_protection"] == '1') { ?>
-								<span class="label label-warning"><?php echo $lang["password"];?></span>
-								<?php } else { ?>
-								<span class="label label-danger"><?php echo $lang["level_private"];?></span>
+				<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){
+	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[room_token] rh
+												JOIN song_base sb ON sb.song_base_id = rh.video_index
+												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+				?>
+				<div class="col-lg-6">
+					<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
+						<div class="panel-body box-entry">
+							<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
+							<div class="col-lg-12 room-thumbnail">
+								<img src="http://img.youtube.com/vi/<?php echo $roomInfo["link"];?>/0.jpg" alt="">
+								<?php if($roomInfo["video_status"] == 1){ ?>
+								<p id="current-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["now_playing_home"].stripslashes($roomInfo["video_name"]);?></p>
+								<?php } else {?>
+								<p id="previous-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["recently_played"].stripslashes($roomInfo["video_name"]);?></p>
 								<?php } ?>
-								<span class="label label-lang"><?php echo $lang["lang_".$activeRooms["room_lang"]];?></span>
-							</p>
-						</div>
-						<div class="col-lg-4">
-							<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
-							<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>
-							<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
-							<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
-							<?php } else { ?>
-							<a href="box/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
-							<?php } ?>
+							</div>
+							<div class="room-pp">
+								<img src="profile-pictures/<?php echo $activeRooms["user_pp"];?>" alt="<?php echo $activeRooms["user_pseudo"];?>" style="width:inherit;">
+							</div>
+							<div class="room-details">
+								<p><span class="room-creator"><a href="user/<?php echo $activeRooms["user_pseudo"];?>"><?php echo $activeRooms["user_pseudo"];?></a></span></p>
+								<p class="room-type room-label">
+									<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
+									<?php if($activeRooms["room_protection"] == '1') { ?>
+									<span class="label label-success"><?php echo $lang["level_public"];?></span>
+									<?php } else { ?>
+									<span class="label label-danger"><?php echo $lang["level_private"];?></span>
+									<?php } ?>
+									<span class="label label-lang"><?php echo $lang["lang_".$activeRooms["room_lang"]];?></span>
+								</p>
+							</div>
+							<p class="col-lg-12 room-description"><?php echo $activeRooms["room_description"];?></p>
+							<div class="col-lg-12">
+								<a href="box/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -157,36 +170,6 @@ if(isset($_SESSION["token"])){
 		<script src="assets/js/fileinput.min.js"></script>
 		<script>
 			$(document).ready(function(){
-				$(".password-protected").click(function(){
-					var joinButton = $(this);
-					joinButton.hide('200');
-					var passwordInput = $(this).prev();
-					passwordInput.show('200');
-					passwordInput.focus();
-				})
-				$('.password-input').on('focus',function(){
-					$(this).keyup(function(event){
-						if(event.keyCode == 27){
-							$(this).hide('200');
-							$(this).next().show('200');
-						}
-						if(event.keyCode == 13){
-							var password = $(this).val();
-							var roomToken = $(this).attr('id').substr(9);
-							$.post("functions/submit_password.php", {password : password, roomToken : roomToken}).success(function(data){
-								if(data == 1){
-									window.location.replace("box/"+roomToken);
-								} else {
-									$("#password-"+roomToken).val('');
-									$("#password-"+roomToken).prev().show();
-								}
-							})
-						}
-					})
-				}).on('blur', function(){
-					$(this).hide('200');
-					$(this).next().show('200');
-				})
 				$("#banner-input").fileinput({
 					overwriteInitial: true,
 					defaultPreviewContent: '<img src="profile-banners/<?php echo $profileDetails["user_banner"];?>">',

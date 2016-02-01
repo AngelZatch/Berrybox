@@ -51,37 +51,62 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 				</ul>
 			</div>
 			<div class="user-rooms col-sm-offset-2 col-sm-8">
-				<?php while($historyRooms = $queryHistoryRooms->fetch(PDO::FETCH_ASSOC)){?>
-				<div class="panel box-entry" id="panel-room-<?php echo $historyRooms["room_token"];?>" onClick="window.location='box/<?php echo $historyRooms["room_token"];?>'">
-					<div class="panel-body room-details">
-						<p class="col-lg-5"><?php echo $historyRooms["room_name"];?></p>
-						<p class="col-lg-3 room-type room-label">
-							<span class="label label-info"><?php echo $lang[$historyRooms["type"]];?></span>
-							<?php if($historyRooms["room_protection"] == '1') { ?>
-							<span class="label label-success"><?php echo $lang["level_public"];?></span>
-							<?php } else if($historyRooms["room_protection"] == '1') { ?>
-							<span class="label label-warning"><?php echo $lang["password"];?></span>
-							<?php } else { ?>
-							<span class="label label-danger"><?php echo $lang["level_private"];?></span>
-							<?php } ?>
-							<span class="label label-lang"><?php echo $lang["lang_".$historyRooms["room_lang"]];?></span>
-						</p>
-						<?php if($historyRooms["room_active"] == '1'){ ?>
-						<p class="col-lg-1 label-status">
-							<span class="label label-success"><span class="glyphicon glyphicon-signal"></span> <?php echo $lang["status_open"];?></span>
-						</p>
-						<div class="col-lg-3">
-							<a href="box/<?php echo $historyRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+				<?php while($historyRooms = $queryHistoryRooms->fetch(PDO::FETCH_ASSOC)){
+	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$historyRooms[room_token] rh
+												JOIN song_base sb ON sb.song_base_id = rh.video_index
+												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);?>
+				<div class="col-lg-6">
+					<div class="panel panel-box" onClick="window.location='box/<?php echo $historyRooms["room_token"];?>'">
+						<div class="panel-body box-entry">
+							<p class="col-lg-12 room-name"><?php echo $historyRooms["room_name"];?></p>
+							<div class="col-lg-12" style="text-align:center">
+								<?php if($historyRooms["room_active"] == 0){ ?>
+								<p class="label-status">
+									<span class="label label-danger label-block"><span class="glyphicon glyphicon-off"></span> <?php echo $lang["status_closed"];?></span>
+								</p>
+								<?php } else { ?>
+								<p class="label-status">
+									<span class="label label-success label-block"><span class="glyphicon glyphicon-signal"></span> <?php echo $lang["status_open"];?></span>
+								</p>
+								<?php } ?>
+							</div>
+							<div class="col-lg-12 room-thumbnail">
+								<img src="http://img.youtube.com/vi/<?php echo $roomInfo["link"];?>/0.jpg" alt="">
+								<?php if($roomInfo["video_status"] == 1){ ?>
+								<p id="current-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["now_playing_home"].stripslashes($roomInfo["video_name"]);?></p>
+								<?php } else {?>
+								<p id="previous-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["recently_played"].stripslashes($roomInfo["video_name"]);?></p>
+								<?php } ?>
+							</div>
+							<div class="room-pp">
+								<img src="profile-pictures/<?php echo $profileDetails["user_pp"];?>" alt="<?php echo $profileDetails["user_pseudo"];?>" style="width:inherit;">
+							</div>
+							<div class="room-details">
+								<p><span class="room-creator"><a href="user/<?php echo $profileDetails["user_pseudo"];?>"><?php echo $profileDetails["user_pseudo"];?></a></span></p>
+								<p class="room-type room-label">
+									<span class="label label-info"><?php echo $lang[$historyRooms["type"]];?></span>
+									<?php if($historyRooms["room_protection"] == '1') { ?>
+									<span class="label label-success"><?php echo $lang["level_public"];?></span>
+									<?php } else { ?>
+									<span class="label label-danger"><?php echo $lang["level_private"];?></span>
+									<?php } ?>
+									<span class="label label-lang"><?php echo $lang["lang_".$historyRooms["room_lang"]];?></span>
+								</p>
+							</div>
+							<p class="col-lg-12 room-description"><?php echo $historyRooms["room_description"];?></p>
+							<div class="col-lg-12">
+								<?php if($historyRooms["room_active"] == '1'){ ?>
+								<a href="box/<?php echo $historyRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+								<?php } else { ?>
+								<div class="col-lg-6">
+									<a class="btn btn-primary btn-block" onClick="openRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_reopen"];?></a>
+								</div>
+								<div class="col-lg-6">
+									<a class="btn btn-danger btn-block" onClick="deleteRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_delete"];?></a>
+								</div>
+								<?php } ?>
+							</div>
 						</div>
-						<?php } else { ?>
-						<p class="col-lg-1 label-status">
-							<span class="label label-danger"><span class="glyphicon glyphicon-off"></span> <?php echo $lang["status_closed"];?></span>
-						</p>
-						<div class="col-lg-3">
-							<a class="btn btn-primary" onClick="openRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_reopen"];?></a>
-							<a class="btn btn-danger" onClick="deleteRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_delete"];?></a>
-						</div>
-						<?php } ?>
 					</div>
 				</div>
 				<?php } ?>
