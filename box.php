@@ -282,6 +282,18 @@ if(isset($_SESSION["token"])){
 								</div>
 							</div>
 							<div class="form-group">
+								<label for="" class="col-sm-4 control-label"><?php echo $lang["room_protection"];?></label>
+								<div class="col-lg-8">
+									<div class="col-lg-6">
+										<span class="btn btn-primary btn-block btn-switch disabled" id="select-private" title="<?php echo $lang["private_tip"];?>"><span class="glyphicon glyphicon-headphones"></span> <?php echo $lang["level_private"];?></span>
+									</div>
+									<div class="col-lg-6">
+										<span class="btn btn-primary btn-block btn-switch btn-disabled" id="select-public" title="<?php echo $lang["public_tip"];?>"><span class="glyphicon glyphicon-volume-up"></span> <?php echo $lang["level_public"];?></span>
+									</div>
+									<input type="hidden" id="protect-value" value="1">
+								</div>
+							</div>
+							<div class="form-group">
 								<label for="description" class="col-sm-4 control-label"><?php echo $lang["description_limit"];?></label>
 								<div class="col-lg-8">
 									<textarea name="description" id="description" cols="30" rows="5" class="form-control"><?php echo $roomDetails["room_description"];?></textarea>
@@ -498,7 +510,17 @@ if(isset($_SESSION["token"])){
 						})
 					}
 				});
-				<?php } else { ?>
+				$("#select-private").click(function(){
+					$(this).toggleClass("disabled");
+					$("#select-public").addClass("disabled");
+					$("#protect-value").val(2);
+				})
+				$("#select-public").click(function(){
+					$(this).toggleClass("disabled");
+					$("#select-private").addClass("disabled");
+					$("#protect-value").val(1);
+				})
+					<?php } else { ?>
 				/** THIS TO DO ONLY IF THE USER IS NOT LOGGED **/
 				window.userToken = "-1";
 				window.userPower = "1";
@@ -1012,7 +1034,8 @@ if(isset($_SESSION["token"])){
 				var language = $('[name=speakLang]').val();
 				var description = $("#description").val();
 				var type = $('[name=roomType]').val();
-				$.post("functions/edit_room.php", {type : type, language : language, description : description, roomToken : roomToken}).done(function(){
+				var protect = $("#protect-value").val();
+				$.post("functions/edit_room.php", {type : type, language : language, protect : protect, description : description, roomToken : roomToken}).done(function(oldProtectValue){
 					$("#save-room-button").blur();
 					$("#save-room-button").text("<?php echo $lang["save_changes_feedback"];?>");
 					$("#save-room-button").switchClass("btn-primary", "btn-success feedback", 200, "easeOutBack");
@@ -1020,6 +1043,13 @@ if(isset($_SESSION["token"])){
 						$("#save-room-button").switchClass("btn-success feedback", "btn-primary", 1000, "easeInQuad")
 						$("#save-room-button").text("<?php echo $lang["save_changes"];?>");
 					}, 1500);
+					if(oldProtectValue != protect){
+						if(protect == 2){
+							sendMessage("<?php echo $roomToken;?>", 4, 1, "{protect_private}");
+						} else {
+							sendMessage("<?php echo $roomToken;?>", 4, 1, "{protect_public}");
+						}
+					}
 				});
 			}
 			<?php } ?>
