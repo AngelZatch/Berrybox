@@ -284,13 +284,22 @@ if(isset($_SESSION["token"])){
 							<div class="form-group">
 								<label for="" class="col-sm-4 control-label"><?php echo $lang["room_protection"];?></label>
 								<div class="col-lg-8">
+									<?php if($roomDetails["room_protection"] == 1){ ?>
 									<div class="col-lg-6">
 										<span class="btn btn-primary btn-block btn-switch disabled" id="select-private" title="<?php echo $lang["private_tip"];?>"><span class="glyphicon glyphicon-headphones"></span> <?php echo $lang["level_private"];?></span>
 									</div>
 									<div class="col-lg-6">
 										<span class="btn btn-primary btn-block btn-switch btn-disabled" id="select-public" title="<?php echo $lang["public_tip"];?>"><span class="glyphicon glyphicon-volume-up"></span> <?php echo $lang["level_public"];?></span>
 									</div>
-									<input type="hidden" id="protect-value" value="1">
+									<?php } else { ?>
+									<div class="col-lg-6">
+										<span class="btn btn-primary btn-block btn-switch btn-disabled" id="select-private" title="<?php echo $lang["private_tip"];?>"><span class="glyphicon glyphicon-headphones"></span> <?php echo $lang["level_private"];?></span>
+									</div>
+									<div class="col-lg-6">
+										<span class="btn btn-primary btn-block btn-switch disabled" id="select-public" title="<?php echo $lang["public_tip"];?>"><span class="glyphicon glyphicon-volume-up"></span> <?php echo $lang["level_public"];?></span>
+									</div>
+									<?php } ?>
+									<input type="hidden" id="protect-value" value="<?php echo $roomDetails["room_protection"];?>">
 								</div>
 							</div>
 							<div class="form-group">
