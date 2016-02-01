@@ -37,12 +37,23 @@ if(isset($_SESSION["token"])){
 								JOIN user u ON r.room_creator = u.user_token
 								JOIN room_types rt ON r.room_type = rt.id
 								WHERE room_active = 1 AND room_protection != 2 AND room_creator = '$followedUsers[user_token]'");
+	while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){
+		$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[room_token] rh
+												JOIN song_base sb ON sb.song_base_id = rh.video_index
+												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 				?>
-				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){ ?>
 				<div class="col-lg-4">
-					<div class="panel box-entry">
-						<div class="panel-body">
+					<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
+						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
+							<div class="col-lg-12 room-thumbnail">
+								<img src="http://img.youtube.com/vi/<?php echo $roomInfo["link"];?>/0.jpg" alt="">
+								<?php if($roomInfo["video_status"] == 1){ ?>
+								<p id="current-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["now_playing_home"].stripslashes($roomInfo["video_name"]);?></p>
+								<?php } else {?>
+								<p id="previous-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["recently_played"].stripslashes($roomInfo["video_name"]);?></p>
+								<?php } ?>
+							</div>
 							<div class="room-pp">
 								<img src="profile-pictures/<?php echo $activeRooms["user_pp"];?>" alt="<?php echo $activeRooms["user_pseudo"];?>" style="width:inherit;">
 							</div>
@@ -53,26 +64,20 @@ if(isset($_SESSION["token"])){
 									<?php if($activeRooms["room_protection"] == '1') { ?>
 									<span class="label label-success"><?php echo $lang["level_public"];?></span>
 									<?php } else { ?>
-									<span class="label label-warning"><?php echo $lang["password"];?></span>
+									<span class="label label-danger"><?php echo $lang["level_private"];?></span>
 									<?php } ?>
 									<span class="label label-lang"><?php echo $lang["lang_".$activeRooms["room_lang"]];?></span>
 								</p>
 							</div>
 							<p class="col-lg-12 room-description"><?php echo $activeRooms["room_description"];?></p>
 							<div class="col-lg-12">
-								<?php if($activeRooms["room_protection"] == 2 && (!isset($_SESSION["token"]) || (isset($_SESSION["token"]) && $_SESSION["token"] != $activeRooms["room_creator"]))){?>
-								<p class="error-password" style="display:none;"><?php echo $lang["wrong_password"];?></p>
-								<input type="password" class="form-control password-input" placeholder="<?php echo $lang["password"];?>" name="password" id="password-<?php echo $activeRooms["room_token"];?>" style="display:none;">
-								<a class="btn btn-primary btn-block password-protected"><?php echo $lang["room_join"];?></a>
-								<?php } else { ?>
 								<a href="box/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
-								<?php } ?>
 							</div>
 						</div>
 					</div>
 				</div>
-				<?php } ?>
-				<?php } ?>
+				<?php }
+} ?>
 			</div>
 		</div>
 		<?php include "scripts.php";?>
