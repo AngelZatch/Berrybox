@@ -140,6 +140,7 @@ $lang["wrong_password"] = "間違いましたパスワード";
 $lang["no_credentials"] = "ビデオを提出したい？みんなと一緒にチャットしたい？ベリボックスに参加します！";
 $lang["follow_us"] = "ベリボックスのニュースはこちらです";
 $lang["twitter"] = "ツイッター";
+$lang["dev_message"] = "おはようございます！AngelZatchと申しまして、「ベリボックス」のたった一人の開発者です。俺はマルチメディア工学の学生、自由時間にこのアプリを開発します。お客様が私と話したい場合は、<a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>にメールを送信してお願い足します。";
 
 /** MENU **/
 $lang["menu"] = "メインメニュー";

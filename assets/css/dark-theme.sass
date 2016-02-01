@@ -6,7 +6,7 @@ body
 	background-color: $gray-base
 	color: white
 
-.navbar
+.navbar, .social-space
 	background-color: lighten($gray-base, 10%)
 
 .panel
@@ -54,3 +54,7 @@ body
 		color: white
 	&:active
 		background-color: lighten($gray-base, 30%)
+
+/** FOOTER **/
+.footer
+	@extend .navbar

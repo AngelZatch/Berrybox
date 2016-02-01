@@ -139,6 +139,7 @@ $lang["wrong_password"] = "Wrong password. Please try again";
 $lang["no_credentials"] = "Want to submit videos, chat and more? Log in or register!";
 $lang["follow_us"] = "Follow Berrybox for latest news";
 $lang["twitter"] = "Twitter";
+$lang["dev_message"] = "Hello! I'm AngelZatch, only developper of this website. I am a multimedia engineering student, and I'm developping Berrybox on my freetime! If you want to have a little chat, feel free to mail me at <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>";
 
 /** MENU **/
 $lang["menu"] = "Main menu";

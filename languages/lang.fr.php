@@ -80,7 +80,6 @@ $lang["intense"] = "J'adore !";
 $lang["sleep"] = "Elle m'apaise";
 $lang["energy"] = "Je suis plein d'énergie !!";
 
-
 /** ROOM **/
 $lang["youtube_message"] = "Envoyer un lien YouTube";
 $lang["submit_link"] = "Envoyer";
@@ -141,6 +140,7 @@ $lang["wrong_password"] = "Mot de passe erroné";
 $lang["no_credentials"] = "Envie de partager des vidéos et de discuter avec tout le monde ? Rejoignez-la communauté !";
 $lang["follow_us"] = "Suivez l'actualité de Berrybox";
 $lang["twitter"] = "Twitter";
+$lang["dev_message"] = "Bonjour! Je suis AngelZatch, développeur de cette application. Je suis un étudiant ingénieur multimédia qui développe Berrybox sur son temps libre ! Si vous voulez chatter un peu, n'hésitez pas à m'envoyer un mail à <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>";
 
 /** MENU **/
 $lang["menu"] = "Menu principal";
@@ -158,7 +158,7 @@ $lang["goto_user"] = "Aller à l'utilisateur";
 $lang["box_match"] = "box(es) correspond(ent) à vos critères";
 
 /** PROFILE **/
-$lang["my_settings"] = "Paramètres du profil";
+$lang["my_settings"] = "Paramètres";
 $lang["profile_settings_tip"] = "Changez votre nom, votre biographie et votre image de profil";
 $lang["profile_history"] = "Historique";
 $lang["profile_history_tip"] = "Une box fermée restera affichée sur cette page jusqu'au prochain Dimanche à 1 heure du matin.";
