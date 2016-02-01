@@ -3,10 +3,6 @@ session_start();
 require "functions/db_connect.php";
 $db = PDOFactory::getConnection();
 if(isset($_SESSION["token"])){
-	$queryActiveRooms = $db->query("SELECT * FROM rooms r
-								JOIN user u ON r.room_creator = u.user_token
-								JOIN room_types rt ON r.room_type = rt.id
-								WHERE room_active = 1 AND (room_protection != 3 OR (room_protection = 3 AND room_creator = '$_SESSION[token]'))");
 	$userSettings = $db->query("SELECT * FROM user_preferences up
 							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
 
@@ -15,11 +11,6 @@ if(isset($_SESSION["token"])){
 	} else {
 		$theme = "light";
 	}
-} else {
-	$queryActiveRooms = $db->query("SELECT * FROM rooms r
-								JOIN user u ON r.room_creator = u.user_token
-								JOIN room_types rt ON r.room_type = rt.id
-								WHERE room_active = 1 AND room_protection != 3");
 }
 ?>
 <html>

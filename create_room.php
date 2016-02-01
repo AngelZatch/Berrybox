@@ -39,15 +39,8 @@ $queryTypes = $db->query("SELECT * FROM room_types");
 					<label for="" class="col-sm-3 control-label"><?php echo $lang["room_protection"];?></label>
 					<div class="col-lg-9">
 						<span class="btn btn-primary btn-switch disabled" id="select-private" title="<?php echo $lang["private_tip"];?>"><span class="glyphicon glyphicon-headphones"></span> <?php echo $lang["level_private"];?></span>
-						<span class="btn btn-primary btn-switch disabled" id="select-locked" role="button" title="<?php echo $lang["locked_tip"];?>"><span class="glyphicon glyphicon-eye-open"></span> <?php echo $lang["level_locked"];?></span>
 						<span class="btn btn-primary btn-switch btn-disabled" id="select-public" title="<?php echo $lang["public_tip"];?>"><span class="glyphicon glyphicon-volume-up"></span> <?php echo $lang["level_public"];?></span>
 						<input type="hidden" id="protect-value" value="1">
-					</div>
-				</div>
-				<div class="form-group" id="password-form" style="display:none;">
-					<label for="password" class="col-sm-3 control-label"><?php echo $lang["password"];?></label>
-					<div class="col-lg-9">
-						<input type="text" placeholder="<?php echo $lang["password"];?>" class="form-control" name="password" id="password">
 					</div>
 				</div>
 				<div class="form-group">
@@ -82,37 +75,25 @@ $queryTypes = $db->query("SELECT * FROM room_types");
 		</div>
 		<?php include "scripts.php";?>
 		<script>
-			$("#select-locked").click(function(){
-				$(this).toggleClass("disabled");
-				$("#select-private").addClass("disabled");
-				$("#select-public").addClass("disabled");
-				$("#password-form").toggle('600');
-				$("#protect-value").val(2);
-			})
 			$("#select-private").click(function(){
 				$(this).toggleClass("disabled");
-				$("#select-locked").addClass("disabled");
 				$("#select-public").addClass("disabled");
-				$("#password-form").hide('600');
-				$("#protect-value").val(3);
+				$("#protect-value").val(2);
 			})
 			$("#select-public").click(function(){
 				$(this).toggleClass("disabled");
-				$("#select-locked").addClass("disabled");
 				$("#select-private").addClass("disabled");
-				$("#password-form").hide('600');
 				$("#protect-value").val(1);
 			})
 			$('[name=createRoom]').click(function(){
 				var roomName = $('[name=roomName]').val();
 				var user = "<?php echo $_SESSION["token"];?>";
 				var protect = $("#protect-value").val();
-				var password = $("#password").val();
 				var type = $('[name=roomType]').val();
 				var language = $('[name=speakLang]').val();
 				var description = $("#description").val();
 				console.log(description);
-				$.post("functions/room_create.php", {roomName : roomName, creator : user, protect : protect, password : password, type : type, language : language, description : description}).done(function(data){
+				$.post("functions/room_create.php", {roomName : roomName, creator : user, protect : protect, type : type, language : language, description : description}).done(function(data){
 					window.location.replace("box/"+data);
 				})
 			})

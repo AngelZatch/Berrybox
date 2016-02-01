@@ -5,7 +5,6 @@ $db = PDOFactory::getConnection();
 $creatorToken = $_POST["creator"];
 $roomName = $_POST["roomName"];
 $protect = $_POST["protect"];
-$password = $_POST["password"];
 $type = $_POST["type"];
 $language = $_POST["language"];
 $description = $_POST["description"];
@@ -21,8 +20,8 @@ $uniqueToken = generateReference(15);
 /** Create tables for the chat and history of all links posted. **/
 try{
 	$db->beginTransaction();
-	$newRoom = $db->prepare("INSERT INTO rooms(room_token, room_name, room_creator, room_type, room_lang, room_description, room_play_type, room_protection, room_password, room_active)
-						VALUES(:token, :name, :creator, :type, :room_lang, :description, :play_type, :protection, :password, :active)");
+	$newRoom = $db->prepare("INSERT INTO rooms(room_token, room_name, room_creator, room_type, room_lang, room_description, room_play_type, room_protection, room_active)
+						VALUES(:token, :name, :creator, :type, :room_lang, :description, :play_type, :protection, :active)");
 	$newRoom->bindParam(':token', $uniqueToken);
 	$newRoom->bindParam(':name', $roomName);
 	$newRoom->bindParam(':creator', $creatorToken);
@@ -31,7 +30,6 @@ try{
 	$newRoom->bindParam(':description', $description);
 	$newRoom->bindParam(':play_type', $play_type);
 	$newRoom->bindParam(':protection',$protect);
-	$newRoom->bindParam(':password', $password);
 	$newRoom->bindParam(':active', $active);
 	$newRoom->execute();
 
