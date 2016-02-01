@@ -5,7 +5,7 @@ $db = PDOFactory::getConnection();
 $type = $_POST["type"];
 $language = $_POST["language"];
 $protect = $_POST["protect"];
-$description = $_POST["description"];
+$description = addslashes($_POST["description"]);
 $roomToken = $_POST["roomToken"];
 
 try{
