@@ -140,7 +140,7 @@ $lang["wrong_password"] = "Mot de passe erroné";
 $lang["no_credentials"] = "Envie de partager des vidéos et de discuter avec tout le monde ? Rejoignez-la communauté !";
 $lang["follow_us"] = "Suivez l'actualité de Berrybox";
 $lang["twitter"] = "Twitter";
-$lang["dev_message"] = "Bonjour! Je suis AngelZatch, développeur de cette application. Je suis un étudiant ingénieur multimédia qui développe Berrybox sur son temps libre ! Si vous voulez chatter un peu, n'hésitez pas à m'envoyer un mail à <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>";
+$lang["dev_message"] = "Bonjour! Je suis Andréas, développeur de cette application. Je suis un étudiant ingénieur multimédia qui développe Berrybox sur son temps libre ! Si vous voulez chatter un peu, n'hésitez pas à m'envoyer un mail à <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>";
 
 /** MENU **/
 $lang["menu"] = "Menu principal";

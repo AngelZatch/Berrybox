@@ -136,6 +136,7 @@ if(isset($_SESSION["token"])){
 			<div class="container-fluid social-space">
 				<div class="col-lg-6 col-lg-offset-3">
 					<p><?php echo $lang["follow_us"];?></p>
+					<a href="https://www.facebook.com/berryboxapp/" target="_blank" class="btn btn-primary">Facebook</a>
 					<a href="http://twitter.com/BerryboxTV" target="_blank" class="btn btn-primary"><?php echo $lang["twitter"];?></a>
 				</div>
 			</div>

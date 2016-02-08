@@ -5,9 +5,9 @@ if(isset($_SESSION["token"])){
 							JOIN user_preferences up
 								ON u.user_token = up.up_user_id
 							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
-	$followNumber = $db->query("SELECT * FROM user_follow uf
-								JOIN user u ON uf.user_followed = u.user_token
-								WHERE user_following = '$_SESSION[token]'")->rowCount();
+	$followRooms = $db->query("SELECT * FROM rooms
+								WHERE room_creator in (SELECT user_followed FROM user_follow uf
+								WHERE user_following = '$_SESSION[token]')")->rowCount();
 	$ppAdresss = "profile-pictures/".$userDetails["user_pp"];
 	$userLang = $userDetails["user_lang"];
 	if($userLang == ""){
@@ -32,7 +32,7 @@ if(isset($_SESSION["token"])){
 			</form>
 			<?php if(isset($_SESSION["username"])){ ?>
 			<li>
-				<a href="follow"><?php echo $lang["following"];?> (<?php echo $followNumber;?>)</a>
+				<a href="follow"><?php echo $lang["following"];?> (<?php echo $followRooms;?>)</a>
 			</li>
 			<li>
 				<a href="create" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
