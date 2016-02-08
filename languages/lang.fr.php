@@ -47,6 +47,8 @@ $lang["no_fetch"] = "Votre vidéo a bien été ajoutée à la playlist. Cependan
 $lang["fill_placeholder"] = "Nom de la vidéo que vous avez soumise";
 $lang["fill_missing"] = "Envoyer";
 $lang["info_fill_success"] = "Merci d'avoir complété les informations !";
+$lang["submitting_playlist"] = "Une playlist a été détectée. Traitement en cours...";
+$lang["playlist_submitted"] = "Votre playlist a été envoyée avec succès.";
 $lang["skip"] = "Suivant";
 $lang["spam"] = "Vous devez attendre au moins 1 seconde avant d'envoyer un nouveau message";
 
@@ -87,7 +89,6 @@ $lang["no_submit"] = "Veuillez vous <a href='../signup'>inscrire</a> ou vous <a 
 $lang["no_chat"] = "Veuillez vous <a href='../signup'>inscrire</a> ou vous <a href='../portal'>connecter</a> pour poster des messages";
 $lang["room_admin"] = "Administrateur";
 $lang["room_mod"] = "Modérateur";
-$lang["room_creator"] = "Créateur de la box";
 $lang["now_playing"] = "Vidéo en cours";
 $lang["watch_count"] = "Spectateurs";
 $lang["playlist"] = "Liste des chansons";
@@ -115,6 +116,7 @@ $lang["back"] = "Retour";
 $lang["follow"] = "Suivre";
 $lang["following"] = "Suit";
 $lang["unfollow"] = "Ne plus suivre";
+$lang["submitting"] = "Envoi...";
 
 /** ACTIONS **/
 $lang["log_out"] = "Déconnexion";
@@ -208,4 +210,12 @@ $lang["maintenance"] = "Berrybox sera en maintenance le <strong>15 Janvier entre
 /** ERRORS **/
 $lang["404"] = "Désolé, la page que vous essayez d'atteindre n'existe pas...";
 $lang["leave_404"] = "Retourner en sécurité";
+
+/** WORDS **/
+$lang["videos"] = "vidéos";
+
+/** FEEDBACK **/
+$lang["submit_no_link"] = "Aucun lien n'a été trouvé";
+$lang["submit_video_link"] = "Un lien pour une vidéo a été trouvée";
+$lang["submit_playlist_link"] = "Un lien pour une liste de lecture a été trouvée";
 ?>

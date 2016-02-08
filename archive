@@ -1,0 +1,16 @@
+			function onSecPlayerReady(event){
+				console.log("secondary player ready");
+				event.target.cuePlaylist(pID);
+			}
+			function onSecPlayerStateChange(event){
+				console.log("secondary player started");
+				if(event.data == YT.PlayerState.CUED){
+					// We retrieve all the IDs from the playlist
+					console.log("a playlist has been cued");
+					var songs = event.target.getPlaylist();
+					for(var i = 0; i < songs.length; i++){
+						addEntry(songs[i], "<?php echo $roomToken;?>");
+					}
+				}
+				console.log("destroying secondary player");
+			}
