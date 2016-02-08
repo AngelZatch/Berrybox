@@ -8,6 +8,7 @@ if(isset($_SESSION["token"])){
 								WHERE user_following = '$_SESSION[token]'");
 	$userSettings = $db->query("SELECT * FROM user_preferences up
 							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+	$listFollowed = array();
 
 	if($userSettings["up_theme"] == "1"){
 		$theme = "dark";
@@ -32,11 +33,13 @@ if(isset($_SESSION["token"])){
 		<div class="main">
 			<legend><?php echo $lang["following"];?></legend>
 			<div class="container-fluid">
-				<?php while($followedUsers = $queryFollowing->fetch(PDO::FETCH_ASSOC)){
+				<h1><?php echo $lang["opened_rooms"];?></h1>
+				<?php while($followedUser = $queryFollowing->fetch(PDO::FETCH_ASSOC)){
 	$queryActiveRooms = $db->query("SELECT * FROM rooms r
 								JOIN user u ON r.room_creator = u.user_token
 								JOIN room_types rt ON r.room_type = rt.id
-								WHERE room_active = 1 AND room_protection != 2 AND room_creator = '$followedUsers[user_token]'");
+								WHERE room_active = 1 AND room_protection != 2 AND room_creator = '$followedUser[user_token]'");
+	array_push($listFollowed, $followedUser);
 	while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){
 		$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[room_token] rh
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
@@ -76,10 +79,39 @@ if(isset($_SESSION["token"])){
 						</div>
 					</div>
 				</div>
-				<?php }
-} ?>
+			<?php } } ?>
+			</div>
+			<div class="container-fluid">
+				<h1><?php echo $lang["following"];?></h1>
+				<?php foreach($listFollowed as $matchingUsers){ ?>
+				<div class="col-lg-2">
+					<div class="panel">
+						<div class="panel-body user-entry">
+							<a href="user/<?php echo $matchingUsers["user_pseudo"];?>">
+								<div class="search-user-pp">
+									<img src="profile-pictures/<?php echo $matchingUsers["user_pp"];?>" class="profile-picture">
+								</div>
+								<p class="user-profile-name"><?php echo $matchingUsers["user_pseudo"];?></p>
+								<div class="user-profile-bio search-bio">
+									<?php echo ($matchingUsers["user_bio"])?$matchingUsers["user_bio"]:$lang["no_bio"];?>
+								</div>
+								<button class="btn btn-primary btn-block"><?php echo $lang["goto_user"];?></button>
+							</a>
+						</div>
+					</div>
+				</div>
+				<?php } ?>
 			</div>
 		</div>
 		<?php include "scripts.php";?>
+		<script>
+			$(document).ready(function(){
+				var autorefresh = setTimeout(function(){location.reload();}, 60000);
+				document.onmousemove = function(){
+					clearTimeout(autorefresh);
+					autorefresh = setTimeout(function(){location.reload();}, 60000);
+				}
+			})
+		</script>
 	</body>
 </html>
