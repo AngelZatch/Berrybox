@@ -7,7 +7,8 @@ if(isset($_SESSION["token"])){
 							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
 	$followRooms = $db->query("SELECT * FROM rooms
 								WHERE room_creator in (SELECT user_followed FROM user_follow uf
-								WHERE user_following = '$_SESSION[token]')")->rowCount();
+								WHERE user_following = '$_SESSION[token]')
+								AND room_protection = '1' AND room_active = '1'")->rowCount();
 	$ppAdresss = "profile-pictures/".$userDetails["user_pp"];
 	$userLang = $userDetails["user_lang"];
 	if($userLang == ""){
