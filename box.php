@@ -618,7 +618,6 @@ if(isset($_SESSION["token"])){
 					var compare;
 					if(compare){
 						clearTimeout(compare);
-						console.log("clearing");
 					}
 					compare = setTimeout(function(){
 						// try to find playlist ID
@@ -1438,7 +1437,7 @@ if(isset($_SESSION["token"])){
 						var playres = playreg.exec(src);
 						if(playres != null){
 							pID = playres[1];
-							console.log("Playlist detected : "+pID);
+							//console.log("Playlist detected : "+pID);
 							$(".under-video").append("<div class='modal-body' id='sec-player' style='display:none;'></div>");
 							var secondaryPlayer;
 							secondaryPlayer = new YT.Player('sec-player', {
@@ -1629,7 +1628,7 @@ if(isset($_SESSION["token"])){
 							}
 							$("#body-chat").append(message);
 						} else {
-							console.log("Double fetch. Denied");
+							//console.log("Double fetch. Denied");
 						}
 						if(!window.chatHovered){
 							$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
