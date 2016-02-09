@@ -48,6 +48,8 @@ $lang["no_fetch"] = "あなたのビデオが提出されましたけど、ビ�
 $lang["fill_placeholder"] = "提出したビデオのタイトル";
 $lang["fill_missing"] = "埋める";
 $lang["info_fill_success"] = "タイトルを埋めたことありがとうございました！";
+$lang["submitting_playlist"] = "プレイリストが研修されました。しばらくお待ちください。。。";
+$lang["playlist_submitted"] = "プレイリストは提出されました。";
 $lang["skip"] = "ネクスト";
 $lang["spam"] = "新しいメッセージを送信するには、少なくとも1秒お待ちください";
 
@@ -115,6 +117,7 @@ $lang["back"] = "戻る";
 $lang["follow"] = "ユーザー登録";
 $lang["following"] = "登録済み";
 $lang["unfollow"] = "登録解除";
+$lang["submitting"] = "提出中…";
 
 /** ACTIONS **/
 $lang["log_out"] = "ログアウト";
@@ -161,7 +164,7 @@ $lang["user_match"] = "ボックスが基準を合わせる";
 $lang["my_settings"] = "プロファイル設定";
 $lang["profile_settings_tip"] = "ディスプレイ名、バイオとプロファイル画像をアップデートする。";
 $lang["profile_history"] = "歴史";
-$lang["profile_history_tip"] = "あなたの閉めたボックス。このボックスが次の日曜日の午前１時００まで残りされます。";
+$lang["profile_history_tip"] = "もし、最後の１時間で誰かがメッセージ送信しませんとかビデオが始まりません、ボックスが「プライベート」に設定されてます。";
 $lang["profile_security"] = "セキュリティ";
 $lang["profile_security_tip"] = "パスワードを変更する。";
 $lang["display_name"] = "ディスプレイ名";
@@ -207,4 +210,12 @@ $lang["maintenance"] = "ベリボックスは<strong>2016年1月15日〔金〕00
 /** ERRORS **/
 $lang["404"] = "ごめんなさい、到達しましたページが存在しません。。。";
 $lang["leave_404"] = "安全に戻る";
+
+/** WORDS **/
+$lang["videos"] = "ビデオ";
+
+/** FEEDBACK **/
+$lang["submit_no_link"] = "リンクが見つかりませんでした";
+$lang["submit_video_link"] = "ビデオリンクが見出されていました";
+$lang["submit_playlist_link"] = "プレイリストリンクが見出されていました";
 ?>

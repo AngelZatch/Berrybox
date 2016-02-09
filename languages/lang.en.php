@@ -47,6 +47,8 @@ $lang["no_fetch"] = "Your video has been submitted to the playlist, but its name
 $lang["fill_placeholder"] = "Name of the video you submitted";
 $lang["fill_missing"] = "Fill";
 $lang["info_fill_success"] = "Thank you for submitting the missing information. Your submission will be reviewed by our team!";
+$lang["submitting_playlist"] = "A playlist has been detected. Submitting videos...";
+$lang["playlist_submitted"] = "Your playlist has been submitted successfully";
 $lang["skip"] = "Next";
 $lang["spam"] = "You have to wait at least 1 second to post a new message";
 
@@ -114,6 +116,7 @@ $lang["back"] = "Back";
 $lang["follow"] = "Follow";
 $lang["following"] = "Following";
 $lang["unfollow"] = "Unfollow";
+$lang["submitting"] = "Submitting...";
 
 /** ACTIONS **/
 $lang["log_out"] = "Log out";
@@ -160,7 +163,7 @@ $lang["box_match"] = "box(es) matching your search";
 $lang["my_settings"] = "Settings";
 $lang["profile_settings_tip"] = "Update your display name, your bio and your profile picture";
 $lang["profile_history"] = "History";
-$lang["profile_history_tip"] = "Any of your closed boxes will stay reachable until next Sunday 1am.";
+$lang["profile_history_tip"] = "If no message has been sent or no video has been played in a box for the last hour, it will be automatically set as 'private', but it won't be closed.";
 $lang["profile_security"] = "Security";
 $lang["profile_security_tip"] = "Change your password";
 $lang["display_name"] = "Display name";
@@ -206,4 +209,12 @@ $lang["maintenance"] = "Berrybox will go under maintenance on <strong>Jan. 15 fr
 /** ERRORS **/
 $lang["404"] = "We're sorry, the page you're trying to reach doesn't exist...";
 $lang["leave_404"] = "Go back to safety";
+
+/** WORDS **/
+$lang["videos"] = "videos";
+
+/** FEEDBACK **/
+$lang["submit_no_link"] = "No link could be found";
+$lang["submit_video_link"] = "A video link has been found";
+$lang["submit_playlist_link"] = "A playlist link has been found";
 ?>

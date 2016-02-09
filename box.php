@@ -101,14 +101,15 @@ if(isset($_SESSION["token"])){
 				<div class="modal-body" id="player"></div>
 			</div>
 			<div class="row under-video">
-				<div class="add-link col-lg-12">
+				<div class="add-link col-lg-6">
 					<?php if(isset($_SESSION["token"])){ ?>
-					<div class="input-group">
+					<div class="input-group input-group-lg">
 						<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
 						<span class="input-group-btn">
 							<button class="btn btn-primary play-url" data-toggle="modal"><?php echo $lang["submit_link"];?></button>
 						</span>
 					</div>
+					<p class="submit-warning"></p>
 					<?php } else { ?>
 					<div id="no-credentials">
 						<p><?php echo $lang["no_credentials"];?></p>
@@ -608,6 +609,59 @@ if(isset($_SESSION["token"])){
 						$("#box-title-follow").attr("id", "box-title-unfollow");
 					}
 				})
+			}).on('keyup blur', '.url-box', function(){
+				var src = $(".url-box").val();
+				if(src != ''){
+					$(".play-url").addClass("disabled");
+					$(".play-url").attr("disabled", "disabled");
+					$(".play-url").text("<?php echo $lang["submit_link"];?>");
+					var compare;
+					if(compare){
+						clearTimeout(compare);
+					}
+					compare = setTimeout(function(){
+						// try to find playlist ID
+						var playreg = new RegExp(/list=([a-z0-9\-\_]+)\&?/i);
+						var playres = playreg.exec(src);
+						if(playres != null){
+							$(".submit-warning").html("<span class='glyphicon glyphicon-ok'></span> <?php echo $lang["submit_playlist_link"];?>");
+							$(".submit-warning").addClass("system-success");
+							$(".submit-warning").removeClass("system-warning");
+							$(".play-url").removeClass("disabled");
+							$(".play-url").removeAttr("disabled");
+							$(".play-url").text("<?php echo $lang["submit_link"];?>");
+						} else {
+							// if there's no playlist, try to find video ID
+							var reg = new RegExp(/\?v=([a-z0-9\-\_]+)\&?/i);
+							var res = reg.exec(src);
+							if(res == null || res[1].length != 11){
+								var alt = new RegExp(/\.be\/([a-z0-9\-\_]+)\&?/i);
+								var res = alt.exec(src);
+								if(res != null && res[1].length != 11){
+									$(".submit-warning").html("<span class='glyphicon glyphicon-ok'></span> <?php echo $lang["submit_video_link"];?>");
+									$(".submit-warning").addClass("system-success");
+									$(".submit-warning").removeClass("system-warning");
+									$(".play-url").removeClass("disabled");
+									$(".play-url").removeAttr("disabled");
+									$(".play-url").text("<?php echo $lang["submit_link"];?>");
+								} else {
+									$(".submit-warning").html("<span class='glyphicon glyphicon-alert'></span> <?php echo $lang["submit_no_link"];?>");
+									$(".submit-warning").removeClass("system-success");
+									$(".submit-warning").addClass("system-warning");
+								}
+							} else {
+								$(".submit-warning").html("<span class='glyphicon glyphicon-ok'></span> <?php echo $lang["submit_video_link"];?>");
+								$(".submit-warning").addClass("system-success");
+								$(".submit-warning").removeClass("system-warning");
+								$(".play-url").removeClass("disabled");
+								$(".play-url").removeAttr("disabled");
+								$(".play-url").text("<?php echo $lang["submit_link"];?>");
+							}
+						}
+					}, 2000);
+				} else {
+					$(".submit-warning").empty();
+				}
 			}).on('click','.play-url', function(){
 				submitLink();
 			}).on('focus', '.url-box', function(){
@@ -999,9 +1053,6 @@ if(isset($_SESSION["token"])){
 			}
 			function hideMoodSelectors(){
 				$(".mood-selectors").hide('900');
-				$(".add-link").delay('900').animate({
-					'width': '100%'
-				}, 400);
 			}
 			function fillInfo(){
 				var name = $(".info-box").val();
@@ -1081,6 +1132,69 @@ if(isset($_SESSION["token"])){
 					setTimeout(hideMoodSelectors, moodTimer - 10000);
 					<?php } ?>
 				}
+			}
+			function onSecPlayerReady(event){
+				//console.log("secondary player ready");
+				//console.log("inputting playlist iD: "+pID);
+				event.target.cuePlaylist({list: pID});
+			}
+			function onSecPlayerStateChange(event){
+				//console.log("secondary player started : "+event.data);
+				if(event.data == YT.PlayerState.CUED){
+					// We retrieve all the IDs from the playlist
+					//console.log("a playlist has been cued");
+					// Test playlist : https://www.youtube.com/watch?v=DdK5eshlWlg&list=PLDCu51jsfPJexXUm4W89HqRcj8gG569Nm
+					var songs = event.target.getPlaylist();
+					$("#body-chat").append("<p class='system-message'> <?php echo $lang["submitting_playlist"];?></p>");
+					$(".url-box").val('');
+					var deferreds = addBigPlaylist(songs, "<?php echo $roomToken;?>");
+					$.when.apply(null, deferreds).done(function(){
+						$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["playlist_submitted"];?> ("+songs.length+" <?php echo $lang["videos"];?>)</p>");
+						$(".play-url").removeClass("disabled");
+						$(".play-url").removeAttr("disabled");
+						$(".play-url").text("<?php echo $lang["submit_link"];?>");
+					}); // Feedback when all videos have been uploaded into the box playlist
+					//console.log("destroying secondary player");
+					$("#sec-player").remove();
+					event.target.destroy();
+				}
+			}
+			function addEntry(id, roomToken){
+				// Post URL into room history
+				$.post("functions/post_history.php", {url : id, roomToken : roomToken}).done(function(code){
+					switch(code){
+						case 'ok': // success code
+							$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["song_submit_success"];?></p>");
+							break;
+
+						case 'error': // Invalid link code
+							$("#body-chat").append("<p class='system-message system-alert'><span class='glyphicon glyphicon-exclamation-sign'></span> <?php echo $lang["invalid_link"];?></p>");
+							break;
+
+						default: // success code but the info are incomplete
+							$("#body-chat").append("<div id='warning-"+code+"'><p class='system-message system-warning'><span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["no_fetch"];?><div class='input-group info-box-group'><input type='text' placeholder='<?php echo $lang["fill_placeholder"];?>' class='form-control info-box' id='info-"+code+"'><span class='input-group-btn'><button class='btn btn-primary send-info'><?php echo $lang["fill_missing"];?></button><button class='btn btn-danger cancel-info' id='cancel-info-"+code+"'>Cancel</button></div></div>");
+							break;
+					}
+					$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
+				});
+			}
+			function addBigPlaylist(list, roomToken){
+				// Test playlist : https://www.youtube.com/watch?v=Y3HVHNf-oW4&list=PLOXH-6LkzI0OtCgTVus8Czl4wBLyw9SK6
+				//console.log("big playlist: switching over to bulk");
+				$(".play-url").addClass("disabled");
+				$(".play-url").attr("disabled", "disabled");
+				$(".play-url").text("<?php echo $lang["submitting"];?>");
+				var deferreds = [];
+				// Call to this function if the user is adding a playlist of more than 9 videos
+				var i, j, temp, chunk = 10;
+				for(i = 0, j = list.length; i < j; i+=chunk){
+					temp = list.slice(i,i+chunk);
+					var listJSON = JSON.stringify(temp);
+					deferreds.push(
+						$.post("functions/post_playlist.php", {list : listJSON, roomToken : roomToken})
+					)
+				}
+				return deferreds;
 			}
 			function getNext(skip){
 				if(skip == true){
@@ -1310,6 +1424,7 @@ if(isset($_SESSION["token"])){
 				}
 			}
 			function submitLink(){
+				$(".submit-warning").empty();
 				if(window.roomState == 1){
 					// Get room token
 					var roomToken = "<?php echo $roomToken;?>";
@@ -1317,35 +1432,37 @@ if(isset($_SESSION["token"])){
 					// Get URL
 					var src = $(".url-box").val();
 					if(src != ''){
-						// get ID of video
-						var reg = new RegExp(/\?v=([a-z0-9\-\_]+)\&?/i); // works for all youtube links except youtu.be type
-						var res = reg.exec(src);
-						if(res == null){
-							var alt = new RegExp(/\.be\/([a-z0-9\-\_]+)\&?/i); // works for youtu.be type links
-							res = alt.exec(src);
-						}
-						var id = res[1];
-
-						// Post URL into room history
-						$.post("functions/post_history.php", {url : id, roomToken : roomToken}).done(function(code){
-							console.log(code);
-							switch(code){
-								case 'ok': // success code
-									$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["song_submit_success"];?></p>");
-									break;
-
-								case 'error': // Invalid link code
-									$("#body-chat").append("<p class='system-message system-alert'><span class='glyphicon glyphicon-exclamation-sign'></span> <?php echo $lang["invalid_link"];?></p>");
-									break;
-
-								default: // success code but the info are incomplete
-									$("#body-chat").append("<div id='warning-"+code+"'><p class='system-message system-warning'><span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["no_fetch"];?><div class='input-group info-box-group'><input type='text' placeholder='<?php echo $lang["fill_placeholder"];?>' class='form-control info-box' id='info-"+code+"'><span class='input-group-btn'><button class='btn btn-primary send-info'><?php echo $lang["fill_missing"];?></button><button class='btn btn-danger cancel-info' id='cancel-info-"+code+"'>Cancel</button></div></div>");
-									break;
+						// get playlist if it exists
+						var playreg = new RegExp(/list=([a-z0-9\-\_]+)\&?/i);
+						var playres = playreg.exec(src);
+						if(playres != null){
+							pID = playres[1];
+							//console.log("Playlist detected : "+pID);
+							$(".under-video").append("<div class='modal-body' id='sec-player' style='display:none;'></div>");
+							var secondaryPlayer;
+							secondaryPlayer = new YT.Player('sec-player', {
+								height: '5',
+								width: '5',
+								videoId: '',
+								events: {
+									'onReady': onSecPlayerReady,
+									'onStateChange': onSecPlayerStateChange
+								}
+							});
+						} else {
+							// if there's no playlist, get ID of video
+							var reg = new RegExp(/\?v=([a-z0-9\-\_]+)\&?/i); // works for all youtube links except youtu.be type
+							var res = reg.exec(src);
+							if(res == null){
+								var alt = new RegExp(/\.be\/([a-z0-9\-\_]+)\&?/i); // works for youtu.be type links
+								res = alt.exec(src);
 							}
-							$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
-						});
-						// Empty URL box
-						$(".url-box").val('');
+							var id = res[1];
+							// We call the function to add the id to the database
+							addEntry(id, roomToken);
+							// Empty URL box
+							$(".url-box").val('');
+						}
 					}
 				}
 			}
@@ -1511,7 +1628,7 @@ if(isset($_SESSION["token"])){
 							}
 							$("#body-chat").append(message);
 						} else {
-							console.log("Double fetch. Denied");
+							//console.log("Double fetch. Denied");
 						}
 						if(!window.chatHovered){
 							$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
