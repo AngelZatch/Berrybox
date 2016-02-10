@@ -96,17 +96,19 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 							<p class="col-lg-12 room-description"><?php echo $historyRooms["room_description"];?></p>
 						</div>
 						<div class="panel panel-footer">
-							<div class="col-lg-12">
-								<?php if($historyRooms["room_active"] == '1'){ ?>
-								<a href="box/<?php echo $historyRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
-								<?php } else { ?>
-								<div class="col-lg-6">
-									<a class="btn btn-primary btn-block" onClick="openRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_reopen"];?></a>
+							<div class="container-fluid">
+								<div class="col-lg-12">
+									<?php if($historyRooms["room_active"] == '1'){ ?>
+									<a href="box/<?php echo $historyRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+									<?php } else { ?>
+									<div class="col-lg-6">
+										<a class="btn btn-primary btn-block" onClick="openRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_reopen"];?></a>
+									</div>
+									<div class="col-lg-6">
+										<a class="btn btn-danger btn-block" onClick="deleteRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_delete"];?></a>
+									</div>
+									<?php } ?>
 								</div>
-								<div class="col-lg-6">
-									<a class="btn btn-danger btn-block" onClick="deleteRoom('<?php echo $historyRooms["room_token"];?>')"><?php echo $lang["room_delete"];?></a>
-								</div>
-								<?php } ?>
 							</div>
 						</div>
 					</div>
