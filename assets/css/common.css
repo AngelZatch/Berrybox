@@ -759,4 +759,9 @@ legend {
   font-size: 1.2em;
   margin-left: 20px; }
 
+/* line 613, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.panel-box .panel-footer {
+  padding: 10px 0;
+  margin: 0; }
+
 /*# sourceMappingURL=common.css.map */

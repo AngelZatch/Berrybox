@@ -101,8 +101,8 @@ if(isset($_SESSION["token"])){
 				<div class="modal-body" id="player"></div>
 			</div>
 			<div class="row under-video">
+				<?php if(isset($_SESSION["token"])){ ?>
 				<div class="add-link col-lg-6">
-					<?php if(isset($_SESSION["token"])){ ?>
 					<div class="input-group input-group-lg">
 						<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
 						<span class="input-group-btn">
@@ -110,7 +110,9 @@ if(isset($_SESSION["token"])){
 						</span>
 					</div>
 					<p class="submit-warning"></p>
-					<?php } else { ?>
+				</div>
+				<?php } else { ?>
+				<div class="add-link col-lg-12">
 					<div id="no-credentials">
 						<p><?php echo $lang["no_credentials"];?></p>
 						<form method="post" action="portal">
@@ -122,8 +124,8 @@ if(isset($_SESSION["token"])){
 							<input type="submit" class="btn btn-primary" value="<?php echo $lang["sign_up"];?>">
 						</form>
 					</div>
-					<?php } ?>
 				</div>
+				<?php } ?>
 				<div class="col-lg-6 mood-selectors">
 					<p class="mood-question"><?php echo $lang["mood-question"];?></p>
 					<div class="col-lg-2">
