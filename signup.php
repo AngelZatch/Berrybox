@@ -46,7 +46,7 @@ if(isset($_POST["signup"])){
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Strawberry Music Streamer</title>
+		<title><?php echo $lang["sign_up"];?></title>
 		<?php include "styles.php";?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 	</head>

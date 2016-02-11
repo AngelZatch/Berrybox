@@ -21,56 +21,107 @@ if(isset($_SESSION["token"])){
 	include_once "languages/lang.".$userLang.".php";
 }
 ?>
-<nav class="navbar navbar-fixed-top">
-	<div class="container-fluid">
-		<a href="home" class="navbar-brand">Berrybox</a>
-		<ul class="nav navbar-nav navbar-right">
-			<form action="search" method="post" class="navbar-form navbar-left" role="search">
-				<div class="input-group">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-					<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
-				</div>
-			</form>
-			<?php if(isset($_SESSION["username"])){ ?>
-			<li>
-				<a href="follow"><?php echo $lang["following"];?> (<?php echo $followRooms;?>)</a>
-			</li>
-			<li>
-				<a href="create" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
-			</li>
-			<li>
-				<a class="popover-trigger" data-toggle="popover-x" data-target="#user-menu" role="button" data-trigger="focus" data-placement="bottom bottom-right">
+<nav class="navbar navbar-static-top">
+	<div class="container">
+		<div class="hidden-lg">
+			<div class="navbar-header">
+				<a href="home" class="navbar-brand">Berrybox</a>
+				<?php if(isset($_SESSION["username"])){ ?>
+				<button class="navbar-toggle collapsed no-padding" data-toggle="collapse" data-target="#navbar">
 					<div class="small-pp">
 						<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit;">
 					</div>
-				</a>
-				<div id="user-menu" class="popover popover-default popover-md menu-popover">
-					<div class="arrow"></div>
-					<div class="popover-content">
-						<div class="medium-pp">
+				</button>
+				<?php } else { ?>
+				<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+				<?php } ?>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar">
+					<?php if(isset($_SESSION["username"])){ ?>
+					<li>
+						<a href="follow"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang["following"];?> (<?php echo $followRooms;?>)</a>
+					</li>
+					<li>
+						<a href="profile/settings"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["my_settings"];?></a>
+					</li>
+					<li>
+						<a href="user/<?php echo $_SESSION["username"];?>"><span class="glyphicon glyphicon-user"></span> <?php echo $lang["my_profile"];?></a>
+					</li>
+					<li>
+						<a href="create" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
+					</li>
+					<li>
+						<form action="search" method="post" class="navbar-form" role="search">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+								<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
+							</div>
+						</form>
+					</li>
+					<li>
+						<a href="logout.php"><span class="glyphicon glyphicon-off"></span> <?php echo $lang["log_out"];?></a>
+					</li>
+					<?php } else { ?>
+					<li>
+						<a href="portal" class="navbar-link"> <span class="glyphicon glyphicon-log-in"></span> <?php echo $lang["log_in"];?></a>
+					</li>
+					<li>
+						<a href="signup" class="navbar-link"><?php echo $lang["sign_up"];?></a>
+					</li>
+					<?php } ?>
+				</ul>
+			</div>
+		</div>
+		<div class="visible-lg">
+			<div class="navbar-header">
+				<a href="home" class="navbar-brand">Berrybox</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<form action="search" method="post" class="navbar-form navbar-left" role="search">
+					<div class="input-group">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+						<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
+					</div>
+				</form>
+				<?php if(isset($_SESSION["username"])){ ?>
+				<li>
+					<a href="follow"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang["following"];?> (<?php echo $followRooms;?>)</a>
+				</li>
+				<li>
+					<a href="create" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
+				</li>
+				<li>
+					<a class="popover-trigger" data-toggle="popover-x" data-target="#user-menu" role="button" data-trigger="focus" data-placement="bottom bottom-right">
+						<div class="small-pp">
 							<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit;">
 						</div>
-						<p class="user-menu-name"><?php echo $userDetails["user_pseudo"];?></p>
-						<a href="profile/settings" class="btn btn-primary no-margin"><?php echo $lang["my_settings"];?></a>
-						<a href="user/<?php echo $_SESSION["username"];?>" class="btn btn-primary no-margin"><?php echo $lang["my_profile"];?></a>
+					</a>
+					<div id="user-menu" class="popover popover-default popover-md menu-popover">
+						<div class="arrow"></div>
+						<div class="popover-content">
+							<div class="medium-pp">
+								<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit;">
+							</div>
+							<p class="user-menu-name"><?php echo $userDetails["user_pseudo"];?></p>
+							<a href="profile/settings" class="btn btn-primary no-margin"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["my_settings"];?></a>
+							<a href="user/<?php echo $_SESSION["username"];?>" class="btn btn-primary no-margin"><span class="glyphicon glyphicon-user"></span> <?php echo $lang["my_profile"];?></a>
+						</div>
+						<div class="popover-footer">
+							<a href="logout.php" class="btn btn-primary no-margin"><span class="glyphicon glyphicon-off"></span> <?php echo $lang["log_out"];?></a>
+						</div>
 					</div>
-					<div class="popover-footer">
-						<a href="logout.php" class="btn btn-primary no-margin"><?php echo $lang["log_out"];?></a>
-					</div>
-				</div>
-			</li>
-			<?php } else { ?>
-			<li><a href="portal" class="navbar-link"><?php echo $lang["log_in"];?></a></li>
-			<li><a href="signup" class="navbar-link"><?php echo $lang["sign_up"];?></a></li>
-			<!--<li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $lang["language_name"];?> <span class="caret"></span></a>
-<ul class="dropdown-menu">
-<li><a href="/home"><?php echo $lang["lang_en"];?></a></li>
-<li><a href="/home"><?php echo $lang["lang_jp"];?></a></li>
-<li><a href="/home"><?php echo $lang["lang_fr"];?></a></li>
-</ul>
-</li>-->
-			<?php } ?>
-		</ul>
+				</li>
+				<?php } else { ?>
+				<li><a href="portal" class="navbar-link"><?php echo $lang["log_in"];?></a></li>
+				<li><a href="signup" class="navbar-link"><?php echo $lang["sign_up"];?></a></li>
+				<?php } ?>
+			</ul>
+		</div>
 	</div>
 </nav>

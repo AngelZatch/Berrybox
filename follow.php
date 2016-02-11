@@ -20,7 +20,7 @@ if(isset($_SESSION["token"])){
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Berrybox</title>
+		<title><?php echo $lang["following"];?></title>
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
 		<link rel="stylesheet" href="assets/css/<?php echo $theme;?>-theme.css">

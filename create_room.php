@@ -12,7 +12,7 @@ $queryTypes = $db->query("SELECT * FROM room_types");
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Create a room</title>
+		<title><?php echo $lang["room_create"];?></title>
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){
 			if($userDetails["up_theme"] == '1'){?>

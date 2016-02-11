@@ -32,7 +32,7 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Log in | Berrybox</title>
+		<title><?php echo $lang["log_in"];?></title>
 		<?php include "styles.php";?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 	</head>

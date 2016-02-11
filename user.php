@@ -65,105 +65,107 @@ if(isset($_SESSION["token"])){
 	<body>
 		<?php include "nav.php";?>
 		<div class="main">
-			<div class="banner-container">
-				<?php if(isset($_SESSION["username"]) && $profileToken == $_SESSION["username"]){ ?>
-				<form action="user/<?php echo $profileToken;?>" method="post" enctype="multipart/form-data">
-					<div id="banner">
+			<div class="container-fluid no-padding">
+				<div class="banner-container">
+					<?php if(isset($_SESSION["username"]) && $profileToken == $_SESSION["username"]){ ?>
+					<form action="user/<?php echo $profileToken;?>" method="post" enctype="multipart/form-data">
+						<div id="banner">
+						</div>
+						<?php } else { ?>
+						<div id="banner">
+							<img src="profile-banners/<?php echo $profileDetails['user_banner'];?>">
+						</div>
+						<?php } ?>
+						<div class="user-profile-container">
+							<div class="user-profile-details col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
+								<div class="user-actions">
+									<?php if(isset($_SESSION["username"])){
+	if($_SESSION["username"] != $profileToken){ ?>
+									<?php if($userFollow == 1){ ?>
+									<button class="btn btn-primary btn-active btn-unfollow" id="user-page-unfollow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
+									<?php } else { ?>
+									<button class="btn btn-primary btn-follow" id="user-page-follow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['follow'];?></button>
+									<?php } } else { ?>
+									<input type="file" id="banner-input" name="profile-banner" class="file-loading">
+									<input type="submit" class="btn btn-success btn-block" name="submit" value="<?php echo $lang["save_changes"];?>">
+									<?php } } else { ?>
+									<a href="signup" class="btn btn-primary">Register to follow this user</a>
+									<?php } ?>
+								</div>
+								<div class="user-profile-picture">
+									<img src="profile-pictures/<?php echo $profileDetails["user_pp"];?>" class="profile-picture">
+								</div>
+								<p class="user-profile-name"><?php echo $profileDetails["user_pseudo"];?></p>
+								<div class="user-profile-bio">
+									<?php echo ($profileDetails["user_bio"])?$profileDetails["user_bio"]:$lang["no_bio"];?>
+								</div>
+							</div>
+						</div>
+						<?php if($profileToken == $_SESSION["username"]){ ?>
+					</form>
+					<?php } ?>
+				</div>
+				<div class="user-profile-stats col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12">
+					<div class="col-lg-3 col-md-3 col-xs-6">
+						<p class="stats-title"><?php echo $lang["rooms_created"];?></p>
+						<p class="stats-value"><?php echo $profileDetails["stat_rooms_created"];?></p>
 					</div>
-					<?php } else { ?>
-					<div id="banner">
-						<img src="profile-banners/<?php echo $profileDetails['user_banner'];?>">
+					<div class="col-lg-3 col-md-3 col-xs-6">
+						<p class="stats-title"><?php echo $lang["songs_submitted"];?></p>
+						<p class="stats-value"><?php echo $profileDetails["stat_songs_submitted"];?></p>
+					</div>
+					<div class="col-lg-3 col-md-3 col-xs-6">
+						<p class="stats-title"><?php echo $lang["total_views"];?></p>
+						<p class="stats-value"><?php echo $profileDetails["stat_visitors"];?></p>
+					</div>
+					<div class="col-lg-3 col-md-3 col-xs-6">
+						<p class="stats-title"><?php echo $lang["total_followers"];?></p>
+						<p class="stats-value"><?php echo $profileDetails["stat_followers"];?></p>
+					</div>
+				</div>
+				<div class="user-rooms col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12">
+					<p id="profile-title"><?php echo $lang["opened_rooms"];?></p>
+					<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){
+	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[room_token] rh
+													JOIN song_base sb ON sb.song_base_id = rh.video_index
+													WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+					?>
+					<div class="col-lg-6 col-xs-12 panel-box-container">
+						<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
+							<div class="panel-body box-entry">
+								<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
+								<div class="col-lg-12 room-thumbnail">
+									<img src="http://img.youtube.com/vi/<?php echo $roomInfo["link"];?>/0.jpg" alt="">
+									<?php if($roomInfo["video_status"] == 1){ ?>
+									<p id="current-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["now_playing_home"].stripslashes($roomInfo["video_name"]);?></p>
+									<?php } else {?>
+									<p id="previous-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["recently_played"].stripslashes($roomInfo["video_name"]);?></p>
+									<?php } ?>
+								</div>
+								<div class="room-pp">
+									<img src="profile-pictures/<?php echo $activeRooms["user_pp"];?>" alt="<?php echo $activeRooms["user_pseudo"];?>" style="width:inherit;">
+								</div>
+								<div class="room-details">
+									<p><span class="room-creator"><a href="user/<?php echo $activeRooms["user_pseudo"];?>"><?php echo $activeRooms["user_pseudo"];?></a></span></p>
+									<p class="room-type room-label">
+										<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
+										<?php if($activeRooms["room_protection"] == '1') { ?>
+										<span class="label label-success"><?php echo $lang["level_public"];?></span>
+										<?php } else { ?>
+										<span class="label label-danger"><?php echo $lang["level_private"];?></span>
+										<?php } ?>
+										<span class="label label-lang"><?php echo $lang["lang_".$activeRooms["room_lang"]];?></span>
+									</p>
+								</div>
+								<p class="col-lg-12 room-description"><?php echo $activeRooms["room_description"];?></p>
+								<div class="col-lg-12">
+									<a href="box/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+								</div>
+							</div>
+						</div>
 					</div>
 					<?php } ?>
-					<div class="user-profile-container">
-						<div class="user-profile-details col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
-							<div class="user-profile-picture">
-								<img src="profile-pictures/<?php echo $profileDetails["user_pp"];?>" class="profile-picture">
-							</div>
-							<div class="user-actions">
-								<?php if(isset($_SESSION["username"])){
-	if($_SESSION["username"] != $profileToken){ ?>
-								<?php if($userFollow == 1){ ?>
-								<button class="btn btn-primary btn-active btn-unfollow" id="user-page-unfollow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
-								<?php } else { ?>
-								<button class="btn btn-primary btn-follow" id="user-page-follow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['follow'];?></button>
-								<?php } } else { ?>
-								<input type="file" id="banner-input" name="profile-banner" class="file-loading">
-								<input type="submit" class="btn btn-success btn-block" name="submit" value="<?php echo $lang["save_changes"];?>">
-								<?php } } else { ?>
-								<a href="signup" class="btn btn-primary">Register to follow this user</a>
-								<?php } ?>
-							</div>
-							<p class="user-profile-name"><?php echo $profileDetails["user_pseudo"];?></p>
-							<div class="user-profile-bio">
-								<?php echo ($profileDetails["user_bio"])?$profileDetails["user_bio"]:$lang["no_bio"];?>
-							</div>
-						</div>
-					</div>
-					<?php if($profileToken == $_SESSION["username"]){ ?>
-				</form>
-				<?php } ?>
-			</div>
-			<div class="user-profile-stats col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
-				<div class="col-lg-3 col-md-3">
-					<p class="stats-title"><?php echo $lang["rooms_created"];?></p>
-					<p class="stats-value"><?php echo $profileDetails["stat_rooms_created"];?></p>
 				</div>
-				<div class="col-lg-3 col-md-3">
-					<p class="stats-title"><?php echo $lang["songs_submitted"];?></p>
-					<p class="stats-value"><?php echo $profileDetails["stat_songs_submitted"];?></p>
-				</div>
-				<div class="col-lg-3 col-md-3">
-					<p class="stats-title"><?php echo $lang["total_views"];?></p>
-					<p class="stats-value"><?php echo $profileDetails["stat_visitors"];?></p>
-				</div>
-				<div class="col-lg-3 col-md-3">
-					<p class="stats-title"><?php echo $lang["total_followers"];?></p>
-					<p class="stats-value"><?php echo $profileDetails["stat_followers"];?></p>
-				</div>
-			</div>
-			<div class="user-rooms col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
-				<p id="profile-title"><?php echo $lang["opened_rooms"];?></p>
-				<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){
-	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[room_token] rh
-												JOIN song_base sb ON sb.song_base_id = rh.video_index
-												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-				?>
-				<div class="col-lg-6">
-					<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
-						<div class="panel-body box-entry">
-							<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
-							<div class="col-lg-12 room-thumbnail">
-								<img src="http://img.youtube.com/vi/<?php echo $roomInfo["link"];?>/0.jpg" alt="">
-								<?php if($roomInfo["video_status"] == 1){ ?>
-								<p id="current-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["now_playing_home"].stripslashes($roomInfo["video_name"]);?></p>
-								<?php } else {?>
-								<p id="previous-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["recently_played"].stripslashes($roomInfo["video_name"]);?></p>
-								<?php } ?>
-							</div>
-							<div class="room-pp">
-								<img src="profile-pictures/<?php echo $activeRooms["user_pp"];?>" alt="<?php echo $activeRooms["user_pseudo"];?>" style="width:inherit;">
-							</div>
-							<div class="room-details">
-								<p><span class="room-creator"><a href="user/<?php echo $activeRooms["user_pseudo"];?>"><?php echo $activeRooms["user_pseudo"];?></a></span></p>
-								<p class="room-type room-label">
-									<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
-									<?php if($activeRooms["room_protection"] == '1') { ?>
-									<span class="label label-success"><?php echo $lang["level_public"];?></span>
-									<?php } else { ?>
-									<span class="label label-danger"><?php echo $lang["level_private"];?></span>
-									<?php } ?>
-									<span class="label label-lang"><?php echo $lang["lang_".$activeRooms["room_lang"]];?></span>
-								</p>
-							</div>
-							<p class="col-lg-12 room-description"><?php echo $activeRooms["room_description"];?></p>
-							<div class="col-lg-12">
-								<a href="box/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<?php } ?>
 			</div>
 		</div>
 		<?php include "scripts.php";?>
@@ -176,7 +178,7 @@ if(isset($_SESSION["token"])){
 					showClose: false,
 					showCaption: false,
 					initialPreviewShowDelete: true,
-					browseIcon: '',
+					browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
 					browseLabel: '<?php echo $lang["change_banner"];?>',
 					removeLabel: '<?php echo $lang["cancel"];?>',
 					removeClass: 'btn btn-danger',

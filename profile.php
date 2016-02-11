@@ -72,7 +72,7 @@ if(isset($_POST["submit"])){
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>My Profile</title>
+		<title><?php echo $lang["my_settings"];?></title>
 		<base href="../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
