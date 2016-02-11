@@ -70,12 +70,12 @@ if(isset($_SESSION["token"])){
 					<img src="profile-pictures/<?php echo $roomDetails["user_pp"];?>" class="profile-picture" title="<?php echo $roomDetails["user_pseudo"]." (".$lang["room_admin"].")";?>" alt="">
 				</div>
 				<p id="room-title"><?php echo $roomDetails["room_name"];?></p>
-				<p> <a href="user/<?php echo $roomDetails["user_pseudo"];?>" target="_blank"><?php echo $roomDetails["user_pseudo"];?></a> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
+				<p id="room-undertitle"> <a href="user/<?php echo $roomDetails["user_pseudo"];?>" target="_blank"><?php echo $roomDetails["user_pseudo"];?></a> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
 				<div class="room-admin">
 					<?php
 					if(isset($_SESSION["token"])){
 						if($_SESSION["token"] != $roomDetails["room_creator"]){?>
-					<div class="room-buttons col-lg-2">
+					<div class="room-buttons col-lg-2 col-xs-4">
 						<?php if($userFollow == 1){ ?>
 						<button class="btn btn-primary btn-active btn-unfollow" id="box-title-unfollow" value="<?php echo $roomDetails["user_pseudo"];?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
 						<?php } else { ?>
@@ -83,15 +83,15 @@ if(isset($_SESSION["token"])){
 						<?php } ?>
 					</div>
 					<?php } else { ?>
-					<div class="room-buttons col-lg-2">
+					<div class="room-buttons col-lg-2 col-xs-4">
 						<button class="btn btn-default btn-admin" onClick="getNext(true)"><span class="glyphicon glyphicon-step-forward"></span> <?php echo $lang["skip"];?></button>
 					</div>
 					<?php } ?>
-					<div class="room-quick-messages col-lg-8"></div>
+					<div class="room-quick-messages col-lg-8 col-xs-4"></div>
 					<?php } else { ?>
-					<div class="room-quick-messages col-lg-10"></div>
+					<div class="room-quick-messages col-lg-10 col-xs-10"></div>
 					<?php } ?>
-					<div class="creator-stats col-lg-2">
+					<div class="creator-stats col-lg-2 col-xs-4">
 						<span class="glyphicon glyphicon-eye-open" title="<?php echo $lang["total_views"];?>"></span> <?php echo $creatorStats["stat_visitors"];?>
 						<span class="glyphicon glyphicon-heart"></span> <?php echo $creatorStats["stat_followers"];?>
 					</div>
@@ -100,9 +100,9 @@ if(isset($_SESSION["token"])){
 			<div id="currently-playing">
 				<div class="modal-body" id="player"></div>
 			</div>
-			<div class="row under-video">
+			<div class="container-fluid under-video hidden-xs">
 				<?php if(isset($_SESSION["token"])){ ?>
-				<div class="add-link col-lg-6">
+				<div class="add-link col-lg-6 col-xs-12">
 					<div class="input-group input-group-lg">
 						<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
 						<span class="input-group-btn">
@@ -112,7 +112,7 @@ if(isset($_SESSION["token"])){
 					<p class="submit-warning"></p>
 				</div>
 				<?php } else { ?>
-				<div class="add-link col-lg-12">
+				<div class="add-link col-lg-12 col-xs-12">
 					<div id="no-credentials">
 						<p><?php echo $lang["no_credentials"];?></p>
 						<form method="post" action="portal">
@@ -126,7 +126,7 @@ if(isset($_SESSION["token"])){
 					</div>
 				</div>
 				<?php } ?>
-				<div class="col-lg-6 mood-selectors">
+				<div class="col-lg-6 mood-selectors hidden-xs">
 					<p class="mood-question"><?php echo $lang["mood-question"];?></p>
 					<div class="col-lg-2">
 						<p class="emotion-glyph emotion-like button-glyph" onClick="voteMood('like')">
@@ -166,7 +166,7 @@ if(isset($_SESSION["token"])){
 			<div class="panel panel-default panel-room">
 				<div class="panel-heading">
 					<div class="chat-options row">
-						<div class="col-lg-12 room-brand"><a href="home">Berrybox</a></div>
+						<div class="col-lg-12 room-brand hidden-xs"><a href="home">Berrybox</a></div>
 						<?php if(isset($_SESSION["username"])) { ?>
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 toggle-menu-list button-glyph">
 							<span class="glyphicon glyphicon-dashboard" title="<?php echo $lang["menu"];?>"></span>
@@ -198,7 +198,7 @@ if(isset($_SESSION["token"])){
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-3 col-md-3 full-panel" id="song-list">
+		<div class="col-lg-3 col-md-3 col-xs-12 full-panel" id="song-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></div>
 				<div class="panel-body panel-section">
@@ -208,13 +208,13 @@ if(isset($_SESSION["token"])){
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-2 col-md-2 full-panel" id="user-list">
+		<div class="col-lg-2 col-md-2 col-xs-12 full-panel" id="user-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-user"></span><span id="watch-count"></span> <?php echo $lang["watch_count"];?></div>
 				<div class="panel-body full-panel-body" id="body-user-list"></div>
 			</div>
 		</div>
-		<div class="col-lg-3 col-md-3 full-panel" id="options-list">
+		<div class="col-lg-3 col-md-3 col-xs-12 full-panel" id="options-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["chat_settings"];?></div>
 				<?php if(isset($_SESSION["username"])){ ?>
@@ -350,7 +350,7 @@ if(isset($_SESSION["token"])){
 				<?php } ?>
 			</div>
 		</div>
-		<div class="col-lg-2 col-md-3 full-panel" id="menu-list">
+		<div class="col-lg-2 col-md-3 col-xs-12 full-panel" id="menu-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-dashboard" title=""></span> <?php echo $lang["menu"];?></div>
 				<div class="panel-body" style="height: 85vh;">
@@ -382,6 +382,33 @@ if(isset($_SESSION["token"])){
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="container-fluid under-video visible-xs-block">
+			<?php if(isset($_SESSION["token"])){ ?>
+			<div class="add-link col-xs-12">
+				<div class="input-group">
+					<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
+					<span class="input-group-btn">
+						<button class="btn btn-primary play-url" data-toggle="modal"><?php echo $lang["submit_link"];?></button>
+					</span>
+				</div>
+				<p class="submit-warning"></p>
+			</div>
+			<?php } else { ?>
+			<div class="add-link col-xs-12">
+				<div id="no-credentials">
+					<p><?php echo $lang["no_credentials"];?></p>
+					<form method="post" action="portal">
+						<input type="hidden" name="box-token" value="<?php echo $roomToken;?>">
+						<input type="submit" class="btn btn-primary" value="<?php echo $lang["log_in"];?>">
+					</form>
+					<form method="post" action="signup">
+						<input type="hidden" name="box-token" value="<?php echo $roomToken;?>">
+						<input type="submit" class="btn btn-primary" value="<?php echo $lang["sign_up"];?>">
+					</form>
+				</div>
+			</div>
+			<?php } ?>
 		</div>
 		<?php include "scripts.php";?>
 		<!--<script src="assets/js/ekko-lightbox.min.js"></script>-->
@@ -955,11 +982,11 @@ if(isset($_SESSION["token"])){
 					userCard += "<img src='"+details.user_pp+"' alt='' style='width:inherit'>";
 					userCard += "</div>";
 					userCard += "<p id='user-card-name'><a href='user/"+details.user_pseudo+"' target='_blank'>"+details.user_pseudo+"</a><span class='glyphicon glyphicon-remove button-glyph' id='user-card-close'></span></p>";
-					userCard += "<div class='row user-card-stats'>";
-					userCard += "<div class='col-lg-2'><span class='glyphicon glyphicon-heart' title='<?php echo $lang["total_followers"];?>'></span> "+details.followers+"</div>";
-					userCard += "<div class='col-lg-2'><span class='glyphicon glyphicon-eye-open' title='<?php echo $lang["total_views"];?>'></span> "+details.visitors+"</div>";
-					userCard += "<div class='col-lg-2'><span class='glyphicon glyphicon-plus' title='<?php echo $lang["rooms_created"];?>'></span> "+details.rooms+"</div>";
-					userCard += "<div class='col-lg-2'><span class='glyphicon glyphicon-music' title='<?php echo $lang["songs_submitted"];?>'></span> "+details.songs+"</div>";
+					userCard += "<div class='container-fluid user-card-stats'>";
+					userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-heart' title='<?php echo $lang["total_followers"];?>'></span> "+details.followers+"</div>";
+					userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-eye-open' title='<?php echo $lang["total_views"];?>'></span> "+details.visitors+"</div>";
+					userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-plus' title='<?php echo $lang["rooms_created"];?>'></span> "+details.rooms+"</div>";
+					userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-music' title='<?php echo $lang["songs_submitted"];?>'></span> "+details.songs+"</div>";
 					userCard += "</div>"; // user-card-stats
 					userCard += "</div>"; // user-card-info
 					<?php if(isset($_SESSION["username"])){ ?>
@@ -1348,24 +1375,24 @@ if(isset($_SESSION["token"])){
 							}
 							if(songList[i].videoStatus == 2){
 								message += "<div class='row playlist-entry song-played'>";
-								message += "<div class='col-lg-10'>";
+								message += "<div class='col-lg-10 col-xs-10'>";
 								pVideos++;
 							} else if(songList[i].videoStatus == 1){
 								message += "<div class='row playlist-entry song-playing'>";
-								message += "<div class='col-lg-12'>";
+								message += "<div class='col-lg-12 col-xs-12'>";
 							} else if(songList[i].videoStatus == 3){
 								message += "<div class='row playlist-entry song-ignored'>";
-								message += "<div class='col-lg-10'>";
+								message += "<div class='col-lg-10 col-xs-10'>";
 							} else {
 								var message = "<div class='row playlist-entry song-upcoming'>";
-								message += "<div class='col-lg-10'>";
+								message += "<div class='col-lg-10 col-xs-10'>";
 								uVideos++;
 							}
 							message += "<p class='song-list-line'><a href='https://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songName+"'>"+songList[i].videoName+"</a></p></div>";
 							if(window.roomState == 1){
 								if(userPower == 2 || userPower == 3){
 									if(songList[i].videoStatus == 0){
-										message += "<div class='col-lg-1'>";
+										message += "<div class='col-lg-1 col-xs-1'>";
 										message += "<span class='glyphicon glyphicon-ban-circle button-glyph' onClick=ignoreSong("+songList[i].entry+")></span>";
 										message += "</div>";
 										/*message += "<div class='col-lg-1'>";
@@ -1375,13 +1402,13 @@ if(isset($_SESSION["token"])){
 						message += "<span class='glyphicon glyphicon-arrow-down'></span>";
 						message += "</div>";*/
 									} else if(songList[i].videoStatus == 3){
-										message += "<div class='col-lg-1'>";
+										message += "<div class='col-lg-1 col-xs-1'>";
 										message += "<span class='glyphicon glyphicon-ok-circle button-glyph' onClick=reinstateSong("+songList[i].entry+")></span>";
 										message += "</div>";
 									}
 								}
 								if(songList[i].videoStatus == 2 && userToken != -1){
-									message += "<div class='col-lg-1'><span class='glyphicon glyphicon-repeat button-glyph' onClick=requeueSong("+songList[i].entry+")></span></div>";
+									message += "<div class='col-lg-1 col-xs-1'><span class='glyphicon glyphicon-repeat button-glyph' onClick=requeueSong("+songList[i].entry+")></span></div>";
 								}
 							}
 							message += "</div>";

@@ -8,6 +8,9 @@ $skip-color: #D08AC3
 $play-color: #7DB8E0
 $whisper-color: #D5D5D5
 $avatar-size-preview: 120px
+$break-small: 360px
+$break-medium: 768px
+$break-large: 1200px
 
 /** @font-face
 	font-family: 'geometria_lightlight'
@@ -68,11 +71,18 @@ legend
 	height: 100vh
 	z-index: 2
 	display: none
+	@media screen and(max-width: $break-small)
+		padding-left: 0 !important
+		left: 0
+		margin-top: 30px
 
 #room-chat
 	z-index: 3
 	padding-right: 0
-	height: 100vh
+	@media screen and (min-width: $break-large)
+		height: 100vh
+	@media screen and(max-width: $break-small)
+		padding-left: 0 !important
 
 .full-panel-body
 	height: 90.2vh
@@ -84,6 +94,8 @@ legend
 	font-size: 12.5px
 	overflow-y: scroll
 	overflow-wrap: break-word
+	@media screen and (max-width: $break-small)
+		height: 30.2vh
 
 #body-options-list
 	height: 95.8vh
@@ -100,15 +112,15 @@ legend
 	padding-bottom: 0
 
 /****/
-.main
-	margin-top: 80px
-
 .main-maintenance
 	margin-top: 150px
 
 #player
 	width: 100%
 	margin: 0 auto;
+	@media screen and (max-width: $break-medium)
+		padding: 0
+		height: inherit
 
 /** System Messages **/
 .system-message
@@ -142,7 +154,10 @@ legend
 #room-player
 	padding-top: 14px
 	padding-right: 0 !important
-	height: 100vh
+	@media screen and(min-width: $break-medium)
+		height: 100vh
+	@media screen and(max-width: $break-small)
+		padding-left: 0 !important
 
 .room-info
 	white-space: nowrap
@@ -154,8 +169,10 @@ legend
 	margin-right: 10px
 
 .user-profile-picture
-	+circle-size(150px)
+	@media screen and (min-width: $break-medium)
+		+circle-size(150px)
 	float: left
+	+circle-size(50px)
 	margin-right: 10px
 
 .menu-pp
@@ -167,6 +184,8 @@ legend
 	+circle-size(35px)
 
 .medium-pp
+	@media screen and (max-width: $break-small)
+		+circle-size(30px)
 	+circle-size(60px)
 	float: left
 	margin-right: 20px
@@ -204,16 +223,22 @@ legend
 		box-shadow: none
 		overflow: visible
 		width: 100% !important
-		img
-			margin-top: -30%
-	.file-default-preview
-		img
-			margin-top: -30%
+	@media screen and (max-width: $break-medium)
+		.file-preview-frame
+			img
+					margin-top: -30%
+			.file-default-preview
+				img
+					margin-top: -30%
 
 /** Room info **/
 #room-title
 	font-size: 22px
 	margin-bottom: 5px
+	overflow: hidden
+	text-overflow: ellipsis
+
+#room-undertitle
 	overflow: hidden
 	text-overflow: ellipsis
 
@@ -307,7 +332,19 @@ nav
 	li>a:hover, li>a:focus
 		background-color: inherit !important
 
+.navbar-header
+	@media screen and (min-width: $break-medium)
+		float: left
+.navbar-right
+	float: right
+
+.icon-bar
+	background-color: $yellow-base
+
 .nav
+	li
+		@media screen and (min-width: $break-medium)
+			float: left
 	li>a:hover, li>a:focus
 		background-color: inherit !important
 
@@ -469,6 +506,9 @@ legend
 	font-family: 'geometria_lightlight'
 	font-size: 20px
 	font-weight: 800
+	padding-left: 0
+	@media screen and (max-width: $break-small)
+		line-height: inherit
 
 .search-input
 	border-left: none
@@ -505,6 +545,8 @@ legend
 	padding: 30px
 	z-index: 2
 	background-color: rgba(0,0,0,.70)
+	@media screen and (max-width: $break-small)
+		padding: 30px 0
 
 .stats-title
 	font-size: 14px
@@ -533,6 +575,8 @@ legend
 	margin-bottom: 20px
 	img
 		width: 100%
+	@media screen and (max-width: $break-small)
+		height: 44.6%
 
 /** 404 **/
 #not-found-title
@@ -566,6 +610,8 @@ legend
 		text-decoration: none
 
 .box-entry
+	@media screen and (max-width: $break-small)
+		padding: 5px
 	padding: 30px
 	border-radius: 5px
 	cursor: pointer
@@ -608,6 +654,11 @@ legend
 .submit-warning
 	font-size: 1.2em
 	margin-left: 20px
+
+.panel-box-container
+	@media screen and (max-width: $break-small)
+		padding-left: 0
+		padding-right: 0
 
 .panel-box
 	.panel-footer
