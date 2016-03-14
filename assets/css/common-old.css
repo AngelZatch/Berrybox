@@ -19,10 +19,6 @@
 	font-size: 18px;
 }
 
-.emotion-like {
-	color: #494AFF;
-}
-
 .emotion-cry {
 	color: #60E5FF;
 }
@@ -41,10 +37,6 @@
 
 .emotion-intense {
 	color: #FF7000;
-}
-
-.mood-selectors {
-	display: none;
 }
 
 .mood-question {

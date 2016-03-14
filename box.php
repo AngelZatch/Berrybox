@@ -128,32 +128,32 @@ if(isset($_SESSION["token"])){
 				<?php } ?>
 				<div class="col-lg-6 mood-selectors hidden-xs">
 					<p class="mood-question"><?php echo $lang["mood-question"];?></p>
-					<div class="col-lg-2">
+					<div class="col-lg-2 emotion-like-container">
 						<p class="emotion-glyph emotion-like button-glyph" onClick="voteMood('like')">
 							<span class="glyphicon glyphicon-thumbs-up"></span>
 						</p>
 					</div>
-					<div class="col-lg-2">
+					<div class="col-lg-2 emotion-cry-container">
 						<p class="emotion-glyph emotion-cry button-glyph" onClick="voteMood('cry')">
 							<span class="glyphicon glyphicon-tint"></span>
 						</p>
 					</div>
-					<div class="col-lg-2">
+					<div class="col-lg-2 emotion-love-container">
 						<p class="emotion-glyph emotion-love button-glyph" onClick="voteMood('love')">
 							<span class="glyphicon glyphicon-heart"></span>
 						</p>
 					</div>
-					<div class="col-lg-2">
+					<div class="col-lg-2 emotion-intense-container">
 						<p class="emotion-glyph emotion-intense button-glyph" onClick="voteMood('intense')">
 							<span class="glyphicon glyphicon-eye-open"></span>
 						</p>
 					</div>
-					<div class="col-lg-2">
+					<div class="col-lg-2 emotion-sleep-container">
 						<p class="emotion-glyph emotion-sleep button-glyph" onClick="voteMood('sleep')">
 							<span class="glyphicon glyphicon-bed"></span>
 						</p>
 					</div>
-					<div class="col-lg-2">
+					<div class="col-lg-2 emotion-fear-container">
 						<p class="emotion-glyph emotion-energy button-glyph" onClick="voteMood('energy')">
 							<span class="glyphicon glyphicon-flash"></span>
 						</p>
@@ -1086,19 +1086,10 @@ if(isset($_SESSION["token"])){
 					sendMessage("<?php echo $roomToken;?>", 4, 6, message);
 				})
 			}
-			function showMoodSelectors(){
-				$(".add-link").animate({
-					'width': '50%'
-				}, 300);
-				$(".mood-selectors").show('900');
-			}
 			function voteMood(mood){
 				$.post("functions/select_mood.php", {mood : mood, id : sessionStorage.getItem("currently-playing")}).done(function(){
-					hideMoodSelectors();
+					console.log("Vote");
 				})
-			}
-			function hideMoodSelectors(){
-				$(".mood-selectors").hide('900');
 			}
 			function fillInfo(){
 				var name = $(".info-box").val();
