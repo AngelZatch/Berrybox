@@ -1,5 +1,6 @@
 Options -MultiViews
 RewriteEngine On
+Header set Access-Control-Allow-Origin "*"
 DirectoryIndex home.php
 RewriteRule ^box/([A-Za-z0-9-]+)/?$ box.php?id=$1 [NC,L] # Display room pages
 RewriteRule ^user/([A-Za-z0-9-]+)/?$ user.php?id=$1 [NC,L] # Display user pages

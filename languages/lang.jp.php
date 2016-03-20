@@ -144,6 +144,7 @@ $lang["no_credentials"] = "ビデオを提出したい？みんなと一緒に�
 $lang["follow_us"] = "ベリボックスのニュースはこちらです";
 $lang["twitter"] = "ツイッター";
 $lang["dev_message"] = "おはようございます！Andréas(アンドレアス)と申しまして、「ベリボックス」のたった一人の開発者です。俺はマルチメディア工学の学生、自由時間にこのアプリを開発します。お客様が私と話したい場合は、<a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>にメールを送信してお願い足します。";
+$lang["firefox_alert"] = "ご注意！BerryboxにFirefoxは正常に動作しませんです。ビデオローディングが矛盾しています。お願い、別のブラウザを使用してください。ごめんなさい((´д｀))";
 
 /** MENU **/
 $lang["menu"] = "メインメニュー";
