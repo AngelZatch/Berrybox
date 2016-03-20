@@ -79,9 +79,9 @@ $lang["mood-question"] = "この曲、どう思う？";
 $lang["like"] = "いいね！";
 $lang["cry"] = "悲しい感じがする";
 $lang["love"] = "ラブに考える";
-$lang["intense"] = "興奮する！";
+$lang["energy"] = "興奮する！";
 $lang["sleep"] = "落ち着く";
-$lang["energy"] = "元気一杯！！！";
+$lang["fear"] = "ちょっと怖い (/-(ｴ)-＼)";
 
 /** ROOM **/
 $lang["youtube_message"] = "YouTubeのリンクを書きます";

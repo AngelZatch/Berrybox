@@ -76,11 +76,11 @@ $lang["welcome_admin"] = "Bienvenue dans votre box ! Pour soumettre une vidéo, 
 /** MOOD **/
 $lang["mood-question"] = "Que pensez-vous de la vidéo ?";
 $lang["like"] = "J'aime";
-$lang["cry"] = "Elle me rend triste";
-$lang["love"] = "Elle me rend mélancolique";
-$lang["intense"] = "J'adore !";
+$lang["cry"] = "Elle est triste";
+$lang["love"] = "J'adore !!";
+$lang["energy"] = "C'est intense !";
 $lang["sleep"] = "Elle m'apaise";
-$lang["energy"] = "Je suis plein d'énergie !!";
+$lang["fear"] = "Elle me fait peur ><";
 
 /** ROOM **/
 $lang["youtube_message"] = "Envoyer un lien YouTube";
