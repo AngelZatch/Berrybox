@@ -1351,7 +1351,7 @@ if(isset($_SESSION["token"])){
 					//console.log("TIME DELTA : "+timeDelta);
 					player.loadVideoById(id, timeDelta);
 				} else {
-					player.loadVideoById(id);
+					player.loadVideoById(id, 0);
 				}
 				$("#message-synchro").remove();
 				sessionStorage.setItem("currently-playing", index);
