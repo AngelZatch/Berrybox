@@ -1340,7 +1340,7 @@ if(isset($_SESSION["token"])){
 				})
 			}
 			function playSong(index, id, title, timestart){
-				/*console.log(timestart);*/
+				console.log(timestart);
 				if(timestart != 0){
 					//console.log("timestamp : "+timestart);
 					var sTime = moment.utc(timestart).add(7, 's');
