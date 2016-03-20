@@ -61,7 +61,7 @@ if(isset($_SESSION["token"])){
 		<?php } else { ?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 		<?php } ?>
-		<link rel="stylesheet" href="assets/css/ekko-lightbox.min.css">
+		<!--<link rel="stylesheet" href="assets/css/ekko-lightbox.min.css">-->
 	</head>
 	<body>
 		<div class="col-lg-8 col-md-8" id="room-player">
@@ -436,6 +436,23 @@ if(isset($_SESSION["token"])){
 			$(document).ready(function(){
 				var roomToken = "<?php echo $roomToken;?>";
 				window.roomState = "<?php echo $roomDetails["room_active"];?>";
+				/** DETECT BROWER ASAP **/
+				var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+				// Firefox 1.0+
+				var isFirefox = typeof InstallTrigger !== 'undefined';
+				// At least Safari 3+: "[object HTMLElementConstructor]"
+				var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+				// Internet Explorer 6-11
+				var isIE = /*@cc_on!@*/false || !!document.documentMode;
+				// Edge 20+
+				var isEdge = !isIE && !!window.StyleMedia;
+				// Chrome 1+
+				var isChrome = !!window.chrome && !!window.chrome.webstore;
+				// Blink engine detection
+				var isBlink = (isChrome || isOpera) && !!window.CSS;
+				if(isFirefox){
+					$("#body-chat").append("<p class='system-alert'><?php echo $lang["firefox_alert"];?></p>");
+				}
 				/** THINGS TO DO IF THE USER IS LOOGED **/
 				<?php if(isset($_SESSION["token"])){ ?>
 				window.userToken = "<?php echo $_SESSION["token"];?>";
@@ -1163,7 +1180,6 @@ if(isset($_SESSION["token"])){
 				}
 			}
 			function onSecPlayerReady(event){
-				//console.log("secondary player ready");
 				//console.log("inputting playlist iD: "+pID);
 				event.target.cuePlaylist({list: pID});
 			}
@@ -1310,6 +1326,7 @@ if(isset($_SESSION["token"])){
 			function synchronize(roomToken, userPower){
 				/* This function synchronizes the current video for everyone */
 				$.post("functions/load_current.php", {roomToken : roomToken, userPower : userPower}).done(function(data){
+					/*console.log(data);*/
 					var songInfo = JSON.parse(data);
 					if(songInfo.link != null){
 						if(songInfo.index != sessionStorage.getItem("currently-playing")){
@@ -1323,9 +1340,10 @@ if(isset($_SESSION["token"])){
 				})
 			}
 			function playSong(index, id, title, timestart){
+				/*console.log(timestart);*/
 				if(timestart != 0){
 					//console.log("timestamp : "+timestart);
-					var sTime = moment.utc(timestart).add(4, 's');
+					var sTime = moment.utc(timestart).add(7, 's');
 					//console.log("start of video fetched from DB : "+sTime);
 					var sLocalTime = moment(sTime).local();
 					//console.log("formatted : "+sLocalTime);
