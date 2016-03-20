@@ -1340,15 +1340,15 @@ if(isset($_SESSION["token"])){
 				})
 			}
 			function playSong(index, id, title, timestart){
-				/*console.log(timestart);*/
+				console.log(timestart);
 				if(timestart != 0){
-					//console.log("timestamp : "+timestart);
+					console.log("timestamp : "+timestart);
 					var sTime = moment.utc(timestart).add(7, 's');
-					//console.log("start of video fetched from DB : "+sTime);
+					console.log("start of video fetched from DB : "+sTime);
 					var sLocalTime = moment(sTime).local();
-					//console.log("formatted : "+sLocalTime);
+					console.log("formatted : "+sLocalTime);
 					var timeDelta = Math.round(moment().diff(sLocalTime)/1000);
-					//console.log("TIME DELTA : "+timeDelta);
+					console.log("TIME DELTA : "+timeDelta);
 					player.loadVideoById(id, timeDelta);
 				} else {
 					player.loadVideoById(id, 0);
