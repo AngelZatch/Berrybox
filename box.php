@@ -1349,6 +1349,9 @@ if(isset($_SESSION["token"])){
 					console.log("formatted : "+sLocalTime);
 					var timeDelta = Math.round(moment().diff(sLocalTime)/1000);
 					console.log("TIME DELTA : "+timeDelta);
+					if(timeDelta < 0){
+						timeDelta = 0;
+					}
 					player.loadVideoById(id, timeDelta);
 				} else {
 					player.loadVideoById(id, 0);
