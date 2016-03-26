@@ -79,7 +79,7 @@ $lang["like"] = "I like it";
 $lang["cry"] = "It's sad";
 $lang["love"] = "I love it!";
 $lang["energy"] = "It's intense!";
-$lang["sleep"] = "I feel peaceful";
+$lang["calm"] = "I feel peaceful";
 $lang["fear"] = "It's scary... ><";
 
 /** ROOM **/

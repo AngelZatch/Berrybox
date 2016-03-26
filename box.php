@@ -111,21 +111,6 @@ if(isset($_SESSION["token"])){
 					</div>
 					<p class="submit-warning"></p>
 				</div>
-				<?php } else { ?>
-				<div class="add-link col-lg-12 col-xs-12">
-					<div id="no-credentials">
-						<p><?php echo $lang["no_credentials"];?></p>
-						<form method="post" action="portal">
-							<input type="hidden" name="box-token" value="<?php echo $roomToken;?>">
-							<input type="submit" class="btn btn-primary" value="<?php echo $lang["log_in"];?>">
-						</form>
-						<form method="post" action="signup">
-							<input type="hidden" name="box-token" value="<?php echo $roomToken;?>">
-							<input type="submit" class="btn btn-primary" value="<?php echo $lang["sign_up"];?>">
-						</form>
-					</div>
-				</div>
-				<?php } ?>
 				<div class="col-lg-6 mood-selectors hidden-xs">
 					<p class="mood-question"><?php echo $lang["mood-question"];?></p>
 					<div class="col-lg-2 emotion-container" id="emotion-like-container" data-mood="1">
@@ -159,6 +144,21 @@ if(isset($_SESSION["token"])){
 						</p>
 					</div>
 				</div>
+				<?php } else { ?>
+				<div class="col-lg-12 col-xs-12">
+					<div id="no-credentials">
+						<p><?php echo $lang["no_credentials"];?></p>
+						<form method="post" action="portal">
+							<input type="hidden" name="box-token" value="<?php echo $roomToken;?>">
+							<input type="submit" class="btn btn-primary" value="<?php echo $lang["log_in"];?>">
+						</form>
+						<form method="post" action="signup">
+							<input type="hidden" name="box-token" value="<?php echo $roomToken;?>">
+							<input type="submit" class="btn btn-primary" value="<?php echo $lang["sign_up"];?>">
+						</form>
+					</div>
+				</div>
+				<?php } ?>
 			</div>
 			<p class='alert alert-danger closed-box-text'><?php echo $lang["room_closing"];?></p>
 		</div>
@@ -818,7 +818,7 @@ if(isset($_SESSION["token"])){
 			}).on('mouseenter', '#emotion-calm-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
-					$(".mood-question").html("<?php echo $lang["sleep"];?>");
+					$(".mood-question").html("<?php echo $lang["calm"];?>");
 					$(".mood-question").addClass("emotion-calm");
 					$(".mood-question").fadeIn('500');
 				});

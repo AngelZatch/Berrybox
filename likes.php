@@ -86,7 +86,7 @@ $allLikes = $db->query("SELECT * FROM votes v
 							<img src="http://img.youtube.com/vi/<?php echo $like["link"];?>/0.jpg" alt="">
 						</div>
 						<div>
-							<p class="vote-name"><?php echo $like["video_name"];?></p>
+							<p class="vote-name"><?php echo stripslashes($like["video_name"]);?></p>
 							<a href="https://www.youtube.com/watch?v=<?php echo $like["link"];?>" target="_blank"><span class="glyphicon glyphicon-share"></span> <?php echo $lang["go_to_video"];?></a>
 						</div>
 					</li>
