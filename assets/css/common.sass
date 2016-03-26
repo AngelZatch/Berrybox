@@ -6,6 +6,15 @@ $warning-color: #F0AD4E
 $danger-color: #D9534F
 $skip-color: #D08AC3
 $play-color: #7DB8E0
+
+/** MOOD COLORS **/
+$like-color: #494AFF
+$cry-color: #60E5FF
+$love-color: #FF2921
+$calm-color: #B694CC
+$energy-color: #FF7000
+$fear-color: #888
+
 $whisper-color: #D5D5D5
 $avatar-size-preview: 120px
 $break-small: 360px
@@ -409,6 +418,7 @@ nav
 #profile-title
 	font-size: 30px
 	margin: 0
+	text-align: initial
 
 #profile-menu
 	margin-top: 20px
@@ -664,3 +674,122 @@ legend
 	.panel-footer
 		padding: 10px 0
 		margin: 0
+
+// MOOD
+.emotion-like
+	color: $like-color
+
+.emotion-cry
+	color: $cry-color
+
+.emotion-love
+	color: $love-color
+
+.emotion-energy
+	color: $energy-color
+
+.emotion-calm
+	color: $calm-color
+
+.emotion-fear
+	color: $fear-color
+
+.emotion-container
+	border-radius: 7px
+	cursor: pointer
+	p
+		margin: 10px
+	&.selected
+		p
+			color: white
+	&:hover
+		p
+			color: white
+
+#emotion-like-container
+	&:hover
+		background-color: lighten($like-color, 10%)
+	&.selected
+		background-color: $like-color
+
+#emotion-cry-container
+	&:hover
+		background-color: lighten($cry-color, 10%)
+	&.selected
+		background-color: $cry-color
+
+#emotion-love-container
+	&:hover
+		background-color: lighten($love-color, 10%)
+	&.selected
+		background-color: $love-color
+
+#emotion-calm-container
+	&:hover
+		background-color: lighten($calm-color, 10%)
+	&.selected
+		background-color: $calm-color
+
+#emotion-energy-container
+	&:hover
+		background-color: lighten($energy-color, 10%)
+	&.selected
+		background-color: $energy-color
+
+#emotion-fear-container
+	&:hover
+		background-color: lighten($fear-color, 10%)
+	&.selected
+		background-color: $fear-color
+
+.sub-legend
+	@extend legend
+	text-align: inherit
+	font-size: 2.1em
+
+// LIKES PAGE
+.likes-list
+	@media screen and (max-width: $break-large)
+		padding: 0
+
+.vote-singleton
+	display: inherit
+	padding: 10px
+	height: 90px
+
+.video-thumbnail
+	float: left
+	margin-right: 10px
+	img
+		height: 70px
+
+.vote-name
+	@media screen and (min-width: $break-large)
+		font-weight: 700
+		font-size: 18px
+	span
+		margin-left: 5px
+
+.vote-like
+	&:hover
+		background-color: transparentize($like-color, 0.82)
+
+.vote-cry
+	&:hover
+		background-color: transparentize($cry-color, 0.92)
+
+.vote-love
+	&:hover
+		background-color: transparentize($love-color, 0.92)
+
+.vote-energy
+	&:hover
+		background-color: transparentize($energy-color, 0.92)
+
+.vote-calm
+	&:hover
+		background-color: transparentize($calm-color, 0.92)
+
+.vote-fear
+	&:hover
+		background-color: transparentize($fear-color, 0.92)

@@ -79,9 +79,9 @@ $lang["mood-question"] = "この曲、どう思う？";
 $lang["like"] = "いいね！";
 $lang["cry"] = "悲しい感じがする";
 $lang["love"] = "ラブに考える";
-$lang["intense"] = "興奮する！";
+$lang["energy"] = "興奮する！";
 $lang["sleep"] = "落ち着く";
-$lang["energy"] = "元気一杯！！！";
+$lang["fear"] = "ちょっと怖い (/-(ｴ)-＼)";
 
 /** ROOM **/
 $lang["youtube_message"] = "YouTubeのリンクを書きます";
@@ -145,6 +145,7 @@ $lang["follow_us"] = "ベリボックスのニュースはこちらです";
 $lang["twitter"] = "ツイッター";
 $lang["dev_message"] = "おはようございます！Andréas(アンドレアス)と申しまして、「ベリボックス」のたった一人の開発者です。俺はマルチメディア工学の学生、自由時間にこのアプリを開発します。お客様が私と話したい場合は、<a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>にメールを送信してお願い足します。";
 $lang["firefox_alert"] = "ご注意！BerryboxにFirefoxは正常に動作しませんです。ビデオローディングが矛盾しています。お願い、別のブラウザを使用してください。ごめんなさい((´д｀))";
+$lang["go_to_video"] = "ビデオへ";
 
 /** MENU **/
 $lang["menu"] = "メインメニュー";
@@ -168,6 +169,8 @@ $lang["profile_history"] = "歴史";
 $lang["profile_history_tip"] = "もし、最後の１時間で誰かがメッセージ送信しませんとかビデオが始まりません、ボックスが「プライベート」に設定されてます。";
 $lang["profile_security"] = "セキュリティ";
 $lang["profile_security_tip"] = "パスワードを変更する。";
+$lang["profile_likes"] = "投票";
+$lang["profile_likes_tip"] = "好きか怖いか発見しましたビデオを表示表示する。";
 $lang["display_name"] = "ディスプレイ名";
 $lang["display_name_tip"] = "ディスプレイ名をカスタマイズします";
 $lang["display_mail"] = "メールアドレス";
