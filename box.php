@@ -128,32 +128,32 @@ if(isset($_SESSION["token"])){
 				<?php } ?>
 				<div class="col-lg-6 mood-selectors hidden-xs">
 					<p class="mood-question"><?php echo $lang["mood-question"];?></p>
-					<div class="col-lg-2 emotion-container emotion-like-container">
+					<div class="col-lg-2 emotion-container" id="emotion-like-container" data-mood="1">
 						<p class="emotion-glyph emotion-like button-glyph">
 							<span class="glyphicon glyphicon-thumbs-up"></span>
 						</p>
 					</div>
-					<div class="col-lg-2 emotion-container emotion-cry-container">
+					<div class="col-lg-2 emotion-container" id="emotion-cry-container" data-mood="2">
 						<p class="emotion-glyph emotion-cry button-glyph">
 							<span class="glyphicon glyphicon-tint"></span>
 						</p>
 					</div>
-					<div class="col-lg-2 emotion-container emotion-love-container">
+					<div class="col-lg-2 emotion-container" id="emotion-love-container" data-mood="3">
 						<p class="emotion-glyph emotion-love button-glyph">
 							<span class="glyphicon glyphicon-heart"></span>
 						</p>
 					</div>
-					<div class="col-lg-2 emotion-container emotion-energy-container">
+					<div class="col-lg-2 emotion-container" id="emotion-energy-container" data-mood="4">
 						<p class="emotion-glyph emotion-energy button-glyph">
 							<span class="glyphicon glyphicon-eye-open"></span>
 						</p>
 					</div>
-					<div class="col-lg-2 emotion-container emotion-calm-container">
+					<div class="col-lg-2 emotion-container" id="emotion-calm-container" data-mood="5">
 						<p class="emotion-glyph emotion-calm button-glyph">
 							<span class="glyphicon glyphicon-bed"></span>
 						</p>
 					</div>
-					<div class="col-lg-2 emotion-container emotion-fear-container">
+					<div class="col-lg-2 emotion-container" id="emotion-fear-container" data-mood="6">
 						<p class="emotion-glyph emotion-fear button-glyph">
 							<span class="glyphicon glyphicon-flash"></span>
 						</p>
@@ -781,87 +781,90 @@ if(isset($_SESSION["token"])){
 					$b.blur();
 				}
 			}).on("click", ".emotion-container", function(){
-				$(".emotion-container").removeClass("selected");
-				$(this).addClass("selected");
-				console.log($(this));
-			}).on('mouseenter', '.emotion-like-container', function(){
+				if($(this).hasClass("selected")){
+					var mood_id = 0;
+				} else {
+					var mood_id = document.getElementById($(this).attr("id")).dataset.mood;
+				}
+				voteMood(mood_id, '<?php echo $_SESSION["token"];?>', sessionStorage.getItem("currently-playing"));
+			}).on('mouseenter', '#emotion-like-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
 					$(".mood-question").html("<?php echo $lang["like"];?>");
 					$(".mood-question").addClass("emotion-like");
 					$(".mood-question").fadeIn('500');
 				});
-			}).on('mouseenter', '.emotion-cry-container', function(){
+			}).on('mouseenter', '#emotion-cry-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
 					$(".mood-question").html("<?php echo $lang["cry"];?>");
 					$(".mood-question").addClass("emotion-cry");
 					$(".mood-question").fadeIn('500');
 				});
-			}).on('mouseenter', '.emotion-love-container', function(){
+			}).on('mouseenter', '#emotion-love-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
 					$(".mood-question").html("<?php echo $lang["love"];?>");
 					$(".mood-question").addClass("emotion-love");
 					$(".mood-question").fadeIn('500');
 				});
-			}).on('mouseenter', '.emotion-fear-container', function(){
+			}).on('mouseenter', '#emotion-fear-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
 					$(".mood-question").html("<?php echo $lang["fear"];?>");
 					$(".mood-question").addClass("emotion-fear");
 					$(".mood-question").fadeIn('500');
 				});
-			}).on('mouseenter', '.emotion-calm-container', function(){
+			}).on('mouseenter', '#emotion-calm-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
 					$(".mood-question").html("<?php echo $lang["sleep"];?>");
 					$(".mood-question").addClass("emotion-calm");
 					$(".mood-question").fadeIn('500');
 				});
-			}).on('mouseenter', '.emotion-energy-container', function(){
+			}).on('mouseenter', '#emotion-energy-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
 					$(".mood-question").html("<?php echo $lang["energy"];?>");
 					$(".mood-question").addClass("emotion-energy");
 					$(".mood-question").fadeIn('500');
 				});
-			}).on('mouseleave', '.emotion-like-container', function(){
+			}).on('mouseleave', '#emotion-like-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
 					$(".mood-question").html("<?php echo $lang["mood-question"];?>");
 					$(".mood-question").removeClass("emotion-like");
 					$(".mood-question").fadeIn('500');
 				});
-			}).on('mouseleave', '.emotion-cry-container', function(){
+			}).on('mouseleave', '#emotion-cry-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
 					$(".mood-question").html("<?php echo $lang["mood-question"];?>");
 					$(".mood-question").removeClass("emotion-cry");
 					$(".mood-question").fadeIn('500');
 				});
-			}).on('mouseleave', '.emotion-love-container', function(){
+			}).on('mouseleave', '#emotion-love-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
 					$(".mood-question").html("<?php echo $lang["mood-question"];?>");
 					$(".mood-question").removeClass("emotion-love");
 					$(".mood-question").fadeIn('500');
 				});
-			}).on('mouseleave', '.emotion-fear-container', function(){
+			}).on('mouseleave', '#emotion-fear-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
 					$(".mood-question").html("<?php echo $lang["mood-question"];?>");
 					$(".mood-question").removeClass("emotion-fear");
 					$(".mood-question").fadeIn('500');
 				});
-			}).on('mouseleave', '.emotion-calm-container', function(){
+			}).on('mouseleave', '#emotion-calm-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
 					$(".mood-question").html("<?php echo $lang["mood-question"];?>");
 					$(".mood-question").removeClass("emotion-calm");
 					$(".mood-question").fadeIn('500');
 				});
-			}).on('mouseleave', '.emotion-energy-container', function(){
+			}).on('mouseleave', '#emotion-energy-container', function(){
 				$(".mood-question").fadeOut('500', function(){
 					$(".mood-question").empty();
 					$(".mood-question").html("<?php echo $lang["mood-question"];?>");
@@ -1090,11 +1093,6 @@ if(isset($_SESSION["token"])){
 					sendMessage("<?php echo $roomToken;?>", 4, 6, message);
 				})
 			}
-			function voteMood(mood){
-				$.post("functions/select_mood.php", {mood : mood, id : sessionStorage.getItem("currently-playing")}).done(function(){
-					console.log("Vote");
-				})
-			}
 			function fillInfo(){
 				var name = $(".info-box").val();
 				var id = $(".info-box").attr("id").substr(5);
@@ -1168,10 +1166,11 @@ if(isset($_SESSION["token"])){
 				}
 				if(event.data == YT.PlayerState.PLAYING){
 					var moodTimer = player.getDuration() * 1000;
-					/*<?php if(isset($_SESSION["username"])){ ?>
-					setTimeout(showMoodSelectors, moodTimer * 0.3);
-					setTimeout(hideMoodSelectors, moodTimer - 10000);
-					<?php } ?>*/
+					<?php if(isset($_SESSION["username"])){ ?>
+					fetchMood('<?php echo $_SESSION["token"];?>', sessionStorage.getItem("currently-playing"));
+					/*setTimeout(showMoodSelectors, moodTimer * 0.3);
+					setTimeout(hideMoodSelectors, moodTimer - 10000);*/
+					<?php } ?>
 				}
 			}
 			function onSecPlayerReady(event){
@@ -1690,5 +1689,6 @@ if(isset($_SESSION["token"])){
 				})
 			}
 		</script>
+		<script src="assets/js/mood.js"></script>
 	</body>
 </html>

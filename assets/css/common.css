@@ -892,51 +892,51 @@ legend {
     color: white; }
 
 /* line 709, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.emotion-like-container:hover {
+#emotion-like-container:hover {
   background-color: #7c7dff; }
 
 /* line 711, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.emotion-like-container.selected {
+#emotion-like-container.selected {
   background-color: #494AFF; }
 
 /* line 715, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.emotion-cry-container:hover {
+#emotion-cry-container:hover {
   background-color: #93edff; }
 
 /* line 717, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.emotion-cry-container.selected {
+#emotion-cry-container.selected {
   background-color: #60E5FF; }
 
 /* line 721, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.emotion-love-container:hover {
+#emotion-love-container:hover {
   background-color: #ff5a54; }
 
 /* line 723, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.emotion-love-container.selected {
+#emotion-love-container.selected {
   background-color: #FF2921; }
 
 /* line 727, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.emotion-calm-container:hover {
+#emotion-calm-container:hover {
   background-color: #ceb7dc; }
 
 /* line 729, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.emotion-calm-container.selected {
+#emotion-calm-container.selected {
   background-color: #B694CC; }
 
 /* line 733, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.emotion-energy-container:hover {
+#emotion-energy-container:hover {
   background-color: #ff8d33; }
 
 /* line 735, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.emotion-energy-container.selected {
+#emotion-energy-container.selected {
   background-color: #FF7000; }
 
 /* line 739, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.emotion-fear-container:hover {
+#emotion-fear-container:hover {
   background-color: #a2a2a2; }
 
 /* line 741, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
-.emotion-fear-container.selected {
+#emotion-fear-container.selected {
   background-color: #888; }
 
 /*# sourceMappingURL=common.css.map */
