@@ -80,7 +80,7 @@ $lang["like"] = "いいね！";
 $lang["cry"] = "悲しい感じがする";
 $lang["love"] = "ラブに考える";
 $lang["energy"] = "興奮する！";
-$lang["sleep"] = "落ち着く";
+$lang["calm"] = "落ち着く";
 $lang["fear"] = "ちょっと怖い (/-(ｴ)-＼)";
 
 /** ROOM **/
