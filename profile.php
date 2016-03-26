@@ -72,7 +72,7 @@ if(isset($_POST["submit"])){
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title><?php echo $lang["my_settings"];?></title>
+		<title><?php echo $_SESSION["username"];?></title>
 		<base href="../">
 		<?php include "styles.php";
 		if(isset($_SESSION["token"])){ ?>
@@ -89,7 +89,7 @@ if(isset($_POST["submit"])){
 				<p id="profile-title"><?php echo $lang["my_settings"];?></p>
 				<span class="tip"><?php echo $lang["profile_settings_tip"];?></span>
 				<ul class="nav nav-tabs" id="profile-menu">
-					<li role="presentation" class="active"><a href="<?php echo $_SESSION["lang"];?>/profile/settings"><?php echo $lang["my_settings"];?></a></li>
+					<li role="presentation" class="active"><a href="profile/settings"><?php echo $lang["my_settings"];?></a></li>
 					<li role="presentation"><a href="profile/history"><?php echo $lang["profile_history"];?></a></li>
 					<li role="presentation"><a href="profile/security"><?php echo $lang["profile_security"];?></a></li>
 				</ul>

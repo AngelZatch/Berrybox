@@ -144,6 +144,7 @@ $lang["follow_us"] = "Suivez l'actualité de Berrybox";
 $lang["twitter"] = "Twitter";
 $lang["dev_message"] = "Bonjour! Je suis Andréas, développeur de cette application. Je suis un étudiant ingénieur multimédia qui développe Berrybox sur son temps libre ! Si vous voulez chatter un peu, n'hésitez pas à m'envoyer un mail à <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>";
 $lang["firefox_alert"] = "ATTENTION ! Firefox ne fonctionne pas correctement lorsqu'il doit charger des vidéos sans recharger la page (comme ce qu'on fait ici). Si vous voulez profiter pleinement de Berrybox, nous vous recommandons d'essayer avec un autre navigateur. Nous sommes désolés, d'autant plus que nous n'y pouvons rien :(";
+$lang["go_to_video"] = "Aller à la vidéo";
 
 /** MENU **/
 $lang["menu"] = "Menu principal";
@@ -167,6 +168,8 @@ $lang["profile_history"] = "Historique";
 $lang["profile_history_tip"] = "Si aucun message n'est envoyé et aucune vidéo n'est jouée pendant 1 heure dans une box, cette dernière sera 'privatisée' mais restera ouverte.";
 $lang["profile_security"] = "Securité";
 $lang["profile_security_tip"] = "Changez votre mot de passe";
+$lang["profile_likes"] = "Votes";
+$lang["profile_likes_tip"] = "Consultez vos votes";
 $lang["display_name"] = "Nom affiché";
 $lang["display_name_tip"] = "Personnalisez votre nom affiché.";
 $lang["display_mail"] = "Adresse mail";

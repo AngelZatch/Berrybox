@@ -15,6 +15,7 @@ RewriteRule ^search$ search.php [NC,L] # Search results page
 RewriteRule ^profile/settings$ profile.php [NC,L] # Profile
 RewriteRule ^profile/history$ history.php [NC,L] # Profile
 RewriteRule ^profile/security$ security.php [NC,L] # Profile
+RewriteRule ^my/likes$ likes.php [NC,L] # Profile
 
 #Erreurs
 ErrorDocument 404 /Berrybox/404.php

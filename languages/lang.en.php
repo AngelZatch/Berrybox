@@ -144,6 +144,7 @@ $lang["follow_us"] = "Follow Berrybox for latest news";
 $lang["twitter"] = "Twitter";
 $lang["dev_message"] = "Hello! I'm Andréas, developer of this website. I am a multimedia engineering student, and I'm developping Berrybox on my freetime! If you want to have a little chat, feel free to mail me at <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>";
 $lang["firefox_alert"] = "WARNING ! Firefox is known to not work properly with loading videos without reloading the page (which is what we do here). Please use another browser to fully enjoy Berrybox. We're sorry for the inconvenience, but unfortunately there's nothing we can do :(";
+$lang["go_to_video"] = "Go to video";
 
 /** MENU **/
 $lang["menu"] = "Main menu";
@@ -167,6 +168,8 @@ $lang["profile_history"] = "History";
 $lang["profile_history_tip"] = "If no message has been sent or no video has been played in a box for the last hour, it will be automatically set as 'private', but it won't be closed.";
 $lang["profile_security"] = "Security";
 $lang["profile_security_tip"] = "Change your password";
+$lang["profile_likes"] = "Likes";
+$lang["profile_likes_tip"] = "View the videos you reacted to";
 $lang["display_name"] = "Display name";
 $lang["display_name_tip"] = "Customize your display name.";
 $lang["display_mail"] = "Mail address";

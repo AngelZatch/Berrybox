@@ -38,7 +38,6 @@ if(isset($_SESSION["token"])){
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-
 				<?php } ?>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
@@ -52,6 +51,9 @@ if(isset($_SESSION["token"])){
 					</li>
 					<li>
 						<a href="user/<?php echo $_SESSION["username"];?>"><span class="glyphicon glyphicon-user"></span> <?php echo $lang["my_profile"];?></a>
+					</li>
+					<li>
+						<a href="my/likes"><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo $lang["profile_likes"];?></a>
 					</li>
 					<li>
 						<a href="create" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
@@ -109,8 +111,11 @@ if(isset($_SESSION["token"])){
 								<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit;">
 							</div>
 							<p class="user-menu-name"><?php echo $userDetails["user_pseudo"];?></p>
-							<a href="profile/settings" class="btn btn-primary no-margin"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["my_settings"];?></a>
-							<a href="user/<?php echo $_SESSION["username"];?>" class="btn btn-primary no-margin"><span class="glyphicon glyphicon-user"></span> <?php echo $lang["my_profile"];?></a>
+							<ul class="popover-menu">
+								<a href="profile/settings" class="no-margin"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["my_settings"];?></a>
+								<a href="user/<?php echo $_SESSION["username"];?>" class="no-margin"><span class="glyphicon glyphicon-user"></span> <?php echo $lang["my_profile"];?></a>
+								<a href="my/likes" class="no-margin"><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo $lang["profile_likes"];?></a>
+							</ul>
 						</div>
 						<div class="popover-footer">
 							<a href="logout.php" class="btn btn-primary no-margin"><span class="glyphicon glyphicon-off"></span> <?php echo $lang["log_out"];?></a>
