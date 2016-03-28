@@ -11,6 +11,7 @@ $songList = array();
 while($song = $queryList->fetch(PDO::FETCH_ASSOC)){
 	$s = array();
 	$s["entry"] = $song["room_history_id"];
+	$s["index"] = $song["video_index"];
 	$s["videoLink"] = $song["link"];
 	$s["videoName"] = stripslashes($song["video_name"]);
 	$s["submitter"] = $song["history_user"];
