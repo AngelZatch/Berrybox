@@ -351,9 +351,10 @@ nav
 	background-color: $yellow-base
 
 .nav
-	li
-		@media screen and (min-width: $break-medium)
-			float: left
+	&:not(.nav-stacked)
+		li
+			@media screen and (min-width: $break-medium)
+				float: left
 	li>a:hover, li>a:focus
 		background-color: inherit !important
 
