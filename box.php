@@ -1212,11 +1212,14 @@ if(isset($_SESSION["token"])){
 							break;
 
 						default: // success code but the info are incomplete
-							$("#body-chat").append("<div id='warning-"+code+"'><p class='system-message system-warning'><span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["no_fetch"];?><div class='input-group info-box-group'><input type='text' placeholder='<?php echo $lang["fill_placeholder"];?>' class='form-control info-box' id='info-"+code+"'><span class='input-group-btn'><button class='btn btn-primary send-info'><?php echo $lang["fill_missing"];?></button><button class='btn btn-danger cancel-info' id='cancel-info-"+code+"'>Cancel</button></div></div>");
+							requestCompletion(code);
 							break;
 					}
 					$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
 				});
+			}
+			function requestCompletion(code){
+				$("#body-chat").append("<div id='warning-"+code+"'><p class='system-message system-warning'><span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["no_fetch"];?><div class='input-group info-box-group'><input type='text' placeholder='<?php echo $lang["fill_placeholder"];?>' class='form-control info-box' id='info-"+code+"'><span class='input-group-btn'><button class='btn btn-primary send-info'><?php echo $lang["fill_missing"];?></button><button class='btn btn-danger cancel-info' id='cancel-info-"+code+"'>Cancel</button></div></div>");
 			}
 			function addBigPlaylist(list, roomToken){
 				// Test playlist : https://www.youtube.com/watch?v=Y3HVHNf-oW4&list=PLOXH-6LkzI0OtCgTVus8Czl4wBLyw9SK6
@@ -1389,24 +1392,34 @@ if(isset($_SESSION["token"])){
 										break;
 								}
 							}
+							var nameLength;
 							if(songList[i].videoStatus == 2){
 								message += "<div class='row playlist-entry song-played'>";
-								message += "<div class='col-lg-10 col-xs-10'>";
+								nameLength = 10;
 								pVideos++;
 							} else if(songList[i].videoStatus == 1){
 								message += "<div class='row playlist-entry song-playing'>";
-								message += "<div class='col-lg-12 col-xs-12'>";
+								nameLength = 12;
 							} else if(songList[i].videoStatus == 3){
 								message += "<div class='row playlist-entry song-ignored'>";
-								message += "<div class='col-lg-10 col-xs-10'>";
+								nameLength = 10;
 							} else {
 								var message = "<div class='row playlist-entry song-upcoming'>";
-								message += "<div class='col-lg-10 col-xs-10'>";
+								nameLength = 10;
 								uVideos++;
 							}
+							if(songList[i].videoName == "-"){
+								nameLength--;
+							}
+							message += "<div class='col-lg-"+nameLength+" col-xs-"+nameLength+"'>";
 							message += "<p class='song-list-line'><a href='https://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songName+"'>"+songList[i].videoName+"</a></p></div>";
 							if(window.roomState == 1){
 								if(userPower == 2 || userPower == 3){
+									if(songList[i].videoName == "-"){
+										message += "<div class='col-lg-1 col-xs-1'>";
+										message += "<span class='glyphicon glyphicon-pencil button-glyph' onClick=requestCompletion("+songList[i].index+")></span>";
+										message += "</div>";
+									}
 									if(songList[i].videoStatus == 0){
 										message += "<div class='col-lg-1 col-xs-1'>";
 										message += "<span class='glyphicon glyphicon-ban-circle button-glyph' onClick=ignoreSong("+songList[i].entry+")></span>";
