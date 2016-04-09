@@ -1,10 +1,12 @@
 <?php
-include "../db_connect.php";
+include "functions/db_connect.php";
 $db = PDOFactory::getConnection();
 
 /** This script looks at boxes to identify the boxes left open but inactive:
 - The last video has stopped playing more than 1 hour ago
 - No message has been submitted for more than 1 hour
+
+For now, this script will render these boxes inactive.
 
 This script has to run every hour. (* / 1 arguemnt is all attached)
 cron line : 0 * / 1 * * * /usr/bin/php /var/www/Strawberry/functions/schedules/watch_inactive_boxes.php
