@@ -19,7 +19,7 @@ if(isset($_SESSION["token"])){
 	$queryactiveRooms = $db->query("SELECT * FROM rooms r
 							JOIN user u ON r.room_creator = u.user_token
 							JOIN room_types rt ON r.room_type = rt.id
-							WHERE r.room_creator = '$profileDetails[user_token]' AND room_active = '1'");
+							WHERE r.room_creator = '$profileDetails[user_token]' AND room_active = '1' AND room_protection = '1'");
 
 	$userSettings = $db->query("SELECT *
 							FROM user_preferences up
