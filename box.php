@@ -928,6 +928,11 @@ if(isset($_SESSION["token"])){
 							$("#options-list").animate({
 								right : "0px"
 							}, 200);
+							if(jQuery(window).width() > 992){
+								$("#currently-playing").animate({
+									width: "65%"
+								}, 200);
+							}
 							break;
 
 						case "user-list":
@@ -946,6 +951,11 @@ if(isset($_SESSION["token"])){
 							$("#options-list").animate({
 								right : "0px"
 							}, 200);
+							if(jQuery(window).width() > 992){
+								$("#currently-playing").animate({
+									width: "77%"
+								}, 200);
+							}
 							break;
 
 						case "menu-list":
@@ -963,6 +973,11 @@ if(isset($_SESSION["token"])){
 							$("#options-list").animate({
 								right : "0px"
 							}, 200);
+							if(jQuery(window).width() > 992){
+								$("#currently-playing").animate({
+									width: "77%"
+								}, 200);
+							}
 							break;
 
 						case "options-list":
@@ -980,6 +995,11 @@ if(isset($_SESSION["token"])){
 							$("#menu-list").animate({
 								right : "0px"
 							}, 200);
+							if(jQuery(window).width() > 992){
+								$("#currently-playing").animate({
+									width: "65%"
+								}, 200);
+							}
 							break;
 					}
 				} else {
@@ -987,6 +1007,11 @@ if(isset($_SESSION["token"])){
 						$("#"+classToken).hide();
 					}), 200);
 					position = "0px";
+					if(jQuery(window).width() > 992){
+						$("#currently-playing").animate({
+							width: "100%"
+						}, 200);
+					}
 				}
 				$("#"+classToken).animate({
 					right : position
