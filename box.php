@@ -661,7 +661,7 @@ if(isset($_SESSION["token"])){
 				if(src != ''){
 					$(".play-url").addClass("disabled");
 					$(".play-url").attr("disabled", "disabled");
-					$(".play-url").text("<?php echo $lang["submit_link"];?>");
+					$(".play-url").text("<?php echo $lang["searching"];?>");
 					var compare;
 					if(compare){
 						clearTimeout(compare);
@@ -671,6 +671,7 @@ if(isset($_SESSION["token"])){
 						var playreg = new RegExp(/list=([a-z0-9\-\_]+)\&?/i);
 						var playres = playreg.exec(src);
 						if(playres != null){
+							$(".url-box").blur();
 							$(".submit-warning").html("<span class='glyphicon glyphicon-ok'></span> <?php echo $lang["submit_playlist_link"];?>");
 							$(".submit-warning").addClass("system-success");
 							$(".submit-warning").removeClass("system-warning");
@@ -685,6 +686,7 @@ if(isset($_SESSION["token"])){
 								var alt = new RegExp(/\.be\/([a-z0-9\-\_]+)\&?/i);
 								var res = alt.exec(src);
 								if(res != null && res[1].length != 11){
+									$(".url-box").blur();
 									$(".submit-warning").html("<span class='glyphicon glyphicon-ok'></span> <?php echo $lang["submit_video_link"];?>");
 									$(".submit-warning").addClass("system-success");
 									$(".submit-warning").removeClass("system-warning");
@@ -697,6 +699,7 @@ if(isset($_SESSION["token"])){
 									$(".submit-warning").addClass("system-warning");
 								}
 							} else {
+								$(".url-box").blur();
 								$(".submit-warning").html("<span class='glyphicon glyphicon-ok'></span> <?php echo $lang["submit_video_link"];?>");
 								$(".submit-warning").addClass("system-success");
 								$(".submit-warning").removeClass("system-warning");
@@ -710,6 +713,7 @@ if(isset($_SESSION["token"])){
 					$(".submit-warning").empty();
 				}
 			}).on('click','.play-url', function(){
+				$(".url-box").blur();
 				submitLink();
 			}).on('focus', '.url-box', function(){
 				$(this).keypress(function(event){

@@ -218,6 +218,7 @@ $lang["leave_404"] = "Go back to safety";
 $lang["videos"] = "videos";
 
 /** FEEDBACK **/
+$lang["searching"] = "Searching...";
 $lang["submit_no_link"] = "No link could be found";
 $lang["submit_video_link"] = "A video link has been found";
 $lang["submit_playlist_link"] = "A playlist link has been found";
