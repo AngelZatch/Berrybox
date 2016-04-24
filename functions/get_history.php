@@ -17,6 +17,7 @@ while($song = $queryList->fetch(PDO::FETCH_ASSOC)){
 	$s["submitter"] = $song["history_user"];
 	$s["submitTime"] = $song["history_time"];
 	$s["videoStatus"] = $song["video_status"];
+	$s["pending"] = $song["pending"];
 	array_push($songList, $s);
 }
 echo json_encode($songList);

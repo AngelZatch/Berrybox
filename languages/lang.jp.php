@@ -219,6 +219,7 @@ $lang["leave_404"] = "安全に戻る";
 $lang["videos"] = "ビデオ";
 
 /** FEEDBACK **/
+$lang["searching"] = "検索中...";
 $lang["submit_no_link"] = "リンクが見つかりませんでした";
 $lang["submit_video_link"] = "ビデオリンクが見出されていました";
 $lang["submit_playlist_link"] = "プレイリストリンクが見出されていました";
