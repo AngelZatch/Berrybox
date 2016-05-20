@@ -1409,7 +1409,7 @@ if(isset($_SESSION["token"])){
 								if(previousSongState != songList[i].videoStatus){
 									switch(songList[i].videoStatus){
 										case '0':
-											if(previousSongState != 3){
+											if(previousSongState != -1 && previousSongState != 3){
 												var messageRank = "<p class='list-rank' id='list-upcoming'><?php echo $lang["sl_upcoming"];?></p>";
 												$("#body-song-list").append(messageRank);
 											}
@@ -1420,6 +1420,13 @@ if(isset($_SESSION["token"])){
 										case '2':
 											message += "<p class='list-rank' id='list-played'><?php echo $lang["sl_played"];?></p>";
 											break;
+
+										case '3':
+											if(i == 0){
+												var messageRank = "<p class='list-rank' id='list-upcoming'><?php echo $lang["sl_upcoming"];?></p>";
+												$("#body-song-list").append(messageRank);
+											}
+											break;
 									}
 								}
 								var nameLength;
@@ -1429,7 +1436,7 @@ if(isset($_SESSION["token"])){
 									pVideos++;
 								} else if(songList[i].videoStatus == 1){
 									message += "<div class='row playlist-entry song-playing'>";
-									nameLength = 12;
+									nameLength = 11;
 								} else if(songList[i].videoStatus == 3){
 									message += "<div class='row playlist-entry song-ignored'>";
 									nameLength = 10;
@@ -1437,6 +1444,9 @@ if(isset($_SESSION["token"])){
 									var message = "<div class='row playlist-entry song-upcoming'>";
 									uVideos++;
 									nameLength = 10;
+								}
+								if(userPower != 2 && userPower != 3){
+									nameLength++;
 								}
 								message += "<div class='col-xs-"+nameLength+"'>";
 								message += "<p class='song-list-line'><a href='https://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songName+"'>"+songList[i].videoName+"</a></p></div>";
@@ -1453,11 +1463,12 @@ if(isset($_SESSION["token"])){
 											message += "<span class='glyphicon glyphicon-ban-circle button-glyph' onClick=ignoreSong("+songList[i].entry+")></span>";
 										} else if(songList[i].videoStatus == 3){
 											message += "<span class='glyphicon glyphicon-ok-circle button-glyph' onClick=reinstateSong("+songList[i].entry+")></span>";
-										} else if(songList[i].videoStatus == 2 && userToken != -1){
-											message += "<span class='glyphicon glyphicon-repeat button-glyph' onClick=requeueSong("+songList[i].entry+")></span>";
 										}
-										message += "</div>";
 									}
+									if(songList[i].videoStatus == 2 && userToken != -1){
+										message += "<span class='glyphicon glyphicon-repeat button-glyph' onClick=requeueSong("+songList[i].entry+")></span>";
+									}
+									message += "</div>";
 								}
 								message += "</div>";
 								previousSongState = songList[i].videoStatus;
