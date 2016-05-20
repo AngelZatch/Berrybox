@@ -46,31 +46,33 @@ if(isset($_POST["signup"])){
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title><?php echo $lang["sign_up"];?></title>
+		<title>Sign up</title>
 		<?php include "styles.php";?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 	</head>
 	<body>
 		<?php include "nav.php";?>
-		<div class="main">
-			<div class="col-lg-4 col-lg-offset-4">
-				<legend><?php echo $lang["sign_up"];?></legend>
-				<form action="" method="post">
-					<div class="form-group form-group-lg has-feedback" id="username-form-group">
-						<input type="text" placeholder="<?php echo $lang["username"];?>" class="form-control" name="username">
-					</div>
-					<div class="form-group form-group-lg">
-						<input type="password" placeholder="<?php echo $lang["password"];?>" class="form-control" name="password">
-					</div>
-					<div class="form-group form-group-lg has-feedback" id="password-confirm-form-group">
-						<input type="password" placeholder="<?php echo $lang["pwd_confirm"];?>" class="form-control" name="password-confirm">
-					</div>
-					<?php if(isset($_POST["box-token"])){ ?>
-					<input type="hidden" name="box-token-redirect" value="<?php echo $_POST["box-token"];?>">
-					<?php } ?>
-					<input type="submit" class="btn btn-primary btn-block" name="signup" value="<?php echo $lang["sign_up"];?>">
-				</form>
-				<p style="text-align: center"><?php echo $lang["already_account"];?> <a href="portal"><?php echo $lang["log_in_here"];?></a></p>
+		<div class="portal-main" id="portal-main">
+			<div class="main layer">
+				<div class="col-lg-4 col-lg-offset-4 login-space">
+					<legend><?php echo $lang["sign_up"];?></legend>
+					<form action="" method="post">
+						<div class="form-group form-group-lg has-feedback" id="username-form-group">
+							<input type="text" placeholder="<?php echo $lang["username"];?>" class="form-control form-control-portal" name="username">
+						</div>
+						<div class="form-group form-group-lg">
+							<input type="password" placeholder="<?php echo $lang["password"];?>" class="form-control form-control-portal" name="password">
+						</div>
+						<div class="form-group form-group-lg has-feedback" id="password-confirm-form-group">
+							<input type="password" placeholder="<?php echo $lang["pwd_confirm"];?>" class="form-control form-control-portal" name="password-confirm">
+						</div>
+						<?php if(isset($_POST["box-token"])){ ?>
+						<input type="hidden" name="box-token-redirect" value="<?php echo $_POST["box-token"];?>">
+						<?php } ?>
+						<input type="submit" class="btn btn-primary btn-block" name="signup" value="<?php echo $lang["sign_up"];?>">
+					</form>
+					<p style="text-align: center"><?php echo $lang["already_account"];?> <a href="portal"><?php echo $lang["log_in_here"];?></a></p>
+				</div>
 			</div>
 		</div>
 		<?php include "scripts.php";?>
@@ -123,6 +125,15 @@ if(isset($_POST["signup"])){
 							}
 						}
 					}, 500);
+				})
+				$(".navbar").removeClass("navbar-static-top");
+				$(".navbar").addClass("navbar-fixed-top");
+				// Get a random video picture from a song in the song base
+				$.get("functions/get_background_image.php").done(function(data){
+					// Put it as background for the portal-main class
+					console.log(data);
+					var picture = "https://i.ytimg.com/vi/"+data+"/maxresdefault.jpg";
+					document.getElementById("portal-main").style.backgroundImage = "url('"+picture+"')";
 				})
 			})
 		</script>

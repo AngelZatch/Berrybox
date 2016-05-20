@@ -38,24 +38,39 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 	</head>
 	<body>
 		<?php include "nav.php";?>
-		<div class="main">
-			<div class="col-lg-4 col-lg-offset-4">
-				<legend><?php echo $lang["log_in"];?></legend>
-				<form action="" method="post">
-					<div class="form-group form-group-lg">
-						<input type="text" placeholder="<?php echo $lang["username"];?>" class="form-control" name="username">
-					</div>
-					<div class="form-group form-group-lg">
-						<input type="password" placeholder="<?php echo $lang["password"];?>" class="form-control" name="login_pwd">
-					</div>
-					<?php if(isset($_POST["box-token"])){ ?>
-					<input type="hidden" name="box-token-redirect" value="<?php echo $_POST["box-token"];?>">
-					<?php } ?>
-					<input type="submit" class="btn btn-primary btn-block" name="login" value="<?php echo $lang["log_in"];?>">
-				</form>
-				<p style="text-align: center"><?php echo $lang["no_account"];?> <a href="signup"><?php echo $lang["sing_up_here"];?></a></p>
+		<div class="portal-main" id="portal-main">
+			<div class="main layer">
+				<div class="col-lg-4 col-lg-offset-4 login-space">
+					<legend>Welcome!</legend>
+					<form action="" method="post">
+						<div class="form-group form-group-lg">
+							<input type="text" placeholder="<?php echo $lang["username"];?>" class="form-control form-control-portal" name="username">
+						</div>
+						<div class="form-group form-group-lg">
+							<input type="password" placeholder="<?php echo $lang["password"];?>" class="form-control form-control-portal" name="login_pwd">
+						</div>
+						<?php if(isset($_POST["box-token"])){ ?>
+						<input type="hidden" name="box-token-redirect" value="<?php echo $_POST["box-token"];?>">
+						<?php } ?>
+						<input type="submit" class="btn btn-primary btn-block" name="login" value="<?php echo $lang["log_in"];?>">
+					</form>
+					<p style="text-align: center"><?php echo $lang["no_account"];?> <a href="signup"><?php echo $lang["sing_up_here"];?></a></p>
+				</div>
 			</div>
 		</div>
 		<?php include "scripts.php";?>
+		<script>
+			$(document).ready(function(){
+				$(".navbar").removeClass("navbar-static-top");
+				$(".navbar").addClass("navbar-fixed-top");
+				// Get a random video picture from a song in the song base
+				$.get("functions/get_background_image.php").done(function(data){
+					// Put it as background for the portal-main class
+					console.log(data);
+					var picture = "https://i.ytimg.com/vi/"+data+"/maxresdefault.jpg";
+					document.getElementById("portal-main").style.backgroundImage = "url('"+picture+"')";
+				})
+			})
+		</script>
 	</body>
 </html>
