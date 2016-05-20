@@ -6,7 +6,7 @@ $lang = array();
 $lang["hello"] = "Bienvenue sur Berrybox!";
 $lang["berrybox_description"] = "Partagez et regardez YouTube ensemble.";
 $lang["get_started"] = "Rejoindre l'expérience Berrybox";
-$lang["home_create_room"] = "Envie de créer une nouvelle box ? C'est par ici !";
+$lang["home_create_room"] = "Envie de partager ? C'est par ici !";
 $lang["recently_played"] = "Partagée récemment : ";
 $lang["now_playing_home"] = "En cours : ";
 
