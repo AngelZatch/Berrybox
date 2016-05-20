@@ -32,7 +32,7 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title><?php echo $lang["log_in"];?></title>
+		<title>Log in</title>
 		<?php include "styles.php";?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 	</head>
@@ -40,8 +40,8 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 		<?php include "nav.php";?>
 		<div class="portal-main" id="portal-main">
 			<div class="main layer">
-				<div class="col-lg-4 col-lg-offset-4 login-space">
-					<legend>Welcome!</legend>
+				<div class="col-lg-4 col-lg-offset-4 col-md-offset-3 col-md-6 login-space">
+					<legend><?php echo $lang["log_in"];?></legend>
 					<form action="" method="post">
 						<div class="form-group form-group-lg">
 							<input type="text" placeholder="<?php echo $lang["username"];?>" class="form-control form-control-portal" name="username">
@@ -61,8 +61,6 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 		<?php include "scripts.php";?>
 		<script>
 			$(document).ready(function(){
-				$(".navbar").removeClass("navbar-static-top");
-				$(".navbar").addClass("navbar-fixed-top");
 				// Get a random video picture from a song in the song base
 				$.get("functions/get_background_image.php").done(function(data){
 					// Put it as background for the portal-main class

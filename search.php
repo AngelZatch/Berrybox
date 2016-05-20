@@ -57,7 +57,7 @@ $queryMatchingUsers = $db->query("SELECT * FROM user u WHERE user_pseudo LIKE '%
 				<p class="search-matching-title"><?php echo $queryMatchingUsers->rowCount()." ".$lang["user_match"];?></p>
 				<div class="container-fluid">
 					<?php while($matchingUsers = $queryMatchingUsers->fetch(PDO::FETCH_ASSOC)){ ?>
-					<div class="col-lg-3">
+					<div class="col-lg-3 col-md-4">
 						<div class="panel">
 							<div class="panel-body user-entry">
 								<a href="user/<?php echo $matchingUsers["user_pseudo"];?>">
@@ -82,7 +82,7 @@ $queryMatchingUsers = $db->query("SELECT * FROM user u WHERE user_pseudo LIKE '%
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
 												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 					?>
-					<div class="col-lg-6 col-xs-12 panel-box-container">
+					<div class="col-lg-6 col-xs-12 col-md-6 panel-box-container">
 						<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
 							<div class="panel-body box-entry">
 								<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>

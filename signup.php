@@ -54,7 +54,7 @@ if(isset($_POST["signup"])){
 		<?php include "nav.php";?>
 		<div class="portal-main" id="portal-main">
 			<div class="main layer">
-				<div class="col-lg-4 col-lg-offset-4 login-space">
+				<div class="col-lg-4 col-lg-offset-4 col-md-offset-3 col-md-6 login-space">
 					<legend><?php echo $lang["sign_up"];?></legend>
 					<form action="" method="post">
 						<div class="form-group form-group-lg has-feedback" id="username-form-group">
@@ -126,8 +126,6 @@ if(isset($_POST["signup"])){
 						}
 					}, 500);
 				})
-				$(".navbar").removeClass("navbar-static-top");
-				$(".navbar").addClass("navbar-fixed-top");
 				// Get a random video picture from a song in the song base
 				$.get("functions/get_background_image.php").done(function(data){
 					// Put it as background for the portal-main class
