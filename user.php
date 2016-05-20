@@ -77,7 +77,7 @@ if(isset($_SESSION["token"])){
 						</div>
 						<?php } ?>
 						<div class="user-profile-container">
-							<div class="user-profile-details col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
+							<div class="user-profile-details col-lg-8 col-lg-offset-2 col-md-12">
 								<div class="user-actions">
 									<?php if(isset($_SESSION["username"])){
 	if($_SESSION["username"] != $profileToken){ ?>
@@ -105,32 +105,32 @@ if(isset($_SESSION["token"])){
 					</form>
 					<?php } ?>
 				</div>
-				<div class="user-profile-stats col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12">
-					<div class="col-lg-3 col-md-3 col-xs-6">
+				<div class="user-profile-stats col-lg-8 col-lg-offset-2 col-xs-12">
+					<div class="col-md-3 col-xs-6">
 						<p class="stats-title"><?php echo $lang["rooms_created"];?></p>
 						<p class="stats-value"><?php echo $profileDetails["stat_rooms_created"];?></p>
 					</div>
-					<div class="col-lg-3 col-md-3 col-xs-6">
+					<div class="col-md-3 col-xs-6">
 						<p class="stats-title"><?php echo $lang["songs_submitted"];?></p>
 						<p class="stats-value"><?php echo $profileDetails["stat_songs_submitted"];?></p>
 					</div>
-					<div class="col-lg-3 col-md-3 col-xs-6">
+					<div class="col-md-3 col-xs-6">
 						<p class="stats-title"><?php echo $lang["total_views"];?></p>
 						<p class="stats-value"><?php echo $profileDetails["stat_visitors"];?></p>
 					</div>
-					<div class="col-lg-3 col-md-3 col-xs-6">
+					<div class="col-md-3 col-xs-6">
 						<p class="stats-title"><?php echo $lang["total_followers"];?></p>
 						<p class="stats-value"><?php echo $profileDetails["stat_followers"];?></p>
 					</div>
 				</div>
-				<div class="user-rooms col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12">
+				<div class="user-rooms col-lg-8 col-lg-offset-2 col-xs-12">
 					<p id="profile-title"><?php echo $lang["opened_rooms"];?></p>
 					<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){
 	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[room_token] rh
 													JOIN song_base sb ON sb.song_base_id = rh.video_index
 													WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 					?>
-					<div class="col-lg-6 col-xs-12 panel-box-container">
+					<div class="col-lg-6 col-md-6 col-xs-12 panel-box-container">
 						<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
 							<div class="panel-body box-entry">
 								<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>

@@ -45,7 +45,7 @@ if(isset($_SESSION["token"])){
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
 												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 				?>
-				<div class="col-lg-4">
+				<div class="col-lg-4 col-md-6">
 					<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
 						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
@@ -84,7 +84,7 @@ if(isset($_SESSION["token"])){
 			<div class="container-fluid">
 				<h1><?php echo $lang["following"];?></h1>
 				<?php foreach($listFollowed as $matchingUsers){ ?>
-				<div class="col-lg-2">
+				<div class="col-lg-2 col-md-3">
 					<div class="panel">
 						<div class="panel-body user-entry">
 							<a href="user/<?php echo $matchingUsers["user_pseudo"];?>">

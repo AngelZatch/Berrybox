@@ -102,7 +102,7 @@ if(isset($_SESSION["token"])){
 			</div>
 			<div class="container-fluid under-video hidden-xs">
 				<?php if(isset($_SESSION["token"])){ ?>
-				<div class="add-link col-lg-6 col-xs-12">
+				<div class="add-link col-md-6 col-xs-12">
 					<div class="input-group input-group-lg">
 						<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
 						<span class="input-group-btn">
@@ -111,34 +111,34 @@ if(isset($_SESSION["token"])){
 					</div>
 					<p class="submit-warning"></p>
 				</div>
-				<div class="col-lg-6 mood-selectors hidden-xs">
+				<div class="col-md-6 mood-selectors hidden-xs">
 					<p class="mood-question"><?php echo $lang["mood-question"];?></p>
-					<div class="col-lg-2 emotion-container" id="emotion-like-container" data-mood="1">
+					<div class="col-md-2 emotion-container" id="emotion-like-container" data-mood="1">
 						<p class="emotion-glyph emotion-like button-glyph">
 							<span class="glyphicon glyphicon-thumbs-up"></span>
 						</p>
 					</div>
-					<div class="col-lg-2 emotion-container" id="emotion-cry-container" data-mood="2">
+					<div class="col-md-2 emotion-container" id="emotion-cry-container" data-mood="2">
 						<p class="emotion-glyph emotion-cry button-glyph">
 							<span class="glyphicon glyphicon-tint"></span>
 						</p>
 					</div>
-					<div class="col-lg-2 emotion-container" id="emotion-love-container" data-mood="3">
+					<div class="col-md-2 emotion-container" id="emotion-love-container" data-mood="3">
 						<p class="emotion-glyph emotion-love button-glyph">
 							<span class="glyphicon glyphicon-heart"></span>
 						</p>
 					</div>
-					<div class="col-lg-2 emotion-container" id="emotion-energy-container" data-mood="4">
+					<div class="col-md-2 emotion-container" id="emotion-energy-container" data-mood="4">
 						<p class="emotion-glyph emotion-energy button-glyph">
 							<span class="glyphicon glyphicon-eye-open"></span>
 						</p>
 					</div>
-					<div class="col-lg-2 emotion-container" id="emotion-calm-container" data-mood="5">
+					<div class="col-md-2 emotion-container" id="emotion-calm-container" data-mood="5">
 						<p class="emotion-glyph emotion-calm button-glyph">
 							<span class="glyphicon glyphicon-bed"></span>
 						</p>
 					</div>
-					<div class="col-lg-2 emotion-container" id="emotion-fear-container" data-mood="6">
+					<div class="col-md-2 emotion-container" id="emotion-fear-container" data-mood="6">
 						<p class="emotion-glyph emotion-fear button-glyph">
 							<span class="glyphicon glyphicon-flash"></span>
 						</p>

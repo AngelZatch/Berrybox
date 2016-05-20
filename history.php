@@ -41,7 +41,7 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 	<body>
 		<?php include "nav.php";?>
 		<div class="main col-lg-12">
-			<div class="col-sm-offset-2 col-sm-8 page-title">
+			<div class="col-lg-offset-2 col-lg-8 col-sm-12 page-title">
 				<p id="profile-title"><?php echo $lang["profile_history"];?></p>
 				<span class="tip"><?php echo $lang["profile_history_tip"];?></span>
 				<ul class="nav nav-tabs" id="profile-menu">
@@ -50,12 +50,12 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 					<li role="presentation"><a href="profile/security"><?php echo $lang["profile_security"];?></a></li>
 				</ul>
 			</div>
-			<div class="user-rooms col-sm-offset-2 col-sm-8">
+			<div class="user-rooms col-lg-offset-2 col-lg-8 col-sm-12">
 				<?php while($historyRooms = $queryHistoryRooms->fetch(PDO::FETCH_ASSOC)){
 	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$historyRooms[room_token] rh
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
 												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);?>
-				<div class="col-lg-6 col-xs-12 panel-box-container" id="panel-room-<?php echo $historyRooms["room_token"];?>">
+				<div class="col-md-6 col-xs-12 panel-box-container" id="panel-room-<?php echo $historyRooms["room_token"];?>">
 					<div class="panel panel-box">
 						<div class="panel-body box-entry" onClick="window.location='box/<?php echo $historyRooms["room_token"];?>'">
 							<p class="col-lg-12 room-name"><?php echo $historyRooms["room_name"];?></p>

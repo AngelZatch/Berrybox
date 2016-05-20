@@ -38,11 +38,11 @@ $allLikes = $db->query("SELECT * FROM votes v
 	<body>
 		<?php include "nav.php";?>
 		<div class="main col-lg-12">
-			<div class="col-sm-offset-2 col-sm-8 page-title">
+			<div class="col-lg-offset-2 col-lg-8 col-sm-12 page-title">
 				<legend id="profile-title"><?php echo $lang["profile_likes"];?></legend>
 				<span class="tip"><?php echo $lang["profile_likes_tip"];?></span>
 			</div>
-			<div class="user-rooms col-sm-offset-2 col-sm-8">
+			<div class="user-rooms col-lg-offset-2 col-lg-8 col-sm-12">
 				<ul class="likes-list">
 					<?php
 					$currentMood = ""; $moodLegend = "";
