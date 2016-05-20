@@ -38,7 +38,10 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 	</head>
 	<body>
 		<?php include "nav.php";?>
-		<div class="portal-main" id="portal-main">
+		<div class="portal-main">
+			<div class="img-main">
+				<img src="" alt="" id="portal-main">
+			</div>
 			<div class="main layer">
 				<div class="col-lg-4 col-lg-offset-4 col-md-offset-3 col-md-6 login-space">
 					<legend><?php echo $lang["log_in"];?></legend>
@@ -66,7 +69,7 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 					// Put it as background for the portal-main class
 					console.log(data);
 					var picture = "https://i.ytimg.com/vi/"+data+"/maxresdefault.jpg";
-					document.getElementById("portal-main").style.backgroundImage = "url('"+picture+"')";
+					$("#portal-main").attr("src", picture);
 				})
 			})
 		</script>

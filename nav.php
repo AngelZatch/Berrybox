@@ -23,7 +23,7 @@ if(isset($_SESSION["token"])){
 ?>
 <nav class="navbar navbar-static-top">
 	<div class="container">
-		<div class="hidden-md hidden-lg">
+		<div class="hidden-sm hidden-md hidden-lg">
 			<div class="navbar-header">
 				<a href="home" class="navbar-brand">Berrybox</a>
 				<?php if(isset($_SESSION["username"])){ ?>
@@ -80,7 +80,7 @@ if(isset($_SESSION["token"])){
 				</ul>
 			</div>
 		</div>
-		<div class="visible-md visible-lg">
+		<div class="visible-sm visible-md visible-lg">
 			<div class="navbar-header">
 				<a href="home" class="navbar-brand">Berrybox</a>
 			</div>
