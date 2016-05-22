@@ -93,6 +93,7 @@ $lang["now_playing"] = "Vidéo en cours";
 $lang["watch_count"] = "Spectateurs";
 $lang["playlist"] = "Liste des chansons";
 $lang["playlist_filter"] = "Filtrez la liste des chansons";
+$lang["playlist_likes"] = "Filtrez vos chansons votées";
 $lang["ul_admin"] = "Créateur";
 $lang["ul_mods"] = "Modérateurs";
 $lang["ul_users"] = "Spectateurs";

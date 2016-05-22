@@ -94,6 +94,7 @@ $lang["now_playing"] = "プレイ中";
 $lang["watch_count"] = "観衆カウント";
 $lang["playlist"] = "プレイリスト";
 $lang["playlist_filter"] = "プレイリストをフィルタリングします";
+$lang["playlist_likes"] = "投票をフィルタリングします";
 $lang["ul_admin"] = "クリエイター";
 $lang["ul_mods"] = "モデレーターズ";
 $lang["ul_users"] = "リサナーズ";

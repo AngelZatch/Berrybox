@@ -55,19 +55,19 @@ if(isset($_POST["submit"])){
 			<form action="profile/security" class="form-horizontal" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="currentPassword" class="col-sm-3 control-label"><?php echo $lang["old_password"];?></label>
-					<div class="col-sm-9 has-feedback" id="current-password-form-group">
+					<div class="col-sm-9 col-lg-7 has-feedback" id="current-password-form-group">
 						<input type="password" name="currentPassword" class="form-control" aria-describedby="username-tip">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="newPassword" class="col-sm-3 control-label"><?php echo $lang["new_password"];?></label>
-					<div class="col-sm-9">
+					<div class="col-sm-9 col-lg-7">
 						<input type="password" name="newPassword" class="form-control" aria-describedby="username-tip">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="confirmNewPassword" class="col-sm-3 control-label"><?php echo $lang["confirm_new_password"];?></label>
-					<div class="col-sm-9 has-feedback" id="password-confirm-form-group">
+					<div class="col-sm-9 col-lg-7 has-feedback" id="password-confirm-form-group">
 						<input type="password" name="confirmNewPassword" class="form-control" aria-describedby="username-tip">
 					</div>
 				</div>

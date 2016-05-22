@@ -97,20 +97,20 @@ if(isset($_POST["submit"])){
 			<form action="profile/settings" class="form-horizontal" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="username" class="col-sm-3 control-label"><?php echo $lang["display_name"];?></label>
-					<div class="col-sm-9 has-feedback" id="username-form-group">
+					<div class="col-sm-9 col-lg-7 has-feedback" id="username-form-group">
 						<input type="text" name="username" class="form-control" aria-describedby="username-tip" value="<?php echo stripslashes($userDetails["user_pseudo"]);?>">
 						<span class="tip" id="username-tip"><?php echo $lang["display_name_tip"];?></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="mail" class="col-sm-3 control-label"><?php echo $lang["display_mail"];?></label>
-					<div class="col-sm-9">
+					<div class="col-sm-9 col-lg-7">
 						<input type="mail" name="mail" class="form-control" value="<?php echo $userDetails["user_mail"];?>">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="profile-picture" class="col-sm-3 control-label"><?php echo $lang["profile_picture"];?></label>
-					<div class="col-sm-9">
+					<div class="col-sm-9 col-lg-7">
 						<div id="kv-avatar-errors" class="center-block" style="width:800px;display:none;"></div>
 						<div id="avatar-container">
 							<input type="file" id="avatar" name="profile-picture" class="file-loading">
@@ -120,14 +120,14 @@ if(isset($_POST["submit"])){
 				</div>
 				<div class="form-group">
 					<label for="bio" class="col-sm-3 control-label"><?php echo $lang["bio"];?></label>
-					<div class="col-sm-9">
+					<div class="col-sm-9 col-lg-7">
 						<textarea rows="5" maxlength="400" name="bio" class="form-control" aria-describedby="bio-tip"><?php echo stripslashes($userDetails["user_bio"]);?></textarea>
 						<span class="tip" id="bio-tip"><?php echo $lang["bio_tip"];?></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="default-lang" class="col-sm-3 control-label"><?php echo $lang["default_lang"];?></label>
-					<div class="col-sm-9">
+					<div class="col-sm-9 col-lg-7">
 						<select name="default-lang" id="" class="form-control">
 							<option value="en" <?php if($userDetails["user_lang"]=="en") echo "selected='selected'";?>>English</option>
 							<option value="fr" <?php if($userDetails["user_lang"]=="fr") echo "selected='selected'";?>>Français</option>
@@ -138,7 +138,7 @@ if(isset($_POST["submit"])){
 				</div>
 				<div class="form-group">
 					<label for="default-theme" class="col-sm-3 control-label"><?php echo $lang["user_theme"];?></label>
-					<div class="col-sm-9">
+					<div class="col-sm-9 col-lg-7">
 						<select name="default-theme" id="" class="form-control">
 							<option value="0" <?php if($userSettings["up_theme"]=="0") echo "selected='selected'";?>><?php echo $lang["light"];?></option>
 							<option value="1" <?php if($userSettings["up_theme"]=="1") echo "selected='selected'";?>><?php echo $lang["dark"];?></option>
