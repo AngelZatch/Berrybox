@@ -4,13 +4,13 @@ $db = PDOFactory::getConnection();
 session_start();
 include_once "../languages/lang.".$_SESSION["lang"].".php";
 
-$userToken = $_POST["userToken"];
+$targetToken = $_POST["targetToken"];
 $roomToken = $_POST["roomToken"];
 $now = date('Y-m-d H:i:s');
 
 try{
 	// Get number of timeouts
-	$numberOfTimeouts = $db->query("SELECT room_user_timeouts FROM roomUsers_$roomToken WHERE room_user_token = '$userToken'")->fetch(PDO::FETCH_ASSOC);
+	$numberOfTimeouts = $db->query("SELECT room_user_timeouts FROM roomUsers_$roomToken WHERE room_user_token = '$targetToken'")->fetch(PDO::FETCH_ASSOC);
 
 	switch($numberOfTimeouts["room_user_timeouts"]){
 		case 1:
@@ -40,7 +40,7 @@ try{
 	// Timeout action
 	$timeout = $db->query("UPDATE roomUsers_$roomToken
 							SET room_user_state = 4, room_user_timeouts = room_user_timeouts + 1, room_user_next_state_reset = '$reset'
-							WHERE room_user_token = '$userToken'");
+							WHERE room_user_token = '$targetToken'");
 
 	echo $numberOfTimeouts["room_user_timeouts"]++;
 }catch(PDOException $e){
