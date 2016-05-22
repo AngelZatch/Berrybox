@@ -93,6 +93,7 @@ $lang["now_playing"] = "Now playing";
 $lang["watch_count"] = "Spectators";
 $lang["playlist"] = "Playlist";
 $lang["playlist_filter"] = "Filter the playlist";
+$lang["playlist_likes"] = "Filter your likes";
 $lang["ul_admin"] = "Creator";
 $lang["ul_mods"] = "Moderators";
 $lang["ul_users"] = "Listeners";

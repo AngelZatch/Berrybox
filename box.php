@@ -201,10 +201,23 @@ if(isset($_SESSION["token"])){
 		<div class="col-lg-3 col-md-3 col-xs-12 full-panel" id="song-list">
 			<div class="panel panel-default panel-room panel-list">
 				<div class="panel-heading"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></div>
-				<div class="panel-body panel-section">
-					<input type="text" class="form-control" id="playlist-filter" placeholder="Filter the playlist">
-				</div>
-				<div class="panel-body full-panel-body" id="body-song-list">
+				<ul class="nav nav-tabs nav-justified nav-playlist">
+					<li role="presentation" class="active"><a href="#tab-pane-playlist" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></a></li>
+					<li role="presentation"><a href="#tab-pane-likes" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo $lang["profile_likes"];?></a></li>
+				</ul>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="tab-pane-playlist">
+						<div class="panel-body panel-section">
+							<input type="text" class="form-control" id="playlist-filter" placeholder="<?php echo $lang["playlist_filter"];?>">
+						</div>
+						<div class="panel-body full-panel-body" id="body-song-list"></div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="tab-pane-likes">
+						<div class="panel-body panel-section">
+							<input type="text" class="form-control" id="likes-filter" placeholder="<?php echo $lang["playlist_likes"];?>">
+						</div>
+						<div class="panel-body full-panel-body" id="body-song-likes"></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -608,6 +621,14 @@ if(isset($_SESSION["token"])){
 				// Dynamic filtering of the playlist
 				$('#playlist-filter').on('keyup', function(){
 					var $rows = $('.playlist-entry');
+					var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+					$rows.show().filter(function(){
+						var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+						return !~text.indexOf(val);
+					}).hide();
+				});
+				$('#likes-filter').on('keyup', function(){
+					var $rows = $('.likes-entry');
 					var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 					$rows.show().filter(function(){
 						var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
@@ -1226,7 +1247,7 @@ if(isset($_SESSION["token"])){
 					event.target.destroy();
 				}
 			}
-			function addEntry(id, roomToken){
+			function addEntry(id){
 				// Post URL into room history
 				$.post("functions/post_history.php", {url : id, roomToken : roomToken}).done(function(code){
 					switch(code){
@@ -1393,6 +1414,7 @@ if(isset($_SESSION["token"])){
 				}
 			}
 			function loadSongHistory(roomToken, userPower){
+				// Load the playlist
 				if($("#song-list").css("display") != "none"){
 					// Gets the whole history of the room
 					if(!$("#playlist-filter").is(":focus")){
@@ -1476,6 +1498,29 @@ if(isset($_SESSION["token"])){
 							$("#list-played").append(" ("+pVideos+")");
 						})
 					}
+					// Load the likes of the user
+					<?php if(isset($_SESSION["username"])){?>
+					if(!$("#likes-filter").is(":focus")){
+						$.get("functions/get_likes.php", {userToken : userToken}).done(function(data){
+							var likes = JSON.parse(data);
+							$("#body-song-likes").empty();
+							for(var i = 0; i < likes.length; i++){
+								var message = "";
+								var video_name = likes[i].video_name.replace(/'/g, "\&#39");
+								message += "<div class='row likes-entry'>";
+								message += "<div class='col-xs-11'>";
+								message += "<p class='song-list-line'>";
+								message += "<span class='glyphicon glyphicon-"+likes[i].key_icon+" emotion-"+likes[i].key_mood+"'></span> ";
+								message += "<a href='"+likes[i].video_link+"' target='_blank' title='"+video_name+"'>"+likes[i].video_name+"</a></p></div>";
+								if(window.roomState == 1){
+									message += "<span class='glyphicon glyphicon-circle-arrow-right button-glyph' onClick=addEntry('"+likes[i].video_id+"')></span>";
+								}
+								message += "</div>";
+								$("#body-song-likes").append(message);
+							}
+						})
+					}
+					<?php } ?>
 					setTimeout(loadSongHistory, 8000, roomToken, userPower);
 				}
 			}
@@ -1543,7 +1588,7 @@ if(isset($_SESSION["token"])){
 							}
 							var id = res[1];
 							// We call the function to add the id to the database
-							addEntry(id, roomToken);
+							addEntry(id);
 							// Empty URL box
 							$(".url-box").val('');
 						}
