@@ -1,5 +1,5 @@
 <?php
-include "../db_connect.php";
+require_once "/var/www/Strawberry/functions/db_connect.php";
 $db = PDOFactory::getConnection();
 
 /** This script searches and deletes all rooms that have been closed.
