@@ -1,5 +1,5 @@
 <?php
-include "functions/db_connect.php";
+require_once "/var/www/Strawberry/functions/db_connect.php";
 $db = PDOFactory::getConnection();
 
 /** This script looks at boxes to identify the boxes left open but inactive:
