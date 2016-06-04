@@ -677,7 +677,7 @@ if(isset($_SESSION["token"])){
 						$("#box-title-follow").attr("id", "box-title-unfollow");
 					}
 				})
-			}).on('keyup blur', '.url-box', function(){
+			}).on('keyup', '.url-box', function(){
 				var src = $(".url-box").val();
 				if(src != ''){
 					$(".play-url").addClass("disabled");
@@ -734,7 +734,6 @@ if(isset($_SESSION["token"])){
 					$(".submit-warning").empty();
 				}
 			}).on('click','.play-url', function(){
-				$(".url-box").blur();
 				submitLink();
 			}).on('focus', '.url-box', function(){
 				$(this).keypress(function(event){
@@ -1329,9 +1328,6 @@ if(isset($_SESSION["token"])){
 					if($("#room-title").text() != states.room_name){
 						$("#room-title").text(states.room_name);
 					}
-					if(document.title != states.room_name){
-						document.title = states.room_name+" | <?php echo $roomDetails["user_pseudo"];?> | Berrybox";
-					}
 
 					// Submission of videos
 					if(states.room_submission_rights == '0'){
@@ -1404,6 +1400,7 @@ if(isset($_SESSION["token"])){
 				}
 				$("#message-synchro").remove();
 				sessionStorage.setItem("currently-playing", index);
+				document.title = title+" | Berrybox";
 				$(".currently-name").empty();
 				$(".currently-name").html(title);
 				var userToken = "<?php echo isset($_SESSION["token"])?$_SESSION["token"]:null;?>";
@@ -1429,7 +1426,7 @@ if(isset($_SESSION["token"])){
 								if(previousSongState != songList[i].videoStatus){
 									switch(songList[i].videoStatus){
 										case '0':
-											if(previousSongState != -1 && previousSongState != 3){
+											if(i == 0){
 												var messageRank = "<p class='list-rank' id='list-upcoming'><?php echo $lang["sl_upcoming"];?></p>";
 												$("#body-song-list").append(messageRank);
 											}
@@ -1620,6 +1617,15 @@ if(isset($_SESSION["token"])){
 							}
 							//console.log(splitMessage);
 							messageList[i].content = splitMessage.join(" ");
+							var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+							var m = urlRegex.exec(messageList[i].content);
+							if(m != null){
+								var extractedUrl = "<a href='"+m[0]+"' target='_blank'>"+m[0]+"</a>";
+								console.log(extractedUrl);
+								messageList[i].content = messageList[i].content.replace(urlRegex, extractedUrl);
+								console.log(messageList[i].content);
+							}
+
 							//Display
 							if(messageList[i].scope == 6){
 								// Whispers
@@ -1655,7 +1661,7 @@ if(isset($_SESSION["token"])){
 								if(messageList[i].destinationToken == userToken){
 									var message = "<p class='system-message system-alert'>";
 									message += "<span class='glyphicon glyphicon-exclamation-sign'></span> ";
-									message += messageList[i].content;
+									message += "<span class='message-content'>"+messageList[i].content+"</span>";
 									message += "</p>";
 								} else {
 									var message = ""; // Clear message
@@ -1717,7 +1723,7 @@ if(isset($_SESSION["token"])){
 								message += "<span class='message-time'>"+messageTime+"</span> ";
 								if(messageList[i].status == 2){
 									// If author is creator
-									message += "<span class='chat-icon' title='<?php echo $lang["room_admin"];?>'><img src='assets/berrybox-creator-logo.png'><span> ";
+									message += "<span class='chat-icon' title='<?php echo $lang["room_admin"];?>'><img src='assets/berrybox-creator-logo.png'></span> ";
 								} else if(messageList[i].status == 3) {
 									// If author is a moderator
 									if((userPower == 2 || userPower == 3) && messageList[i].authorToken != userToken){
