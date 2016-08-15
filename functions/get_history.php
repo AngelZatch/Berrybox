@@ -2,7 +2,7 @@
 include "db_connect.php";
 $db = PDOFactory::getConnection();
 
-$roomToken = $_POST["roomToken"];
+$roomToken = $_POST["box_token"];
 
 $queryList = $db->query("SELECT * FROM roomHistory_$roomToken rh
 					JOIN song_base sb ON rh.video_index = sb.song_base_id

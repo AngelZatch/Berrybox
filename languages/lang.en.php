@@ -16,6 +16,7 @@ $lang["room_create"] = "Create a new box";
 $lang["active_room"] = "Active boxes";
 $lang["room_name"] = "Name of the box";
 $lang["room_protection"] = "Protection level";
+$lang["protection_tip"] = "A private box will only be accessible via sharing its link. It won't display publicly.";
 $lang["level_private"] = "Private";
 $lang["level_locked"] = "Locked";
 $lang["level_public"] = "Public";
@@ -188,8 +189,8 @@ $lang["dark"] = "Dark";
 $lang["light"] = "Light";
 $lang["sync"] = "Synchronisation";
 $lang["sync_tip"] = "When disabled, the next video won't play automatically and you will stay on current video. You can catch up at any moment.";
-$lang["sync-on"] = "Synchro ON";
-$lang["sync-off"] = "Synchro OFF";
+$lang["sync_on"] = "Synchro ON";
+$lang["sync_off"] = "Synchro OFF";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "This user doesn't have any bio";

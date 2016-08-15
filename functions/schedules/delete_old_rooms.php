@@ -13,10 +13,10 @@ cron line : 0 1 * * 7 /usr/bin/php /var/www/Strawberry/functions/schedules/delet
 
 //$time = date_create('now', new datetimezone('UTC'))->format('Y-m-d H:i:s');
 
-$queryInactive = $db->query("SELECT room_token FROM rooms WHERE room_active = 0");
+$queryInactive = $db->query("SELECT box_token FROM rooms WHERE room_active = 0");
 
 while($inactive = $queryInactive->fetch(PDO::FETCH_ASSOC)){
-	$inactiveToken = $inactive["room_token"];
+	$inactiveToken = $inactive["box_token"];
 
 	try{
 		$delete = $db->query("DROP TABLE roomChat_$inactiveToken");
@@ -26,7 +26,7 @@ while($inactive = $queryInactive->fetch(PDO::FETCH_ASSOC)){
 		// Silently dropping the exception. If the tables are not found, it means they've been dropped manually, which should never happen. The row is still deleted even if tables are already non-existent, so that end result stays clean.
 	}
 	try{
-		$delete = $db->query("DELETE FROM rooms WHERE room_token = '$inactiveToken'");
+		$delete = $db->query("DELETE FROM rooms WHERE box_token = '$inactiveToken'");
 	} catch(PDOException $e){
 		// Once again, silently dropping the exception to ensure even manual operation doesn't disrupte the scheduled operation. If the row has been deleted by hand, the script won't fall into error and continue on.
 	}

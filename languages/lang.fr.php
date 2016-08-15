@@ -16,6 +16,7 @@ $lang["room_create"] = "Créer une box";
 $lang["active_room"] = "Boxes actives";
 $lang["room_name"] = "Nom de la box";
 $lang["room_protection"] = "Niveau de protection";
+$lang["protection_tip"] = "Une box privée ne s'affichera plus dans les répertoires du site. L'accès sera restreint à seuls ceux qui disposent du lien.";
 $lang["level_private"] = "Privé";
 $lang["level_locked"] = "Protégé par mot de passe";
 $lang["level_public"] = "Public";
@@ -188,8 +189,8 @@ $lang["dark"] = "Sombre";
 $lang["light"] = "Clair";
 $lang["sync"] = "Synchronisation";
 $lang["sync_tip"] = "Si vous désactivez la synchronisation, la prochaine vidéo ne sera pas lancée automatiquement et vous resterez sur la vidéo actuelle. Vous pourrez rattraper à tout moment";
-$lang["sync-on"] = "Synchro ON";
-$lang["sync-off"] = "Synchro OFF";
+$lang["sync_on"] = "Synchro ON";
+$lang["sync_off"] = "Synchro OFF";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";

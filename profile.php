@@ -4,10 +4,10 @@ require "functions/db_connect.php";
 $db = PDOFactory::getConnection();
 
 if(isset($_SESSION["token"])){
-	$userToken = $_SESSION["token"];
+	$user_token = $_SESSION["token"];
 	$userSettings = $db->query("SELECT *
 							FROM user_preferences up
-							WHERE up_user_id='$userToken'")->fetch(PDO::FETCH_ASSOC);
+							WHERE up_user_id='$user_token'")->fetch(PDO::FETCH_ASSOC);
 
 	if($userSettings["up_theme"] == "1"){
 		$theme = "dark";
@@ -36,10 +36,10 @@ if(isset($_POST["submit"])){
 									user_mail = '$newMail',
 									user_bio = '$newBio',
 									user_lang = '$newLang'
-									WHERE user_token = '$userToken'");
+									WHERE user_token = '$user_token'");
 				$editSettings = $db->query("UPDATE user_preferences
 											SET up_theme = '$newTheme'
-											WHERE up_user_id = '$userToken'");
+											WHERE up_user_id = '$user_token'");
 			} else {
 				$picture = $_SESSION["token"].".".pathinfo($_FILES["profile-picture"]["name"], PATHINFO_EXTENSION);
 				move_uploaded_file($_FILES["profile-picture"]["tmp_name"], "profile-pictures/".$picture);
@@ -50,10 +50,10 @@ if(isset($_POST["submit"])){
 									user_bio = '$newBio',
 									user_pp = '$picture',
 									user_lang = '$newLang'
-									WHERE user_token = '$userToken'");
+									WHERE user_token = '$user_token'");
 				$editSettings = $db->query("UPDATE user_preferences
 											SET up_theme = '$newTheme'
-											WHERE up_user_id = '$userToken'");
+											WHERE up_user_id = '$user_token'");
 			}
 		}
 	} else {
@@ -62,10 +62,10 @@ if(isset($_POST["submit"])){
 							user_mail = '$newMail',
 							user_bio = '$newBio',
 							user_lang = '$newLang'
-							WHERE user_token = '$userToken'");
+							WHERE user_token = '$user_token'");
 		$editSettings = $db->query("UPDATE user_preferences
 											SET up_theme = '$newTheme'
-											WHERE up_user_id = '$userToken'");
+											WHERE up_user_id = '$user_token'");
 	}
 }
 ?>

@@ -2,42 +2,43 @@
 include "db_connect.php";
 $db = PDOFactory::getConnection();
 
-$token = $_POST["roomToken"];
-$userPower = $_POST["userPower"];
-$load = $db->query("SELECT video_index, history_start, link, video_name FROM roomHistory_$token rh
+$box_token = $_POST["box_token"];
+$user_power = $_POST["user_power"];
+$load = $db->query("SELECT video_index, history_start, link, video_name FROM roomHistory_$box_token rh
 					JOIN song_base sb ON rh.video_index = sb.song_base_id
 					WHERE video_status = 1
 					ORDER BY room_history_id DESC
 					LIMIT 1");
 if($load->rowCount() != 0){
-	$n = array();
 	$loaded = $load->fetch(PDO::FETCH_ASSOC);
-	$n["index"] = $loaded["video_index"];
-	$n["link"] = $loaded["link"];
-	$n["title"] = stripslashes($loaded["video_name"]);
-	$n["timestart"] = $loaded["history_start"];
+	$n = array(
+		"index" => $loaded["video_index"],
+		"link" => $loaded["link"],
+		"title" => stripslashes($loaded["video_name"]),
+		"timestart" => $loaded["history_start"]
+	);
 	echo json_encode($n);
 } else {
 	// Loaded the oldest non-played video
 	$load = $db->query("SELECT video_index, room_history_id, history_user, link, video_name
-						FROM roomHistory_$token rh
+						FROM roomHistory_$box_token rh
 						JOIN song_base sb ON rh.video_index = sb.song_base_id
 						WHERE video_status = '0'
 						AND (room_history_id = (SELECT room_history_id
-												FROM roomHistory_$token
+												FROM roomHistory_$box_token
 												WHERE video_status = '2'
 												ORDER BY room_history_id DESC LIMIT 1) +1)
 						OR (room_history_id = '1' AND video_status = '0')");
-
-	$n = array();
 	$loaded = $load->fetch(PDO::FETCH_ASSOC);
-	$n["index"] = $loaded["video_index"];
-	$n["link"] = $loaded["link"];
-	$n["title"] = stripslashes($loaded["video_name"]);
 	$time = date_create('now', new datetimezone('UTC'))->format('Y-m-d H:i:s');
-	$n["timestart"] = $time;
-	if($userPower == 2){
-		$playing = $db->query("UPDATE roomHistory_$token
+	$n = array(
+		"index" => $loaded["video_index"],
+		"link" => $loaded["link"],
+		"title" => stripslashes($loaded["video_name"]),
+		"timestart" => $time
+	);
+	if($user_power == 2){
+		$playing = $db->query("UPDATE roomHistory_$box_token
 							SET video_status='1',
 							history_start = '$time'
 							WHERE room_history_id='$loaded[room_history_id]'");

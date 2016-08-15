@@ -16,6 +16,7 @@ $lang["room_create"] = "ボックスを始まる";
 $lang["active_room"] = "ライブ中のボックス";
 $lang["room_name"] = "ボックスの名前";
 $lang["room_protection"] = "防御レベル";
+$lang["protection_tip"] = "他のユーザーズはリンクだけでプライベートボックスに入りますことへできます。";
 $lang["level_private"] = "プライベート";
 $lang["level_locked"] = "パスワードロック";
 $lang["level_public"] = "パブリック";
@@ -189,8 +190,8 @@ $lang["dark"] = "ダーク";
 $lang["light"] = "ライト";
 $lang["sync"] = "シンクロ";
 $lang["sync_tip"] = "シンクロがオフにするなら、次のビデオが始まりません。";
-$lang["sync-on"] = "シンク オン";
-$lang["sync-off"] = "シンク　オフ";
+$lang["sync_on"] = "シンク オン";
+$lang["sync_off"] = "シンク　オフ";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "このユーザーはバイオがない。";

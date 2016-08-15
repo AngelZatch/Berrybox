@@ -44,6 +44,9 @@ $break-large: 1024px
 	width: $side
 
 /** Display fixes **/
+*
+	border-radius: 0 !important
+
 .no-margin
 	margin: 0 !important
 
@@ -55,6 +58,9 @@ $break-large: 1024px
 
 textarea
 	resize: none
+
+.label
+	padding-top: 0.3em
 
 option
 	background-color: inherit
@@ -94,9 +100,10 @@ legend
 	@media screen and (max-width: $break-small)
 		margin-left: -$break-small
 
-.form-control-portal
+.form-control
 	background-color: transparent !important
-	color: $yellow-base !important
+	&.form-control-portal
+		color: $yellow-base !important
 	border-radius: 0 !important
 	border: 1px solid $yellow-base !important
 	border-top: 0 !important
@@ -105,11 +112,17 @@ legend
 		outline: inherit
 		border-color: $yellow-base
 
+.addon-search
+	border-right: 0 !important
+
+.search-input
+	border-left: 0 !important
+	box-shadow : none !important
+
 .login-space
-	background-color: transparentize(white, 0.15)
-	border-radius: 8px
-	box-shadow: 0px 2px 11px $system-color
-	padding: 15px
+	background-color: white
+	padding: 70px
+	margin-top: 40px
 
 /** Panels **/
 .panel-room
@@ -683,7 +696,6 @@ legend
 	@media screen and (max-width: $break-small)
 		padding: 5px
 	padding: 30px
-	border-radius: 5px
 	cursor: pointer
 
 .search-bio
@@ -731,6 +743,7 @@ legend
 		padding-right: 0
 
 .panel-box
+	border-radius: 0
 	.panel-footer
 		padding: 10px 0
 		margin: 0
@@ -755,7 +768,6 @@ legend
 	color: $fear-color
 
 .emotion-container
-	border-radius: 7px
 	cursor: pointer
 	p
 		margin: 10px

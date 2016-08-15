@@ -2,9 +2,9 @@
 include "db_connect.php";
 $db = PDOFactory::getConnection();
 $string = $_POST["string"];
-$userToken = $_POST["userToken"];
+$user_token = $_POST["user_token"];
 
-$compare = $db->query("SELECT user_pwd FROM user WHERE user_token='$userToken'")->fetch(PDO::FETCH_ASSOC);
+$compare = $db->query("SELECT user_pwd FROM user WHERE user_token='$user_token'")->fetch(PDO::FETCH_ASSOC);
 
 if(strcasecmp($compare["user_pwd"], $string) == 0){
 	echo 1; // Success

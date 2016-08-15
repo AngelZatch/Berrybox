@@ -9,7 +9,7 @@ $rooms = array();
 while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){
 	$r = array();
 	$r["name"] = $activeRooms["room_name"];
-	$r["token"] = $activeRooms["room_token"];
+	$r["token"] = $activeRooms["box_token"];
 	$r["creator"] = $activeRooms["room_creator"];
 	$r["creator_name"] = $activeRooms["user_pseudo"];
 	array_push($rooms, $r);

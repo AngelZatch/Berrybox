@@ -10,10 +10,10 @@ $roomToken = $_POST["roomToken"];
 
 try{
 	$db->beginTransaction();
-	$oldProtectValue = $db->query("SELECT room_protection FROM rooms WHERE room_token = '$roomToken'")->fetch(PDO::FETCH_ASSOC);
+	$oldProtectValue = $db->query("SELECT room_protection FROM rooms WHERE box_token = '$roomToken'")->fetch(PDO::FETCH_ASSOC);
 	$editRoom = $db->query("UPDATE rooms
 								SET room_type = '$type', room_lang = '$language', room_protection = '$protect', room_description = '$description'
-								WHERE room_token = '$roomToken'");
+								WHERE box_token = '$roomToken'");
 	$db->commit();
 	echo $oldProtectValue["room_protection"];
 } catch(PDOException $e){

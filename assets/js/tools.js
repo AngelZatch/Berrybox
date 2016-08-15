@@ -12,6 +12,15 @@ $(document).ready(function(){
 		return regex.test(jQuery(elem)[attr.method](attr.property));
 	}
 	menuPopover = false;
+	/*$.when(getUserLang()).done(function(data){
+		window.language_tokens = JSON.parse(data);
+		console.log(data);
+	})*/
+	// When user leaves the room, he has to be removed from the box
+	$(window).on('beforeunload', function(event){
+		sessionStorage.removeItem("currently-playing");
+		$.post("functions/leave_room.php", {box_token : box_token, user_token : user_token});
+	})
 }).on('click', function(e){ // Simulate closure of popover
 	if(menuPopover == true){
 		$(".popover-trigger").click();
@@ -25,6 +34,10 @@ $(document).ready(function(){
 		menuPopover = true;
 	}
 })
+
+function getUserLang(){
+	return $.get("functions/new_get_user_lang.php");
+}
 
 function removeFeedback(elementId){
 	$(elementId).removeClass("has-error");
@@ -45,3 +58,12 @@ function applyWarningFeedback(elementId){
 	$(elementId).addClass("has-warning");
 	$(elementId).append("<span class='glyphicon glyphicon-warning-sign form-control-feedback' aria-hidden='true'></span>");
 }
+
+// Updates a whole row
+function updateEntry(table, values, target){
+	return $.post("functions/update_entry.php", {table : table, target_id : target, values : values});
+}
+
+/*function getUserLang(){
+	return $.get("functions/get_user_lang.php");
+}*/
