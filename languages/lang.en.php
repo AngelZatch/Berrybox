@@ -72,7 +72,7 @@ $lang["chat_settings"] = "Chat and box settings";
 $lang["color_pick"] = "Pick a color for your username";
 $lang["color_tip"] = "Your username in chat will be displayed in the color you'll have chosen";
 $lang["welcome"] = "Welcome in the box! To submit a video, please paste any YouTube link in the input under the player.";
-$lang["welcome_admin"] = "Welcome in your box! To submit a video, please paste any YouTube link in the input under the player. Please note that you are the creator and therefore administrator of this box. If you leave it without closing it, video synchronisation and play will stop for your users.";
+$lang["welcome_admin"] = "Welcome in your box! To submit a video, please paste any YouTube link in the input under the player. Please note that you are the creator and therefore administrator of this box. If you leave it without closing it, video synchronization and play will stop for your users.";
 
 /** MOOD **/
 $lang["mood-question"] = "So, what do you think of this video?";
@@ -100,8 +100,8 @@ $lang["ul_mods"] = "Moderators";
 $lang["ul_users"] = "Listeners";
 $lang["sl_played"] = "Played videos";
 $lang["sl_upcoming"] = "Upcoming videos";
-$lang["synchronizing"] = "Synchronization, please wait a moment.";
-$lang["no_admin"] = "Warning ! The creator is not present in the box. The synchronisation is therefore impossible. If you want to share videos in proper conditions, please create another box or contact the creator of this box directly.";
+$lang["synchronizing"] = "Synchronization...";
+$lang["no_admin"] = "Warning ! The creator is not present in the box. The synchronization is therefore impossible. If you want to share videos in proper conditions, please create another box or contact the creator of this box directly.";
 $lang["whisper"] = "Whisper";
 
 /** ROOM TYPES **/

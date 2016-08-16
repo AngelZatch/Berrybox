@@ -226,7 +226,7 @@ legend
 #room-player
 	padding-top: 14px
 	padding-right: 0 !important
-	@media screen and(min-width: $break-medium)
+	@media screen and(min-width: 992px)
 		height: 100vh
 	@media screen and(max-width: $break-small)
 		padding-left: 0 !important
@@ -240,8 +240,6 @@ legend
 /** Profile pictures **/
 .room-picture
 	+circle-size(55px)
-	float: left
-	margin-right: 10px
 
 .user-profile-picture
 	@media screen and (min-width: $break-medium)
@@ -320,6 +318,7 @@ legend
 .creator-stats
 	font-size: 16px
 	text-align: right
+	margin-top: -5px
 
 /** Chat **/
 .whisper
@@ -389,6 +388,10 @@ legend
 
 .btn
 	background-color: inherit
+
+.btn-toggle-follow
+	margin-top: -5px
+	margin-right: 5px
 
 .btn-success.feedback
 	background-color: #449d44 !important
@@ -497,8 +500,27 @@ nav
 	margin-top: 20px
 
 .room-quick-messages
-	text-align: center
+	text-align: left
 	padding-top: 5px
+	color: $system-color
+	cursor: default
+
+.room-admin
+	text-align: right
+
+.sync-message
+	font-style: italic
+
+.submission-message, .play-message
+	text-transform: uppercase
+
+.top-box-picture
+	padding-left: 0
+
+.top-box-infos
+	padding: 0 !important
+	@media screen and (min-width: $break-medium)
+		margin-left: -30px
 
 .label-status
 	font-size: 20px
@@ -769,6 +791,8 @@ legend
 
 .emotion-container
 	cursor: pointer
+	height: 42px
+	padding: 0 !important
 	p
 		margin: 10px
 	&.selected

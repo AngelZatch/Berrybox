@@ -101,7 +101,7 @@ $lang["ul_mods"] = "モデレーターズ";
 $lang["ul_users"] = "リサナーズ";
 $lang["sl_played"] = "過去";
 $lang["sl_upcoming"] = "次";
-$lang["synchronizing"] = "シンク中…　しばらくお待ちください。";
+$lang["synchronizing"] = "シンク中…";
 $lang["no_admin"] = "注意！このボックスのクリエイターがいりません。シンクは不可能です。ビデオをシェアーするために、新しいボックスを始めて下さい。";
 $lang["whisper"] = "囁く";
 

@@ -14,18 +14,6 @@ $(function () {
 	var user = $("#user-card-name").text();
 	$(".chatbox").val("/w "+user+" ");
 	$(".chatbox").focus();
-}).on('mouseenter', '.btn-unfollow', function(){
-	var id = $(this).attr("id");
-	var text = "<span class='glyphicon glyphicon-minus'></span>"+language_tokens.unfollow;
-	$("#"+id).html(text);
-	$("#"+id).removeClass("btn-active");
-	$("#"+id).addClass("btn-danger");
-}).on('mouseleave', '.btn-unfollow', function(){
-	var id = $(this).attr("id");
-	var text = "<span class='glyphicon glyphicon-heart'></span> "+language_tokens.following;
-	$("#"+id).html(text);
-	$("#"+id).removeClass("btn-danger");
-	$("#"+id).addClass("btn-active");
 }).on('click', '#user-card-close', function(){
 	$(".user-card").remove();
 })

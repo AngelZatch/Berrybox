@@ -100,7 +100,7 @@ $lang["ul_mods"] = "Modérateurs";
 $lang["ul_users"] = "Spectateurs";
 $lang["sl_played"] = "Vidéos lues";
 $lang["sl_upcoming"] = "Vidéos à venir";
-$lang["synchronizing"] = "Synchro en cours, merci de patienter un instant...";
+$lang["synchronizing"] = "Synchronisation...";
 $lang["no_admin"] = "Attention ! L'administrateur de la box n'est actuellement pas présent. La synchronisation est par conséquent impossible. Si vous voulez partager des vidéos, veuillez créer une autre box ou contacter le créateur de cette box directement.";
 $lang["whisper"] = "Murmurer";
 

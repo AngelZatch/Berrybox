@@ -17,6 +17,9 @@ $(document).ready(function(){
 		console.log(data);
 	})*/
 	// When user leaves the room, he has to be removed from the box
+	if(/(\/follow)/.exec(top.location.pathname) !== null || /(\/create)/.exec(top.location.pathname) !== null){
+		document.title = $("legend").text()+" | Berrybox";
+	}
 	$(window).on('beforeunload', function(event){
 		sessionStorage.removeItem("currently-playing");
 		$.post("functions/leave_room.php", {box_token : box_token, user_token : user_token});

@@ -8,7 +8,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
-		height: '75%',
+		height: '85%',
 		width: '60%',
 		videoId: '',
 		events: {
@@ -117,7 +117,10 @@ function getNext(skip, box_token){
 		});
 	} else {
 		synchronize(box_token, user_power);
-		$(".room-quick-messages").append("<div class='system-message' id='message-synchro'><span class='glyphicon glyphicon-refresh'></span> "+language_tokens.synchronizing+"</div>");
+		if(jQuery(window).width() > 768)
+			$(".sync-message").html("<span class='glyphicon glyphicon-refresh'></span> "+language_tokens.synchronizing);
+		else
+			$(".sync-message").append("<span class='glyphicon glyphicon-refresh' title='"+language_tokens.synchronizing+"'></span>");
 	}
 }
 
@@ -254,7 +257,7 @@ function playSong(index, id, title, timestart){
 	} else {
 		player.loadVideoById(id, 0);
 	}
-	$("#message-synchro").remove();
+	$(".sync-message").empty();
 	sessionStorage.setItem("currently-playing", index);
 	document.title = title+" | Berrybox";
 	$(".currently-name").empty();
@@ -264,6 +267,7 @@ function playSong(index, id, title, timestart){
 		sendMessage(box_token, 4, 2, message);
 		$.post("functions/register_song.php", {index : index});
 	}
+	displayMoodVotes(index);
 }
 
 // Requeueing song
@@ -349,6 +353,20 @@ function synchronize(box_token, user_power){
 	})
 }
 
+// Watch the state of the user
+function userState(box_token, user_token){
+	$.post("functions/get_user_state.php", {box_token : box_token, user_token : user_token}).done(function(data){
+		if(data == 1){
+			setTimeout(userState, 10000, box_token, user_token);
+		} else if(data == 2) {
+			$("#body-chat").append("<p class='system-message system-alert'>"+language_tokens.room_closing+"</p>");
+			setTimeout(function(){
+				window.location.replace("home");
+			}, 3000);
+		}
+	})
+}
+
 // Ignores or reinstates a video in the queue
 function toggleVideoInQueue(box_token, video_id, play_flag){
 	$.post("functions/toggle_video_in_queue.php", {box_token : box_token, video_id : video_id, play_flag : play_flag}).done(function(data){
@@ -377,18 +395,25 @@ function watchBoxState(user_power, box_token){
 		// Submission of videos
 		if(box_variables.room_submission_rights == 2){
 			if(window.user_power == 1){
-				if(window.submission && user_power == 2)
-					sendMessage(box_token, 4, 1, "{submission_mod}");
-				window.submission = false;
 				$(".add-link").hide();
-			} else {
-				window.submission = true;
+				$(".room-quick-messages").addClass("col-sm-offset-4");
 			}
+			if(user_power == 2){
+				if(window.submission)
+					sendMessage(box_token, 4, 1, "{submission_mod}");
+			}
+			window.submission = false;
+			if(jQuery(window).width() > 768)
+				$(".submission-message").html("<span class='glyphicon glyphicon-play-circle'></span> "+language_tokens.submit_mod+"</div>");
+			else
+				$(".submission-message").html("<span class='glyphicon glyphicon-play-circle' title='"+language_tokens.submit_mod+"'></span></div>");
 		} else {
 			if(!window.submission && user_power == 2)
 				sendMessage(box_token, 4, 1, "{submission_all}");
 			window.submission = true;
 			$(".add-link").show();
+			$(".room-quick-messages").removeClass("col-sm-offset-4");
+			$(".submission-message").empty();
 		}
 
 		if(box_variables.room_protection == 2){
@@ -406,10 +431,15 @@ function watchBoxState(user_power, box_token){
 			if(!window.autoplay && user_power == 2)
 				sendMessage(box_token, 4, 1, "{auto-on}");
 			window.autoplay = true;
+			$(".play-message").empty();
 		} else {
 			if(window.autoplay && user_power == 2)
 				sendMessage(box_token, 4, 1, "{auto-off}");
 			window.autoplay = false;
+			if(jQuery(window).width() > 768)
+				$(".play-message").html("<span class='glyphicon glyphicon-hourglass'></span> "+language_tokens.manual_play+"</div>");
+			else
+				$(".play-message").html("<span class='glyphicon glyphicon-hourglass' title='"+language_tokens.manual_play+"'></span></div>");
 		}
 
 		// State active of the room
@@ -472,7 +502,7 @@ $(document).ready(function(){
 				}
 			}
 			// Watch the state of the user and of the room (refresh every 10s)
-			setTimeout(userState, 10000, box_token, user_token);
+			userState(box_token, user_token);
 			// Keep PHP session alive (every 30 mins)
 			setInterval(function(){$.post("functions/refresh_session.php");},1800000);
 			fetchEmotes().done(function(data){
@@ -520,18 +550,30 @@ $(document).ready(function(){
 			return !~text.indexOf(val);
 		}).hide();
 	});
+}).on('mouseenter', '.btn-unfollow', function(){
+	var id = $(this).attr("id");
+	var text = "<span class='glyphicon glyphicon-minus'></span> "+language_tokens.unfollow+" "+box_details.creator_pseudo;
+	$("#"+id).html(text);
+	$("#"+id).removeClass("btn-active");
+	$("#"+id).addClass("btn-danger");
+}).on('mouseleave', '.btn-unfollow', function(){
+	var id = $(this).attr("id");
+	var text = "<span class='glyphicon glyphicon-heart'></span> "+language_tokens.following+" "+box_details.creator_pseudo;
+	$("#"+id).html(text);
+	$("#"+id).removeClass("btn-danger");
+	$("#"+id).addClass("btn-active");
 }).on('click', '.btn-unfollow', function(){
 	var followedToken = $(this).attr("value");
 	var id = $(this).attr("id");
 	$.post("functions/unfollow_user.php", {userFollowing : user_token, userFollowed : followedToken}).done(function(data){
 		$("#"+id).removeClass("btn-active");
-		var text = "<span class='glyphicon glyphicon-heart'></span> "+language_tokens.follow;
+		var text = "<span class='glyphicon glyphicon-heart'></span> "+language_tokens.follow+" "+box_details.creator_pseudo;
 		$("#"+id).html(text);
 		$("#"+id).removeClass("btn-danger");
 		$("#"+id).removeClass("btn-unfollow");
 		$("#"+id).addClass("btn-follow");
 		$("#"+id).attr("id", id.substr(0, id.length - 6)+"follow");
-		if(followedToken == box_details.user_pseudo){
+		if(followedToken == box_details.creator_pseudo){
 			$("#box-title-unfollow").removeClass("btn-active");
 			$("#box-title-unfollow").html(text);
 			$("#box-title-unfollow").removeClass("btn-danger");
@@ -545,13 +587,12 @@ $(document).ready(function(){
 	var id = $(this).attr("id");
 	$.post("functions/follow_user.php", {userFollowing : user_token, userFollowed : followed_token}).done(function(data){
 		$("#"+id).addClass("btn-active");
-		var text = "<span class='glyphicon glyphicon-heart'></span> <?php echo $lang['following'];?>";
-		var text = "<span class='glyphicon glyphicon-heart'></span> "+language_tokens.following;
+		var text = "<span class='glyphicon glyphicon-heart'></span> "+language_tokens.following+" "+box_details.creator_pseudo;
 		$("#"+id).html(text);
 		$("#"+id).removeClass("btn-follow");
 		$("#"+id).addClass("btn-unfollow");
 		$("#"+id).attr("id", id.substr(0, id.length - 8)+"unfollow");
-		if(followed_token == '<?php echo $roomDetails["user_pseudo"];?>'){
+		if(followed_token == box_details.creator_pseudo){
 			$("#box-title-follow").addClass("btn-active");
 			$("#box-title-follow").html(text);
 			$("#box-title-follow").removeClass("btn-follow");
@@ -629,7 +670,10 @@ $(document).ready(function(){
 	var position;
 	if($("#"+classToken).css("display") == "none"){
 		$("#"+classToken).toggle();
-		position = "32.5%";
+		if(jQuery(window).width() > 1024)
+			position = "24.2%";
+		else
+			position = "31.9%";
 		switch(classToken){
 			case "song-list":
 				loadPlaylist(box_token, window.user_power);
@@ -694,7 +738,7 @@ $(document).ready(function(){
 				}, 200);
 				if(jQuery(window).width() > 992){
 					$("#currently-playing").animate({
-						width: "77%"
+						width: "65%"
 					}, 200);
 				}
 				break;

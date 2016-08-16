@@ -38,9 +38,41 @@ function displayMood(mood_id){
 	}
 }
 
+function displayMoodVotes(video_id){
+	if(jQuery(window).width() > 1024){
+		$.get("functions/get_video_votes.php", {index : video_id}).done(function(data){
+			var moods = JSON.parse(data);
+			$(".mood-count").empty();
+			for(var i = 0; i < moods.length; i++){
+				switch(parseInt(moods[i].vote_mood)){
+					case 1:
+						$("#like-count").text(moods[i].count_mood);
+						break;
+					case 2:
+						$("#cry-count").text(moods[i].count_mood);
+						break;
+					case 3:
+						$("#love-count").text(moods[i].count_mood);
+						break;
+					case 4:
+						$("#energy-count").text(moods[i].count_mood);
+						break;
+					case 5:
+						$("#calm-count").text(moods[i].count_mood);
+						break;
+					case 6:
+						$("#fear-count").text(moods[i].count_mood);
+						break;
+				}
+			}
+		});
+	}
+}
+
 function voteMood(mood_id, user_token, video_id){
 	$.post("functions/vote_mood.php", {mood_id : mood_id, user_token : user_token, video_id : video_id}).done(function(){
 		displayMood(mood_id);
+		displayMoodVotes(video_id);
 	})
 }
 
