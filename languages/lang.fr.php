@@ -68,7 +68,7 @@ $lang["room_params_tip"] = "Modifiez la langue principale parlée, le type de co
 /** CHAT **/
 $lang["post_chat"] = "Envoyer";
 $lang["chat_placeholder"] = "Ecrire un message";
-$lang["chat_settings"] = "Paramètres du chat et de la box";
+$lang["box_settings"] = "Paramètres de la box";
 $lang["color_pick"] = "Choisissez une couleur pour votre nom";
 $lang["color_tip"] = "Votre nom sera affiché dans la couleur que vous aurez choisi.";
 $lang["welcome"] = "Bienvenue dans cette box ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur.";
@@ -149,7 +149,7 @@ $lang["firefox_alert"] = "ATTENTION ! Firefox ne fonctionne pas correctement lor
 $lang["go_to_video"] = "Aller à la vidéo";
 
 /** MENU **/
-$lang["menu"] = "Menu principal";
+$lang["menu"] = "Vos paramètres";
 $lang["my_profile"] = "Mon profil";
 $lang["public_profile"] = "Mes stats";
 $lang["leave"] = "Quitter la box";

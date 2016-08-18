@@ -68,7 +68,7 @@ $lang["room_params_tip"] = "Change the main spoken language, the type of video c
 /** CHAT **/
 $lang["post_chat"] = "Chat";
 $lang["chat_placeholder"] = "Write a message";
-$lang["chat_settings"] = "Chat and box settings";
+$lang["box_settings"] = "Box settings";
 $lang["color_pick"] = "Pick a color for your username";
 $lang["color_tip"] = "Your username in chat will be displayed in the color you'll have chosen";
 $lang["welcome"] = "Welcome in the box! To submit a video, please paste any YouTube link in the input under the player.";
@@ -142,14 +142,14 @@ $lang["pwd_confirm"] = "Please confirm your password";
 $lang["cancel"] = "Cancel";
 $lang["wrong_password"] = "Wrong password. Please try again";
 $lang["no_credentials"] = "Want to submit videos, chat and more? Log in or register!";
-$lang["follow_us"] = "Follow Berrybox for latest news";
+$lang["follow_us"] = "Follow Berrybox for our latest news!";
 $lang["twitter"] = "Twitter";
 $lang["dev_message"] = "Hello! I'm Andréas, developer of this website. I am a multimedia engineering student, and I'm developping Berrybox on my freetime! If you want to have a little chat, feel free to mail me at <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>";
 $lang["firefox_alert"] = "WARNING ! Firefox is known to not work properly with loading videos without reloading the page (which is what we do here). Please use another browser to fully enjoy Berrybox. We're sorry for the inconvenience, but unfortunately there's nothing we can do :(";
 $lang["go_to_video"] = "Go to video";
 
 /** MENU **/
-$lang["menu"] = "Main menu";
+$lang["menu"] = "User settings";
 $lang["my_profile"] = "My profile";
 $lang["public_profile"] = "My stats";
 $lang["leave"] = "Leave the box";

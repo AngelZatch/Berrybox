@@ -69,7 +69,7 @@ $lang["room_params_tip"] = "主な話し言葉やボックスタイプやボッ�
 /** CHAT **/
 $lang["post_chat"] = "チャット";
 $lang["chat_placeholder"] = "メッセージを送信";
-$lang["chat_settings"] = "チャットとボックス設定";
+$lang["box_settings"] = "ボックス設定";
 $lang["color_pick"] = "ユーザー名の色";
 $lang["color_tip"] = "あなたのユーザー名はチャットに選べた色にディスプレイします。";
 $lang["welcome"] = "チャットボックスへようこそ！ ビデオ曲を提出ために、YouTubeのリンクをプレイヤーの下に貼り付けます。";
@@ -150,7 +150,7 @@ $lang["firefox_alert"] = "ご注意！BerryboxにFirefoxは正常に動作しま
 $lang["go_to_video"] = "ビデオへ";
 
 /** MENU **/
-$lang["menu"] = "メインメニュー";
+$lang["menu"] = "ユーザー設定";
 $lang["my_profile"] = "プロファイル";
 $lang["public_profile"] = "パラメータ";
 $lang["leave"] = "ボックスを出ます";

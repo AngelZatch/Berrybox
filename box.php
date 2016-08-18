@@ -193,7 +193,7 @@ if(isset($_SESSION["token"])){
 								<span class="glyphicon glyphicon-user" title="<?php echo $lang["watch_count"];?>"></span><span id="watch-count"></span>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 toggle-options-list button-glyph">
-								<span class="glyphicon glyphicon-cog" title="<?php echo $lang["chat_settings"];?>"></span>
+								<span class="glyphicon glyphicon-cog" title="<?php echo $lang["box_settings"];?>"></span>
 							</div>
 							<?php } else { ?>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 toggle-song-list button-glyph">
@@ -244,7 +244,7 @@ if(isset($_SESSION["token"])){
 			</div>
 			<div class="col-lg-3 col-md-3 col-xs-12 full-panel" id="options-list">
 				<div class="panel panel-default panel-room panel-list">
-					<div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["chat_settings"];?></div>
+					<div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["box_settings"];?></div>
 					<div class="panel-body" id="body-options-list">
 						<?php if($_SESSION["token"] == $roomDetails["room_creator"]){ ?>
 						<!-- Play type -->
