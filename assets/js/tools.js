@@ -63,8 +63,12 @@ function applyWarningFeedback(elementId){
 }
 
 // Updates a whole row
-function updateEntry(table, values, target){
-	return $.post("functions/update_entry.php", {table : table, target_id : target, values : values});
+function updateEntry(table, values, target_id){
+	return $.post("functions/update_entry.php", {table : table, target_id : target_id, values : values});
+}
+
+function deleteEntry(table, target_id){
+	return $.post("functions/delete_entry.php", {table : table, target_id : target_id});
 }
 
 /*function getUserLang(){

@@ -119,6 +119,7 @@ $lang["follow"] = "Follow";
 $lang["following"] = "Following";
 $lang["unfollow"] = "Unfollow";
 $lang["submitting"] = "Submitting...";
+$lang["delete"] = "Delete";
 
 /** ACTIONS **/
 $lang["log_out"] = "Log out";

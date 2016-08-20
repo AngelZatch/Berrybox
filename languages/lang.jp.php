@@ -120,6 +120,7 @@ $lang["follow"] = "ユーザー登録";
 $lang["following"] = "登録済み";
 $lang["unfollow"] = "登録解除";
 $lang["submitting"] = "提出中…";
+$lang["delete"] = "削除";
 
 /** ACTIONS **/
 $lang["log_out"] = "ログアウト";
