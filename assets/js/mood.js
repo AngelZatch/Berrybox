@@ -44,24 +44,25 @@ function displayMoodVotes(video_id){
 			var moods = JSON.parse(data);
 			$(".mood-count").empty();
 			for(var i = 0; i < moods.length; i++){
+				var count_mood = moods[i].count_mood;
 				switch(parseInt(moods[i].vote_mood)){
 					case 1:
-						$("#like-count").text(moods[i].count_mood);
+						$("#like-count").text(count_mood);
 						break;
 					case 2:
-						$("#cry-count").text(moods[i].count_mood);
+						$("#cry-count").text(count_mood);
 						break;
 					case 3:
-						$("#love-count").text(moods[i].count_mood);
+						$("#love-count").text(count_mood);
 						break;
 					case 4:
-						$("#energy-count").text(moods[i].count_mood);
+						$("#energy-count").text(count_mood);
 						break;
 					case 5:
-						$("#calm-count").text(moods[i].count_mood);
+						$("#calm-count").text(count_mood);
 						break;
 					case 6:
-						$("#fear-count").text(moods[i].count_mood);
+						$("#fear-count").text(count_mood);
 						break;
 				}
 			}

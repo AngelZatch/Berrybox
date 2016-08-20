@@ -129,32 +129,32 @@ if(isset($_SESSION["token"])){
 					<div class="col-xs-12 col-sm-5 mood-selectors">
 						<!--<p class="mood-question"><?php echo $lang["mood-question"];?></p>-->
 						<div class="col-xs-2 emotion-container" id="emotion-like-container" data-mood="1">
-							<p class="emotion-glyph emotion-like button-glyph">
+							<p class="emotion-glyph emotion-like button-glyph" id="emotion-like" title="<?php echo $lang["like"];?>">
 								<span class="glyphicon glyphicon-thumbs-up"></span> <span class="mood-count" id="like-count"></span>
 							</p>
 						</div>
 						<div class="col-xs-2 emotion-container" id="emotion-cry-container" data-mood="2">
-							<p class="emotion-glyph emotion-cry button-glyph">
+							<p class="emotion-glyph emotion-cry button-glyph" id="emotion-cry" title="<?php echo $lang["cry"];?>">
 								<span class="glyphicon glyphicon-tint"></span> <span class="mood-count" id="cry-count"></span>
 							</p>
 						</div>
 						<div class="col-xs-2 emotion-container" id="emotion-love-container" data-mood="3">
-							<p class="emotion-glyph emotion-love button-glyph">
+							<p class="emotion-glyph emotion-love button-glyph" id="emotion-love" title="<?php echo $lang["love"];?>">
 								<span class="glyphicon glyphicon-heart"></span> <span class="mood-count" id="love-count"></span>
 							</p>
 						</div>
 						<div class="col-xs-2 emotion-container" id="emotion-energy-container" data-mood="4">
-							<p class="emotion-glyph emotion-energy button-glyph">
+							<p class="emotion-glyph emotion-energy button-glyph" id="emotion-energy" title="<?php echo $lang["energy"];?>">
 								<span class="glyphicon glyphicon-eye-open"></span> <span class="mood-count" id="energy-count"></span>
 							</p>
 						</div>
 						<div class="col-xs-2 emotion-container" id="emotion-calm-container" data-mood="5">
-							<p class="emotion-glyph emotion-calm button-glyph">
+							<p class="emotion-glyph emotion-calm button-glyph" id="emotion-calm" title="<?php echo $lang["calm"];?>">
 								<span class="glyphicon glyphicon-bed"></span> <span class="mood-count" id="calm-count"></span>
 							</p>
 						</div>
 						<div class="col-xs-2 emotion-container" id="emotion-fear-container" data-mood="6">
-							<p class="emotion-glyph emotion-fear button-glyph">
+							<p class="emotion-glyph emotion-fear button-glyph" id="emotion-fear" title="<?php echo $lang["fear"];?>">
 								<span class="glyphicon glyphicon-flash"></span> <span class="mood-count" id="fear-count"></span>
 							</p>
 						</div>
@@ -389,12 +389,6 @@ if(isset($_SESSION["token"])){
 							</div>
 							<p id="user-name"><?php echo $userDetails["user_pseudo"];?></p>
 						</div>
-						<form action="search" method="post" target="_blank" role="search">
-							<div class="input-group">
-								<span class="input-group-addon addon-search"><span class="glyphicon glyphicon-search"></span></span>
-								<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
-							</div>
-						</form>
 						<div class="room-option">
 							<div class="option-title"><?php echo $lang["color_pick"];?></div>
 							<span class="tip"><?php echo $lang["color_tip"];?></span><br>
@@ -416,6 +410,12 @@ if(isset($_SESSION["token"])){
 							</div>
 							<span class="tip"><?php echo $lang["theme_tip"];?></span>
 						</div>
+						<form action="search" method="post" target="_blank" role="search">
+							<div class="input-group">
+								<span class="input-group-addon addon-search"><span class="glyphicon glyphicon-search"></span></span>
+								<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
+							</div>
+						</form>
 						<div class="menu-options row">
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="profile/settings" target="_blank"><span class="glyphicon glyphicon-wrench col-lg-2"></span> <?php echo $lang["my_settings"];?></a></li>
