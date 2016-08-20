@@ -555,8 +555,8 @@ if(isset($_SESSION["token"])){
 					var songs = event.target.getPlaylist();
 					$("#body-chat").append("<p class='system-message'> <?php echo $lang["submitting_playlist"];?></p>");
 					$(".url-box").val('');
-					var deferreds = addBigPlaylist(songs, box_token);
-					$.when.apply(null, deferreds).done(function(){
+					var deferreds = addBigPlaylist(songs);
+					$.when.apply(null, deferreds).done(function(data){
 						$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["playlist_submitted"];?> ("+songs.length+" <?php echo $lang["videos"];?>)</p>");
 						$(".play-url").removeClass("disabled");
 						$(".play-url").removeAttr("disabled");
@@ -571,6 +571,7 @@ if(isset($_SESSION["token"])){
 				$("#body-chat").append("<div id='warning-"+code+"'><p class='system-message system-warning'><span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["no_fetch"];?><div class='input-group info-box-group'><input type='text' placeholder='<?php echo $lang["fill_placeholder"];?>' class='form-control info-box' id='info-"+code+"'><span class='input-group-btn'><button class='btn btn-primary send-info'><?php echo $lang["fill_missing"];?></button><button class='btn btn-danger cancel-info' id='cancel-info-"+code+"'>Cancel</button></div></div>");
 			}
 			function addBigPlaylist(list, box_token){
+				var box_token = getBoxToken();
 				// Test playlist : https://www.youtube.com/watch?v=Y3HVHNf-oW4&list=PLOXH-6LkzI0OtCgTVus8Czl4wBLyw9SK6
 				//console.log("big playlist: switching over to bulk");
 				$(".play-url").addClass("disabled");
