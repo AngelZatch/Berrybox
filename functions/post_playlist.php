@@ -6,7 +6,7 @@ $db = PDOFactory::getConnection();
 $list = json_decode($_POST["list"]);
 $time = date_create('now', new datetimezone('UTC'))->format('Y-m-d H:i:s');
 $user = $_SESSION["token"];
-$roomToken = $_POST["roomToken"];
+$box_token = $_POST["box_token"];
 
 foreach($list as $link){ // Unknown error: investigate list of links.
 	if(strlen($link) == 11){
@@ -50,7 +50,7 @@ foreach($list as $link){ // Unknown error: investigate list of links.
 			}
 		}
 		// Once everything is done, we insert the video in the playlist
-		$upload = $db->prepare("INSERT INTO roomHistory_$roomToken(video_index, history_time, history_user)
+		$upload = $db->prepare("INSERT INTO roomHistory_$box_token(video_index, history_time, history_user)
 		VALUES(:index, :time, :user)");
 		$upload->bindParam(':index', $baseIndex);
 		$upload->bindParam(':time', $time);
