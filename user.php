@@ -130,7 +130,7 @@ if(isset($_SESSION["token"])){
 													JOIN song_base sb ON sb.song_base_id = rh.video_index
 													WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 					?>
-					<div class="col-lg-6 col-md-6 col-xs-12 panel-box-container">
+					<div class="col-lg-4 col-xs-6 panel-box-container">
 						<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["box_token"];?>'">
 							<div class="panel-body box-entry">
 								<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>

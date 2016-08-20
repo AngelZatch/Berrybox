@@ -16,6 +16,8 @@ function onYouTubeIframeAPIReady() {
 			'onStateChange': onPlayerStateChange
 		}
 	});
+	// Since it's the last element to appear, we resize elements once it's done.
+	resizeElements();
 }
 
 function getBoxToken(){
@@ -117,10 +119,8 @@ function getNext(skip, box_token){
 		});
 	} else {
 		synchronize(box_token, user_power);
-		if(jQuery(window).width() > 768)
-			$(".sync-message").html("<span class='glyphicon glyphicon-refresh'></span> "+language_tokens.synchronizing);
-		else
-			$(".sync-message").append("<span class='glyphicon glyphicon-refresh' title='"+language_tokens.synchronizing+"'></span>");
+		$(".sync-message").append("<span class='glyphicon glyphicon-refresh' title='"+language_tokens.synchronizing+"'> <span class='hidden-xs hidden-sm hidden-md'>"+language_tokens.synchronizing+"</span></span>");
+
 	}
 }
 
@@ -403,10 +403,7 @@ function watchBoxState(user_power, box_token){
 					sendMessage(box_token, 4, 1, "{submission_mod}");
 			}
 			window.submission = false;
-			if(jQuery(window).width() > 768)
-				$(".submission-message").html("<span class='glyphicon glyphicon-play-circle'></span> "+language_tokens.submit_mod+"</div>");
-			else
-				$(".submission-message").html("<span class='glyphicon glyphicon-play-circle' title='"+language_tokens.submit_mod+"'></span></div>");
+			$(".submission-message").html("<span class='glyphicon glyphicon-play-circle' title='"+language_tokens.submit_mod+"'></span> <span class='hidden-xs hidden-sm hidden-md'>"+language_tokens.submit_mod+"</span></div>");
 		} else {
 			if(!window.submission && user_power == 2)
 				sendMessage(box_token, 4, 1, "{submission_all}");
@@ -436,10 +433,7 @@ function watchBoxState(user_power, box_token){
 			if(window.autoplay && user_power == 2)
 				sendMessage(box_token, 4, 1, "{auto-off}");
 			window.autoplay = false;
-			if(jQuery(window).width() > 768)
-				$(".play-message").html("<span class='glyphicon glyphicon-hourglass'></span> "+language_tokens.manual_play+"</div>");
-			else
-				$(".play-message").html("<span class='glyphicon glyphicon-hourglass' title='"+language_tokens.manual_play+"'></span></div>");
+			$(".play-message").html("<span class='glyphicon glyphicon-hourglass' title='"+language_tokens.manual_play+"'></span> <span class='hidden-xs hidden-sm hidden-md'>"+language_tokens.manual_play+"</span></div>");
 		}
 
 		// State active of the room
@@ -552,13 +546,13 @@ $(document).ready(function(){
 	});
 }).on('mouseenter', '.btn-unfollow', function(){
 	var id = $(this).attr("id");
-	var text = "<span class='glyphicon glyphicon-minus'></span> "+language_tokens.unfollow+" "+box_details.creator_pseudo;
+	var text = "<span class='glyphicon glyphicon-minus'></span> <span class='hidden-xs hidden-sm'>"+language_tokens.unfollow+" "+box_details.creator_pseudo+"</span>";
 	$("#"+id).html(text);
 	$("#"+id).removeClass("btn-active");
 	$("#"+id).addClass("btn-danger");
 }).on('mouseleave', '.btn-unfollow', function(){
 	var id = $(this).attr("id");
-	var text = "<span class='glyphicon glyphicon-heart'></span> "+language_tokens.following+" "+box_details.creator_pseudo;
+	var text = "<span class='glyphicon glyphicon-heart'></span> <span class='hidden-xs hidden-sm'>"+language_tokens.following+" "+box_details.creator_pseudo+"</span>";
 	$("#"+id).html(text);
 	$("#"+id).removeClass("btn-danger");
 	$("#"+id).addClass("btn-active");
@@ -567,7 +561,7 @@ $(document).ready(function(){
 	var id = $(this).attr("id");
 	$.post("functions/unfollow_user.php", {userFollowing : user_token, userFollowed : followedToken}).done(function(data){
 		$("#"+id).removeClass("btn-active");
-		var text = "<span class='glyphicon glyphicon-heart'></span> "+language_tokens.follow+" "+box_details.creator_pseudo;
+		var text = "<span class='glyphicon glyphicon-heart'></span> <span class='hidden-xs hidden-sm'>"+language_tokens.follow+" "+box_details.creator_pseudo+"</span>";
 		$("#"+id).html(text);
 		$("#"+id).removeClass("btn-danger");
 		$("#"+id).removeClass("btn-unfollow");
@@ -587,7 +581,7 @@ $(document).ready(function(){
 	var id = $(this).attr("id");
 	$.post("functions/follow_user.php", {userFollowing : user_token, userFollowed : followed_token}).done(function(data){
 		$("#"+id).addClass("btn-active");
-		var text = "<span class='glyphicon glyphicon-heart'></span> "+language_tokens.following+" "+box_details.creator_pseudo;
+		var text = "<span class='glyphicon glyphicon-heart'></span> <span class='hidden-xs hidden-sm'>"+language_tokens.following+" "+box_details.creator_pseudo+"</span>";
 		$("#"+id).html(text);
 		$("#"+id).removeClass("btn-follow");
 		$("#"+id).addClass("btn-unfollow");
@@ -667,13 +661,19 @@ $(document).ready(function(){
 }).on('click', '.toggle-song-list, .toggle-menu-list, .toggle-user-list, .toggle-options-list', function(){
 	var box_token = getBoxToken();
 	var classToken = $(this).attr("class").split(' ')[4].substr(7);
-	var position;
+	var position, top = "0px";
 	if($("#"+classToken).css("display") == "none"){
 		$("#"+classToken).toggle();
-		if(jQuery(window).width() > 1024)
+		if(window.innerWidth > 1024){
 			position = "24.2%";
-		else
+		}
+		else if(window.innerWidth < 768){
+			position = "0%";
+			top = $("#heading-chat").offset().top + 10;
+		} else{
 			position = "31.9%";
+		}
+
 		switch(classToken){
 			case "song-list":
 				loadPlaylist(box_token, window.user_power);
@@ -770,14 +770,19 @@ $(document).ready(function(){
 			$("#"+classToken).hide();
 		}), 200);
 		position = "0px";
+		if(window.innerWidth < 768){
+			top = window.innerHeight + 1;
+		}
 		if(jQuery(window).width() > 992){
 			$("#currently-playing").animate({
-				width: "100%"
+				width: "100%",
+				top: top
 			}, 200);
 		}
 	}
 	$("#"+classToken).animate({
-		right : position
+		right : position,
+		top: top
 	}, 200);
 }).on('mouseenter', '#body-chat', function(){
 	window.chatHovered = true;

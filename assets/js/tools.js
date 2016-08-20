@@ -23,7 +23,9 @@ $(document).ready(function(){
 	$(window).on('beforeunload', function(event){
 		sessionStorage.removeItem("currently-playing");
 		$.post("functions/leave_room.php", {box_token : box_token, user_token : user_token});
-	})
+	}).resize(function(){
+		resizeElements();
+	});
 }).on('click', function(e){ // Simulate closure of popover
 	if(menuPopover == true){
 		$(".popover-trigger").click();
@@ -69,6 +71,17 @@ function updateEntry(table, values, target_id){
 
 function deleteEntry(table, target_id){
 	return $.post("functions/delete_entry.php", {table : table, target_id : target_id});
+}
+
+function resizeElements(){
+	console.log("resizing");
+	// Keeping chat body to a non-overflowing height
+	var chat_pos = $("#room-chat").position().top;
+	var heading_chat_height = $("#heading-chat").outerHeight();
+	var footer_chat_height = $("#footer-chat").outerHeight();
+	var body_chat_height = window.innerHeight - (chat_pos + heading_chat_height + footer_chat_height);
+	console.log(chat_pos, heading_chat_height, footer_chat_height);
+	$("#body-chat").outerHeight(body_chat_height);
 }
 
 /*function getUserLang(){
