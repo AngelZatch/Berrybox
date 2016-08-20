@@ -16,6 +16,7 @@ $lang["room_create"] = "Create a new box";
 $lang["active_room"] = "Active boxes";
 $lang["room_name"] = "Name of the box";
 $lang["room_protection"] = "Protection level";
+$lang["protection_tip"] = "A private box will only be accessible via sharing its link. It won't display publicly.";
 $lang["level_private"] = "Private";
 $lang["level_locked"] = "Locked";
 $lang["level_public"] = "Public";
@@ -67,11 +68,11 @@ $lang["room_params_tip"] = "Change the main spoken language, the type of video c
 /** CHAT **/
 $lang["post_chat"] = "Chat";
 $lang["chat_placeholder"] = "Write a message";
-$lang["chat_settings"] = "Chat and box settings";
+$lang["box_settings"] = "Box settings";
 $lang["color_pick"] = "Pick a color for your username";
 $lang["color_tip"] = "Your username in chat will be displayed in the color you'll have chosen";
 $lang["welcome"] = "Welcome in the box! To submit a video, please paste any YouTube link in the input under the player.";
-$lang["welcome_admin"] = "Welcome in your box! To submit a video, please paste any YouTube link in the input under the player. Please note that you are the creator and therefore administrator of this box. If you leave it without closing it, video synchronisation and play will stop for your users.";
+$lang["welcome_admin"] = "Welcome in your box! To submit a video, please paste any YouTube link in the input under the player. Please note that you are the creator and therefore administrator of this box. If you leave it without closing it, video synchronization and play will stop for your users.";
 
 /** MOOD **/
 $lang["mood-question"] = "So, what do you think of this video?";
@@ -99,8 +100,8 @@ $lang["ul_mods"] = "Moderators";
 $lang["ul_users"] = "Listeners";
 $lang["sl_played"] = "Played videos";
 $lang["sl_upcoming"] = "Upcoming videos";
-$lang["synchronizing"] = "Synchronization, please wait a moment.";
-$lang["no_admin"] = "Warning ! The creator is not present in the box. The synchronisation is therefore impossible. If you want to share videos in proper conditions, please create another box or contact the creator of this box directly.";
+$lang["synchronizing"] = "Synchronization...";
+$lang["no_admin"] = "Warning ! The creator is not present in the box. The synchronization is therefore impossible. If you want to share videos in proper conditions, please create another box or contact the creator of this box directly.";
 $lang["whisper"] = "Whisper";
 
 /** ROOM TYPES **/
@@ -118,6 +119,7 @@ $lang["follow"] = "Follow";
 $lang["following"] = "Following";
 $lang["unfollow"] = "Unfollow";
 $lang["submitting"] = "Submitting...";
+$lang["delete"] = "Delete";
 
 /** ACTIONS **/
 $lang["log_out"] = "Log out";
@@ -141,14 +143,14 @@ $lang["pwd_confirm"] = "Please confirm your password";
 $lang["cancel"] = "Cancel";
 $lang["wrong_password"] = "Wrong password. Please try again";
 $lang["no_credentials"] = "Want to submit videos, chat and more? Log in or register!";
-$lang["follow_us"] = "Follow Berrybox for latest news";
+$lang["follow_us"] = "Follow Berrybox for our latest news!";
 $lang["twitter"] = "Twitter";
-$lang["dev_message"] = "Hello! I'm Andréas, developer of this website. I am a multimedia engineering student, and I'm developping Berrybox on my freetime! If you want to have a little chat, feel free to mail me at <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>";
+$lang["dev_message"] = "Hello! I'm Andréas, developer of this website. I am a multimedia engineering student, and I'm developping Berrybox on my freetime! If you want to have a little chat, feel free to mail me at <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a> - This project wouldn't have been possible without the help of the <a href='http://www.fun.ac.jp/en/'>Future University of Hakodate</a> and <a href='http://www.ingenieur-imac.fr/'>my engineering school IMAC</a>. Big thanks to them!";
 $lang["firefox_alert"] = "WARNING ! Firefox is known to not work properly with loading videos without reloading the page (which is what we do here). Please use another browser to fully enjoy Berrybox. We're sorry for the inconvenience, but unfortunately there's nothing we can do :(";
 $lang["go_to_video"] = "Go to video";
 
 /** MENU **/
-$lang["menu"] = "Main menu";
+$lang["menu"] = "User settings";
 $lang["my_profile"] = "My profile";
 $lang["public_profile"] = "My stats";
 $lang["leave"] = "Leave the box";
@@ -169,8 +171,8 @@ $lang["profile_history"] = "History";
 $lang["profile_history_tip"] = "If no message has been sent or no video has been played in a box for the last hour, it will be automatically set as 'private', but it won't be closed.";
 $lang["profile_security"] = "Security";
 $lang["profile_security_tip"] = "Change your password";
-$lang["profile_likes"] = "Likes";
-$lang["profile_likes_tip"] = "View the videos you reacted to";
+$lang["profile_likes"] = "Votes";
+$lang["profile_likes_tip"] = "View the videos you reacted to:";
 $lang["display_name"] = "Display name";
 $lang["display_name_tip"] = "Customize your display name.";
 $lang["display_mail"] = "Mail address";
@@ -188,8 +190,8 @@ $lang["dark"] = "Dark";
 $lang["light"] = "Light";
 $lang["sync"] = "Synchronisation";
 $lang["sync_tip"] = "When disabled, the next video won't play automatically and you will stay on current video. You can catch up at any moment.";
-$lang["sync-on"] = "Synchro ON";
-$lang["sync-off"] = "Synchro OFF";
+$lang["sync_on"] = "Synchro ON";
+$lang["sync_off"] = "Synchro OFF";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "This user doesn't have any bio";

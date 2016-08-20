@@ -80,12 +80,12 @@ if(isset($_SESSION["token"])){
 			<legend><?php echo $lang["active_room"];?></legend>
 			<div class="container-fluid">
 				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){
-	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[room_token] rh
+	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[box_token] rh
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
 												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 				?>
-				<div class="col-lg-4 col-md-6 col-xs-12 panel-box-container">
-					<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["room_token"];?>'">
+				<div class="col-lg-3 col-xs-6 panel-box-container">
+					<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["box_token"];?>'">
 						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
 							<div class="col-lg-12 room-thumbnail">
@@ -103,17 +103,12 @@ if(isset($_SESSION["token"])){
 								<p><span class="room-creator"><a href="user/<?php echo $activeRooms["user_pseudo"];?>"><?php echo $activeRooms["user_pseudo"];?></a></span></p>
 								<p class="room-type room-label">
 									<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
-									<?php if($activeRooms["room_protection"] == '1') { ?>
-									<span class="label label-success"><?php echo $lang["level_public"];?></span>
-									<?php } else { ?>
-									<span class="label label-danger"><?php echo $lang["level_private"];?></span>
-									<?php } ?>
 									<span class="label label-lang"><?php echo $lang["lang_".$activeRooms["room_lang"]];?></span>
 								</p>
 							</div>
 							<p class="col-lg-12 room-description"><?php echo $activeRooms["room_description"];?></p>
 							<div class="col-lg-12">
-								<a href="box/<?php echo $activeRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+								<a href="box/<?php echo $activeRooms["box_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 							</div>
 						</div>
 					</div>
@@ -138,12 +133,12 @@ if(isset($_SESSION["token"])){
 			<div class="container-fluid category-display">
 				<h1><?php echo $lang["rt_music"];?></h1>
 				<?php while($musicRooms = $queryMusicRooms->fetch(PDO::FETCH_ASSOC)){
-	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$musicRooms[room_token] rh
+	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$musicRooms[box_token] rh
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
 												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 				?>
-				<div class="col-lg-4 col-md-6 col-xs-12 panel-box-container">
-					<div class="panel panel-box" onClick="window.location='box/<?php echo $musicRooms["room_token"];?>'">
+				<div class="col-lg-4 col-xs-6 panel-box-container">
+					<div class="panel panel-box" onClick="window.location='box/<?php echo $musicRooms["box_token"];?>'">
 						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $musicRooms["room_name"];?></p>
 							<div class="col-lg-12 room-thumbnail">
@@ -161,17 +156,12 @@ if(isset($_SESSION["token"])){
 								<p><span class="room-creator"><a href="user/<?php echo $musicRooms["user_pseudo"];?>"><?php echo $musicRooms["user_pseudo"];?></a></span></p>
 								<p class="room-type room-label">
 									<span class="label label-info"><?php echo $lang[$musicRooms["type"]];?></span>
-									<?php if($musicRooms["room_protection"] == '1') { ?>
-									<span class="label label-success"><?php echo $lang["level_public"];?></span>
-									<?php } else { ?>
-									<span class="label label-danger"><?php echo $lang["level_private"];?></span>
-									<?php } ?>
 									<span class="label label-lang"><?php echo $lang["lang_".$musicRooms["room_lang"]];?></span>
 								</p>
 							</div>
 							<p class="col-lg-12 room-description"><?php echo $musicRooms["room_description"];?></p>
 							<div class="col-lg-12">
-								<a href="box/<?php echo $musicRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+								<a href="box/<?php echo $musicRooms["box_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 							</div>
 						</div>
 					</div>
@@ -181,12 +171,12 @@ if(isset($_SESSION["token"])){
 			<div class="container-fluid category-display">
 				<h1><?php echo $lang["rt_science"];?></h1>
 				<?php while($scienceRooms = $queryScienceRooms->fetch(PDO::FETCH_ASSOC)){
-	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$scienceRooms[room_token] rh
+	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$scienceRooms[box_token] rh
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
 												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 				?>
-				<div class="col-lg-4">
-					<div class="panel panel-box" onClick="window.location='box/<?php echo $scienceRooms["room_token"];?>'">
+				<div class="col-lg-4 col-xs-6">
+					<div class="panel panel-box" onClick="window.location='box/<?php echo $scienceRooms["box_token"];?>'">
 						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $scienceRooms["room_name"];?></p>
 							<div class="col-lg-12 room-thumbnail">
@@ -204,17 +194,12 @@ if(isset($_SESSION["token"])){
 								<p><span class="room-creator"><a href="user/<?php echo $scienceRooms["user_pseudo"];?>"><?php echo $scienceRooms["user_pseudo"];?></a></span></p>
 								<p class="room-type room-label">
 									<span class="label label-info"><?php echo $lang[$scienceRooms["type"]];?></span>
-									<?php if($scienceRooms["room_protection"] == '1') { ?>
-									<span class="label label-success"><?php echo $lang["level_public"];?></span>
-									<?php } else { ?>
-									<span class="label label-danger"><?php echo $lang["level_private"];?></span>
-									<?php } ?>
 									<span class="label label-lang"><?php echo $lang["lang_".$scienceRooms["room_lang"]];?></span>
 								</p>
 							</div>
 							<p class="col-lg-12 room-description"><?php echo $scienceRooms["room_description"];?></p>
 							<div class="col-lg-12">
-								<a href="box/<?php echo $scienceRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+								<a href="box/<?php echo $scienceRooms["box_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 							</div>
 						</div>
 					</div>
@@ -224,12 +209,12 @@ if(isset($_SESSION["token"])){
 			<div class="container-fluid category-display">
 				<h1><?php echo $lang["rt_lol"];?></h1>
 				<?php while($comedyRooms = $queryComedyRooms->fetch(PDO::FETCH_ASSOC)){
-	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$comedyRooms[room_token] rh
+	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$comedyRooms[box_token] rh
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
 												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 				?>
-				<div class="col-lg-4">
-					<div class="panel panel-box" onClick="window.location='box/<?php echo $comedyRooms["room_token"];?>'">
+				<div class="col-lg-4 col-xs-6">
+					<div class="panel panel-box" onClick="window.location='box/<?php echo $comedyRooms["box_token"];?>'">
 						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $comedyRooms["room_name"];?></p>
 							<div class="col-lg-12 room-thumbnail">
@@ -247,17 +232,12 @@ if(isset($_SESSION["token"])){
 								<p><span class="room-creator"><a href="user/<?php echo $comedyRooms["user_pseudo"];?>"><?php echo $comedyRooms["user_pseudo"];?></a></span></p>
 								<p class="room-type room-label">
 									<span class="label label-info"><?php echo $lang[$comedyRooms["type"]];?></span>
-									<?php if($comedyRooms["room_protection"] == '1') { ?>
-									<span class="label label-success"><?php echo $lang["level_public"];?></span>
-									<?php } else { ?>
-									<span class="label label-danger"><?php echo $lang["level_private"];?></span>
-									<?php } ?>
 									<span class="label label-lang"><?php echo $lang["lang_".$comedyRooms["room_lang"]];?></span>
 								</p>
 							</div>
 							<p class="col-lg-12 room-description"><?php echo $comedyRooms["room_description"];?></p>
 							<div class="col-lg-12">
-								<a href="box/<?php echo $comedyRooms["room_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
+								<a href="box/<?php echo $comedyRooms["box_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 							</div>
 						</div>
 					</div>

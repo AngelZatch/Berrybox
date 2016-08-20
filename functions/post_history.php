@@ -6,7 +6,7 @@ $db = PDOFactory::getConnection();
 $link = $_POST["url"];
 $time = date_create('now', new datetimezone('UTC'))->format('Y-m-d H:i:s');
 $user = $_SESSION["token"];
-$roomToken = $_POST["roomToken"];
+$box_token = $_POST["box_token"];
 
 if(strlen($link) == 11){
 	$db->beginTransaction();
@@ -49,7 +49,7 @@ if(strlen($link) == 11){
 		}
 	}
 	// Once everything is done, we insert the video in the playlist
-	$upload = $db->prepare("INSERT INTO roomHistory_$roomToken(video_index, history_time, history_user)
+	$upload = $db->prepare("INSERT INTO roomHistory_$box_token(video_index, history_time, history_user)
 		VALUES(:index, :time, :user)");
 	$upload->bindParam(':index', $baseIndex);
 	$upload->bindParam(':time', $time);

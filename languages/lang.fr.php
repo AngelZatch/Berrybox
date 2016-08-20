@@ -16,6 +16,7 @@ $lang["room_create"] = "Créer une box";
 $lang["active_room"] = "Boxes actives";
 $lang["room_name"] = "Nom de la box";
 $lang["room_protection"] = "Niveau de protection";
+$lang["protection_tip"] = "Une box privée ne s'affichera plus dans les répertoires du site. L'accès sera restreint à seuls ceux qui disposent du lien.";
 $lang["level_private"] = "Privé";
 $lang["level_locked"] = "Protégé par mot de passe";
 $lang["level_public"] = "Public";
@@ -67,7 +68,7 @@ $lang["room_params_tip"] = "Modifiez la langue principale parlée, le type de co
 /** CHAT **/
 $lang["post_chat"] = "Envoyer";
 $lang["chat_placeholder"] = "Ecrire un message";
-$lang["chat_settings"] = "Paramètres du chat et de la box";
+$lang["box_settings"] = "Paramètres de la box";
 $lang["color_pick"] = "Choisissez une couleur pour votre nom";
 $lang["color_tip"] = "Votre nom sera affiché dans la couleur que vous aurez choisi.";
 $lang["welcome"] = "Bienvenue dans cette box ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur.";
@@ -76,11 +77,11 @@ $lang["welcome_admin"] = "Bienvenue dans votre box ! Pour soumettre une vidéo, 
 /** MOOD **/
 $lang["mood-question"] = "Que pensez-vous de la vidéo ?";
 $lang["like"] = "J'aime";
-$lang["cry"] = "Elle est triste";
+$lang["cry"] = "C'est triste";
 $lang["love"] = "J'adore !!";
 $lang["energy"] = "C'est intense !";
-$lang["calm"] = "Elle m'apaise";
-$lang["fear"] = "Elle me fait peur ><";
+$lang["calm"] = "C'est apaisant";
+$lang["fear"] = "J'ai peur ><";
 
 /** ROOM **/
 $lang["youtube_message"] = "Envoyer un lien YouTube";
@@ -99,7 +100,7 @@ $lang["ul_mods"] = "Modérateurs";
 $lang["ul_users"] = "Spectateurs";
 $lang["sl_played"] = "Vidéos lues";
 $lang["sl_upcoming"] = "Vidéos à venir";
-$lang["synchronizing"] = "Synchro en cours, merci de patienter un instant...";
+$lang["synchronizing"] = "Synchronisation...";
 $lang["no_admin"] = "Attention ! L'administrateur de la box n'est actuellement pas présent. La synchronisation est par conséquent impossible. Si vous voulez partager des vidéos, veuillez créer une autre box ou contacter le créateur de cette box directement.";
 $lang["whisper"] = "Murmurer";
 
@@ -118,6 +119,7 @@ $lang["follow"] = "Suivre";
 $lang["following"] = "Suit";
 $lang["unfollow"] = "Ne plus suivre";
 $lang["submitting"] = "Envoi...";
+$lang["delete"] = "Supprimer";
 
 /** ACTIONS **/
 $lang["log_out"] = "Déconnexion";
@@ -143,12 +145,12 @@ $lang["wrong_password"] = "Mot de passe erroné";
 $lang["no_credentials"] = "Envie de partager des vidéos et de discuter avec tout le monde ? Rejoignez-la communauté !";
 $lang["follow_us"] = "Suivez l'actualité de Berrybox";
 $lang["twitter"] = "Twitter";
-$lang["dev_message"] = "Bonjour! Je suis Andréas, développeur de cette application. Je suis un étudiant ingénieur multimédia qui développe Berrybox sur son temps libre ! Si vous voulez chatter un peu, n'hésitez pas à m'envoyer un mail à <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>";
+$lang["dev_message"] = "Bonjour! Je suis Andréas, développeur de cette application. Je suis un étudiant ingénieur multimédia qui développe Berrybox sur son temps libre ! Si vous voulez chatter un peu, n'hésitez pas à m'envoyer un mail à <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>  - Ce projet n'aurait pas été possible sans l'aide précieuse de l'<a href='http://www.fun.ac.jp/en/'>Université du Futur Hakodate</a> et <a href='http://www.ingenieur-imac.fr/'>mon école d'ingénieur l'IMAC</a>. Un grand merci à eux !";
 $lang["firefox_alert"] = "ATTENTION ! Firefox ne fonctionne pas correctement lorsqu'il doit charger des vidéos sans recharger la page (comme ce qu'on fait ici). Si vous voulez profiter pleinement de Berrybox, nous vous recommandons d'essayer avec un autre navigateur. Nous sommes désolés, d'autant plus que nous n'y pouvons rien :(";
 $lang["go_to_video"] = "Aller à la vidéo";
 
 /** MENU **/
-$lang["menu"] = "Menu principal";
+$lang["menu"] = "Vos paramètres";
 $lang["my_profile"] = "Mon profil";
 $lang["public_profile"] = "Mes stats";
 $lang["leave"] = "Quitter la box";
@@ -188,8 +190,8 @@ $lang["dark"] = "Sombre";
 $lang["light"] = "Clair";
 $lang["sync"] = "Synchronisation";
 $lang["sync_tip"] = "Si vous désactivez la synchronisation, la prochaine vidéo ne sera pas lancée automatiquement et vous resterez sur la vidéo actuelle. Vous pourrez rattraper à tout moment";
-$lang["sync-on"] = "Synchro ON";
-$lang["sync-off"] = "Synchro OFF";
+$lang["sync_on"] = "Synchro ON";
+$lang["sync_off"] = "Synchro OFF";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";

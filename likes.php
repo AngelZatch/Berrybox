@@ -33,7 +33,6 @@ $allLikes = $db->query("SELECT * FROM votes v
 		<?php } else { ?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 		<?php } ?>
-		<link rel="stylesheet" href="assets/css/fileinput.min.css">
 	</head>
 	<body>
 		<?php include "nav.php";?>
@@ -81,13 +80,16 @@ $allLikes = $db->query("SELECT * FROM votes v
 							} ?>
 					<p class="sub-legend emotion-<?php echo $keyMood;?>"><span class="glyphicon glyphicon-<?php echo $icon;?>"></span> <?php echo $lang[$keyMood];?></p>
 					<?php } ?>
-					<li class="vote-singleton vote-<?php echo $keyMood;?>">
-						<div class="video-thumbnail">
+					<li class="vote-singleton vote-<?php echo $keyMood;?> container" id="vote-<?php echo $like["vote_id"];?>">
+						<div class="video-thumbnail col-xs-2 col-sm-1">
 							<img src="http://img.youtube.com/vi/<?php echo $like["link"];?>/0.jpg" alt="">
 						</div>
+						<div class="col-xs-10 col-sm-11">
+							<p class="vote-name col-xs-11"><?php echo stripslashes($like["video_name"]);?></p>
+							<span class="glyphicon glyphicon-trash glyphicon-button col-xs-1" id="delete-<?php echo $like["vote_id"];?>" data-vote="<?php echo $like["vote_id"];?>" title="<?php echo $lang["delete"];?>"></span>
+							<a href="https://www.youtube.com/watch?v=<?php echo $like["link"];?>" class="col-xs-2" target="_blank"><span class="glyphicon glyphicon-share"></span> <?php echo $lang["go_to_video"];?></a>
+						</div>
 						<div>
-							<p class="vote-name"><?php echo stripslashes($like["video_name"]);?></p>
-							<a href="https://www.youtube.com/watch?v=<?php echo $like["link"];?>" target="_blank"><span class="glyphicon glyphicon-share"></span> <?php echo $lang["go_to_video"];?></a>
 						</div>
 					</li>
 					<?php $currentMood = $like["vote_mood"];
@@ -96,5 +98,13 @@ $allLikes = $db->query("SELECT * FROM votes v
 			</div>
 		</div>
 		<?php include "scripts.php";?>
+		<script>
+			$(".glyphicon-trash").click(function(){
+				var vote_id = document.getElementById($(this).attr("id")).dataset.vote;
+				$.when(deleteEntry("votes", vote_id)).done(function(){
+					$("#vote-"+vote_id).remove();
+				})
+			})
+		</script>
 	</body>
 </html>

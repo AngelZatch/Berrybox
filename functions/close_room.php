@@ -6,10 +6,10 @@ $db = PDOFactory::getConnection();
 ignore_user_abort(true);
 
 $roomToken = $_POST["roomToken"];
-$author = $_POST["userToken"];
+$author = $_POST["user_token"];
 
 // Close the room to prevent access
 $closeRoom = $db->query("UPDATE rooms
 						SET room_active = '0'
-						WHERE room_token = '$roomToken'");
+						WHERE box_token = '$roomToken'");
 ?>

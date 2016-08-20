@@ -10,9 +10,13 @@ $video_id = $_POST["video_id"];
 $existence = $db->query("SELECT vote_id FROM votes v WHERE user_token = '$user_token' AND video_index = '$video_id'")->rowCount();
 
 if($existence != 0){
-	$vote = $db->query("UPDATE votes
+	if($mood_id != 0){
+		$vote = $db->query("UPDATE votes
 					SET vote_mood = $mood_id
 					WHERE user_token = '$user_token' AND video_index = '$video_id'");
+	} else {
+		$vote = $db->query("DELETE FROM votes WHERE user_token = '$user_token' AND video_index = '$video_id'");
+	}
 } else {
 	$vote = $db->query("INSERT INTO votes(vote_mood, user_token, video_index)
 						VALUES($mood_id, '$user_token', '$video_id')");

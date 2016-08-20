@@ -5,5 +5,5 @@ $roomToken = $_POST["roomToken"];
 
 $reopen = $db->query("UPDATE rooms
 					SET room_active = '1'
-					WHERE room_token='$roomToken'")->fetch(PDO::FETCH_ASSOC);
+					WHERE box_token='$roomToken'")->fetch(PDO::FETCH_ASSOC);
 ?>

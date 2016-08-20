@@ -4,12 +4,12 @@ $db = PDOFactory::getConnection();
 
 // Demotes the selected user from the status of moderator relative to the administrator.
 $targetToken = $_POST["targetToken"];
-$userToken = $_POST["userToken"];
+$user_token = $_POST["user_token"];
 $roomToken = $_POST["roomToken"];
 
 // First, we delete the entry in the moderators table
 $promotion = $db->query("DELETE FROM user_moderators
-							WHERE user_token = '$userToken'
+							WHERE user_token = '$user_token'
 							AND moderator_token = '$targetToken'");
 
 // Then we update the status of the user in the room

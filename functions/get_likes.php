@@ -2,11 +2,11 @@
 include "db_connect.php";
 $db = PDOFactory::getConnection();
 
-$userToken = $_GET["userToken"];
+$user_token = $_GET["user_token"];
 
 $allLikes = $db->query("SELECT * FROM votes v
 						JOIN song_base sb ON v.video_index = sb.song_base_id
-						WHERE user_token = '$userToken'
+						WHERE user_token = '$user_token'
 						ORDER BY vote_mood ASC");
 
 $likes = array();

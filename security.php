@@ -92,7 +92,7 @@ if(isset($_POST["submit"])){
 					compare = setTimeout(function(){
 						var string = box.val();
 						//console.log("timeout expired. Search with '"+string+"' query.");
-						$.post("functions/compare_password.php", {string : string, userToken : "<?php echo $profileToken;?>"}).done(function(data){
+						$.post("functions/compare_password.php", {string : string, user_token : "<?php echo $profileToken;?>"}).done(function(data){
 							if(data == 1){
 								applySuccessFeedback(elementId);
 							} else {

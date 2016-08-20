@@ -4,13 +4,13 @@ $db = PDOFactory::getConnection();
 
 // Promotes the selected user to the status of moderator relative to the administrator. Which means the new moderator will have his powers of moderation on every room created by that specific admin.
 $targetToken = $_POST["targetToken"];
-$userToken = $_POST["userToken"];
+$user_token = $_POST["user_token"];
 $roomToken = $_POST["roomToken"];
 
 // First, we fill the user_moderators table to add the user to the the moderation list of the admin.
 $promotion = $db->prepare("INSERT INTO user_moderators(user_token, moderator_token)
 						VALUES(:admin, :mod)");
-$promotion->bindParam(':admin', $userToken);
+$promotion->bindParam(':admin', $user_token);
 $promotion->bindParam(':mod', $targetToken);
 $promotion->execute();
 

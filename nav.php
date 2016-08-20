@@ -61,7 +61,7 @@ if(isset($_SESSION["token"])){
 					<li>
 						<form action="search" method="post" class="navbar-form" role="search">
 							<div class="input-group">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+								<span class="input-group-addon addon-search"><span class="glyphicon glyphicon-search"></span></span>
 								<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
 							</div>
 						</form>
@@ -87,7 +87,7 @@ if(isset($_SESSION["token"])){
 			<ul class="nav navbar-nav navbar-right">
 				<form action="search" method="post" class="navbar-form navbar-left" role="search">
 					<div class="input-group">
-						<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+						<span class="input-group-addon addon-search"><span class="glyphicon glyphicon-search"></span></span>
 						<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
 					</div>
 				</form>

@@ -16,6 +16,7 @@ $lang["room_create"] = "ボックスを始まる";
 $lang["active_room"] = "ライブ中のボックス";
 $lang["room_name"] = "ボックスの名前";
 $lang["room_protection"] = "防御レベル";
+$lang["protection_tip"] = "他のユーザーズはリンクだけでプライベートボックスに入りますことへできます。";
 $lang["level_private"] = "プライベート";
 $lang["level_locked"] = "パスワードロック";
 $lang["level_public"] = "パブリック";
@@ -68,7 +69,7 @@ $lang["room_params_tip"] = "主な話し言葉やボックスタイプやボッ�
 /** CHAT **/
 $lang["post_chat"] = "チャット";
 $lang["chat_placeholder"] = "メッセージを送信";
-$lang["chat_settings"] = "チャットとボックス設定";
+$lang["box_settings"] = "ボックス設定";
 $lang["color_pick"] = "ユーザー名の色";
 $lang["color_tip"] = "あなたのユーザー名はチャットに選べた色にディスプレイします。";
 $lang["welcome"] = "チャットボックスへようこそ！ ビデオ曲を提出ために、YouTubeのリンクをプレイヤーの下に貼り付けます。";
@@ -100,7 +101,7 @@ $lang["ul_mods"] = "モデレーターズ";
 $lang["ul_users"] = "リサナーズ";
 $lang["sl_played"] = "過去";
 $lang["sl_upcoming"] = "次";
-$lang["synchronizing"] = "シンク中…　しばらくお待ちください。";
+$lang["synchronizing"] = "シンク中…";
 $lang["no_admin"] = "注意！このボックスのクリエイターがいりません。シンクは不可能です。ビデオをシェアーするために、新しいボックスを始めて下さい。";
 $lang["whisper"] = "囁く";
 
@@ -119,6 +120,7 @@ $lang["follow"] = "ユーザー登録";
 $lang["following"] = "登録済み";
 $lang["unfollow"] = "登録解除";
 $lang["submitting"] = "提出中…";
+$lang["delete"] = "削除";
 
 /** ACTIONS **/
 $lang["log_out"] = "ログアウト";
@@ -144,12 +146,12 @@ $lang["wrong_password"] = "間違いましたパスワード";
 $lang["no_credentials"] = "ビデオを提出したい？みんなと一緒にチャットしたい？ベリボックスに参加します！";
 $lang["follow_us"] = "ベリボックスのニュースはこちらです";
 $lang["twitter"] = "ツイッター";
-$lang["dev_message"] = "おはようございます！Andréas(アンドレアス)と申しまして、「ベリボックス」のたった一人の開発者です。俺はマルチメディア工学の学生、自由時間にこのアプリを開発します。お客様が私と話したい場合は、<a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>にメールを送信してお願い足します。";
+$lang["dev_message"] = "おはようございます！Andréas(アンドレアス)と申しまして、「ベリボックス」のたった一人の開発者です。俺はマルチメディア工学の学生、自由時間にこのアプリを開発します。お客様が私と話したい場合は、<a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>にメールを送信してお願い致します。この「ベリボックス」は、<a href='http://www.fun.ac.jp/en/'>公立はこだて未来大学</a>と<a href='http://www.ingenieur-imac.fr/'>公立IMAC工学</a>の助けを借りてなされたものであり、心の底から感謝します。";
 $lang["firefox_alert"] = "ご注意！BerryboxにFirefoxは正常に動作しませんです。ビデオローディングが矛盾しています。お願い、別のブラウザを使用してください。ごめんなさい((´д｀))";
 $lang["go_to_video"] = "ビデオへ";
 
 /** MENU **/
-$lang["menu"] = "メインメニュー";
+$lang["menu"] = "ユーザー設定";
 $lang["my_profile"] = "プロファイル";
 $lang["public_profile"] = "パラメータ";
 $lang["leave"] = "ボックスを出ます";
@@ -171,7 +173,7 @@ $lang["profile_history_tip"] = "もし、最後の１時間で誰かがメッセ
 $lang["profile_security"] = "セキュリティ";
 $lang["profile_security_tip"] = "パスワードを変更する。";
 $lang["profile_likes"] = "投票";
-$lang["profile_likes_tip"] = "好きか怖いか発見しましたビデオを表示表示する。";
+$lang["profile_likes_tip"] = "好きか怖いか発見しましたビデオを表示する。";
 $lang["display_name"] = "ディスプレイ名";
 $lang["display_name_tip"] = "ディスプレイ名をカスタマイズします";
 $lang["display_mail"] = "メールアドレス";
@@ -189,8 +191,8 @@ $lang["dark"] = "ダーク";
 $lang["light"] = "ライト";
 $lang["sync"] = "シンクロ";
 $lang["sync_tip"] = "シンクロがオフにするなら、次のビデオが始まりません。";
-$lang["sync-on"] = "シンク オン";
-$lang["sync-off"] = "シンク　オフ";
+$lang["sync_on"] = "シンク オン";
+$lang["sync_off"] = "シンク　オフ";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "このユーザーはバイオがない。";

@@ -19,7 +19,7 @@ $queryInactive = $db->query("SELECT * FROM rooms WHERE room_protection = '1' AND
 $flaggedBoxes = array();
 
 while($inactive = $queryInactive->fetch(PDO::FETCH_ASSOC)){
-	$roomToken = $inactive["room_token"];
+	$roomToken = $inactive["box_token"];
 	// First, we check for time of last sent message
 	$conditionTime = $db->query("SELECT message_time FROM roomChat_$roomToken rc
 							ORDER BY rc.message_time DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
@@ -29,7 +29,7 @@ while($inactive = $queryInactive->fetch(PDO::FETCH_ASSOC)){
 							WHERE video_status = '2'
 							ORDER BY rh.history_start DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 		if($conditionPlay["history_start"] <= $limitDate){ // More than 1 hour ago : flag
-			$updateBox = $db->query("UPDATE rooms SET room_protection = '2' WHERE room_token = '$roomToken'");
+			$updateBox = $db->query("UPDATE rooms SET room_protection = '2' WHERE box_token = '$roomToken'");
 		}
 	}
 }
