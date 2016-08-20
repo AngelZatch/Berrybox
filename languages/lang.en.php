@@ -145,7 +145,7 @@ $lang["wrong_password"] = "Wrong password. Please try again";
 $lang["no_credentials"] = "Want to submit videos, chat and more? Log in or register!";
 $lang["follow_us"] = "Follow Berrybox for our latest news!";
 $lang["twitter"] = "Twitter";
-$lang["dev_message"] = "Hello! I'm Andréas, developer of this website. I am a multimedia engineering student, and I'm developping Berrybox on my freetime! If you want to have a little chat, feel free to mail me at <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>";
+$lang["dev_message"] = "Hello! I'm Andréas, developer of this website. I am a multimedia engineering student, and I'm developping Berrybox on my freetime! If you want to have a little chat, feel free to mail me at <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a> - This project wouldn't have been possible without the help of the <a href='http://www.fun.ac.jp/en/'>Future University of Hakodate</a> and <a href='http://www.ingenieur-imac.fr/'>my engineering school IMAC</a>. Big thanks to them!";
 $lang["firefox_alert"] = "WARNING ! Firefox is known to not work properly with loading videos without reloading the page (which is what we do here). Please use another browser to fully enjoy Berrybox. We're sorry for the inconvenience, but unfortunately there's nothing we can do :(";
 $lang["go_to_video"] = "Go to video";
 
