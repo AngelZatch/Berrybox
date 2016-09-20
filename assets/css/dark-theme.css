@@ -69,6 +69,15 @@ body {
   .user-entry:active, .box-entry:active {
     background-color: #5d5d5d; }
 
+/** NAV **/
+/* line 59, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.dropdown-custom {
+  border-color: #434343 !important;
+  background-color: #292929; }
+  /* line 62, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  .dropdown-custom .divider {
+    background-color: #434343; }
+
 /** FOOTER **/
 
 /*# sourceMappingURL=dark-theme.css.map */

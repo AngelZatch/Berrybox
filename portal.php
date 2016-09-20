@@ -1,7 +1,7 @@
 <?php
 require_once "functions/db_connect.php";
 $db = PDOFactory::getConnection();
-if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
+if(isset($_SESSION["token"]) && isset($_SESSION["user_lang"])){
 	header("Location: home");
 } else {
 	if(isset($_POST["login"])){
@@ -19,7 +19,8 @@ if(isset($_SESSION["token"]) && isset($_SESSION["lang"])){
 			$_SESSION["username"] = $credentials["user_pseudo"];
 			$_SESSION["power"] = $credentials["user_power"];
 			$_SESSION["token"] = $credentials["user_token"];
-			$_SESSION["lang"] = $credentials["user_lang"];
+			$_SESSION["user_lang"] = $credentials["user_lang"];
+			$_SESSION["photo"] = $credentials["user_pp"];
 			if(isset($_POST["box-token-redirect"])){
 				header("Location: box/".$_POST["box-token-redirect"]);
 			} else {
