@@ -36,7 +36,6 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 		<?php } else { ?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 		<?php } ?>
-		<link rel="stylesheet" href="assets/css/fileinput.min.css">
 	</head>
 	<body>
 		<?php include "nav.php";?>
@@ -117,7 +116,6 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 			</div>
 		</div>
 		<?php include "scripts.php";?>
-		<script src="assets/js/fileinput.min.js"></script>
 		<script>
 			function openRoom(roomToken){
 				$.post("functions/reopen_room.php", {roomToken : roomToken}).done(function(data){

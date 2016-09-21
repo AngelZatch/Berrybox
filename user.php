@@ -60,50 +60,45 @@ if(isset($_SESSION["token"])){
 		<?php } else { ?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 		<?php } ?>
-		<link rel="stylesheet" href="assets/css/fileinput.min.css">
+		<link rel="stylesheet" href="assets/css/croppie.css">
+		<?php include "scripts.php";?>
+		<script src="assets/js/croppie.min.js"></script>
 	</head>
 	<body>
 		<?php include "nav.php";?>
 		<div class="main">
 			<div class="container-fluid no-padding">
 				<div class="banner-container">
-					<?php if(isset($_SESSION["username"]) && $profileToken == $_SESSION["username"]){ ?>
-					<form action="user/<?php echo $profileToken;?>" method="post" enctype="multipart/form-data">
-						<div id="banner">
-						</div>
-						<?php } else { ?>
-						<div id="banner">
-							<img src="profile-banners/<?php echo $profileDetails['user_banner'];?>">
-						</div>
-						<?php } ?>
-						<div class="user-profile-container">
-							<div class="user-profile-details col-lg-8 col-lg-offset-2 col-md-12">
-								<div class="user-actions">
-									<?php if(isset($_SESSION["username"])){
+					<div id="banner">
+						<img src="profile-banners/<?php echo $profileDetails['user_banner'];?>">
+					</div>
+					<div class="user-profile-container">
+						<div class="user-profile-details col-lg-8 col-lg-offset-2 col-md-12">
+							<div class="user-actions">
+								<?php if(isset($_SESSION["username"])){
 	if($_SESSION["username"] != $profileToken){ ?>
-									<?php if($userFollow == 1){ ?>
-									<button class="btn btn-primary btn-active btn-unfollow" id="user-page-unfollow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
-									<?php } else { ?>
-									<button class="btn btn-primary btn-follow" id="user-page-follow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['follow'];?></button>
-									<?php } } else { ?>
-									<input type="file" id="banner-input" name="profile-banner" class="file-loading">
-									<input type="submit" class="btn btn-success btn-block" name="submit" value="<?php echo $lang["save_changes"];?>">
-									<?php } } else { ?>
-									<a href="signup" class="btn btn-primary">Register to follow this user</a>
-									<?php } ?>
+								<?php if($userFollow == 1){ ?>
+								<button class="btn btn-primary btn-active btn-unfollow" id="user-page-unfollow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['following'];?></button>
+								<?php } else { ?>
+								<button class="btn btn-primary btn-follow" id="user-page-follow" value="<?php echo $profileToken;?>"><span class="glyphicon glyphicon-heart"></span> <?php echo $lang['follow'];?></button>
+								<?php } } else { ?>
+								<div class="pp-input btn btn-primary">
+									<span><?php echo $lang['banner_picture'];?></span>
+									<input type="file" id="upload" accept="image/jpeg, image/x-png">
 								</div>
-								<div class="user-profile-picture">
-									<img src="profile-pictures/<?php echo $profileDetails["user_pp"];?>" class="profile-picture">
-								</div>
-								<p class="user-profile-name"><?php echo $profileDetails["user_pseudo"];?></p>
-								<div class="user-profile-bio">
-									<?php echo ($profileDetails["user_bio"])?$profileDetails["user_bio"]:$lang["no_bio"];?>
-								</div>
+								<?php } } else { ?>
+								<a href="signup" class="btn btn-primary">Register to follow this user</a>
+								<?php } ?>
+							</div>
+							<div class="user-profile-picture">
+								<img src="profile-pictures/<?php echo $profileDetails["user_pp"];?>" class="profile-picture">
+							</div>
+							<p class="user-profile-name"><?php echo $profileDetails["user_pseudo"];?></p>
+							<div class="user-profile-bio">
+								<?php echo ($profileDetails["user_bio"])?$profileDetails["user_bio"]:$lang["no_bio"];?>
 							</div>
 						</div>
-						<?php if($profileToken == $_SESSION["username"]){ ?>
-					</form>
-					<?php } ?>
+					</div>
 				</div>
 				<div class="user-profile-stats col-lg-8 col-lg-offset-2 col-xs-12">
 					<div class="col-md-3 col-xs-6">
@@ -168,24 +163,97 @@ if(isset($_SESSION["token"])){
 				</div>
 			</div>
 		</div>
-		<?php include "scripts.php";?>
-		<script src="assets/js/fileinput.min.js"></script>
+		<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title"></h4>
+					</div>
+					<div class="modal-body container-fluid">
+						<div class="edit-form-space"> <!-- Space for the editing form-->
+							<div class="crop-step">
+								<div id="upload-demo"></div>
+								<input type="hidden" id="imagebase64">
+								<span class="btn btn-primary btn-block upload-result">Mettre à jour</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<style>
+			.banner-picture{
+				float: left;
+				display: none;
+			}
+			.pp-input{
+				cursor: pointer;
+				position: relative;
+			}
+			.pp-input > input{
+				position: absolute;
+				top: 0;
+				left: 0;
+				opacity: 0;
+				cursor: pointer;
+				width: 100%;
+				height: 100%;
+			}
+			.crop-step{
+				display: none;
+			}
+			.user-pp{
+				margin-bottom: 10px;
+			}
+			.croppie-container{
+				padding: 0;
+			}
+			.cr-image{
+				opacity: 1 !important;
+			}
+		</style>
 		<script>
 			$(document).ready(function(){
-				$("#banner-input").fileinput({
-					overwriteInitial: true,
-					defaultPreviewContent: '<img src="profile-banners/<?php echo $profileDetails["user_banner"];?>">',
-					showClose: false,
-					showCaption: false,
-					initialPreviewShowDelete: true,
-					browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
-					browseLabel: '<?php echo $lang["change_banner"];?>',
-					removeLabel: '<?php echo $lang["cancel"];?>',
-					removeClass: 'btn btn-danger',
-					elPreviewImage: '#banner',
-					layoutTemplates: {main2: '{browse} {remove}'},
-					allowedFileExtensions: ["jpg", "png", "jpeg"]
-				})
+				var $uploadCrop;
+
+				function readFile(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function (e) {
+							$uploadCrop.croppie('bind', {
+								url: e.target.result
+							});
+							$('.upload-demo').addClass('ready');
+							$(".crop-step").show();
+						}
+						reader.readAsDataURL(input.files[0]);
+						$("#edit-modal").modal('show');
+					}
+				}
+
+				$uploadCrop = $('#upload-demo').croppie({
+					viewport: {
+						width: 800,
+						height: 210,
+						type: 'square'
+					},
+					boundary: {
+						width: 850,
+						height: 240
+					}
+				});
+
+				$('#upload').on('change', function () { readFile(this); });
+				$('.upload-result').on('click', function (ev) {
+					$uploadCrop.croppie('result', {
+						type: 'canvas',
+						size: 'original'
+					}).then(function (resp) {
+						$('#imagebase64').val(resp);
+						$('#form').submit();
+					});
+				});
 			}).on('mouseenter', '#user-page-unfollow', function(){
 				var text = "<span class='glyphicon glyphicon-minus'></span> <?php echo $lang['unfollow'];?>";
 				$("#user-page-unfollow").html(text);
@@ -196,6 +264,18 @@ if(isset($_SESSION["token"])){
 				$("#user-page-unfollow").html(text);
 				$("#user-page-unfollow").removeClass("btn-danger");
 				$("#user-page-unfollow").addClass("btn-active");
+			}).on('click', '.upload-result', function(){
+				var picture_value = $("#imagebase64").val();
+				$.when($.get("functions/fetch_session_details.php")).done(function(data){
+					var session_details = JSON.parse(data);
+					var user_token = session_details.token;
+					$.post("functions/update_picture.php", {picture_value : picture_value, user_token : user_token, picture_type : "banner"}).done(function(data){
+						var d = new Date();
+						$("#banner>img").attr("src", "profile-banners/"+data+"?"+d.getTime());
+						$(".crop-step").hide();
+						$("#edit-modal").modal('hide');
+					})
+				});
 			})
 		</script>
 		<?php if(isset($_SESSION["token"])){ ?>

@@ -749,7 +749,7 @@ nav li > a:hover, nav li > a:focus {
 /** Menu popover **/
 /* line 589, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .notification-icon {
-  padding-top: 7px !important;
+  padding-top: 10px !important;
   padding-bottom: 0 !important; }
 
 /* line 593, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
@@ -1193,5 +1193,9 @@ legend, .sub-legend {
 /* line 945, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
 .vote-fear:hover {
   background-color: rgba(136, 136, 136, 0.08); }
+
+/* line 948, C:/xampp/htdocs/Berrybox/assets/css/common.sass */
+.upload-result {
+  margin-top: 15px; }
 
 /*# sourceMappingURL=common.css.map */

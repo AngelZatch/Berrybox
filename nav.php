@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION["token"])){
 	//If the user is connected
-	$userDetails = $db->query("SELECT * FROM user u
+	$userDetails = $db->query("SELECT user_pseudo, user_mail, user_power, user_lang, user_pp, user_banner, user_bio, up_color, up_theme, up_lang FROM user u
 							JOIN user_preferences up
 								ON u.user_token = up.up_user_id
 							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
@@ -115,7 +115,7 @@ if(isset($_SESSION["token"])){
 						<li>
 							<a href="profile/settings" class="no-margin"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["my_settings"];?></a>
 						</li>
-						<li><a href="logout.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
+						<li><a href="logout.php"><span class="glyphicon glyphicon-off"></span> <?php echo $lang["log_out"];?></a></li>
 					</ul>
 				</li>
 				<?php } else { ?>

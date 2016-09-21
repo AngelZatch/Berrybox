@@ -20,7 +20,6 @@ if(isset($_SESSION["token"]) && isset($_SESSION["user_lang"])){
 			$_SESSION["power"] = $credentials["user_power"];
 			$_SESSION["token"] = $credentials["user_token"];
 			$_SESSION["user_lang"] = $credentials["user_lang"];
-			$_SESSION["photo"] = $credentials["user_pp"];
 			if(isset($_POST["box-token-redirect"])){
 				header("Location: box/".$_POST["box-token-redirect"]);
 			} else {

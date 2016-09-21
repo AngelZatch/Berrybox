@@ -38,7 +38,6 @@ if(isset($_POST["submit"])){
 		<?php } else { ?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 		<?php } ?>
-		<link rel="stylesheet" href="assets/css/fileinput.min.css">
 	</head>
 	<body>
 		<?php include "nav.php";?>

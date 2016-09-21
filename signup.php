@@ -31,7 +31,7 @@ if(isset($_POST["signup"])){
 		$_SESSION["username"] = $_POST["username"];
 		$_SESSION["power"] = "0";
 		$_SESSION["token"] = $token;
-		$_SESSION["lang"] = "en";
+		$_SESSION["user_lang"] = "en";
 		if(isset($_POST["box-token-redirect"])){
 			header("Location: box/".$_POST["box-token-redirect"]);
 		} else {
