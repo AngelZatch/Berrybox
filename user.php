@@ -175,7 +175,7 @@ if(isset($_SESSION["token"])){
 							<div class="crop-step">
 								<div id="upload-demo"></div>
 								<input type="hidden" id="imagebase64">
-								<span class="btn btn-primary btn-block upload-result">Mettre à jour</span>
+								<span class="btn btn-primary btn-block upload-result"><?php echo $lang["update"];?></span>
 							</div>
 						</div>
 					</div>
