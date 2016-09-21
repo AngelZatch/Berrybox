@@ -22,51 +22,15 @@ if(isset($_POST["submit"])){
 	$newBio = addslashes($_POST["bio"]);
 	$newLang = $_POST["default-lang"];
 	$newTheme = $_POST["default-theme"];
-	// Uploading the profile picture on the folder
-	if($_FILES["profile-picture"]["name"]){
-		$pictureExtension = pathinfo($_FILES["profile-picture"]["name"], PATHINFO_EXTENSION);
-		if($pictureExtension != "png" && $pictureExtension != "jpg"){
-			$message = "Invalid format";
-		} else {
-			if($_FILES["profile-picture"]["size"] > (3072000)){
-				$message = "The size is too big. 3MB max.";
-				//Writing in the table the modifications
-				$edit = $db->query("UPDATE user
-									SET user_pseudo = '$newPseudo',
-									user_mail = '$newMail',
-									user_bio = '$newBio',
-									user_lang = '$newLang'
-									WHERE user_token = '$user_token'");
-				$editSettings = $db->query("UPDATE user_preferences
-											SET up_theme = '$newTheme'
-											WHERE up_user_id = '$user_token'");
-			} else {
-				$picture = $_SESSION["token"].".".pathinfo($_FILES["profile-picture"]["name"], PATHINFO_EXTENSION);
-				move_uploaded_file($_FILES["profile-picture"]["tmp_name"], "profile-pictures/".$picture);
-				//Writing in the table the modifications
-				$edit = $db->query("UPDATE user
-									SET user_pseudo = '$newPseudo',
-									user_mail = '$newMail',
-									user_bio = '$newBio',
-									user_pp = '$picture',
-									user_lang = '$newLang'
-									WHERE user_token = '$user_token'");
-				$editSettings = $db->query("UPDATE user_preferences
-											SET up_theme = '$newTheme'
-											WHERE up_user_id = '$user_token'");
-			}
-		}
-	} else {
-		$edit = $db->query("UPDATE user
+	$edit = $db->query("UPDATE user
 							SET user_pseudo = '$newPseudo',
 							user_mail = '$newMail',
 							user_bio = '$newBio',
 							user_lang = '$newLang'
 							WHERE user_token = '$user_token'");
-		$editSettings = $db->query("UPDATE user_preferences
-											SET up_theme = '$newTheme'
-											WHERE up_user_id = '$user_token'");
-	}
+	$editSettings = $db->query("UPDATE user_preferences
+									SET up_theme = '$newTheme'
+									WHERE up_user_id = '$user_token'");
 }
 ?>
 <html>
@@ -80,7 +44,9 @@ if(isset($_POST["submit"])){
 		<?php } else { ?>
 		<link rel="stylesheet" href="assets/css/light-theme.css">
 		<?php } ?>
-		<link rel="stylesheet" href="assets/css/fileinput.min.css">
+		<link rel="stylesheet" href="assets/css/croppie.css">
+		<?php include "scripts.php";?>
+		<script src="assets/js/croppie.min.js"></script>
 	</head>
 	<body>
 		<?php include "nav.php";?>
@@ -109,13 +75,19 @@ if(isset($_POST["submit"])){
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="profile-picture" class="col-sm-3 control-label"><?php echo $lang["profile_picture"];?></label>
+					<label for="avatar" class="col-sm-3 control-label"><?php echo $lang["profile_picture"];?></label>
 					<div class="col-sm-9 col-lg-7">
-						<div id="kv-avatar-errors" class="center-block" style="width:800px;display:none;"></div>
-						<div id="avatar-container">
-							<input type="file" id="avatar" name="profile-picture" class="file-loading">
+						<div class="pp-input btn btn-primary">
+							<span><?php echo $lang["pick_image"];?></span>
+							<input type="file" id="upload" accept="image/jpeg, image/x-png">
 						</div>
 						<span class="tip" id="username-tip"><?php echo $lang["profile_picture_formats"];?></span>
+						<!--<p class="help-block">Formats JPEG ou PNG et de taille inférieurs à 1 Mo.</p>-->
+						<div class="crop-step">
+							<div id="upload-demo"></div>
+							<input type="hidden" id="imagebase64">
+							<span class="btn btn-primary btn-block upload-result">Mettre à jour</span>
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -151,26 +123,72 @@ if(isset($_POST["submit"])){
 				</div>
 			</form>
 		</div>
-		<?php include "scripts.php";?>
-		<script src="assets/js/fileinput.min.js"></script>
+		<style>
+			.profile-picture{
+				float: left;
+				display: none;
+			}
+			.pp-input{
+				cursor: pointer;
+				position: relative;
+			}
+			.pp-input > input{
+				position: absolute;
+				top: 0;
+				left: 0;
+				opacity: 0;
+				cursor: pointer;
+				width: 100%;
+				height: 100%;
+			}
+			.crop-step{
+				display: none;
+			}
+			.user-pp{
+				margin-bottom: 10px;
+			}
+		</style>
 		<script>
-			$("#avatar").fileinput({
-				overwriteInitial: true,
-				maxFileSize: 3000,
-				showClose: false,
-				showCaption: false,
-				browseLabel: '',
-				removeLabel: '',
-				browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
-				removeTitle: 'Cancel or reset changes',
-				elErrorContainers: '#kv-avatar-errors',
-				elPreviewContainer: '#avatar-container',
-				msgErrorClass: 'alert alert-block alert-danger',
-				defaultPreviewContent: '<img src="<?php echo $ppAdresss;?>" style="width:118px;">',
-				layoutTemplates: {main2: '{preview} {browse}' },
-				allowedFileExtensions: ["jpg", "png"]
-			});
 			$(document).ready(function(){
+				var $uploadCrop;
+
+				function readFile(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function (e) {
+							$uploadCrop.croppie('bind', {
+								url: e.target.result
+							});
+							$('.upload-demo').addClass('ready');
+							$(".crop-step").show();
+						}
+						reader.readAsDataURL(input.files[0]);
+					}
+				}
+
+				$uploadCrop = $('#upload-demo').croppie({
+					viewport: {
+						width: 200,
+						height: 200,
+						type: 'circle'
+					},
+					boundary: {
+						width: 300,
+						height: 300
+					}
+				});
+
+				$('#upload').on('change', function () { readFile(this); });
+				$('.upload-result').on('click', function (ev) {
+					$uploadCrop.croppie('result', {
+						type: 'canvas',
+						size: 'original'
+					}).then(function (resp) {
+						$('#imagebase64').val(resp);
+						$('#form').submit();
+					});
+				});
+
 				var patternUserReg = /^<?php echo $userDetails['user_pseudo'];?>$/i;
 				$(":regex(name,username)").on('keydown', function(e){
 					if(e.which === 32) return false;
@@ -190,6 +208,17 @@ if(isset($_POST["submit"])){
 						$(":regex(name,submit)").attr("disabled", "disabled");
 					}
 				})
+			}).on('click', '.upload-result', function(){
+				var picture_value = $("#imagebase64").val();
+				$.when($.get("functions/fetch_session_details.php")).done(function(data){
+					var session_details = JSON.parse(data);
+					var user_token = session_details.token;
+					$.post("functions/update_picture.php", {picture_value : picture_value, user_token : user_token, picture_type : "picture"}).done(function(data){
+						var d = new Date();
+						$(".small-pp>img").attr("src", "profile-pictures/"+data+"?"+d.getTime());
+						$(".crop-step").hide();
+					})
+				});
 			})
 		</script>
 	</body>

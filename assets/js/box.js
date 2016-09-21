@@ -328,11 +328,11 @@ function submitLink(){
 
 function closeRoom(box_token){
 	sendMessage(box_token, 4, 4, "{close_room}");
-	$.post("functions/close_room.php", {box_token : box_token, user_token : user_token});
+	$.post("functions/close_room.php", {box_token : box_token});
 }
 function openRoom(box_token){
 	sendMessage(box_token, 4, 7, "{reopen_room}");
-	$.post("functions/reopen_room.php", {box_token : box_token, user_token : user_token});
+	$.post("functions/reopen_room.php", {box_token : box_token});
 }
 
 // Synchronize between users

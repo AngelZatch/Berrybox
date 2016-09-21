@@ -129,6 +129,7 @@ $lang["no_account"] = "Pas encore de compte ?";
 $lang["already_account"] = "Déjà inscrit ?";
 $lang["sing_up_here"] = "Enregistrez-vous par ici";
 $lang["log_in_here"] = "Connectez-vous";
+$lang["pick_image"] = "Choisissez une image...";
 
 /** LANGUAGES **/
 $lang["language_name"] = "Langue";
@@ -178,6 +179,7 @@ $lang["display_name_tip"] = "Personnalisez votre nom affiché.";
 $lang["display_mail"] = "Adresse mail";
 $lang["profile_picture"] = "Image de profil";
 $lang["profile_picture_formats"] = "3Mo max. Formats JPG et PNG supportés";
+$lang["banner_picture"] = "Changer votre bannière...";
 $lang["bio"] = "Bio";
 $lang["bio_tip"] = "Parlez de vous en moins de 400 caractères.";
 $lang["default_lang"] = "Langue par défaut";

@@ -130,6 +130,7 @@ $lang["no_account"] = "アカウントがまだありません？";
 $lang["already_account"] = "アカウントがあります？";
 $lang["sing_up_here"] = "サインアップはこちら";
 $lang["log_in_here"] = "ログインはこちら";
+$lang["pick_image"] = "ファイルを選択する...";
 
 /** LANGUAGES **/
 $lang["language_name"] = "言語";
@@ -179,6 +180,7 @@ $lang["display_name_tip"] = "ディスプレイ名をカスタマイズします
 $lang["display_mail"] = "メールアドレス";
 $lang["profile_picture"] = "プロファイル画像";
 $lang["profile_picture_formats"] = "3MB上限. JPGとPNG形式は、サポートされています";
+$lang["banner_picture"] = "プロファイルバナーを変更する...";
 $lang["bio"] = "バイオ";
 $lang["bio_tip"] = "あなたの事項商会〔400文字上限〕";
 $lang["default_lang"] = "デフォールト言語";

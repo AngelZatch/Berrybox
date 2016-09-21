@@ -69,6 +69,19 @@ body {
   .user-entry:active, .box-entry:active {
     background-color: #5d5d5d; }
 
+/** NAV **/
+/* line 59, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.dropdown-custom {
+  border-color: #434343 !important;
+  background-color: #292929; }
+  /* line 62, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  .dropdown-custom .divider {
+    background-color: #434343; }
+
 /** FOOTER **/
+/** MODAL **/
+/* line 70, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.modal-content {
+  background-color: #292929; }
 
 /*# sourceMappingURL=dark-theme.css.map */

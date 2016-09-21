@@ -2,7 +2,7 @@
 include "db_connect.php";
 $db = PDOFactory::getConnection();
 session_start();
-include_once "../languages/lang.".$_SESSION["lang"].".php";
+include_once "../languages/lang.".$_SESSION["user_lang"].".php";
 
 $targetToken = $_POST["targetToken"];
 $roomToken = $_POST["roomToken"];
