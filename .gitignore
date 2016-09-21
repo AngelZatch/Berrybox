@@ -6,6 +6,7 @@ profile-banners/*
 
 ## dev files
 assets/css/*.css
+!assets/css/croppie.css
 assets/css/*.css.map
 .brackets.json
 db_modifs.txt

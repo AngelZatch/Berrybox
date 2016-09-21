@@ -445,12 +445,43 @@ nav
 	background-color: $yellow-base
 
 .nav
-	&:not(.nav-stacked)
+	/*&:not(.nav-stacked)
 		li
 			@media screen and (min-width: $break-sm)
-				float: left
+				float: left*/
 	li>a:hover, li>a:focus
 		background-color: inherit !important
+
+.dropdown-custom
+	margin-top: 10px !important
+	left: -50% !important
+	li
+		border-top: none !important
+
+.textcomplete-dropdown, .dropdown-custom
+	z-index: 1062 !important
+	li:not(.divider)
+		padding: 2px 5px;
+		&:first-child
+			margin-top: 10px
+		&:last-child
+			margin-bottom: 10px
+		&.active
+			background-color: $yellow-base !important
+			a
+				background-color: $yellow-base
+		&:hover
+			background-color: $yellow-base !important
+		a
+			&:hover
+				background-color: $yellow-base !important
+				color: white
+	&.active
+		background-color: $yellow-base !important
+
+.dropdown-menu
+	li > a
+		color: $yellow-base
 
 .nav-justified > li
 	float: none !important
@@ -555,8 +586,8 @@ nav
 	width: 100%
 
 /** Menu popover **/
-.popover-trigger
-	padding-top: 7px !important
+.notification-icon
+	padding-top: 10px !important
 	padding-bottom: 0 !important
 
 .user-menu-name
@@ -913,3 +944,6 @@ legend
 .vote-fear
 	&:hover
 		background-color: transparentize($fear-color, 0.92)
+
+.upload-result
+	margin-top: 15px

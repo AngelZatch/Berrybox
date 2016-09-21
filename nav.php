@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION["token"])){
 	//If the user is connected
-	$userDetails = $db->query("SELECT * FROM user u
+	$userDetails = $db->query("SELECT user_pseudo, user_mail, user_power, user_lang, user_pp, user_banner, user_bio, up_color, up_theme, up_lang FROM user u
 							JOIN user_preferences up
 								ON u.user_token = up.up_user_id
 							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
@@ -98,29 +98,25 @@ if(isset($_SESSION["token"])){
 				<li>
 					<a href="create" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
 				</li>
-				<li>
-					<a class="popover-trigger" data-toggle="popover-x" data-target="#user-menu" role="button" data-trigger="focus" data-placement="bottom bottom-right">
+				<li class="dropdown notification-option">
+					<a href="#" class="dropdown-toggle notification-icon nav-img-container" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						<div class="small-pp">
 							<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit;">
 						</div>
 					</a>
-					<div id="user-menu" class="popover popover-default popover-md menu-popover">
-						<div class="arrow"></div>
-						<div class="popover-content">
-							<div class="medium-pp">
-								<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit;">
-							</div>
-							<p class="user-menu-name"><?php echo $userDetails["user_pseudo"];?></p>
-							<ul class="popover-menu">
-								<a href="profile/settings" class="no-margin"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["my_settings"];?></a>
-								<a href="user/<?php echo $_SESSION["username"];?>" class="no-margin"><span class="glyphicon glyphicon-user"></span> <?php echo $lang["my_profile"];?></a>
-								<a href="my/likes" class="no-margin"><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo $lang["profile_likes"];?></a>
-							</ul>
-						</div>
-						<div class="popover-footer">
-							<a href="logout.php" class="btn btn-primary no-margin"><span class="glyphicon glyphicon-off"></span> <?php echo $lang["log_out"];?></a>
-						</div>
-					</div>
+					<ul class="dropdown-menu dropdown-custom">
+						<li>
+							<a href="user/<?php echo $_SESSION["username"];?>" class="no-margin"><span class="glyphicon glyphicon-user"></span> <?php echo $lang["my_profile"];?></a>
+						</li>
+						<li>
+							<a href="my/likes" class="no-margin"><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo $lang["profile_likes"];?></a>
+						</li>
+						<li role="separator" class="divider"></li>
+						<li>
+							<a href="profile/settings" class="no-margin"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["my_settings"];?></a>
+						</li>
+						<li><a href="logout.php"><span class="glyphicon glyphicon-off"></span> <?php echo $lang["log_out"];?></a></li>
+					</ul>
 				</li>
 				<?php } else { ?>
 				<li><a href="portal" class="navbar-link"><?php echo $lang["log_in"];?></a></li>
