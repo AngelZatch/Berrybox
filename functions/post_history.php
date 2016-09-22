@@ -49,9 +49,14 @@ if(strlen($link) == 11){
 		}
 	}
 	// Once everything is done, we insert the video in the playlist
-	$upload = $db->prepare("INSERT INTO roomHistory_$box_token(video_index, history_time, history_user)
-		VALUES(:index, :time, :user)");
+	// First, we get the index of the previous entry
+	include "tools.php";
+	$playlist_order = getPlaylistOrdering($db, $box_token);
+
+	$upload = $db->prepare("INSERT INTO roomHistory_$box_token(video_index, playlist_order, history_time, history_user)
+		VALUES(:index, :p_order, :time, :user)");
 	$upload->bindParam(':index', $baseIndex);
+	$upload->bindParam(':p_order', $playlist_order);
 	$upload->bindParam(':time', $time);
 	$upload->bindParam(':user', $user);
 	$upload->execute();

@@ -50,9 +50,14 @@ foreach($list as $link){ // Unknown error: investigate list of links.
 			}
 		}
 		// Once everything is done, we insert the video in the playlist
-		$upload = $db->prepare("INSERT INTO roomHistory_$box_token(video_index, history_time, history_user)
-		VALUES(:index, :time, :user)");
+		// Playlist order
+		include "tools.php";
+		$playlist_order = getPlaylistOrdering($db, $box_token);
+
+		$upload = $db->prepare("INSERT INTO roomHistory_$box_token(video_index, playlist_order, history_time, history_user)
+		VALUES(:index, :p_order, :time, :user)");
 		$upload->bindParam(':index', $baseIndex);
+		$upload->bindParam(':p_order', $current_playlist_index);
 		$upload->bindParam(':time', $time);
 		$upload->bindParam(':user', $user);
 		$upload->execute();
