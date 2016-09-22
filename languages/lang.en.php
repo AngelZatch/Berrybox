@@ -34,8 +34,8 @@ $lang["timeout_message_admin_first_part"] = "User has been timeouted (";
 $lang["timeout_message_admin_second_part"] = " times)";
 $lang["timeout_message_user"] = "You have been timeouted and therefore won't be able to post messages and/or submit videos";
 $lang["ignore_song"] = "Ignore this video";
-$lang["song_up"] = "Move this video up the queue";
-$lang["song_down"] = "Move this video down the queue";
+$lang["song_up"] = "Play later";
+$lang["song_down"] = "Play sooner";
 $lang["close_room"] = "Close the box";
 $lang["close_room_tip"] = "Closing the box will deactivate video submission, play and the box will no longer be accessible by users. This action is irreversible";
 $lang["room_closing"] = "This box is closed. Please leave the box.";
@@ -103,6 +103,7 @@ $lang["sl_upcoming"] = "Upcoming videos";
 $lang["synchronizing"] = "Synchronization...";
 $lang["no_admin"] = "Warning ! The creator is not present in the box. The synchronization is therefore impossible. If you want to share videos in proper conditions, please create another box or contact the creator of this box directly.";
 $lang["whisper"] = "Whisper";
+$lang["staff"] = "Staff";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "Music";

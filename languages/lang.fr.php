@@ -34,8 +34,8 @@ $lang["timeout_message_admin_first_part"] = "Vous avez mis cet utilisateur en so
 $lang["timeout_message_admin_second_part"] = " fois)";
 $lang["timeout_message_user"] = "Vous avez été mis en sourdine et ne pourrez plus parler et/ou soumettre des vidéos pendant un certain temps.";
 $lang["ignore_song"] = "Ignorer cette musique";
-$lang["song_up"] = "Déplacer cette chanson vers le haut de la file d'attente";
-$lang["song_down"] = "Déplacer cette chanson vers le bas de la file d'attente";
+$lang["song_up"] = "Jouer plus tard";
+$lang["song_down"] = "Jouer plus tôt";
 $lang["close_room"] = "Fermer la box";
 $lang["close_room_tip"] = "La fermeture de la box désactivera la soumission et la lecture de vidéos, ainsi que l'accès à la box.";
 $lang["room_closing"] = "Cette box est fermée. Veuillez quitter la box.";
@@ -103,6 +103,7 @@ $lang["sl_upcoming"] = "Vidéos à venir";
 $lang["synchronizing"] = "Synchronisation...";
 $lang["no_admin"] = "Attention ! L'administrateur de la box n'est actuellement pas présent. La synchronisation est par conséquent impossible. Si vous voulez partager des vidéos, veuillez créer une autre box ou contacter le créateur de cette box directement.";
 $lang["whisper"] = "Murmurer";
+$lang["staff"] = "Staff";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "Musique";

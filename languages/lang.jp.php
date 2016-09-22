@@ -34,8 +34,8 @@ $lang["timeout_message_admin_first_part"] = "このユーザは、ミュート�
 $lang["timeout_message_admin_second_part"] = " 回)";
 $lang["timeout_message_user"] = "あなたはミュートされていました。次のメッセジを送信することができません。";
 $lang["ignore_song"] = "この曲をスキップ";
-$lang["song_up"] = "この曲を上に移動します";
-$lang["song_down"] = "この曲を移動します";
+$lang["song_up"] = "後でビデオを再生";
+$lang["song_down"] = "早くビデオを再生";
 $lang["close_room"] = "ボックスを閉める";
 $lang["close_room_tip"] = "ボックスが占める割合は、ビデオ提出とプレイが無効にされます。そして5分後みんなは外にリダイレクトされます。このアクションは不可逆";
 $lang["room_closing"] = "ボックスは閉じています。あなたは外にリダイレクトされます。";
@@ -104,6 +104,8 @@ $lang["sl_upcoming"] = "次";
 $lang["synchronizing"] = "シンク中…";
 $lang["no_admin"] = "注意！このボックスのクリエイターがいりません。シンクは不可能です。ビデオをシェアーするために、新しいボックスを始めて下さい。";
 $lang["whisper"] = "囁く";
+$lang["staff"] = "スタッフ";
+
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "音楽";

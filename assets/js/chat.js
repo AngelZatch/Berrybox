@@ -219,16 +219,16 @@ function loadChat(box_token, user_power, user_token, emotes, user_lang) {
 						message += "<p class='standard-message'>";
 						message += "<span class='message-time'>" + message_time + "</span> ";
 						if (messages[i].status == 2) { // If author is the creator
-							message += "<span class='chat-icon' title=''><img src='assets/berrybox-creator-logo.png'></span> ";
+							message += "<span class='chat-icon' title='"+language_tokens.room_admin+"'><img src='assets/berrybox-creator-logo.png'></span> ";
 						} else if (messages[i].status == 3) { // If author is the moderator
 							if ((user_power == 2 || user_power == 3) && messages[i].authorToken != user_token) {
 								// Needs timeout buttons
 								if (user_power == 2) {
 									// Needs ban & demote buttons specific to the creator
-									message += "<span class='chat-icon' title=''><img src='assets/berrybox-moderator-logo.png'></span> ";
+									message += "<span class='chat-icon' title='"+language_tokens.room_mod+"'><img src='assets/berrybox-moderator-logo.png'></span> ";
 								}
 							} else {
-								message += "<span class='chat-icon' title=''><img src='assets/berrybox-moderator-logo.png'></span>";
+								message += "<span class='chat-icon' title='"+language_tokens.room_mod+"'><img src='assets/berrybox-moderator-logo.png'></span>";
 							}
 						} else { // If author is a standard user
 							if (user_power == 2 || user_power == 3) {
@@ -238,8 +238,8 @@ function loadChat(box_token, user_power, user_token, emotes, user_lang) {
 								}
 							}
 						}
-						if (messages[i].authorPower == "1") {
-							message += "<span class='chat-icon' title=''><img src='assets/berrybox-staff-logo.png'></span> ";
+						if (messages[i].authorPower == 1) {
+							message += "<span class='chat-icon' title='"+language_tokens.staff+"'><img src='assets/berrybox-staff-logo.png'></span> ";
 						}
 						message += "<a style='text-decoration:none'><span class='message-author author-linkback' style='color:#" + messages[i].authorColor + ";'>";
 						message += messages[i].author;
