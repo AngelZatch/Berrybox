@@ -9,7 +9,7 @@ $user_power = $_POST["user_power"];
 
 if($user_power == 2){
 	// Get ID of previous video
-	$playedID = $db->query("SELECT room_history_id
+	$playedID = $db->query("SELECT room_history_id, playlist_order
 							FROM roomHistory_$box_token rh
 							WHERE video_index = '$prev'
 							AND video_status = '1'")->fetch(PDO::FETCH_ASSOC);
@@ -24,9 +24,9 @@ if($user_power == 2){
 	$i = 0;
 	while($nextIgnored){
 		$i++;
-		$nextVideoState = $db->query("SELECT video_status, room_history_id
+		$nextVideoState = $db->query("SELECT video_status, room_history_id, playlist_order
 									FROM roomHistory_$box_token
-									WHERE room_history_id = '$playedID[room_history_id]' +$i")->fetch(PDO::FETCH_ASSOC);
+									WHERE room_history_id = '$playedID[playlist_order]' +$i")->fetch(PDO::FETCH_ASSOC);
 
 		if($nextVideoState["video_status"] == '3'){
 			// If it is, the video is indicated as played.
@@ -44,7 +44,7 @@ $next = $db->query("SELECT room_history_id, video_index, history_user, link, vid
 					FROM roomHistory_$box_token rh
 					JOIN song_base sb ON rh.video_index = sb.song_base_id
 					WHERE video_status = '0'
-					ORDER BY room_history_id ASC
+					ORDER BY playlist_order ASC
 					LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 
 if($next["link"] != null){

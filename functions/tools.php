@@ -25,4 +25,12 @@ function checkDuplicate($token, $len){
 		return $reference;
 	}
 }
+
+function getPlaylistOrdering($db, $box_token){
+	// First, we get the index of the previous entry
+	$current_playlist_index = $db->query("SELECT playlist_order FROM roomHistory_$box_token ORDER BY playlist_order DESC LIMIT 1")->fetch(PDO::FETCH_COLUMN);
+	$current_playlist_index = ($current_playlist_index != NULL)?$current_playlist_index:1;
+	$current_playlist_index++;
+	return $current_playlist_index;
+}
 ?>

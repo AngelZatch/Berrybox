@@ -6,6 +6,7 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
+var refresh_playlist_timer;
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
 		height: '85%',
@@ -120,7 +121,6 @@ function getNext(skip, box_token){
 	} else {
 		synchronize(box_token, user_power);
 		$(".sync-message").append("<span class='glyphicon glyphicon-refresh' title='"+language_tokens.synchronizing+"'> <span class='hidden-xs hidden-sm hidden-md'>"+language_tokens.synchronizing+"</span></span>");
-
 	}
 }
 
@@ -130,7 +130,11 @@ function joinBox(box_token, user_token){
 }
 
 // Loading playlist
-function loadPlaylist(box_token, user_power){
+function loadPlaylist(box_token, user_power, forced){
+	if(forced){
+		clearTimeout(refresh_playlist_timer);
+	}
+	/*console.log("fetching"+moment());*/
 	// Load the playlist
 	if($("#song-list").css("display") != "none"){
 		// Gets the whole history of the room
@@ -180,6 +184,26 @@ function loadPlaylist(box_token, user_power){
 					}
 					if(user_power != 2 && user_power != 3){
 						nameLength++;
+					}
+					// Playlist ordering
+					if(user_power == 2 || user_power == 3){
+						if(songList[i].videoStatus == "0" || songList[i].videoStatus == "3"){
+							nameLength -= 2;
+
+							// Up button
+							message += "<div class='col-xs-1'>";
+							if(i != 0){
+								message += "<span class='glyphicon glyphicon-arrow-up button-glyph swap-order' id='up-"+songList[i].entry+"' data-order='"+songList[i].order+"' title='"+language_tokens.song_up+"'></span>";
+							}
+							message += "</div>";
+
+							// Down button
+							message += "<div class='col-xs-1'>";
+							if(songList[i+1].videoStatus == 0 || songList[i+1].videoStatus == 3){
+								message += "<span class='glyphicon glyphicon-arrow-down button-glyph swap-order' id='down-"+songList[i].entry+"' data-order='"+songList[i].order+"' title='"+language_tokens.song_down+"'></span>";
+							}
+							message += "</div>";
+						}
 					}
 					message += "<div class='col-xs-"+nameLength+"'>";
 					message += "<p class='song-list-line'><a href='https://www.youtube.com/watch?v="+songList[i].videoLink+"' target='_blank' title='"+songName+"'>"+songList[i].videoName+"</a></p></div>";
@@ -234,7 +258,7 @@ function loadPlaylist(box_token, user_power){
 				})
 			}
 		}
-		setTimeout(loadPlaylist, 8000, box_token, user_power);
+		refresh_playlist_timer = setTimeout(loadPlaylist, 8000, box_token, user_power, false);
 	}
 }
 
@@ -281,6 +305,7 @@ function requeueSong(box_token, video_id){
 			$("#body-chat").append("<p class='system-message system-warning'></span class='glyphicon glyphicon-question-sign'></span> "+language_tokens.no_fetch+"</p>");
 		}
 		$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
+		loadPlaylist(box_token, window.user_power, true);
 	})
 }
 
@@ -378,6 +403,7 @@ function toggleVideoInQueue(box_token, video_id, play_flag){
 			var message = "{song_ignored}"+data;
 			sendMessage(box_token, 4, 5, message, null);
 		}
+		loadPlaylist(box_token, window.user_power, true);
 	})
 }
 
@@ -676,7 +702,7 @@ $(document).ready(function(){
 
 		switch(classToken){
 			case "song-list":
-				loadPlaylist(box_token, window.user_power);
+				loadPlaylist(box_token, window.user_power, false);
 				setTimeout((function(){
 					$("#user-list").hide();
 					$("#menu-list").hide();
@@ -881,4 +907,13 @@ $(document).ready(function(){
 		$(twin).removeClass("btn-disabled");
 		$(twin).addClass("disabled");
 	})
+}).on('click', '.swap-order', function(){
+	var pressed = document.getElementById($(this).attr("id"));
+	var m = /(\w*)-(\d*)/.exec(pressed.id);
+	var action = m[1], entry_id = m[2], box_token = getBoxToken();
+	var current_order = pressed.dataset.order;
+	console.log(entry_id, current_order, action, box_token);
+	$.post("functions/swap_playlist_order.php", {history_id : entry_id, current_order : current_order, action : action, box_token : box_token}).done(function(data){
+		loadPlaylist(box_token, window.user_power, true)
+	});
 })
