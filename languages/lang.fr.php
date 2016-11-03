@@ -224,6 +224,7 @@ $lang["leave_404"] = "Retourner en sécurité";
 /** WORDS **/
 $lang["videos"] = "vidéos";
 $lang["update"] = "Mettre à jour";
+$lang["shuffle"] = "Aléatoire";
 
 /** FEEDBACK **/
 $lang["searching"] = "Recherche...";

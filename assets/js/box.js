@@ -309,6 +309,13 @@ function requeueSong(box_token, video_id){
 	})
 }
 
+function shufflePlaylist(box_token){
+	$.get("functions/playlist_shuffle.php", {box_token : box_token}).done(function(data){
+		console.log(data);
+		loadPlaylist(box_token, window.user_power, true);
+	})
+}
+
 function submitLink(){
 	$(".submit-warning").empty();
 	var box_token = getBoxToken();
@@ -893,6 +900,9 @@ $(document).ready(function(){
 }).on('click', '.btn-skip', function(){
 	var box_token = getBoxToken();
 	getNext(true, box_token);
+}).on('click', '.shuffle-playlist', function(){
+	var box_token = getBoxToken();
+	shufflePlaylist(box_token);
 }).on('click', '.toggle-box-state', function(){
 	var clicked = $(this);
 	var field_name = document.getElementById(clicked.attr("id")).dataset.field;

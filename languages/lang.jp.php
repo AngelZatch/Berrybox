@@ -225,6 +225,7 @@ $lang["leave_404"] = "安全に戻る";
 /** WORDS **/
 $lang["videos"] = "ビデオ";
 $lang["update"] = "アップデートする";
+$lang["shuffle"] = "シャッフルする";
 
 /** FEEDBACK **/
 $lang["searching"] = "検索中...";

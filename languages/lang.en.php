@@ -223,6 +223,7 @@ $lang["leave_404"] = "Go back to safety";
 /** WORDS **/
 $lang["videos"] = "videos";
 $lang["update"] = "Update";
+$lang["shuffle"] = "Shuffle";
 
 /** FEEDBACK **/
 $lang["searching"] = "Searching...";
