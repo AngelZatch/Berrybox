@@ -48,27 +48,43 @@ function sendMessage(box_token, scope, type, message, destination) {
 	if (message == 'chatbox' && scope == 1) {
 		var fullString = $(".chatbox").val();
 		var actionToken = $(".chatbox").val().substr(0, 1);
-		if (actionToken == '/') { // Detection de macros
+		if (actionToken == '!') { // Detection de macros
 			var action = $(".chatbox").val().substr(1).split(" ");
-			if (action[0] == 'w') {
-				scope = 6;
-				destination = action[1];
-				message = "";
-				for (var i = 2; i < action.length; i++) {
-					message += action[i];
-					if (i != action.length - 1) {
-						message += " ";
+			switch(action[0]){
+				case 'w':
+					scope = 6;
+					destination = action[1];
+					message = "";
+					for (var i = 2; i < action.length; i++) {
+						message += action[i];
+						if (i != action.length - 1) {
+							message += " ";
+						}
 					}
-				}
-				$(".chatbox").val('');
-				$.post("functions/post_chat.php", {
-					message: message,
-					token: box_token,
-					scope: scope,
-					destination: destination,
-					solveDestination: destination
-				});
+					$(".chatbox").val('');
+					$.post("functions/post_chat.php", {
+						message: message,
+						token: box_token,
+						scope: scope,
+						destination: destination,
+						solveDestination: destination
+					});
+					break;
+
+				case 'skip':
+				case 'next':
+					getNext(true, box_token);
+					break;
+
+				case 'shuffle':
+					shufflePlaylist(box_token);
+					break;
+
+				default:
+					$("#body-chat").append("<p class='system-message system-alert'>"+language_tokens.invalid_macro+"</p>");
+					break;
 			}
+			$(".chatbox").val('');
 		} else {
 			var message = $(".chatbox").val();
 			$(".chatbox").val('');
