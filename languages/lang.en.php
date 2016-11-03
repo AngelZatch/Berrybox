@@ -73,6 +73,7 @@ $lang["color_pick"] = "Pick a color for your username";
 $lang["color_tip"] = "Your username in chat will be displayed in the color you'll have chosen";
 $lang["welcome"] = "Welcome in the box! To submit a video, please paste any YouTube link in the input under the player.";
 $lang["welcome_admin"] = "Welcome in your box! To submit a video, please paste any YouTube link in the input under the player. Please note that you are the creator and therefore administrator of this box. If you leave it without closing it, video synchronization and play will stop for your users.";
+$lang["invalid_macro"] = "The command you entered is invalid.";
 
 /** MOOD **/
 $lang["mood-question"] = "So, what do you think of this video?";

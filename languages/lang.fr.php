@@ -73,6 +73,7 @@ $lang["color_pick"] = "Choisissez une couleur pour votre nom";
 $lang["color_tip"] = "Votre nom sera affiché dans la couleur que vous aurez choisi.";
 $lang["welcome"] = "Bienvenue dans cette box ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur.";
 $lang["welcome_admin"] = "Bienvenue dans votre box ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur. Vous êtes le créateur de cette box. Si vous la quittez sans la fermer, la lecture et la synchronisation des vidéos s'arrêtera pour tous vos utilisateurs.";
+$lang["invalid_macro"] = "La commande entrée est invalide.";
 
 /** MOOD **/
 $lang["mood-question"] = "Que pensez-vous de la vidéo ?";
