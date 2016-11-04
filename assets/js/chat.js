@@ -73,11 +73,20 @@ function sendMessage(box_token, scope, type, message, destination) {
 
 				case 'skip':
 				case 'next':
-					getNext(true, box_token);
+					if(window.user_power == 2 || window.user_power == 3){
+						$(".btn-skip").trigger('click');
+					} else {
+						$("#body-chat").append("<p class='system-message'><span class='glyphicon glyphicon-minus-sign'></span> "+language_tokens.no_power+"</p>");
+					}
 					break;
 
 				case 'shuffle':
-					shufflePlaylist(box_token);
+				case 'random':
+					if(window.user_power == 2 || window.user_power == 3){
+						$(".shuffle-playlist").trigger('click');
+					} else {
+						$("#body-chat").append("<p class='system-message'><span class='glyphicon glyphicon-minus-sign'></span> "+language_tokens.no_power+"</p>");
+					}
 					break;
 
 				default:
