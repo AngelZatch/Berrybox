@@ -52,6 +52,7 @@ $lang["submitting_playlist"] = "Une playlist a été détectée. Traitement en c
 $lang["playlist_submitted"] = "Votre playlist a été envoyée avec succès.";
 $lang["skip"] = "Suivant";
 $lang["spam"] = "Vous devez attendre au moins 1 seconde avant d'envoyer un nouveau message";
+$lang["playlist_shuffled"] = "La playlist a été mélangée.";
 
 /** TOGGLES **/
 $lang["play_type"] = "Type de lecture";
@@ -74,6 +75,7 @@ $lang["color_tip"] = "Votre nom sera affiché dans la couleur que vous aurez cho
 $lang["welcome"] = "Bienvenue dans cette box ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur.";
 $lang["welcome_admin"] = "Bienvenue dans votre box ! Pour soumettre une vidéo, copiez son lien youtube dans l'espace sous le lecteur. Vous êtes le créateur de cette box. Si vous la quittez sans la fermer, la lecture et la synchronisation des vidéos s'arrêtera pour tous vos utilisateurs.";
 $lang["invalid_macro"] = "La commande entrée est invalide.";
+$lang["no_power"] = "Vous n'êtes pas autorisé(e) à utiliser cette commande";
 
 /** MOOD **/
 $lang["mood-question"] = "Que pensez-vous de la vidéo ?";

@@ -52,6 +52,7 @@ $lang["submitting_playlist"] = "A playlist has been detected. Submitting videos.
 $lang["playlist_submitted"] = "Your playlist has been submitted successfully";
 $lang["skip"] = "Next";
 $lang["spam"] = "You have to wait at least 1 second to post a new message";
+$lang["playlist_shuffled"] = "The playlist has been shuffled.";
 
 /** TOGGLES **/
 $lang["play_type"] = "Play type";
@@ -74,6 +75,7 @@ $lang["color_tip"] = "Your username in chat will be displayed in the color you'l
 $lang["welcome"] = "Welcome in the box! To submit a video, please paste any YouTube link in the input under the player.";
 $lang["welcome_admin"] = "Welcome in your box! To submit a video, please paste any YouTube link in the input under the player. Please note that you are the creator and therefore administrator of this box. If you leave it without closing it, video synchronization and play will stop for your users.";
 $lang["invalid_macro"] = "The command you entered is invalid.";
+$lang["no_power"] = "You don't have the power to use this command";
 
 /** MOOD **/
 $lang["mood-question"] = "So, what do you think of this video?";

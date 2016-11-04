@@ -2,9 +2,6 @@
 session_start();
 require "functions/db_connect.php";
 $db = PDOFactory::getConnection();
-$queryActiveRooms = $db->query("SELECT * FROM rooms r
-								JOIN user u ON r.room_creator = u.user_token
-								WHERE room_active = 1");
 
 ?>
 <html>
@@ -17,15 +14,25 @@ $queryActiveRooms = $db->query("SELECT * FROM rooms r
 	<body>
 		<div class="main">
 			<?php
-			$video_id = 1067;
-			$moods = $db->query("SELECT vote_mood, COUNT(vote_mood) AS count_mood FROM `votes` WHERE video_index = $video_id GROUP BY vote_mood");
+			$box_token = "33VJQZR2EMF9I63";
+
+			$queue = $db->query("SELECT room_history_id FROM roomHistory_$box_token WHERE video_status = 0 ORDER BY room_history_id ASC")->fetchAll();
+			$order = $db->query("SELECT playlist_order FROM roomHistory_$box_token WHERE video_status = 0 ORDER BY room_history_id ASC")->fetchAll(PDO::FETCH_COLUMN);
 			?>
 
 			<pre>
 				<?php
-/*print_r($moods->fetchAll(PDO::FETCH_ASSOC));*/
-while($mood = $moods->fetch(PDO::FETCH_ASSOC)){
-	echo $mood["count_mood"];
+print_r($order);
+$numbers = range(min($order), max($order));
+
+shuffle($numbers);
+$shuffled_array = []; $i = 0;
+foreach($numbers as $number){
+	$current_id = $queue[$i]["room_history_id"];
+
+	echo "UPDATE SET playlist_order = $number WHERE room_history_id = $current_id";
+	echo "<br>";
+	$i++;
 }
 ?>
 			</pre>
