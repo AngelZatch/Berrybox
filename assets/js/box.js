@@ -313,6 +313,7 @@ function shufflePlaylist(box_token){
 	$.get("functions/playlist_shuffle.php", {box_token : box_token}).done(function(data){
 		console.log(data);
 		loadPlaylist(box_token, window.user_power, true);
+		$("#body-chat").append("<p class='system-message'><span class='glyphicon glyphicon-question-sign'></span> "+language_tokens.playlist_shuffled+"</p>");
 	})
 }
 
