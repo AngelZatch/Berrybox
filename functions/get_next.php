@@ -18,34 +18,23 @@ if($user_power == 2){
 	$played = $db->query("UPDATE roomHistory_$box_token
 					SET video_status = '2'
 					WHERE room_history_id = '$playedID[room_history_id]'");
-
-	// Check if next is a video to ignore (video_status to 3)
-	$nextIgnored = true;
-	$i = 0;
-	while($nextIgnored){
-		$i++;
-		$nextVideoState = $db->query("SELECT video_status, room_history_id, playlist_order
-									FROM roomHistory_$box_token
-									WHERE room_history_id = '$playedID[playlist_order]' +$i")->fetch(PDO::FETCH_ASSOC);
-
-		if($nextVideoState["video_status"] == '3'){
-			// If it is, the video is indicated as played.
-			$confirmIgnore = $db->query("UPDATE roomHistory_$box_token
-										SET video_status = '2'
-										WHERE room_history_id = '$nextVideoState[room_history_id]'");
-		} else {
-			$nextIgnored = false;
-		}
-	}
 }
 
 // Get next video
-$next = $db->query("SELECT room_history_id, video_index, history_user, link, video_name
+$next = $db->query("SELECT room_history_id, video_index, history_user, link, video_name, playlist_order
 					FROM roomHistory_$box_token rh
 					JOIN song_base sb ON rh.video_index = sb.song_base_id
 					WHERE video_status = '0'
 					ORDER BY playlist_order ASC
 					LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+
+if($user_power == 2){
+	// Ignoring skipped video, and giving them the "played" status
+	$db->query("UPDATE roomHistory_$box_token
+			SET video_status = '2'
+			WHERE playlist_order < $next[playlist_order]
+			AND video_status != 2");
+}
 
 if($next["link"] != null){
 	if($user_power == 2){
