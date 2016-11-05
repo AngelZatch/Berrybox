@@ -53,6 +53,7 @@ $lang["playlist_submitted"] = "Votre playlist a été envoyée avec succès.";
 $lang["skip"] = "Suivant";
 $lang["spam"] = "Vous devez attendre au moins 1 seconde avant d'envoyer un nouveau message";
 $lang["playlist_shuffled"] = "La playlist a été mélangée.";
+$lang["need_info"] = "The video has been uploaded but some info could not be found. Please update the info from the box playlist";
 
 /** TOGGLES **/
 $lang["play_type"] = "Type de lecture";

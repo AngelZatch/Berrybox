@@ -549,42 +549,57 @@ if(isset($_SESSION["token"])){
 				// We retrieve all the IDs from the playlist
 				//console.log("a playlist has been cued");
 				// Test playlist : https://www.youtube.com/watch?v=DdK5eshlWlg&list=PLDCu51jsfPJexXUm4W89HqRcj8gG569Nm
-				var songs = event.target.getPlaylist();
+				var list = event.target.getPlaylist();
+				var box_token = getBoxToken();
 				$("#body-chat").append("<p class='system-message'> <?php echo $lang["submitting_playlist"];?></p>");
 				$(".url-box").val('');
-				var deferreds = addBigPlaylist(songs);
-				$.when.apply(null, deferreds).done(function(data){
-					$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["playlist_submitted"];?> ("+songs.length+" <?php echo $lang["videos"];?>)</p>");
-					$(".play-url").removeClass("disabled");
-					$(".play-url").removeAttr("disabled");
-					$(".play-url").text("<?php echo $lang["submit_link"];?>");
-				}); // Feedback when all videos have been uploaded into the box playlist
-				//console.log("destroying secondary player");
+				$(".play-url").addClass("disabled");
+				$(".play-url").attr("disabled", "disabled");
+				$(".play-url").text("<?php echo $lang["submitting"];?>");
+
+				var dfd = $.Deferred(),
+					dfdNext = dfd;
+				i = 0,
+					values = [],
+					postVideo = function(box_token, video_id, source){
+					return $.post("functions/post_history.php", {url : video_id, box_token : box_token, source : source});
+				};
+
+				dfd.resolve();
+
+				var codes = [];
+
+				for(var i = 0; i < list.length; i++){
+					values.push(i);
+					dfdNext = dfdNext.then(function(){
+						var value = values.shift();
+						/*console.log("step "+value+" of "+list.length+" : posting ID "+list[value]);*/
+						return postVideo(box_token, list[value], "playlist").done(function(data){
+							/*codes.push(data);*/
+							if(value != list.length - 1){
+								/*console.log("posted "+value+" with code "+data);*/
+							} else {
+								/*console.log(codes);*/
+								if(jQuery.inArray('error', codes) != -1){
+									$("#body-chat").append("<p class='system-message system-warning'>"+language_tokens.playlist_error+"</p>");
+								} else if(jQuery.inArray('info', codes) != -1){
+									$("#body-chat").append("<p class='system-message system-warning'>"+language_tokens.need_info+"</p>");
+								} else {
+									$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> "+language_tokens.playlist_submitted+" ("+list.length+" "+language_tokens.videos+")</p>");
+									$(".play-url").removeClass("disabled");
+									$(".play-url").removeAttr("disabled");
+									$(".play-url").html("<span class='glyphicon glyphicon-circle-arrow-right resize-lg'></span> <?php echo $lang["submit_link"];?>");
+								}
+							}
+						});
+					});
+				}
 				$("#sec-player").remove();
 				event.target.destroy();
 			}
 		}
 		function requestCompletion(code){
 			$("#body-chat").append("<div id='warning-"+code+"'><p class='system-message system-warning'><span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["no_fetch"];?><div class='input-group info-box-group'><input type='text' placeholder='<?php echo $lang["fill_placeholder"];?>' class='form-control info-box' id='info-"+code+"'><span class='input-group-btn'><button class='btn btn-primary send-info'><?php echo $lang["fill_missing"];?></button><button class='btn btn-danger cancel-info' id='cancel-info-"+code+"'>Cancel</button></div></div>");
-		}
-		function addBigPlaylist(list, box_token){
-			var box_token = getBoxToken();
-			// Test playlist : https://www.youtube.com/watch?v=Y3HVHNf-oW4&list=PLOXH-6LkzI0OtCgTVus8Czl4wBLyw9SK6
-			//console.log("big playlist: switching over to bulk");
-			$(".play-url").addClass("disabled");
-			$(".play-url").attr("disabled", "disabled");
-			$(".play-url").text("<?php echo $lang["submitting"];?>");
-			var deferreds = [];
-			// Call to this function if the user is adding a playlist of more than 9 videos
-			var i, j, temp, chunk = 10;
-			for(i = 0, j = list.length; i < j; i+=chunk){
-				temp = list.slice(i,i+chunk);
-				var listJSON = JSON.stringify(temp);
-				deferreds.push(
-					$.post("functions/post_playlist.php", {list : listJSON, box_token : box_token})
-				)
-			}
-			return deferreds;
 		}
 	</script>
 	</body>

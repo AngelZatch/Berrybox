@@ -45,24 +45,31 @@ function onPlayerStateChange(event) {
 	}
 }
 
-function addEntry(box_token, video_id){
+function addEntry(box_token, video_id, source){
 	// Post URL into room history
-	$.post("functions/post_history.php", {url : video_id, box_token : box_token}).done(function(code){
+	$.post("functions/post_history.php", {url : video_id, box_token : box_token, source : source}).done(function(code){
 		console.log(code);
-		switch(code){
-			case 'ok': // success code
-				$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> "+language_tokens.song_submit_success+"</p>");
-				break;
+		if(source != "playlist"){
+			switch(code){
+				case 'ok': // success code
+					$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> "+language_tokens.song_submit_success+"</p>");
+					break;
 
-			case 'error': // Invalid link code
-				$("#body-chat").append("<p class='system-message system-alert'><span class='glyphicon glyphicon-exclamation-sign'></span> "+language_tokens.invalid_link+"</p>");
-				break;
+				case 'error': // Invalid link code
+					$("#body-chat").append("<p class='system-message system-alert'><span class='glyphicon glyphicon-exclamation-sign'></span> "+language_tokens.invalid_link+"</p>");
+					break;
 
-			default: // success code but the info are incomplete
-				requestCompletion(code);
-				break;
+				case 'info':
+					$("#body-chat").append("<p class='system-message system-alert'><span class='glyphicon glyphicon-exclamation-sign'></span> "+language_tokens.need_info+"</p>");
+					break;
+
+				default: // success code but the info are incomplete
+					requestCompletion(code);
+					break;
+			}
 		}
 		$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
+		return code;
 	});
 }
 
@@ -351,7 +358,7 @@ function submitLink(){
 				}
 				var id = res[1];
 				// We call the function to add the id to the database
-				addEntry(box_token, id);
+				addEntry(box_token, id, "solo");
 				// Empty URL box
 				$(".url-box").val('');
 			}
@@ -825,7 +832,7 @@ $(document).ready(function(){
 }).on('click', '.quick-submit', function(){
 	var box_token = getBoxToken();
 	var target = document.getElementById($(this).attr("id")).dataset.target;
-	addEntry(box_token, target);
+	addEntry(box_token, target, "solo");
 }).on('click', '.quick-requeue', function(){
 	var box_token = getBoxToken();
 	var target = document.getElementById($(this).attr("id")).dataset.target;

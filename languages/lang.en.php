@@ -53,6 +53,8 @@ $lang["playlist_submitted"] = "Your playlist has been submitted successfully";
 $lang["skip"] = "Next";
 $lang["spam"] = "You have to wait at least 1 second to post a new message";
 $lang["playlist_shuffled"] = "The playlist has been shuffled.";
+$lang["need_info"] = "The playlist has been uploaded but some info could not be found. Please update the info from the box playlist";
+$lang["playlist_error"] = "An error has been encountered when uploading the playlist.";
 
 /** TOGGLES **/
 $lang["play_type"] = "Play type";
