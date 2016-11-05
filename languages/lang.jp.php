@@ -54,6 +54,7 @@ $lang["playlist_submitted"] = "プレイリストは提出されました。";
 $lang["skip"] = "ネクスト";
 $lang["spam"] = "新しいメッセージを送信するには、少なくとも1秒お待ちください";
 $lang["playlist_shuffled"] = "プレイリストがシャッフルされています。";
+$lang["need_info"] = "The video has been uploaded but some info could not be found. Please update the info from the box playlist";
 
 /** TOGGLES **/
 $lang["play_type"] = "プレイタイプ";

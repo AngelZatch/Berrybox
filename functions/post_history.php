@@ -7,6 +7,7 @@ $link = $_POST["url"];
 $time = date_create('now', new datetimezone('UTC'))->format('Y-m-d H:i:s');
 $user = $_SESSION["token"];
 $box_token = $_POST["box_token"];
+$source = $_POST["source"];
 
 if(strlen($link) == 11){
 	$db->beginTransaction();
@@ -67,7 +68,10 @@ if(strlen($link) == 11){
 	if($pending == "0"){
 		echo "ok";
 	} else {
-		echo $baseIndex;
+		if($source == "playlist")
+			echo 'info';
+		else
+			echo $baseIndex;
 	}
 } else {
 	echo "error"; // Invalid link code
