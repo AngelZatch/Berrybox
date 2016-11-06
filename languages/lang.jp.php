@@ -127,6 +127,7 @@ $lang["following"] = "登録済み";
 $lang["unfollow"] = "登録解除";
 $lang["submitting"] = "提出中…";
 $lang["delete"] = "削除";
+$lang["transfer_box"] = "クリエイター権限を与えます。";
 
 /** ACTIONS **/
 $lang["log_out"] = "ログアウト";
@@ -158,7 +159,7 @@ $lang["firefox_alert"] = "ご注意！BerryboxにFirefoxは正常に動作しま
 $lang["go_to_video"] = "ビデオへ";
 
 /** MENU **/
-$lang["menu"] = "ユーザー設定";
+$lang["menu"] = "メニュー";
 $lang["my_profile"] = "プロファイル";
 $lang["public_profile"] = "パラメータ";
 $lang["leave"] = "ボックスを出ます";
@@ -171,6 +172,9 @@ $lang["search"] = "探索";
 $lang["user_match"] = "ユーザーが基準を合わせる";
 $lang["goto_user"] = "ユーザーページへ";
 $lang["user_match"] = "ボックスが基準を合わせる";
+$lang["user_options"] = "ユーザー設定";
+$lang["creator_options"] = "クリエイター設定";
+
 
 /** PROFILE **/
 $lang["my_settings"] = "プロファイル設定";

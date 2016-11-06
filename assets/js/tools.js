@@ -38,6 +38,13 @@ $(document).ready(function(){
 	} else {
 		menuPopover = true;
 	}
+}).on('activate', '.btn-switch', function(){
+	// Custom event when a switch button is clicked. It will graphically enable it and disable the paired buttons
+	var pair = $(this).data('twin');
+	$(this).addClass('btn-disabled');
+	$(this).removeClass('disabled');
+	$("#"+pair).removeClass('btn-disabled');
+	$("#"+pair).addClass('disabled');
 })
 
 function getUserLang(){

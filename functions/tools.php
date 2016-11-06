@@ -33,4 +33,8 @@ function getPlaylistOrdering($db, $box_token){
 	$current_playlist_index++;
 	return $current_playlist_index;
 }
+
+function solveUserFromName($db, $user_name){
+	return $db->query("SELECT user_token FROM user WHERE user_pseudo = '$user_name'")->fetch(PDO::FETCH_COLUMN);
+}
 ?>

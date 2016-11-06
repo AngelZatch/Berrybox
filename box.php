@@ -67,7 +67,7 @@ if(isset($_SESSION["token"])){
 			<div class="container-fluid room-info">
 				<div class="col-xs-3 col-sm-2 col-lg-1 top-box-picture">
 					<div class="room-picture">
-						<img src="profile-pictures/<?php echo $roomDetails["user_pp"];?>" class="profile-picture" title="<?php echo $roomDetails["user_pseudo"]." (".$lang["room_admin"].")";?>" alt="">
+						<img src="profile-pictures/<?php echo $roomDetails["user_pp"];?>" class="profile-picture" id="box-creator-picture" title="" alt="">
 					</div>
 				</div>
 				<div class="col-xs-9 col-sm-10 col-lg-11 top-box-infos">
@@ -75,24 +75,11 @@ if(isset($_SESSION["token"])){
 						<p class="col-xs-12" id="room-title"><?php echo $roomDetails["room_name"];?></p>
 					</div>
 					<div class="row">
-						<p class="col-xs-9 col-sm-7" id="room-undertitle"> <a href="user/<?php echo $roomDetails["user_pseudo"];?>" target="_blank"><?php echo $roomDetails["user_pseudo"];?></a> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
+						<p class="col-xs-9 col-sm-7" id="room-undertitle"> <a href="user/<?php echo $roomDetails["user_0pseudo"];?>" id="box-creator-link" target="_blank"></a> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
 						<div class="creator-stats col-xs-3 col-sm-5">
-							<?php
-							if(isset($_SESSION["token"]) && $_SESSION["token"] != $roomDetails["room_creator"]){
-								if($userFollow == 1) {
-							?>
-							<button class="btn btn-primary btn-active btn-toggle-follow btn-unfollow" id="box-title-unfollow" value="<?php echo $roomDetails["user_pseudo"];?>"><span class="glyphicon glyphicon-heart"></span> <span class="hidden-xs hidden-sm"><?php echo $lang['following']." ".$roomDetails["user_pseudo"];?></span></button>
-							<?php
-								} else {
-							?>
-							<button class="btn btn-primary btn-toggle-follow btn-follow" id="box-title-follow" value="<?php echo $roomDetails["user_pseudo"];?>"><span class="glyphicon glyphicon-heart"></span> <span class="hidden-xs hidden-sm"><?php echo $lang['follow']." ".$roomDetails["user_pseudo"];?></span></button>
-							<?php
-								}
-							}
-							?>
 							<span class="hidden-xs">
-								<span class="glyphicon glyphicon-eye-open" title="<?php echo $lang["total_views"];?>"></span> <?php echo $creatorStats["stat_visitors"];?>
-								<span class="glyphicon glyphicon-heart"></span> <?php echo $creatorStats["stat_followers"];?>
+								<span class="glyphicon glyphicon-eye-open" title="<?php echo $lang["total_views"];?>"></span> <span class="creator-views"></span>
+								<span class="glyphicon glyphicon-heart"></span> <span class="creator-followers"></span>
 							</span>
 						</div>
 					</div>
@@ -117,6 +104,7 @@ if(isset($_SESSION["token"])){
 					<span class="sync-message"></span>
 					<span class="submission-message"></span>
 					<span class="play-message"></span>
+					<span class="protection-message"></span>
 				</div>
 				<?php if(isset($_SESSION["token"])){ ?>
 				<div class="col-xs-12 col-sm-5 mood-selectors">
@@ -219,12 +207,7 @@ if(isset($_SESSION["token"])){
 					<div class="panel-body panel-section">
 						<input type="text" class="form-control" id="playlist-filter" placeholder="<?php echo $lang["playlist_filter"];?>">
 					</div>
-					<?php if(isset($_SESSION["token"]) && $_SESSION["token"] == $roomDetails["room_creator"]){?>
-					<div class="panel-body playlist-actions">
-						<button class="btn btn-default btn-admin btn-skip col-xs-6"><span class="glyphicon glyphicon-step-forward resize-lg"></span> <span class="hidden-xs hidden-sm hidden-md"><?php echo $lang["skip"];?></span></button>
-						<button class="btn btn-default btn-admin shuffle-playlist col-xs-6"><span class="glyphicon glyphicon-question-sign resize-lg"></span> <span class="hidden-xs hidden-sm hidden-md"><?php echo $lang["shuffle"];?></span></button>
-					</div>
-					<?php } ?>
+					<div class="panel-body playlist-actions"></div>
 					<div class="panel-body full-panel-body" id="body-song-list"></div>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="tab-pane-likes">
@@ -246,139 +229,105 @@ if(isset($_SESSION["token"])){
 		<div class="panel panel-default panel-room panel-list">
 			<div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["box_settings"];?></div>
 			<div class="panel-body" id="body-options-list">
-				<?php if($_SESSION["token"] == $roomDetails["room_creator"]){ ?>
-				<!-- Play type -->
-				<div class="room-option">
-					<p class="option-title"><?php echo $lang["play_type"];?></p>
-					<span class="tip"><?php echo $lang["play_type_tip"];?></span>
-					<?php if($roomDetails["room_play_type"] == 1){
-	$automatic_state = "btn-disabled"; $manual_state = "disabled";
-} else {
-	$automatic_state = "disabled"; $manual_state = "btn-disabled";
-}?>
-					<div class="row">
-						<div class="col-lg-6">
-							<span class="btn btn-primary btn-block btn-switch toggle-box-state <?php echo $automatic_state;?>" id="select-automatic" data-field='room_play_type' data-value='1' data-twin='select-manual'><span class="glyphicon glyphicon-play-circle"></span> <?php echo $lang["auto_play"];?></span>
-						</div>
-						<div class="col-lg-6">
-							<span class="btn btn-primary btn-block btn-switch toggle-box-state <?php echo $manual_state;?>" id="select-manual" data-field='room_play_type' data-value='2' data-twin='select-automatic'><span class="glyphicon glyphicon-hourglass"></span> <?php echo $lang["manual_play"];?></span>
+				<?php if(isset($_SESSION["token"])){ ?>
+				<div class="user-options">
+					<p class="options-title">User options</p>
+					<div class="room-option">
+						<div class="option-title"><?php echo $lang["color_pick"];?></div>
+						<span class="tip"><?php echo $lang["color_tip"];?></span><br>
+						<div id="colors">
+							<?php while($color = $colorList->fetch(PDO::FETCH_ASSOC)){
+	$colorValue = $color["color_value"];
+	if(strcasecmp($colorValue,$userDetails["up_color"]) == 0){?>
+							<div class="color-cube cube-selected" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
+							<?php } else { ?>
+							<div class="color-cube" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
+							<?php } }?>
 						</div>
 					</div>
-				</div>
-				<!-- Submission rights -->
-				<div class="room-option">
-					<p class="option-title"><?php echo $lang["submit_type"];?></p>
-					<span class="tip"><?php echo $lang["submit_type_tip"];?></span>
-					<?php if($roomDetails["room_submission_rights"] == 1){
-	$everyone_state = "btn-disabled"; $mods_only_state = "disabled";
-} else {
-	$everyone_state = "disabled"; $mods_only_state = "btn-disabled";
-}?>
-					<div class="row">
-						<div class="col-lg-6">
-							<span class="btn btn-primary btn-block btn-switch toggle-box-state <?php echo $everyone_state;?>" id="select-everyone" data-field='room_submission_rights' data-value='1' data-twin='select-mods-only'><span class="glyphicon glyphicon-ok-sign"></span> <?php echo $lang["submit_all"];?></span>
+					<div class="room-option">
+						<div class="option-title"><?php echo $lang["user_theme"];?>
+							<span style="float:right;">
+								<input type="checkbox" class="user-option-toggle" name="toggle-theme" <?php echo($userDetails["up_theme"]=='0')?'checked':'unchecked';?>>
+							</span>
 						</div>
-						<div class="col-lg-6">
-							<span class="btn btn-primary btn-block btn-switch toggle-box-state <?php echo $mods_only_state;?>" id="select-mods-only" data-field='room_submission_rights' data-value='2' data-twin='select-everyone'><span class="glyphicon glyphicon-ok-circle"></span> <?php echo $lang["submit_mod"];?></span>
-						</div>
+						<span class="tip"><?php echo $lang["theme_tip"];?></span>
 					</div>
-				</div>
-				<!-- Protection -->
-				<div class="room-option">
-					<p class="option-title"><?php echo $lang["room_protection"];?></p>
-					<span class="tip"><?php echo $lang["protection_tip"];?></span>
-					<?php if($roomDetails["room_protection"] == 1){
-	$public_state = "btn-disabled"; $private_state = "disabled";
-} else {
-	$public_state = "disabled"; $private_state = "btn-disabled";
-}?>
-					<div class="row">
-						<div class="col-lg-6">
-							<span class="btn btn-primary btn-block btn-switch toggle-box-state <?php echo $public_state;?>" id="select-public" data-field='room_protection' data-value='1' data-twin='select-private' title="<?php echo $lang["public_tip"];?>"><span class="glyphicon glyphicon-volume-up"></span> <?php echo $lang["level_public"];?></span>
-						</div>
-						<div class="col-lg-6">
-							<span class="btn btn-primary btn-block btn-switch toggle-box-state <?php echo $private_state;?>" id="select-private" data-field='room_protection' data-value='2' data-twin='select-public' title="<?php echo $lang["private_tip"];?>"><span class="glyphicon glyphicon-headphones"></span> <?php echo $lang["level_private"];?></span>
-						</div>
-					</div>
-				</div>
-				<div class="room-option">
-					<span class="option-title"><?php echo $lang["room_params"];?></span><br>
-					<span class="tip"><?php echo $lang["room_params_tip"];?></span>
-					<form class="form-horizontal" id="form-box-details">
-						<div class="form-group">
-							<label for="room_name" class="col-lg-4 control-label">Box title</label>
-							<div class="col-lg-8">
-								<input type="text" name="room_name" class="form-control" value="<?php echo $roomDetails["room_name"] ;?>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="room_lang" class="col-lg-4 control-label"><?php echo $lang["speak_lang"];?></label>
-							<div class="col-lg-8">
-								<select name="room_lang" id="" class="form-control">
-									<option value="en" <?php if($roomDetails["room_lang"]=="en") echo "selected='selected'";?>>English</option>
-									<option value="fr" <?php if($roomDetails["room_lang"]=="fr") echo "selected='selected'";?>>Français</option>
-									<option value="jp" <?php if($roomDetails["room_lang"]=="jp") echo "selected='selected'";?>>日本語</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="room_type" class="col-sm-4 control-label"><?php echo $lang["room_type"];?></label>
-							<div class="col-lg-8">
-								<select name="room_type" class="form-control">
-									<?php while($type = $queryTypes->fetch(PDO::FETCH_ASSOC)) {
-	if($type["id"] == $roomDetails["room_type"]){?>
-									<option value="<?php echo $type["id"];?>" selected="selected"><?php echo $lang[$type["type"]];?></option>
-									<?php } else { ?>
-									<option value="<?php echo $type["id"];?>"><?php echo $lang[$type["type"]];?></option>
-									<?php } } ?>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="room_description" class="col-sm-4 control-label"><?php echo $lang["description_limit"];?></label>
-							<div class="col-lg-8">
-								<textarea name="room_description" cols="30" rows="5" class="form-control"><?php echo $roomDetails["room_description"];?></textarea>
-							</div>
-						</div>
-					</form>
-					<button class="btn btn-primary btn-block" id="save-room-button"><?php echo $lang["save_changes"];?></button>
-				</div>
-				<?php if($roomDetails["room_active"] == 1){ ?>
-				<div class="room-option" id="close-option" >
-					<span class="option-title"><?php echo $lang["close_room"];?></span><br>
-					<span class="tip"><?php echo $lang["close_room_tip"];?></span>
-					<button class="btn btn-danger btn-admin btn-block" onClick="closeRoom('<?php echo $box_token;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
-				</div>
-				<div class="room-option" id="open-option" style="display:none">
-					<span class="option-title"><?php echo $lang["open_room"];?></span><br>
-					<span class="tip"><?php echo $lang["open_room_tip"];?></span>
-					<button class="btn btn-success btn-admin btn-block" onClick="openRoom('<?php echo $box_token;?>')"><span class="
-						glyphicon glyphicon-play-circle"></span> <?php echo $lang["open_room"];?></button>
-				</div>
-				<?php } else { ?>
-				<div class="room-option" id="close-option" style="display:none">
-					<span class="option-title"><?php echo $lang["close_room"];?></span><br>
-					<span class="tip"><?php echo $lang["close_room_tip"];?></span>
-					<button class="btn btn-danger btn-admin btn-block" onClick="closeRoom('<?php echo $box_token;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
-				</div>
-				<div class="room-option" id="open-option">
-					<span class="option-title"><?php echo $lang["open_room"];?></span><br>
-					<span class="tip"><?php echo $lang["open_room_tip"];?></span>
-					<button class="btn btn-success btn-admin btn-block" onClick="openRoom('<?php echo $box_token;?>')"><span class="
-						glyphicon glyphicon-play-circle"></span> <?php echo $lang["open_room"];?></button>
 				</div>
 				<?php } ?>
-				<?php } else { ?>
-				<div class="room-option">
-					<span class="option-title"><?php echo $lang["sync"];?></span><br>
-					<span class="tip"><?php echo $lang["sync_tip"];?></span>
-					<button class="btn btn-default btn-admin btn-block sync-on" id="btn-synchro"><span class="glyphicon glyphicon-refresh"></span> <?php echo $lang["sync_on"];?></button>
-				</div>
+				<?php if($_SESSION["token"] == $roomDetails["room_creator"]){ ?>
+				<!--<div class="room-option">
+<span class="option-title"><?php echo $lang["room_params"];?></span><br>
+<span class="tip"><?php echo $lang["room_params_tip"];?></span>
+<form class="form-horizontal" id="form-box-details">
+<div class="form-group">
+<label for="room_name" class="col-lg-4 control-label">Box title</label>
+<div class="col-lg-8">
+<input type="text" name="room_name" class="form-control" value="<?php echo $roomDetails["room_name"] ;?>">
+</div>
+</div>
+<div class="form-group">
+<label for="room_lang" class="col-lg-4 control-label"><?php echo $lang["speak_lang"];?></label>
+<div class="col-lg-8">
+<select name="room_lang" id="" class="form-control">
+<option value="en" <?php if($roomDetails["room_lang"]=="en") echo "selected='selected'";?>>English</option>
+<option value="fr" <?php if($roomDetails["room_lang"]=="fr") echo "selected='selected'";?>>Français</option>
+<option value="jp" <?php if($roomDetails["room_lang"]=="jp") echo "selected='selected'";?>>日本語</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label for="room_type" class="col-sm-4 control-label"><?php echo $lang["room_type"];?></label>
+<div class="col-lg-8">
+<select name="room_type" class="form-control">
+<?php while($type = $queryTypes->fetch(PDO::FETCH_ASSOC)) {
+	if($type["id"] == $roomDetails["room_type"]){?>
+<option value="<?php echo $type["id"];?>" selected="selected"><?php echo $lang[$type["type"]];?></option>
+<?php } else { ?>
+<option value="<?php echo $type["id"];?>"><?php echo $lang[$type["type"]];?></option>
+<?php } } ?>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label for="room_description" class="col-sm-4 control-label"><?php echo $lang["description_limit"];?></label>
+<div class="col-lg-8">
+<textarea name="room_description" cols="30" rows="5" class="form-control"><?php echo $roomDetails["room_description"];?></textarea>
+</div>
+</div>
+</form>
+<button class="btn btn-primary btn-block" id="save-room-button"><?php echo $lang["save_changes"];?></button>
+</div>-->
+				<!--<?php if($roomDetails["room_active"] == 1){ ?>
+<div class="room-option" id="close-option" >
+<span class="option-title"><?php echo $lang["close_room"];?></span><br>
+<span class="tip"><?php echo $lang["close_room_tip"];?></span>
+<button class="btn btn-danger btn-admin btn-block" onClick="closeRoom('<?php echo $box_token;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
+</div>
+<div class="room-option" id="open-option" style="display:none">
+<span class="option-title"><?php echo $lang["open_room"];?></span><br>
+<span class="tip"><?php echo $lang["open_room_tip"];?></span>
+<button class="btn btn-success btn-admin btn-block" onClick="openRoom('<?php echo $box_token;?>')"><span class="
+glyphicon glyphicon-play-circle"></span> <?php echo $lang["open_room"];?></button>
+</div>
+<?php } else { ?>
+<div class="room-option" id="close-option" style="display:none">
+<span class="option-title"><?php echo $lang["close_room"];?></span><br>
+<span class="tip"><?php echo $lang["close_room_tip"];?></span>
+<button class="btn btn-danger btn-admin btn-block" onClick="closeRoom('<?php echo $box_token;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
+</div>
+<div class="room-option" id="open-option">
+<span class="option-title"><?php echo $lang["open_room"];?></span><br>
+<span class="tip"><?php echo $lang["open_room_tip"];?></span>
+<button class="btn btn-success btn-admin btn-block" onClick="openRoom('<?php echo $box_token;?>')"><span class="
+glyphicon glyphicon-play-circle"></span> <?php echo $lang["open_room"];?></button>
+</div>
+<?php } ?>-->
 				<?php } ?>
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-3 col-sm-4 col-xs-12 full-panel" id="menu-list">
+	<div class="col-lg-2 col-sm-2 col-xs-12 full-panel" id="menu-list">
 		<div class="panel panel-default panel-room panel-list">
 			<div class="panel-heading"><span class="glyphicon glyphicon-dashboard" title=""></span> <?php echo $lang["menu"];?></div>
 			<div class="panel-body" style="height: 85vh;">
@@ -388,27 +337,6 @@ if(isset($_SESSION["token"])){
 						<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit">
 					</div>
 					<p id="user-name"><?php echo $userDetails["user_pseudo"];?></p>
-				</div>
-				<div class="room-option">
-					<div class="option-title"><?php echo $lang["color_pick"];?></div>
-					<span class="tip"><?php echo $lang["color_tip"];?></span><br>
-					<div id="colors">
-						<?php while($color = $colorList->fetch(PDO::FETCH_ASSOC)){
-	$colorValue = $color["color_value"];
-	if(strcasecmp($colorValue,$userDetails["up_color"]) == 0){?>
-						<div class="color-cube cube-selected" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
-						<?php } else { ?>
-						<div class="color-cube" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
-						<?php } }?>
-					</div>
-				</div>
-				<div class="room-option">
-					<div class="option-title"><?php echo $lang["user_theme"];?>
-						<span style="float:right;">
-							<input type="checkbox" class="user-option-toggle" name="toggle-theme" <?php echo($userDetails["up_theme"]=='0')?'checked':'unchecked';?>>
-						</span>
-					</div>
-					<span class="tip"><?php echo $lang["theme_tip"];?></span>
 				</div>
 				<form action="search" method="post" target="_blank" role="search">
 					<div class="input-group">
@@ -440,8 +368,9 @@ if(isset($_SESSION["token"])){
 	<script>
 		<?php if(isset($_SESSION["token"])){ ?>
 		window.user_token = <?php echo json_encode($_SESSION["token"]);?>;
+		window.user_name = <?php echo json_encode($_SESSION["username"]);?>
 			<?php } else { ?>
-		window.user_token = -1;
+			window.user_token = -1;
 		<?php } ?>
 
 		var done = false;
@@ -489,10 +418,13 @@ if(isset($_SESSION["token"])){
 					userCard += "<div class='user-card-actions'>";
 					userCard += "<button class='btn btn-primary whisper-action'><?php echo $lang["whisper"];?></button>"; // whisper action
 					if(details.following == 1){
-						userCard += "<button class='btn btn-primary btn-active btn-unfollow' id='user-card-unfollow' value='"+details.user_pseudo+"'><span class='glyphicon glyphicon-heart'></span> <?php echo $lang["following"];?></button>";
+						userCard += "<button class='btn btn-primary btn-active btn-card btn-unfollow' id='user-card-unfollow' value='"+details.user_pseudo+"'><span class='glyphicon glyphicon-heart'></span></button>";
 					} else {
-						userCard += "<button class='btn btn-primary btn-follow' id='user-card-follow' value='"+details.user_pseudo+"'><span class='glyphicon glyphicon-heart'></span> <?php echo $lang["follow"];?></button>";
+						userCard += "<button class='btn btn-primary btn-card btn-follow' id='user-card-follow' value='"+details.user_pseudo+"'><span class='glyphicon glyphicon-heart'></span></button>";
 					} // follow action
+					if(user_power == 2){
+						userCard += "<button class='btn btn-primary transfer-box' data-user='"+details.user_pseudo+"' title='<?php echo $lang["transfer_box"];?>'><span class='glyphicon glyphicon-transfer'></span> Give creatorsihp</button>";
+					}
 					userCard += "</div>"; // user-card-actions
 				}
 				<?php } ?>

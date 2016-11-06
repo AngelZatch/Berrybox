@@ -125,6 +125,7 @@ $lang["following"] = "Suit";
 $lang["unfollow"] = "Ne plus suivre";
 $lang["submitting"] = "Envoi...";
 $lang["delete"] = "Supprimer";
+$lang["transfer_box"] = "Transférer la box à cet utilisateur";
 
 /** ACTIONS **/
 $lang["log_out"] = "Déconnexion";
@@ -156,7 +157,7 @@ $lang["firefox_alert"] = "ATTENTION ! Firefox ne fonctionne pas correctement lor
 $lang["go_to_video"] = "Aller à la vidéo";
 
 /** MENU **/
-$lang["menu"] = "Vos paramètres";
+$lang["menu"] = "Menu principal";
 $lang["my_profile"] = "Mon profil";
 $lang["public_profile"] = "Mes stats";
 $lang["leave"] = "Quitter la box";
@@ -169,6 +170,8 @@ $lang["search"] = "Recherche";
 $lang["user_match"] = "utilisateur(s) correspond(ent) à vos critères";
 $lang["goto_user"] = "Aller à l'utilisateur";
 $lang["box_match"] = "box(es) correspond(ent) à vos critères";
+$lang["user_options"] = "Paramètres utilisateur";
+$lang["creator_options"] = "Paramètres administrateur";
 
 /** PROFILE **/
 $lang["my_settings"] = "Paramètres";

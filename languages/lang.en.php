@@ -72,7 +72,7 @@ $lang["room_params_tip"] = "Change the main spoken language, the type of video c
 $lang["post_chat"] = "Chat";
 $lang["chat_placeholder"] = "Write a message";
 $lang["box_settings"] = "Box settings";
-$lang["color_pick"] = "Pick a color for your username";
+$lang["color_pick"] = "Username color";
 $lang["color_tip"] = "Your username in chat will be displayed in the color you'll have chosen";
 $lang["welcome"] = "Welcome in the box! To submit a video, please paste any YouTube link in the input under the player.";
 $lang["welcome_admin"] = "Welcome in your box! To submit a video, please paste any YouTube link in the input under the player. Please note that you are the creator and therefore administrator of this box. If you leave it without closing it, video synchronization and play will stop for your users.";
@@ -109,6 +109,7 @@ $lang["synchronizing"] = "Synchronization...";
 $lang["no_admin"] = "Warning ! The creator is not present in the box. The synchronization is therefore impossible. If you want to share videos in proper conditions, please create another box or contact the creator of this box directly.";
 $lang["whisper"] = "Whisper";
 $lang["staff"] = "Staff";
+$lang["box_transfered"] = " is now the administrator of the box";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "Music";
@@ -126,6 +127,7 @@ $lang["following"] = "Following";
 $lang["unfollow"] = "Unfollow";
 $lang["submitting"] = "Submitting...";
 $lang["delete"] = "Delete";
+$lang["transfer_box"] = "Transfer creatorship";
 
 /** ACTIONS **/
 $lang["log_out"] = "Log out";
@@ -157,7 +159,7 @@ $lang["firefox_alert"] = "WARNING ! Firefox is known to not work properly with l
 $lang["go_to_video"] = "Go to video";
 
 /** MENU **/
-$lang["menu"] = "User settings";
+$lang["menu"] = "Main menu";
 $lang["my_profile"] = "My profile";
 $lang["public_profile"] = "My stats";
 $lang["leave"] = "Leave the box";
@@ -170,6 +172,8 @@ $lang["search"] = "Search";
 $lang["user_match"] = "user(s) matching your search";
 $lang["goto_user"] = "Go to user";
 $lang["box_match"] = "box(es) matching your search";
+$lang["user_options"] = "User options";
+$lang["creator_options"] = "Creator options";
 
 /** PROFILE **/
 $lang["my_settings"] = "Settings";
