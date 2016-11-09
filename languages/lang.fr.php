@@ -172,6 +172,7 @@ $lang["goto_user"] = "Aller à l'utilisateur";
 $lang["box_match"] = "box(es) correspond(ent) à vos critères";
 $lang["user_options"] = "Paramètres utilisateur";
 $lang["creator_options"] = "Paramètres administrateur";
+$lang["home"] = "Retour à l'accueil";
 
 /** PROFILE **/
 $lang["my_settings"] = "Paramètres";

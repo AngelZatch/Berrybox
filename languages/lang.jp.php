@@ -174,7 +174,7 @@ $lang["goto_user"] = "ユーザーページへ";
 $lang["user_match"] = "ボックスが基準を合わせる";
 $lang["user_options"] = "ユーザー設定";
 $lang["creator_options"] = "クリエイター設定";
-
+$lang["home"] = "ホームページに戻る";
 
 /** PROFILE **/
 $lang["my_settings"] = "プロファイル設定";

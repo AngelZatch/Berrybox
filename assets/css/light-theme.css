@@ -95,5 +95,12 @@ body {
     background-color: #d9d9d9; }
 
 /** FOOTER **/
+/* line 83, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.room-info {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+
+/* line 86, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.top-box-menu {
+  border-right: 1px solid rgba(0, 0, 0, 0.2); }
 
 /*# sourceMappingURL=light-theme.css.map */

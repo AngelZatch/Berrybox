@@ -65,12 +65,15 @@ if(isset($_SESSION["token"])){
 	<body>
 		<div class="col-sm-8 col-lg-9" id="room-player">
 			<div class="container-fluid room-info">
+				<div class="col-xs-1 top-box-menu hidden-xs">
+					<a href="home" class="glyphicon glyphicon-chevron-left button-glyph box-to-home" title="<?php echo $lang["home"];?>"></a>
+				</div>
 				<div class="col-xs-3 col-sm-2 col-lg-1 top-box-picture">
 					<div class="room-picture">
 						<img src="profile-pictures/<?php echo $roomDetails["user_pp"];?>" class="profile-picture" id="box-creator-picture" title="" alt="">
 					</div>
 				</div>
-				<div class="col-xs-9 col-sm-10 col-lg-11 top-box-infos">
+				<div class="col-xs-9 col-sm-9 col-lg-10 top-box-infos">
 					<div class="row">
 						<p class="col-xs-12" id="room-title"><?php echo $roomDetails["room_name"];?></p>
 					</div>
@@ -163,7 +166,6 @@ if(isset($_SESSION["token"])){
 		<div class="panel panel-default panel-room">
 			<div class="panel-heading" id="heading-chat">
 				<div class="chat-options row">
-					<div class="col-lg-12 room-brand hidden-xs"><a href="home">Berrybox</a></div>
 					<?php if(isset($_SESSION["username"])) { ?>
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 toggle-menu-list button-glyph">
 						<span class="glyphicon glyphicon-dashboard" title="<?php echo $lang["menu"];?>"></span>
