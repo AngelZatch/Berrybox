@@ -170,6 +170,9 @@ $lang["search"] = "Search";
 $lang["user_match"] = "user(s) matching your search";
 $lang["goto_user"] = "Go to user";
 $lang["box_match"] = "box(es) matching your search";
+$lang["user_options"] = "User options";
+$lang["creator_options"] = "Creator options";
+$lang["home"] = "Back to home";
 
 /** PROFILE **/
 $lang["my_settings"] = "Settings";
