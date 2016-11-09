@@ -180,6 +180,9 @@ legend
 .button-glyph
 	cursor: pointer
 	text-align: center
+	text-decoration: none
+	&:hover
+		text-decoration: none !important
 
 .glyphicon-button
 	cursor: pointer
@@ -249,7 +252,6 @@ legend
 	color: inherit
 
 #room-player
-	padding-top: 14px
 	padding-right: 0 !important
 	@media screen and(min-width: 992px)
 		height: 100vh
@@ -258,6 +260,11 @@ legend
 
 .room-info
 	white-space: nowrap
+	@media screen and(min-width: $break-sm)
+		margin-left: -15px
+		margin-right: -15px
+		padding-left: 0
+		padding-right: 0
 
 #currently-playing
 	width: 100%
@@ -572,11 +579,26 @@ nav
 
 .top-box-picture
 	padding-left: 0
+	padding-top: 14px
 
 .top-box-infos
 	padding: 0 !important
+	margin-top: 14px
 	@media screen and (min-width: $break-sm)
 		margin-left: -30px
+
+.top-box-menu
+	font-size: 4em
+	padding: 8px 1% 1% 0.7%
+	margin-right: 15px
+	height: 80px
+	@media screen and (min-width: $break-md)
+		width: 5%
+
+.box-to-home
+	color: transparentize($yellow-base, 0.8)
+	&:hover
+		color: $yellow-base !important
 
 .label-status
 	font-size: 20px
@@ -947,3 +969,7 @@ legend
 
 .upload-result
 	margin-top: 15px
+
+#heading-chat
+	padding-top: 20px
+	padding-bottom: 15px
