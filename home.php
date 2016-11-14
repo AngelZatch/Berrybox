@@ -74,9 +74,9 @@ if(isset($_SESSION["token"])){
 				<p><a href="signup" class="btn btn-primary btn-lg"><?php echo $lang["get_started"];?></a></p>
 			</div>
 			<?php } ?>
-			<!--			<div class="alert alert-danger">
-<p class="alert-message"><?php echo $lang["maintenance"];?></p>
-</div>-->
+			<div class="alert alert-danger">
+				<p class="alert-message"><?php echo $lang["maintenance"];?></p>
+			</div>
 			<legend><?php echo $lang["active_room"];?></legend>
 			<div class="container-fluid">
 				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){
