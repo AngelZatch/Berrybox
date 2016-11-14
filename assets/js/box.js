@@ -730,7 +730,7 @@ $(document).ready(function(){
 				for(var i = 0; i < emoteList.length; i++){
 					emotes.push(emoteList[i].emoteText);
 				}
-				loadChat(box_token, user_power, user_token, emotes, window.lang);
+				loadChat(box_token, user_token, emotes, window.lang);
 			})
 			// Set global chatHover & sync variables
 			window.chatHovered = false;

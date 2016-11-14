@@ -286,5 +286,5 @@ function loadChat(box_token, user_token, emotes, user_lang) {
 		}
 	})
 	// once everything is done, we're restarting the whole thing in the next 1.5 seconds
-	setTimeout(loadChat, 1500, box_token, user_power, user_token, emotes, lang);
+	setTimeout(loadChat, 1500, box_token, user_token, emotes, lang);
 }
