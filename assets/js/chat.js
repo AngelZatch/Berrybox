@@ -12,7 +12,7 @@ $(function () {
 	});
 }).on('click', '.whisper-action', function(){
 	var user = $("#user-card-name").text();
-	$(".chatbox").val("/w "+user+" ");
+	$(".chatbox").val("!w "+user+" ");
 	$(".chatbox").focus();
 }).on('click', '#user-card-close', function(){
 	$(".user-card").remove();
@@ -115,7 +115,7 @@ function sendMessage(box_token, scope, type, message, destination) {
 	}
 }
 
-function loadChat(box_token, user_power, user_token, emotes, user_lang) {
+function loadChat(box_token, user_token, emotes, user_lang) {
 	if (!window.lastID)
 		window.lastID = 0;
 
@@ -195,7 +195,7 @@ function loadChat(box_token, user_power, user_token, emotes, user_lang) {
 							case "3":
 								message += " sm-type-skip'><span class='glyphicon glyphicon-step-forward'></span> ";
 								if (user_power != 2)
-									synchronize(box_token, user_power);
+									synchronize(box_token);
 								break;
 
 							case "4":
@@ -286,5 +286,5 @@ function loadChat(box_token, user_power, user_token, emotes, user_lang) {
 		}
 	})
 	// once everything is done, we're restarting the whole thing in the next 1.5 seconds
-	setTimeout(loadChat, 1500, box_token, user_power, user_token, emotes, lang);
+	setTimeout(loadChat, 1500, box_token, user_token, emotes, lang);
 }

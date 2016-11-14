@@ -12,7 +12,8 @@ $description = $_POST["description"];
 $play_type = 1;
 $active = 1;
 $initialState = 2; // Administrator
-$date = date_create('now')->format('Y-m-d H:i:s');
+date_default_timezone_set('UTC');
+$time = date('Y-m-d H:i:s', time());
 
 /** Add an entry into rooms table **/
 $uniqueToken = generateReference(15);
@@ -20,29 +21,21 @@ $uniqueToken = generateReference(15);
 /** Create tables for the chat and history of all links posted. **/
 try{
 	$db->beginTransaction();
-	$newRoom = $db->prepare("INSERT INTO rooms(box_token, room_name, room_creator, room_type, room_lang, room_description, room_play_type, room_protection, room_active)
-						VALUES(:token, :name, :creator, :type, :room_lang, :description, :play_type, :protection, :active)");
+	$newRoom = $db->prepare("INSERT INTO rooms(box_token, room_name, room_creator, creation_date, room_type, room_lang, room_description, room_play_type, room_protection, room_active, last_active_date)
+						VALUES(:token, :name, :creator, :creation_date, :type, :room_lang, :description, :play_type, :protection, :active, :active_date)");
 	$newRoom->bindParam(':token', $uniqueToken);
 	$newRoom->bindParam(':name', $roomName);
 	$newRoom->bindParam(':creator', $creatorToken);
+	$newRoom->bindParam(':creation_date', $time);
 	$newRoom->bindParam(':type', $type);
 	$newRoom->bindParam(':room_lang', $language);
 	$newRoom->bindParam(':description', $description);
 	$newRoom->bindParam(':play_type', $play_type);
 	$newRoom->bindParam(':protection',$protect);
 	$newRoom->bindParam(':active', $active);
+	$newRoom->bindParam(':active_date', $time);
 	$newRoom->execute();
 
-/*	$newHistory = $db->query("CREATE TABLE roomHistory_$uniqueToken(
-room_history_id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-playlist_order INT(11) COMMENT 'order of play',
-history_link VARCHAR(15) NOT NULL COMMENT 'id of the youtube video',
-video_name VARCHAR (300) COMMENT 'full name of the video',
-history_time DATETIME COMMENT 'submission timestamp',
-history_start DATETIME COMMENT 'play beginning timestamp',
-history_user VARCHAR(10) NOT NULL,
-video_status TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0 : queued / 1 : playing / 2 : played / 3 : ignored'
-)");*/
 	$newHistory = $db->query("CREATE TABLE roomHistory_$uniqueToken(
 room_history_id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 playlist_order INT(11) COMMENT 'order of play',
@@ -66,8 +59,7 @@ room_user_entry INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 room_user_token VARCHAR(10) NOT NULL,
 room_user_state TINYINT(1) COMMENT '1 : standard / 2 : creator / 3 : moderator / 4 : toed / 5 : banned',
 room_user_timeouts INT(11) NOT NULL DEFAULT '0' COMMENT 'number of timeouts of this user',
-room_user_present TINYINT(1),
-room_user_date_state DATETIME,
+presence_stamp DATETIME,
 room_user_next_state_reset DATETIME
 )");
 
@@ -77,11 +69,11 @@ room_user_next_state_reset DATETIME
 								WHERE user_token = '$creatorToken'");
 
 	// Put the creator of the room in the room
-	$activeUser = $db->prepare("INSERT INTO roomUsers_$uniqueToken(room_user_token, room_user_state, room_user_date_state)
+	$activeUser = $db->prepare("INSERT INTO roomUsers_$uniqueToken(room_user_token, room_user_state, presence_stamp)
 							VALUES(:token, :state, :date)");
 	$activeUser->bindParam(':token', $creatorToken);
 	$activeUser->bindParam(':state', $initialState);
-	$activeUser->bindParam(':date', $date);
+	$activeUser->bindParam(':date', $time);
 	$activeUser->execute();
 	$db->commit();
 	echo $uniqueToken;

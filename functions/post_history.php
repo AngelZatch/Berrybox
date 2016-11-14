@@ -1,6 +1,7 @@
 <?php
-include "db_connect.php";
 session_start();
+require_once "db_connect.php";
+require_once "tools.php";
 $db = PDOFactory::getConnection();
 
 $link = $_POST["url"];
@@ -51,7 +52,6 @@ if(strlen($link) == 11){
 	}
 	// Once everything is done, we insert the video in the playlist
 	// First, we get the index of the previous entry
-	include "tools.php";
 	$playlist_order = getPlaylistOrdering($db, $box_token);
 
 	$upload = $db->prepare("INSERT INTO roomHistory_$box_token(video_index, playlist_order, history_time, history_user)
@@ -63,6 +63,9 @@ if(strlen($link) == 11){
 	$upload->execute();
 
 	$db->commit();
+
+	// Update last active date
+	refreshBoxActivity($db, $box_token, $user);
 
 	// If info are not missing, result is 1 (success code). If not, it's the entry of the video in the song base (need for info)
 	if($pending == "0"){

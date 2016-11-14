@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "functions/db_connect.php";
+include "functions/tools.php";
 $db = PDOFactory::getConnection();
 
 ?>
@@ -14,26 +15,12 @@ $db = PDOFactory::getConnection();
 	<body>
 		<div class="main">
 			<?php
-			$box_token = "33VJQZR2EMF9I63";
-
-			$queue = $db->query("SELECT room_history_id FROM roomHistory_$box_token WHERE video_status = 0 ORDER BY room_history_id ASC")->fetchAll();
-			$order = $db->query("SELECT playlist_order FROM roomHistory_$box_token WHERE video_status = 0 ORDER BY room_history_id ASC")->fetchAll(PDO::FETCH_COLUMN);
 			?>
 
 			<pre>
 				<?php
-print_r($order);
-$numbers = range(min($order), max($order));
-
-shuffle($numbers);
-$shuffled_array = []; $i = 0;
-foreach($numbers as $number){
-	$current_id = $queue[$i]["room_history_id"];
-
-	echo "UPDATE SET playlist_order = $number WHERE room_history_id = $current_id";
-	echo "<br>";
-	$i++;
-}
+date_default_timezone_set('UTC');
+$limitDate = date('Y-m-d H:i:s', time() - 3600);
 ?>
 			</pre>
 			<?php

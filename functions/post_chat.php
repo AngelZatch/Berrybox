@@ -1,5 +1,6 @@
 <?php
-include "db_connect.php";
+require_once "db_connect.php";
+include "tools.php";
 session_start();
 $db = PDOFactory::getConnection();
 
@@ -10,8 +11,7 @@ $scope = $_POST["scope"];
 $type = $_POST["type"];
 
 if(isset($_POST["solveDestination"])){
-	$solve = $db->query("SELECT user_token FROM user WHERE user_pseudo='$_POST[solveDestination]'")->fetch(PDO::FETCH_ASSOC);
-	$destination = $solve["user_token"];
+	$destination = solveUserFromName($db, $_POST["solveDestination"]);
 } else {
 	$destination = $_POST["destination"];
 }
@@ -31,6 +31,10 @@ VALUES(:scope, :type, :author, :destination, :time, :message)");
 		$upload->bindParam(':time', $time);
 		$upload->bindParam(':message', $message);
 		$upload->execute();
+
+		// Update last active date
+		refreshBoxActivity($db, $token, $author);
+
 		$db->commit();
 	}catch(PDOException $e){
 		$db->rollBack();

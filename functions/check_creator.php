@@ -2,11 +2,13 @@
 include "db_connect.php";
 $db = PDOFactory::getConnection();
 
-$roomToken = $_POST["roomToken"];
+$box_token = $_POST["box_token"];
+date_default_timezone_set('UTC');
+$time = date('Y-m-d H:i:s', time() - 15);
 
-$checkCreator = $db->query("SELECT room_user_present
-						FROM roomUsers_$roomToken
-						WHERE room_user_state = '2'")->fetch(PDO::FETCH_ASSOC);
+$checkCreator = $db->query("SELECT COUNT(room_user_token) AS count
+						FROM roomUsers_$box_token
+						WHERE presence_stamp > '$time' AND room_user_state = '2'")->fetch(PDO::FETCH_ASSOC);
 
-echo $checkCreator["room_user_present"];
+echo $checkCreator["count"];
 ?>

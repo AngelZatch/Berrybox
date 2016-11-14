@@ -1,5 +1,6 @@
 <?php
-include "db_connect.php";
+require_once "db_connect.php";
+include "tools.php";
 session_start();
 $db = PDOFactory::getConnection();
 
@@ -28,12 +29,12 @@ $next = $db->query("SELECT room_history_id, video_index, history_user, link, vid
 					ORDER BY playlist_order ASC
 					LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 
-if($user_power == 2){
+if($user_power == 2 && $next != null){
 	// Ignoring skipped video, and giving them the "played" status
 	$db->query("UPDATE roomHistory_$box_token
 			SET video_status = '2'
 			WHERE playlist_order < $next[playlist_order]
-			AND video_status != 2");
+			AND video_status != '2'");
 }
 
 if($next["link"] != null){
@@ -47,6 +48,7 @@ if($next["link"] != null){
 		$incrementSongs = $db->query("UPDATE user_stats
 								SET stat_songs_submitted = stat_songs_submitted + 1
 								WHERE user_token = '$next[history_user]'");
+		$db->query("UPDATE rooms SET room_active = 1 WHERE box_token = '$box_token'");
 	}
 	$n = array();
 	$n["index"] = $next["video_index"];

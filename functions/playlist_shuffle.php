@@ -5,8 +5,8 @@ $db = PDOFactory::getConnection();
 
 $box_token = $_GET["box_token"];
 
-$queue = $db->query("SELECT room_history_id FROM roomHistory_$box_token WHERE video_status = 0 ORDER BY room_history_id ASC")->fetchAll();
-$order = $db->query("SELECT playlist_order FROM roomHistory_$box_token WHERE video_status = 0 ORDER BY room_history_id ASC")->fetchAll(PDO::FETCH_COLUMN);
+$queue = $db->query("SELECT room_history_id FROM roomHistory_$box_token WHERE video_status = 0 OR video_status = 3 ORDER BY room_history_id ASC")->fetchAll();
+$order = $db->query("SELECT playlist_order FROM roomHistory_$box_token WHERE video_status = 0 OR video_status = 3 ORDER BY room_history_id ASC")->fetchAll(PDO::FETCH_COLUMN);
 
 $numbers = range(min($order), max($order));
 shuffle($numbers);
