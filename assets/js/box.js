@@ -1061,7 +1061,7 @@ $(document).ready(function(){
 				$(".submit-warning").removeClass("system-warning");
 				$(".play-url").removeClass("disabled");
 				$(".play-url").removeAttr("disabled");
-				$(".play-url").text(language_tokens.submit_link);
+				$(".play-url").html("<span class='glyphicon glyphicon-circle-arrow-right resize-lg'></span> "+language_tokens.submit_link);
 			} else {
 				// if there's no playlist, try to find video ID
 				var reg = new RegExp(/\?v=([a-z0-9\-\_]+)\&?/i);
@@ -1076,7 +1076,7 @@ $(document).ready(function(){
 						$(".submit-warning").removeClass("system-warning");
 						$(".play-url").removeClass("disabled");
 						$(".play-url").removeAttr("disabled");
-						$(".play-url").text(language_tokens.submit_link);
+						$(".play-url").html("<span class='glyphicon glyphicon-circle-arrow-right resize-lg'></span> "+language_tokens.submit_link);
 					} else {
 						$(".submit-warning").html("<span class='glyphicon glyphicon-alert'></span> "+language_tokens.submit_no_link);
 						$(".submit-warning").removeClass("system-success");
@@ -1089,7 +1089,7 @@ $(document).ready(function(){
 					$(".submit-warning").removeClass("system-warning");
 					$(".play-url").removeClass("disabled");
 					$(".play-url").removeAttr("disabled");
-					$(".play-url").text(language_tokens.submit_link);
+					$(".play-url").html("<span class='glyphicon glyphicon-circle-arrow-right resize-lg'></span> "+language_tokens.submit_link);
 				}
 			}
 		}, 2000);
