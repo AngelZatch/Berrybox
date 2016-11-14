@@ -22,7 +22,6 @@ $(document).ready(function(){
 	}
 	$(window).on('beforeunload', function(event){
 		sessionStorage.removeItem("currently-playing");
-		$.post("functions/leave_room.php", {box_token : box_token, user_token : user_token});
 	}).resize(function(){
 		resizeElements();
 	});
@@ -38,10 +37,17 @@ $(document).ready(function(){
 	} else {
 		menuPopover = true;
 	}
+}).on('activate', '.btn-switch', function(){
+	// Custom event when a switch button is clicked. It will graphically enable it and disable the paired buttons
+	var pair = $(this).data('twin');
+	$(this).addClass('btn-disabled');
+	$(this).removeClass('disabled');
+	$("#"+pair).removeClass('btn-disabled');
+	$("#"+pair).addClass('disabled');
 })
 
 function getUserLang(){
-	return $.get("functions/new_get_user_lang.php");
+	return $.get("functions/get_user_lang.php");
 }
 
 function removeFeedback(elementId){
@@ -83,7 +89,3 @@ function resizeElements(){
 	console.log(chat_pos, heading_chat_height, footer_chat_height);
 	$("#body-chat").outerHeight(body_chat_height);
 }
-
-/*function getUserLang(){
-	return $.get("functions/get_user_lang.php");
-}*/

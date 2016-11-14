@@ -22,7 +22,7 @@ ErrorDocument 404 /404.php
 
 #Maintenance ON
 #RewriteCond %{REQUEST_URI} !/maintenance.php$
-#RewriteCond %{REMOTE_ADDR} !^89.2.165.74
+#RewriteCond %{REMOTE_ADDR} !^89\.2\.165\.74
 #RewriteRule !^(assets|bootstrap|functions)($|/) /Berrybox/maintenance.php [R=302,NC,L] # Display maintenance page
 #Maintnance OFF
 RewriteCond %{REMOTE_ADDR} !^89.2.165.74

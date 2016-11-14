@@ -117,6 +117,9 @@ legend
 .addon-search
 	border-right: 0 !important
 
+.under-video
+	padding-top: 15px
+
 .search-input
 	border-left: 0 !important
 	box-shadow : none !important
@@ -152,10 +155,9 @@ legend
 #room-chat
 	z-index: 3
 	padding-right: 0
+	padding-left: 0 !important
 	@media screen and (min-width: $break-large)
 		height: 100vh
-	@media screen and(max-width: $break-sm)
-		padding-left: 0 !important
 
 .full-panel-body
 	height: 90.2vh
@@ -171,7 +173,7 @@ legend
 		height: 30.2vh
 
 #body-song-list, #body-song-likes
-	height: 85vh
+	height: 78.9vh
 
 #body-options-list
 	height: 95.8vh
@@ -217,9 +219,9 @@ legend
 
 #player
 	width: 100%
-	margin: 0 auto;
+	margin: 0 auto
+	padding: 0
 	@media screen and (max-width: $break-sm)
-		padding: 0
 		height: inherit
 
 /** System Messages **/
@@ -253,10 +255,9 @@ legend
 
 #room-player
 	padding-right: 0 !important
+	padding-left: 0 !important
 	@media screen and(min-width: 992px)
 		height: 100vh
-	@media screen and(max-width: $break-sm)
-		padding-left: 0 !important
 
 .room-info
 	white-space: nowrap
@@ -425,6 +426,10 @@ legend
 	margin-top: -5px
 	margin-right: 5px
 
+.btn-follow, .btn-unfollow
+	&.btn-card
+		padding: 9px
+
 .btn-success.feedback
 	background-color: #449d44 !important
 
@@ -574,7 +579,7 @@ nav
 .sync-message
 	font-style: italic
 
-.submission-message, .play-message
+.submission-message, .play-message, .protection-message
 	text-transform: uppercase
 
 .top-box-picture
@@ -597,6 +602,7 @@ nav
 
 .box-to-home
 	color: transparentize($yellow-base, 0.8)
+	padding-left: 8px
 	&:hover
 		color: $yellow-base !important
 
@@ -679,8 +685,19 @@ legend
 .label-lang
 	background-color: #e416a1
 
-.option-title
+.options-title
 	font-size: 18px
+	font-weight: 700
+	margin-bottom: 8px
+
+.options-divider
+	width: 100%
+	border: 1px solid $system-color
+	height: 1px
+	margin-bottom: 15px
+
+.option-title
+	font-size: 14px
 	font-weight: 600
 	margin-bottom: 5px
 

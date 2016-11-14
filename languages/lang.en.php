@@ -14,16 +14,14 @@ $lang["now_playing_home"] = "Now playing: ";
 $lang["room_join"] = "Join";
 $lang["room_create"] = "Create a new box";
 $lang["active_room"] = "Active boxes";
-$lang["room_name"] = "Name of the box";
+$lang["room_name"] = "Name";
 $lang["room_protection"] = "Protection level";
 $lang["protection_tip"] = "A private box will only be accessible via sharing its link. It won't display publicly.";
 $lang["level_private"] = "Private";
-$lang["level_locked"] = "Locked";
 $lang["level_public"] = "Public";
 $lang["private_tip"] = "This box will remain invisible to anyone";
-$lang["locked_tip"] = "Access to this box will require a password";
 $lang["public_tip"] = "This box will be visible to everyone";
-$lang["speak_lang"] = "Main language";
+$lang["speak_lang"] = "Spoken language";
 $lang["room_type"] = "Box type";
 $lang["description_limit"] = "Description (300 chars max.)";
 $lang["action_timeout"] = "Time this user out";
@@ -36,11 +34,7 @@ $lang["timeout_message_user"] = "You have been timeouted and therefore won't be 
 $lang["ignore_song"] = "Ignore this video";
 $lang["song_up"] = "Play later";
 $lang["song_down"] = "Play sooner";
-$lang["close_room"] = "Close the box";
-$lang["close_room_tip"] = "Closing the box will deactivate video submission, play and the box will no longer be accessible by users. This action is irreversible";
-$lang["room_closing"] = "This box is closed. Please leave the box.";
-$lang["open_room"] = "Open the box";
-$lang["open_room_tip"] = "Reactivate video submission, play and the box will be accessible to users again.";
+$lang["room_closing"] = "This box is inactive. Please leave the box.";
 $lang["change_type"] = "Change the type of the box";
 $lang["song_submit_success"] = "Your video has been submitted into the playlist";
 $lang["invalid_link"] = "The link you submitted is invalid. Please submit a valid link";
@@ -65,14 +59,14 @@ $lang["submit_type"] = "Submission rights";
 $lang["submit_type_tip"] = "In 'Mod only', standard users won't be able to submit videos anymore";
 $lang["submit_all"] = "Everyone";
 $lang["submit_mod"] = "Mods only";
-$lang["room_params"] = "Change box description";
+$lang["room_params"] = "Description";
 $lang["room_params_tip"] = "Change the main spoken language, the type of video content and the text description of the box";
 
 /** CHAT **/
 $lang["post_chat"] = "Chat";
 $lang["chat_placeholder"] = "Write a message";
 $lang["box_settings"] = "Box settings";
-$lang["color_pick"] = "Pick a color for your username";
+$lang["color_pick"] = "Username color";
 $lang["color_tip"] = "Your username in chat will be displayed in the color you'll have chosen";
 $lang["welcome"] = "Welcome in the box! To submit a video, please paste any YouTube link in the input under the player.";
 $lang["welcome_admin"] = "Welcome in your box! To submit a video, please paste any YouTube link in the input under the player. Please note that you are the creator and therefore administrator of this box. If you leave it without closing it, video synchronization and play will stop for your users.";
@@ -92,7 +86,6 @@ $lang["fear"] = "It's scary... ><";
 $lang["youtube_message"] = "Submit your YouTube link here";
 $lang["submit_link"] = "Submit";
 $lang["no_submit"] = "Please <a href='../signup'>register</a> or <a href='../portal'>log in</a> to submit links";
-$lang["no_chat"] = "Please <a href='../signup'>register</a> or <a href='../portal'>log in</a> to post messages";
 $lang["room_admin"] = "Box creator";
 $lang["room_mod"] = "Box moderator";
 $lang["now_playing"] = "Now playing";
@@ -109,6 +102,7 @@ $lang["synchronizing"] = "Synchronization...";
 $lang["no_admin"] = "Warning ! The creator is not present in the box. The synchronization is therefore impossible. If you want to share videos in proper conditions, please create another box or contact the creator of this box directly.";
 $lang["whisper"] = "Whisper";
 $lang["staff"] = "Staff";
+$lang["box_transfered"] = " is now the administrator of the box";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "Music";
@@ -126,6 +120,7 @@ $lang["following"] = "Following";
 $lang["unfollow"] = "Unfollow";
 $lang["submitting"] = "Submitting...";
 $lang["delete"] = "Delete";
+$lang["transfer_box"] = "Transfer creatorship";
 
 /** ACTIONS **/
 $lang["log_out"] = "Log out";
@@ -157,15 +152,14 @@ $lang["firefox_alert"] = "WARNING ! Firefox is known to not work properly with l
 $lang["go_to_video"] = "Go to video";
 
 /** MENU **/
-$lang["menu"] = "User settings";
+$lang["menu"] = "Main menu";
 $lang["my_profile"] = "My profile";
 $lang["public_profile"] = "My stats";
 $lang["leave"] = "Leave the box";
 $lang["warning_sync_admin"] = "Warning! The synchronization is based on you, the creator of the box. If you leave, the sync will stop and no video will play anymore.";
-$lang["room_reopen"] = "Reopen and join";
 $lang["room_delete"] = "Delete the box";
-$lang["status_open"] = "Open";
-$lang["status_closed"] = "Closed";
+$lang["status_open"] = "Active";
+$lang["status_closed"] = "Inactive";
 $lang["search"] = "Search";
 $lang["user_match"] = "user(s) matching your search";
 $lang["goto_user"] = "Go to user";
@@ -178,7 +172,7 @@ $lang["home"] = "Back to home";
 $lang["my_settings"] = "Settings";
 $lang["profile_settings_tip"] = "Update your display name, your bio and your profile picture";
 $lang["profile_history"] = "History";
-$lang["profile_history_tip"] = "If no message has been sent or no video has been played in a box for the last hour, it will be automatically set as 'private', but it won't be closed.";
+$lang["profile_history_tip"] = "If no message has been sent or no video has been posted or played in a box for the last hour, it will be automatically deactivated. After one day, it will be deleted automatically.";
 $lang["profile_security"] = "Security";
 $lang["profile_security_tip"] = "Change your password";
 $lang["profile_likes"] = "Votes";
@@ -210,7 +204,7 @@ $lang["rooms_created"] = "Number of opened boxes";
 $lang["songs_submitted"] = "Number of played videos";
 $lang["total_views"] = "Total number of spectators";
 $lang["total_followers"] = "Followers";
-$lang["opened_rooms"] = "Currently opened boxes";
+$lang["opened_rooms"] = "Currently active boxes";
 $lang["no_opened_rooms"] = "None";
 $lang["change_banner"] = "Change profile banner";
 
