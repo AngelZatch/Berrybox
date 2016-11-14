@@ -117,6 +117,9 @@ legend
 .addon-search
 	border-right: 0 !important
 
+.under-video
+	padding-top: 15px
+
 .search-input
 	border-left: 0 !important
 	box-shadow : none !important
@@ -152,10 +155,9 @@ legend
 #room-chat
 	z-index: 3
 	padding-right: 0
+	padding-left: 0 !important
 	@media screen and (min-width: $break-large)
 		height: 100vh
-	@media screen and(max-width: $break-sm)
-		padding-left: 0 !important
 
 .full-panel-body
 	height: 90.2vh
@@ -217,9 +219,9 @@ legend
 
 #player
 	width: 100%
-	margin: 0 auto;
+	margin: 0 auto
+	padding: 0
 	@media screen and (max-width: $break-sm)
-		padding: 0
 		height: inherit
 
 /** System Messages **/
@@ -253,10 +255,9 @@ legend
 
 #room-player
 	padding-right: 0 !important
+	padding-left: 0 !important
 	@media screen and(min-width: 992px)
 		height: 100vh
-	@media screen and(max-width: $break-sm)
-		padding-left: 0 !important
 
 .room-info
 	white-space: nowrap
@@ -601,6 +602,7 @@ nav
 
 .box-to-home
 	color: transparentize($yellow-base, 0.8)
+	padding-left: 8px
 	&:hover
 		color: $yellow-base !important
 
