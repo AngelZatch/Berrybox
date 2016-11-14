@@ -390,7 +390,17 @@ function synchronize(box_token){
 function userState(box_token, user_token){
 	$.get("functions/get_user_state.php", {box_token : box_token, user_token : user_token}).done(function(data){
 		var values = JSON.parse(data);
-		/*console.log("your power is "+values.room_user_state);*/
+		console.log("your power is "+values.room_user_state+" it was "+window.user_power+" before");
+		if(values.room_user_state == 2 || values.room_user_state == 3){
+			if($(".playlist-actions").is(':empty')){
+				// Playlist buttons
+				var options = "<button class='btn btn-default btn-admin btn-skip col-xs-6'><span class='glyphicon glyphicon-step-forward resize-lg'></span> <span class='hidden-xs hidden-sm hidden-md'>"+language_tokens.skip+"</span></button>";
+				options += "<button class='btn btn-default btn-admin shuffle-playlist col-xs-6'><span class='glyphicon glyphicon-question-sign resize-lg'></span> <span class='hidden-xs hidden-sm hidden-md'>"+language_tokens.shuffle+"</span></button>";
+				$(".playlist-actions").append(options);
+			}
+		} else {
+			$(".playlist-actions").empty();
+		}
 		window.user_power = values.room_user_state;
 		if(values.room_user_state == 4) {
 			setTimeout(function(){
@@ -555,11 +565,6 @@ function watchBoxState(box_token){
 				options += "</div>";
 				$(".admin-options").empty();
 				$("#body-options-list").append(options);
-
-				// Playlist buttons
-				options = "<button class='btn btn-default btn-admin btn-skip col-xs-6'><span class='glyphicon glyphicon-step-forward resize-lg'></span> <span class='hidden-xs hidden-sm hidden-md'>"+language_tokens.skip+"</span></button>";
-				options += "<button class='btn btn-default btn-admin shuffle-playlist col-xs-6'><span class='glyphicon glyphicon-question-sign resize-lg'></span> <span class='hidden-xs hidden-sm hidden-md'>"+language_tokens.shuffle+"</span></button>";
-				$(".playlist-actions").append(options);
 			} else {
 				// If the user is no longer the creator
 				console.log("you have lost admin");
