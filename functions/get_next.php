@@ -29,7 +29,7 @@ $next = $db->query("SELECT room_history_id, video_index, history_user, link, vid
 					ORDER BY playlist_order ASC
 					LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 
-if($user_power == 2 && isset($next)){
+if($user_power == 2 && $next != null){
 	// Ignoring skipped video, and giving them the "played" status
 	$db->query("UPDATE roomHistory_$box_token
 			SET video_status = '2'

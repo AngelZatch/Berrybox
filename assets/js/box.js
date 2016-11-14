@@ -390,7 +390,6 @@ function synchronize(box_token){
 function userState(box_token, user_token){
 	$.get("functions/get_user_state.php", {box_token : box_token, user_token : user_token}).done(function(data){
 		var values = JSON.parse(data);
-		console.log("your power is "+values.room_user_state+" it was "+window.user_power+" before");
 		if(values.room_user_state == 2 || values.room_user_state == 3){
 			if($(".playlist-actions").is(':empty')){
 				// Playlist buttons
@@ -453,7 +452,6 @@ function watchBoxState(box_token){
 		// Creator of the room
 		if(box_variables.user_pseudo != $("#box-creator-link").text()){
 			if(box_variables.user_pseudo == window.user_name){
-				console.log("you have been made admin");
 				$(".btn-toggle-follow").remove();
 				// Admin options in options menu
 				var options = "<div class='admin-options'>";
