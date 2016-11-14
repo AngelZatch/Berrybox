@@ -33,7 +33,7 @@ function onPlayerReady(event){
 
 function onPlayerStateChange(event) {
 	var box_token = getBoxToken();
-	if(window.sync == true && window.autoplay != false){
+	if(window.autoplay != false){
 		if (event.data == YT.PlayerState.ENDED) {
 			getNext(false, box_token);
 		}
@@ -725,20 +725,6 @@ $(document).ready(function(){
 			})
 			// Set global chatHover & sync variables
 			window.chatHovered = false;
-			window.sync = true;
-
-			// Once box is joined, we setup the YouTube player
-			/*function onYouTubeIframeAPIReady() {
-				player = new YT.Player('player', {
-					height: '75%',
-					width: '60%',
-					videoId: '',
-					events: {
-						'onReady': onPlayerReady,
-						'onStateChange': onPlayerStateChange
-					}
-				});
-			}*/
 		})
 	});
 	// Dynamic filtering of the playlist
@@ -831,7 +817,8 @@ $(document).ready(function(){
 }).on('focus', '.url-box', function(){
 	$(this).keypress(function(event){
 		if(event.which == 13){
-			submitLink();
+			if(!$(this).hasClass("disabled"))
+				submitLink();
 		}
 	})
 }).on('click', '.send-info', function(){
@@ -845,9 +832,6 @@ $(document).ready(function(){
 			fillInfo();
 		}
 	})
-}).on('click', '.btn-chat', function(){
-	var box_token = getBoxToken();
-	sendMessage(box_token, 1, null, 'chatbox', '');
 }).on('click', '.color-cube', function(){
 	var cube = $(this);
 	var color = $(this).attr('id').substr(6,6);
@@ -856,25 +840,6 @@ $(document).ready(function(){
 		$(".color-cube").removeClass("cube-selected");
 		cube.addClass("cube-selected");
 	})
-}).on('click', '#btn-synchro', function(){
-	var $b = $(this);
-	if($b.hasClass("sync-on")){
-		$b.removeClass("sync-on");
-		$b.empty();
-		$b.addClass("sync-off");
-		$b.html("<span class='glyphicon glyphicon-repeat'></span> "+language_tokens.sync_off);
-		window.sync = false;
-		$b.blur();
-	} else {
-		var box_token = getBoxToken();
-		$b.addClass("sync-on");
-		$b.empty();
-		$b.removeClass("sync-off");
-		$b.html("<span class='glyphicon glyphicon-refresh'></span> "+language_tokens.sync_on);
-		window.sync = true;
-		synchronize(box_token);
-		$b.blur();
-	}
 }).on("click", ".emotion-container", function(){
 	if($(this).hasClass("selected")){
 		var mood_id = 0;
