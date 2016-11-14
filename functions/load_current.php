@@ -3,7 +3,10 @@ include "db_connect.php";
 $db = PDOFactory::getConnection();
 
 $box_token = $_POST["box_token"];
-$user_power = $_POST["user_power"];
+if(isset($_POST["user_power"]))
+	$user_power = $_POST["user_power"];
+else
+	$user_power = -1;
 $load = $db->query("SELECT video_index, history_start, link, video_name FROM roomHistory_$box_token rh
 					JOIN song_base sb ON rh.video_index = sb.song_base_id
 					WHERE video_status = 1

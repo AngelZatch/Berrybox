@@ -331,52 +331,41 @@ function shufflePlaylist(box_token){
 function submitLink(){
 	$(".submit-warning").empty();
 	var box_token = getBoxToken();
-	if(window.room_state == 1){
-		// Get URL
-		var src = $(".url-box").val();
-		if(src != ''){
-			// get playlist if it exists
-			var playreg = new RegExp(/list=([a-z0-9\-\_]+)\&?/i);
-			var playres = playreg.exec(src);
-			if(playres != null){
-				pID = playres[1];
-				//console.log("Playlist detected : "+pID);
-				$(".under-video").append("<div class='modal-body' id='sec-player' style='display:none;'></div>");
-				var secondaryPlayer;
-				secondaryPlayer = new YT.Player('sec-player', {
-					height: '5',
-					width: '5',
-					videoId: '',
-					events: {
-						'onReady': onSecPlayerReady,
-						'onStateChange': onSecPlayerStateChange
-					}
-				});
-			} else {
-				// if there's no playlist, get ID of video
-				var reg = new RegExp(/\?v=([a-z0-9\-\_]+)\&?/i); // works for all youtube links except youtu.be type
-				var res = reg.exec(src);
-				if(res == null){
-					var alt = new RegExp(/\.be\/([a-z0-9\-\_]+)\&?/i); // works for youtu.be type links
-					res = alt.exec(src);
+	// Get URL
+	var src = $(".url-box").val();
+	if(src != ''){
+		// get playlist if it exists
+		var playreg = new RegExp(/list=([a-z0-9\-\_]+)\&?/i);
+		var playres = playreg.exec(src);
+		if(playres != null){
+			pID = playres[1];
+			//console.log("Playlist detected : "+pID);
+			$(".under-video").append("<div class='modal-body' id='sec-player' style='display:none;'></div>");
+			var secondaryPlayer;
+			secondaryPlayer = new YT.Player('sec-player', {
+				height: '5',
+				width: '5',
+				videoId: '',
+				events: {
+					'onReady': onSecPlayerReady,
+					'onStateChange': onSecPlayerStateChange
 				}
-				var id = res[1];
-				// We call the function to add the id to the database
-				addEntry(box_token, id, "solo");
-				// Empty URL box
-				$(".url-box").val('');
+			});
+		} else {
+			// if there's no playlist, get ID of video
+			var reg = new RegExp(/\?v=([a-z0-9\-\_]+)\&?/i); // works for all youtube links except youtu.be type
+			var res = reg.exec(src);
+			if(res == null){
+				var alt = new RegExp(/\.be\/([a-z0-9\-\_]+)\&?/i); // works for youtu.be type links
+				res = alt.exec(src);
 			}
+			var id = res[1];
+			// We call the function to add the id to the database
+			addEntry(box_token, id, "solo");
+			// Empty URL box
+			$(".url-box").val('');
 		}
 	}
-}
-
-function closeRoom(box_token){
-	sendMessage(box_token, 4, 4, "{close_room}");
-	$.post("functions/close_room.php", {box_token : box_token});
-}
-function openRoom(box_token){
-	sendMessage(box_token, 4, 7, "{reopen_room}");
-	$.post("functions/reopen_room.php", {box_token : box_token});
 }
 
 // Synchronize between users
@@ -397,14 +386,13 @@ function synchronize(box_token){
 	})
 }
 
-// Watch the state of the user
+// Watch the state of the user and update it to 1.
 function userState(box_token, user_token){
 	$.get("functions/get_user_state.php", {box_token : box_token, user_token : user_token}).done(function(data){
 		var values = JSON.parse(data);
 		/*console.log("your power is "+values.room_user_state);*/
 		window.user_power = values.room_user_state;
-		if(values.room_user_present == 2) {
-			$("#body-chat").append("<p class='system-message system-alert'>"+language_tokens.room_closing+"</p>");
+		if(values.room_user_state == 4) {
 			setTimeout(function(){
 				window.location.replace("home");
 			}, 3000);
@@ -443,7 +431,6 @@ function watchBoxState(box_token){
 		clearTimeout(window.box_watch_time);
 	$.get("functions/get_box_status.php", {box_token : box_token}).done(function(data){
 		var box_variables = JSON.parse(data);
-		window.room_state = box_variables.room_active;
 		userState(box_token, window.user_token);
 
 		// Name of the room
@@ -523,7 +510,7 @@ function watchBoxState(box_token){
 				options += "</div>";
 
 				// Box parameters
-				/*options += "<div class='room-option'>";
+				options += "<div class='room-option'>";
 				options += "<p class='option-title'>"+language_tokens.room_params+"</p>";
 				options += "<span class='tip'>"+language_tokens.room_params_tip+"</span>";
 				options += "<form class='form-horizontal' id='form-box-details'>";
@@ -542,19 +529,28 @@ function watchBoxState(box_token){
 				options += "</div>";
 				options += "</div>";
 				options += "<div class='form-group'>"; // Box type
-				options += "<label form='room_type'>"+language_tokens.room_type+"</label>";
+				options += "<label form='room_type' class='col-lg-4 control-label'>"+language_tokens.room_type+"</label>";
 				options += "<div class='col-lg-8'>";
-				options += "<select name='room_type' class='control-label'>";
+				options += "<select name='room_type' class='form-control' id='type-select'>";
+				$.get("functions/fetch_box_types.php", {box_token : box_token}).done(function(data){
+					var types = JSON.parse(data);
+					for(var i = 0; i < types.length; i++){
+						$("#type-select").append(
+							$("<option></option>").text(language_tokens[types[i].type]).val(types[i].id)
+						);
+					}
+				})
 				options += "</select>";
 				options += "</div>";
 				options += "</div>";
 				options += "<div class='form-group'>"; // Box description
-				options += "<label form='room_description'>"+language_tokens.description_limit+"</label>";
+				options += "<label form='room_description' class='col-lg-4 control-label'>"+language_tokens.description_limit+"</label>";
 				options += "<div class='col-lg-8'>";
 				options += "<textarea name='room_description' cols='30' rows='5' class='form-control'>"+box_variables.room_description+"</textarea>";
 				options += "</div>";
 				options += "</div>";
-				options += "<button class='btn btn-primary btn-block' id='save-room-button'>"+language_tokens.save_changes+"</button>";*/
+				options += "</form>";
+				options += "<button class='btn btn-primary btn-block' id='save-room-button'>"+language_tokens.save_changes+"</button>";
 
 				options += "</div>";
 				$(".admin-options").empty();
@@ -661,21 +657,11 @@ function watchBoxState(box_token){
 		}
 
 		// State active of the room
-		if(window.room_state == 0){
-			$(".under-video").hide('1000');
-			$(".closed-box-text").show('500');
-			if(user_power == 2){
-				$("#close-option").hide();
-				$("#open-option").show();
-			}
-		} else {
-			$(".closed-box-text").hide('500');
-			$(".under-video").show('1000');
-			if(user_power == 2){
-				$("#close-option").show();
-				$("#open-option").hide();
-			}
+		if(window.room_state != 0 && box_variables.room_active == 0){
+			$("#body-chat").append("<p class='system-message'><span class='glyphicon glyphicon-info-sign'></span> "+language_tokens.room_closing+"</p>");
 		}
+		window.room_state = box_variables.room_active;
+
 
 		// Number of watchers
 		$("#watch-count").empty();
@@ -710,7 +696,7 @@ $(document).ready(function(){
 			if(user_token != box_details.room_creator){
 				// If user is not the creator, check presence of the creator
 				$.post("functions/check_creator.php", {box_token : box_token}).done(function(presence){
-					if(presence == '0'){
+					if(presence == 0){
 						$("#body-chat").append("<p class='system-message system-alert'>"+language_tokens.no_admin+"</p>");
 					}
 				})

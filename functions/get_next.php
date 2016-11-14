@@ -1,5 +1,6 @@
 <?php
-include "db_connect.php";
+require_once "db_connect.php";
+include "tools.php";
 session_start();
 $db = PDOFactory::getConnection();
 
@@ -47,6 +48,7 @@ if($next["link"] != null){
 		$incrementSongs = $db->query("UPDATE user_stats
 								SET stat_songs_submitted = stat_songs_submitted + 1
 								WHERE user_token = '$next[history_user]'");
+		$db->query("UPDATE rooms SET room_active = 1 WHERE box_token = '$box_token'");
 	}
 	$n = array();
 	$n["index"] = $next["video_index"];

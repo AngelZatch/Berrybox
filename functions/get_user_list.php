@@ -4,9 +4,12 @@ $db = PDOFactory::getConnection();
 
 $box_token = $_GET["box_token"];
 
+date_default_timezone_set('UTC');
+$time = date('Y-m-d H:i:s', time() - 15);
+
 $stmt = $db->query("SELECT * FROM roomUsers_$box_token ru
 						JOIN user u ON ru.room_user_token = u.user_token
-						WHERE room_user_present = 1
+						WHERE presence_stamp > '$time'
 						ORDER BY room_user_state DESC");
 $users = array();
 while($user = $stmt->fetch(PDO::FETCH_ASSOC)){

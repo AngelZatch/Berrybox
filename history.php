@@ -101,7 +101,7 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 									<a href="box/<?php echo $historyRooms["box_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
 									<?php } else { ?>
 									<div class="col-lg-6">
-										<a class="btn btn-primary btn-block" onClick="openRoom('<?php echo $historyRooms["box_token"];?>')"><?php echo $lang["room_reopen"];?></a>
+										<a class="btn btn-primary btn-block" href="box/<?php echo $historyRooms["box_token"];?>"><?php echo $lang["room_join"];?></a>
 									</div>
 									<div class="col-lg-6">
 										<a class="btn btn-danger btn-block" onClick="deleteRoom('<?php echo $historyRooms["box_token"];?>')"><?php echo $lang["room_delete"];?></a>
@@ -117,11 +117,6 @@ $queryHistoryRooms = $db->query("SELECT * FROM rooms r
 		</div>
 		<?php include "scripts.php";?>
 		<script>
-			function openRoom(roomToken){
-				$.post("functions/reopen_room.php", {roomToken : roomToken}).done(function(data){
-					window.location.replace("box/"+roomToken);
-				})
-			}
 			function deleteRoom(roomToken){
 				var panel = $("#panel-room-"+roomToken);
 				$.post("functions/delete_room.php", {roomToken : roomToken}).done(function(data){

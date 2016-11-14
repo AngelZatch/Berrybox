@@ -159,7 +159,6 @@ if(isset($_SESSION["token"])){
 				</div>
 				<?php } ?>
 			</div>
-			<p class='alert alert-danger closed-box-text'><?php echo $lang["room_closing"];?></p>
 		</div>
 		</div>
 	<div class="col-sm-4 col-lg-3" id="room-chat">
@@ -256,75 +255,6 @@ if(isset($_SESSION["token"])){
 						<span class="tip"><?php echo $lang["theme_tip"];?></span>
 					</div>
 				</div>
-				<?php } ?>
-				<?php if($_SESSION["token"] == $roomDetails["room_creator"]){ ?>
-				<!--<div class="room-option">
-<span class="option-title"><?php echo $lang["room_params"];?></span><br>
-<span class="tip"><?php echo $lang["room_params_tip"];?></span>
-<form class="form-horizontal" id="form-box-details">
-<div class="form-group">
-<label for="room_name" class="col-lg-4 control-label">Box title</label>
-<div class="col-lg-8">
-<input type="text" name="room_name" class="form-control" value="<?php echo $roomDetails["room_name"] ;?>">
-</div>
-</div>
-<div class="form-group">
-<label for="room_lang" class="col-lg-4 control-label"><?php echo $lang["speak_lang"];?></label>
-<div class="col-lg-8">
-<select name="room_lang" id="" class="form-control">
-<option value="en" <?php if($roomDetails["room_lang"]=="en") echo "selected='selected'";?>>English</option>
-<option value="fr" <?php if($roomDetails["room_lang"]=="fr") echo "selected='selected'";?>>Français</option>
-<option value="jp" <?php if($roomDetails["room_lang"]=="jp") echo "selected='selected'";?>>日本語</option>
-</select>
-</div>
-</div>
-<div class="form-group">
-<label for="room_type" class="col-sm-4 control-label"><?php echo $lang["room_type"];?></label>
-<div class="col-lg-8">
-<select name="room_type" class="form-control">
-<?php while($type = $queryTypes->fetch(PDO::FETCH_ASSOC)) {
-	if($type["id"] == $roomDetails["room_type"]){?>
-<option value="<?php echo $type["id"];?>" selected="selected"><?php echo $lang[$type["type"]];?></option>
-<?php } else { ?>
-<option value="<?php echo $type["id"];?>"><?php echo $lang[$type["type"]];?></option>
-<?php } } ?>
-</select>
-</div>
-</div>
-<div class="form-group">
-<label for="room_description" class="col-sm-4 control-label"><?php echo $lang["description_limit"];?></label>
-<div class="col-lg-8">
-<textarea name="room_description" cols="30" rows="5" class="form-control"><?php echo $roomDetails["room_description"];?></textarea>
-</div>
-</div>
-</form>
-<button class="btn btn-primary btn-block" id="save-room-button"><?php echo $lang["save_changes"];?></button>
-</div>-->
-				<!--<?php if($roomDetails["room_active"] == 1){ ?>
-<div class="room-option" id="close-option" >
-<span class="option-title"><?php echo $lang["close_room"];?></span><br>
-<span class="tip"><?php echo $lang["close_room_tip"];?></span>
-<button class="btn btn-danger btn-admin btn-block" onClick="closeRoom('<?php echo $box_token;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
-</div>
-<div class="room-option" id="open-option" style="display:none">
-<span class="option-title"><?php echo $lang["open_room"];?></span><br>
-<span class="tip"><?php echo $lang["open_room_tip"];?></span>
-<button class="btn btn-success btn-admin btn-block" onClick="openRoom('<?php echo $box_token;?>')"><span class="
-glyphicon glyphicon-play-circle"></span> <?php echo $lang["open_room"];?></button>
-</div>
-<?php } else { ?>
-<div class="room-option" id="close-option" style="display:none">
-<span class="option-title"><?php echo $lang["close_room"];?></span><br>
-<span class="tip"><?php echo $lang["close_room_tip"];?></span>
-<button class="btn btn-danger btn-admin btn-block" onClick="closeRoom('<?php echo $box_token;?>')"><span class="glyphicon glyphicon-remove-circle"></span> <?php echo $lang["close_room"];?></button>
-</div>
-<div class="room-option" id="open-option">
-<span class="option-title"><?php echo $lang["open_room"];?></span><br>
-<span class="tip"><?php echo $lang["open_room_tip"];?></span>
-<button class="btn btn-success btn-admin btn-block" onClick="openRoom('<?php echo $box_token;?>')"><span class="
-glyphicon glyphicon-play-circle"></span> <?php echo $lang["open_room"];?></button>
-</div>
-<?php } ?>-->
 				<?php } ?>
 			</div>
 		</div>

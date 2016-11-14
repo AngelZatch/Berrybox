@@ -4,9 +4,9 @@ $db = PDOFactory::getConnection();
 
 $roomToken = $_POST["box_token"];
 $user_token = $_POST["user_token"];
-$timestamp = date_create('now')->format('Y-m-d H:i:s');
+date_default_timezone_set('UTC');
+$time = date('Y-m-d H:i:s', time() - 15);
 $state = 1;
-$present = 1;
 
 if($user_token != -1){
 	// Fetch the state of the user wanting to join
@@ -24,12 +24,11 @@ if($user_token != -1){
 			}
 
 			// Enter the room
-			$join = $db->prepare("INSERT INTO roomUsers_$roomToken(room_user_token, room_user_state, room_user_present, room_user_date_state)
-VALUES(:token, :state, :present, :date)");
+			$join = $db->prepare("INSERT INTO roomUsers_$roomToken(room_user_token, room_user_state, presence_stamp)
+VALUES(:token, :state, :date)");
 			$join->bindParam(':token', $user_token);
 			$join->bindParam(':state', $state);
-			$join->bindParam(':present', $present);
-			$join->bindParam(':date', $timestamp);
+			$join->bindParam(':date', $time);
 			$join->execute();
 
 			// Add a visitor to the number of total visitors for the creator of the room
@@ -43,7 +42,6 @@ VALUES(:token, :state, :present, :date)");
 		}
 	} else {
 		// If the user left the room and is coming back
-		$rejoin = $db->query("UPDATE roomUsers_$roomToken SET room_user_present=1 WHERE room_user_token='$user_token'");
 		$res = $search->fetch(PDO::FETCH_ASSOC);
 		echo $res["room_user_state"];
 	}

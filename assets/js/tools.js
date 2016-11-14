@@ -22,7 +22,6 @@ $(document).ready(function(){
 	}
 	$(window).on('beforeunload', function(event){
 		sessionStorage.removeItem("currently-playing");
-		$.post("functions/leave_room.php", {box_token : box_token, user_token : user_token});
 	}).resize(function(){
 		resizeElements();
 	});
@@ -48,7 +47,7 @@ $(document).ready(function(){
 })
 
 function getUserLang(){
-	return $.get("functions/new_get_user_lang.php");
+	return $.get("functions/get_user_lang.php");
 }
 
 function removeFeedback(elementId){
@@ -90,7 +89,3 @@ function resizeElements(){
 	console.log(chat_pos, heading_chat_height, footer_chat_height);
 	$("#body-chat").outerHeight(body_chat_height);
 }
-
-/*function getUserLang(){
-	return $.get("functions/get_user_lang.php");
-}*/

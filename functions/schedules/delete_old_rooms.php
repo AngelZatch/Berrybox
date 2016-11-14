@@ -2,20 +2,20 @@
 require_once "/var/www/Strawberry/functions/db_connect.php";
 $db = PDOFactory::getConnection();
 
-/** This script searches and deletes all rooms that have been closed.
- Evolution : implement a date of creation / closure of each room
-so this script deletes only rooms closed for more than 14 days.
+/** This script searches and deletes all rooms that have been inactive for more than 24 hours.
 
-For now, this script runs once every week; every sunday at 1am.
-cron line : 0 1 * * 7 /usr/bin/php /var/www/Strawberry/functions/schedules/delete_old_rooms.php
+This script runs every hour
+cron line : 0 * / 1 * * * /usr/bin/php /var/www/Strawberry/functions/schedules/delete_old_rooms.php
 **/
 
 
 //$time = date_create('now', new datetimezone('UTC'))->format('Y-m-d H:i:s');
+date_default_timezone_set('UTC');
+$limitDate = date('Y-m-d H:i:s', time() - 86400);
 
-$queryInactive = $db->query("SELECT box_token FROM rooms WHERE room_active = 0");
+$queryInactive = $db->query("SELECT box_token FROM rooms WHERE room_active = 0 AND last_active_date < '$limitDate'");
 
-while($inactive = $queryInactive->fetch(PDO::FETCH_ASSOC)){
+while($inactive = $queryInactive->fetch()){
 	$inactiveToken = $inactive["box_token"];
 
 	try{
