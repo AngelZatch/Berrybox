@@ -42,7 +42,9 @@ function refreshBoxActivity($db, $box_token, $user_token){
 	// This function is called everytime the box can be "reactivated". A box can only be done by its creator or mod team.
 	$authorized = $db->query("SELECT room_user_token FROM roomUsers_$box_token WHERE room_user_state = 2 OR room_user_state = 3")->fetchAll(PDO::FETCH_COLUMN);
 	if(in_array($user_token, $authorized)){
-		$db->query("UPDATE rooms SET room_active = 1 WHERE box_token = '$box_token'");
+		date_default_timezone_set('UTC');
+		$time = date('Y-m-d H:i:s', time());
+		$db->query("UPDATE rooms SET room_active = 1, last_active_date = '$time' WHERE box_token = '$box_token'");
 	}
 }
 ?>
