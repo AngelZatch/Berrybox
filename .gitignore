@@ -11,6 +11,7 @@ assets/css/*.sass
 assets/css/common.css
 .brackets.json
 db_modifs.txt
+.htaccess
 
 ## Beta code
 generate_keys.php
