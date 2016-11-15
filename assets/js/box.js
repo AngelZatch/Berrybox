@@ -393,8 +393,8 @@ function userState(box_token, user_token){
 		if(values.room_user_state == 2 || values.room_user_state == 3){
 			if($(".playlist-actions").is(':empty')){
 				// Playlist buttons
-				var options = "<button class='btn btn-default btn-admin btn-skip col-xs-6'><span class='glyphicon glyphicon-step-forward resize-lg'></span> <span class='hidden-xs hidden-sm hidden-md'>"+language_tokens.skip+"</span></button>";
-				options += "<button class='btn btn-default btn-admin shuffle-playlist col-xs-6'><span class='glyphicon glyphicon-question-sign resize-lg'></span> <span class='hidden-xs hidden-sm hidden-md'>"+language_tokens.shuffle+"</span></button>";
+				var options = "<button class='btn btn-default btn-admin btn-skip col-xs-6'><span class='glyphicon glyphicon-step-forward resize-lg'></span> <span class='hidden-xs hidden-sm hidden-md'> "+language_tokens.skip+"</span></button>";
+				options += "<button class='btn btn-default btn-admin shuffle-playlist col-xs-6'><span class='glyphicon glyphicon-random resize-lg'></span> <span class='hidden-xs hidden-sm hidden-md'> "+language_tokens.shuffle+"</span></button>";
 				$(".playlist-actions").append(options);
 			}
 		} else {
