@@ -1,7 +1,7 @@
 <?php
+session_start();
 require_once "db_connect.php";
 include "tools.php";
-session_start();
 $db = PDOFactory::getConnection();
 
 $message = addslashes($_POST["message"]);
