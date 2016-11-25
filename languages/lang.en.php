@@ -153,7 +153,7 @@ $lang["go_to_video"] = "Go to video";
 
 /** MENU **/
 $lang["menu"] = "Main menu";
-$lang["my_profile"] = "My profile";
+$lang["my_profile"] = "Public profile";
 $lang["public_profile"] = "My stats";
 $lang["leave"] = "Leave the box";
 $lang["warning_sync_admin"] = "Warning! The synchronization is based on you, the creator of the box. If you leave, the sync will stop and no video will play anymore.";

@@ -153,7 +153,7 @@ $lang["go_to_video"] = "ビデオへ";
 
 /** MENU **/
 $lang["menu"] = "メニュー";
-$lang["my_profile"] = "プロファイル";
+$lang["my_profile"] = "公開プロファイル";
 $lang["public_profile"] = "パラメータ";
 $lang["leave"] = "ボックスを出ます";
 $lang["warning_sync_admin"] = "注意！　シンクはあなたに基づいています。あなたはボックスを出るとき、シンクが停止します。";

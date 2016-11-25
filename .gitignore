@@ -9,6 +9,9 @@ profile-banners/*
 assets/css/*.css.map
 assets/css/*.sass
 assets/css/common.css
+assets/js/tools.js
+assets/js/box.js
+assets/js/chat.js
 .brackets.json
 db_modifs.txt
 .htaccess

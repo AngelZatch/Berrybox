@@ -82,7 +82,7 @@ if(isset($_SESSION["token"])){
 				<?php while($activeRooms = $queryActiveRooms->fetch(PDO::FETCH_ASSOC)){
 	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[box_token] rh
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
-												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+												WHERE video_status = 1 OR video_status = 2 ORDER BY playlist_order DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 				?>
 				<div class="col-lg-3 col-xs-6 panel-box-container">
 					<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["box_token"];?>'">
@@ -130,6 +130,7 @@ if(isset($_SESSION["token"])){
 					<a href="http://twitter.com/BerryboxTV" target="_blank" class="btn btn-primary"><?php echo $lang["twitter"];?></a>
 				</div>
 			</div>
+			<?php if($queryMusicRooms->rowCount() != 0){ ?>
 			<div class="container-fluid category-display">
 				<h1><?php echo $lang["rt_music"];?></h1>
 				<?php while($musicRooms = $queryMusicRooms->fetch(PDO::FETCH_ASSOC)){
@@ -168,6 +169,8 @@ if(isset($_SESSION["token"])){
 				</div>
 				<?php } ?>
 			</div>
+			<?php } ?>
+			<?php if($queryScienceRooms->rowCount() != 0){ ?>
 			<div class="container-fluid category-display">
 				<h1><?php echo $lang["rt_science"];?></h1>
 				<?php while($scienceRooms = $queryScienceRooms->fetch(PDO::FETCH_ASSOC)){
@@ -206,6 +209,8 @@ if(isset($_SESSION["token"])){
 				</div>
 				<?php } ?>
 			</div>
+			<?php } ?>
+			<?php if($queryComedyRooms->rowCount()) { ?>
 			<div class="container-fluid category-display">
 				<h1><?php echo $lang["rt_lol"];?></h1>
 				<?php while($comedyRooms = $queryComedyRooms->fetch(PDO::FETCH_ASSOC)){
@@ -244,6 +249,7 @@ if(isset($_SESSION["token"])){
 				</div>
 				<?php } ?>
 			</div>
+			<?php } ?>
 		</div>
 		<?php include "footer.php";?>
 		<?php include "scripts.php";?>
