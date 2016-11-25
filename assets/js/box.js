@@ -860,7 +860,7 @@ $(document).ready(function(){
 	if($("#"+classToken).css("display") == "none"){
 		$("#"+classToken).toggle();
 		if(window.innerWidth > 1024){
-			position = "24.2%";
+			position = "25%";
 		}
 		else if(window.innerWidth < 768){
 			position = "0%";

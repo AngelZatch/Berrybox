@@ -233,4 +233,7 @@ $lang["searching"] = "Recherche...";
 $lang["submit_no_link"] = "Aucun lien n'a été trouvé";
 $lang["submit_video_link"] = "Un lien pour une vidéo a été trouvée";
 $lang["submit_playlist_link"] = "Un lien pour une liste de lecture a été trouvée";
+
+$lang["tip_button"] = "Un peu de support ? :D";
+
 ?>
