@@ -262,7 +262,7 @@ if(isset($_SESSION["token"])){
 	<div class="col-lg-2 col-sm-2 col-xs-12 full-panel" id="menu-list">
 		<div class="panel panel-default panel-room panel-list">
 			<div class="panel-heading"><span class="glyphicon glyphicon-dashboard" title=""></span> <?php echo $lang["menu"];?></div>
-			<div class="panel-body" style="height: 85vh;">
+			<div class="panel-body" style="height: 82vh;">
 				<?php if(isset($_SESSION["username"])){ ?>
 				<div class="connected-user">
 					<div class="menu-pp">
@@ -287,6 +287,7 @@ if(isset($_SESSION["token"])){
 				<?php } ?>
 			</div>
 			<div class="panel-footer no-border">
+				<a href="https://www.paypal.me/angelzatch" target="_blank" class="btn btn-primary btn-block"><span><img src="assets/paypal.png" alt="" style="height:15px"></span> <?php echo $lang["tip_button"];?></a>
 				<div class="menu-logo">
 					<img src="assets/berrybox-logo-grey.png" alt="">
 				</div>
