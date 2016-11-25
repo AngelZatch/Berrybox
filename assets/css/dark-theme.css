@@ -78,17 +78,21 @@ body {
   .dropdown-custom .divider {
     background-color: #434343; }
 
+/* line 65, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.user-menu-name {
+  color: white; }
+
 /** FOOTER **/
 /** MODAL **/
-/* line 70, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 73, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .modal-content {
   background-color: #292929; }
 
-/* line 73, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 76, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .room-info {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
 
-/* line 76, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 79, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .top-box-menu {
   border-right: 1px solid rgba(255, 255, 255, 0.2); }
 

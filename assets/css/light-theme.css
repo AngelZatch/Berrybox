@@ -4,102 +4,106 @@ body {
   color: black; }
 
 /* line 10, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.user-menu-name {
+  color: black; }
+
+/* line 13, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .navbar, .footer, .social-space {
   background-color: #f2f2f2; }
 
-/* line 15, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 18, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .nav-tabs li.active a {
   background-color: #f2f2f2;
   color: black !important; }
 
-/* line 18, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 21, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .nav-tabs li.active :hover {
   background-color: #e6e6e6 !important; }
 
-/* line 21, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 24, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .panel {
   background-color: #f2f2f2; }
 
-/* line 24, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 27, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .btn-primary {
   color: #cf9930; }
 
-/* line 27, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 30, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .btn-danger {
   color: black; }
 
-/* line 30, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 33, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .form-control {
   color: black; }
 
-/* line 33, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 36, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .chat-options {
   color: #cf9930; }
 
-/* line 36, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 39, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .button-glyph:hover {
   color: #916b22; }
 
-/* line 39, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 42, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .standard-message {
   color: #333333; }
 
-/* line 42, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 45, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .song-played > div > p > a {
   color: #e7cc98; }
 
-/* line 45, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 48, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .moderation-option:hover {
   color: #090909; }
 
-/* line 48, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 51, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .moderation-option-enabled {
   cursor: pointer;
   color: black !important; }
 
-/* line 52, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 55, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .menu-popover {
   background-color: #ededed; }
 
-/* line 55, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 58, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .menu-popover > .popover-footer {
   background-color: whitesmoke; }
 
-/* line 58, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 61, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .user-card {
   background-color: #d9d9d9; }
-  /* line 60, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+  /* line 63, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
   .user-card .user-card-actions {
     background-color: #e6e6e6; }
 
-/* line 63, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 66, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .cube-selected {
   border: 2px solid #101010; }
 
-/* line 66, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 69, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .user-profile-container {
   color: white !important; }
 
-/* line 69, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 72, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .user-entry, .box-entry {
   background-color: #f2f2f2; }
-  /* line 71, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+  /* line 74, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
   .user-entry a, .box-entry a {
     color: black; }
-  /* line 73, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+  /* line 76, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
   .user-entry:hover, .box-entry:hover {
     background-color: #e6e6e6;
     color: black; }
-  /* line 76, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+  /* line 79, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
   .user-entry:active, .box-entry:active {
     background-color: #d9d9d9; }
 
 /** FOOTER **/
-/* line 83, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 86, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .room-info {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
 
-/* line 86, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 89, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .top-box-menu {
   border-right: 1px solid rgba(0, 0, 0, 0.2); }
 

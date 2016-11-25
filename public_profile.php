@@ -118,7 +118,7 @@ if(isset($_SESSION["token"])){
 						<p class="stats-value"><?php echo $profileDetails["stat_followers"];?></p>
 					</div>
 				</div>
-				<div class="user-rooms col-lg-8 col-lg-offset-2 col-xs-12">
+				<div class="user-rooms col-xs-12">
 					<p id="profile-title"><?php echo $lang["opened_rooms"];?></p>
 					<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){
 	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[box_token] rh
