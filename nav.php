@@ -98,11 +98,14 @@ if(isset($_SESSION["token"])){
 				<li>
 					<a href="create" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
 				</li>
-				<li class="dropdown notification-option">
+				<li class="dropdown">
 					<a href="#" class="dropdown-toggle notification-icon nav-img-container" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						<div class="small-pp">
+						<span class="small-pp">
 							<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit;">
-						</div>
+						</span>
+						<span>
+							<span class="user-menu-name"><?php echo $_SESSION["username"];?></span>
+						</span>
 					</a>
 					<ul class="dropdown-menu dropdown-custom">
 						<li>
