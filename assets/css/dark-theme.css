@@ -52,47 +52,51 @@ body {
   border: 2px solid #FFF; }
 
 /* line 45, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.mood-selectors {
+  background-color: #101010; }
+
+/* line 48, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .btn-default {
   color: white; }
 
-/* line 48, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 51, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .user-entry, .box-entry {
   background-color: #292929; }
-  /* line 50, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  /* line 53, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
   .user-entry a, .box-entry a {
     color: white; }
-  /* line 52, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  /* line 55, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
   .user-entry:hover, .box-entry:hover {
     background-color: #434343;
     color: white; }
-  /* line 55, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  /* line 58, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
   .user-entry:active, .box-entry:active {
     background-color: #5d5d5d; }
 
 /** NAV **/
-/* line 59, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 62, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .dropdown-custom {
   border-color: #434343 !important;
   background-color: #292929; }
-  /* line 62, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  /* line 65, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
   .dropdown-custom .divider {
     background-color: #434343; }
 
-/* line 65, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 68, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .user-menu-name {
   color: white; }
 
 /** FOOTER **/
 /** MODAL **/
-/* line 73, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 76, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .modal-content {
   background-color: #292929; }
 
-/* line 76, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 79, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .room-info {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
 
-/* line 79, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 82, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .top-box-menu {
   border-right: 1px solid rgba(255, 255, 255, 0.2); }
 

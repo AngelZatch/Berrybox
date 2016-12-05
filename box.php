@@ -90,74 +90,74 @@ if(isset($_SESSION["token"])){
 			</div>
 			<div id="currently-playing">
 				<div class="modal-body" id="player"></div>
-			</div>
-			<div class="container-fluid under-video">
-				<?php if(isset($_SESSION["token"])){ ?>
-				<div class="add-link col-xs-6 col-sm-4">
-					<div class="input-group">
-						<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
-						<span class="input-group-btn">
-							<button class="btn btn-primary play-url"><span class="glyphicon glyphicon-circle-arrow-right resize-lg"></span> <span class="hidden-xs hidden-sm hidden-md"><?php echo $lang["submit_link"];?></span></button>
-						</span>
+				<div class="container-fluid under-video">
+					<?php if(isset($_SESSION["token"])){ ?>
+					<div class="add-link col-xs-8 col-sm-4">
+						<div class="input-group">
+							<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
+							<span class="input-group-btn">
+								<button class="btn btn-primary play-url"><span class="glyphicon glyphicon-circle-arrow-right resize-lg"></span> <span class="hidden-xs hidden-sm hidden-md"><?php echo $lang["submit_link"];?></span></button>
+							</span>
+						</div>
+						<p class="submit-warning"></p>
 					</div>
-					<p class="submit-warning"></p>
+					<?php } ?>
+					<div class="room-quick-messages col-xs-4 col-sm-2 col-md-3 col-lg-3">
+						<span class="sync-message"></span>
+						<span class="submission-message"></span>
+						<span class="play-message"></span>
+						<span class="protection-message"></span>
+					</div>
+					<?php if(isset($_SESSION["token"])){ ?>
+					<!--<div class="col-xs-12 col-sm-5 mood-compact"><span class="glyphicon glyphicon-thumbs-up glyphicon-moods"></span></div>-->
+					<div class="col-xs-12 col-sm-5 mood-selectors">
+						<div class="col-xs-2 emotion-container" id="emotion-like-container" data-mood="1">
+							<p class="emotion-glyph emotion-like button-glyph" id="emotion-like" title="<?php echo $lang["like"];?>">
+								<span class="glyphicon glyphicon-thumbs-up"></span> <span class="mood-count" id="like-count"></span>
+							</p>
+						</div>
+						<div class="col-xs-2 emotion-container" id="emotion-cry-container" data-mood="2">
+							<p class="emotion-glyph emotion-cry button-glyph" id="emotion-cry" title="<?php echo $lang["cry"];?>">
+								<span class="glyphicon glyphicon-tint"></span> <span class="mood-count" id="cry-count"></span>
+							</p>
+						</div>
+						<div class="col-xs-2 emotion-container" id="emotion-love-container" data-mood="3">
+							<p class="emotion-glyph emotion-love button-glyph" id="emotion-love" title="<?php echo $lang["love"];?>">
+								<span class="glyphicon glyphicon-heart"></span> <span class="mood-count" id="love-count"></span>
+							</p>
+						</div>
+						<div class="col-xs-2 emotion-container" id="emotion-energy-container" data-mood="4">
+							<p class="emotion-glyph emotion-energy button-glyph" id="emotion-energy" title="<?php echo $lang["energy"];?>">
+								<span class="glyphicon glyphicon-eye-open"></span> <span class="mood-count" id="energy-count"></span>
+							</p>
+						</div>
+						<div class="col-xs-2 emotion-container" id="emotion-calm-container" data-mood="5">
+							<p class="emotion-glyph emotion-calm button-glyph" id="emotion-calm" title="<?php echo $lang["calm"];?>">
+								<span class="glyphicon glyphicon-bed"></span> <span class="mood-count" id="calm-count"></span>
+							</p>
+						</div>
+						<div class="col-xs-2 emotion-container" id="emotion-fear-container" data-mood="6">
+							<p class="emotion-glyph emotion-fear button-glyph" id="emotion-fear" title="<?php echo $lang["fear"];?>">
+								<span class="glyphicon glyphicon-flash"></span> <span class="mood-count" id="fear-count"></span>
+							</p>
+						</div>
+					</div>
+					<?php } else { ?>
+					<div class="col-xs-12">
+						<div id="no-credentials">
+							<p><?php echo $lang["no_credentials"];?></p>
+							<form method="post" action="portal">
+								<input type="hidden" name="box-token" value="<?php echo $box_token;?>">
+								<input type="submit" class="btn btn-primary" value="<?php echo $lang["log_in"];?>">
+							</form>
+							<form method="post" action="signup">
+								<input type="hidden" name="box-token" value="<?php echo $box_token;?>">
+								<input type="submit" class="btn btn-primary" value="<?php echo $lang["sign_up"];?>">
+							</form>
+						</div>
+					</div>
+					<?php } ?>
 				</div>
-				<?php } ?>
-				<div class="room-quick-messages col-xs-3 col-sm-2 col-md-3 col-lg-3">
-					<span class="sync-message"></span>
-					<span class="submission-message"></span>
-					<span class="play-message"></span>
-					<span class="protection-message"></span>
-				</div>
-				<?php if(isset($_SESSION["token"])){ ?>
-				<div class="col-xs-12 col-sm-5 mood-selectors">
-					<!--<p class="mood-question"><?php echo $lang["mood-question"];?></p>-->
-					<div class="col-xs-2 emotion-container" id="emotion-like-container" data-mood="1">
-						<p class="emotion-glyph emotion-like button-glyph" id="emotion-like" title="<?php echo $lang["like"];?>">
-							<span class="glyphicon glyphicon-thumbs-up"></span> <span class="mood-count" id="like-count"></span>
-						</p>
-					</div>
-					<div class="col-xs-2 emotion-container" id="emotion-cry-container" data-mood="2">
-						<p class="emotion-glyph emotion-cry button-glyph" id="emotion-cry" title="<?php echo $lang["cry"];?>">
-							<span class="glyphicon glyphicon-tint"></span> <span class="mood-count" id="cry-count"></span>
-						</p>
-					</div>
-					<div class="col-xs-2 emotion-container" id="emotion-love-container" data-mood="3">
-						<p class="emotion-glyph emotion-love button-glyph" id="emotion-love" title="<?php echo $lang["love"];?>">
-							<span class="glyphicon glyphicon-heart"></span> <span class="mood-count" id="love-count"></span>
-						</p>
-					</div>
-					<div class="col-xs-2 emotion-container" id="emotion-energy-container" data-mood="4">
-						<p class="emotion-glyph emotion-energy button-glyph" id="emotion-energy" title="<?php echo $lang["energy"];?>">
-							<span class="glyphicon glyphicon-eye-open"></span> <span class="mood-count" id="energy-count"></span>
-						</p>
-					</div>
-					<div class="col-xs-2 emotion-container" id="emotion-calm-container" data-mood="5">
-						<p class="emotion-glyph emotion-calm button-glyph" id="emotion-calm" title="<?php echo $lang["calm"];?>">
-							<span class="glyphicon glyphicon-bed"></span> <span class="mood-count" id="calm-count"></span>
-						</p>
-					</div>
-					<div class="col-xs-2 emotion-container" id="emotion-fear-container" data-mood="6">
-						<p class="emotion-glyph emotion-fear button-glyph" id="emotion-fear" title="<?php echo $lang["fear"];?>">
-							<span class="glyphicon glyphicon-flash"></span> <span class="mood-count" id="fear-count"></span>
-						</p>
-					</div>
-				</div>
-				<?php } else { ?>
-				<div class="col-xs-12">
-					<div id="no-credentials">
-						<p><?php echo $lang["no_credentials"];?></p>
-						<form method="post" action="portal">
-							<input type="hidden" name="box-token" value="<?php echo $box_token;?>">
-							<input type="submit" class="btn btn-primary" value="<?php echo $lang["log_in"];?>">
-						</form>
-						<form method="post" action="signup">
-							<input type="hidden" name="box-token" value="<?php echo $box_token;?>">
-							<input type="submit" class="btn btn-primary" value="<?php echo $lang["sign_up"];?>">
-						</form>
-					</div>
-				</div>
-				<?php } ?>
 			</div>
 		</div>
 		</div>
