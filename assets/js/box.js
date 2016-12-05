@@ -723,6 +723,8 @@ $(document).ready(function(){
 			})
 			// Set global chatHover & sync variables
 			window.chatHovered = false;
+			// Mood timers
+			window.showingMoods, window.hidingMoods;
 		})
 	});
 	// Dynamic filtering of the playlist
@@ -838,7 +840,21 @@ $(document).ready(function(){
 		$(".color-cube").removeClass("cube-selected");
 		cube.addClass("cube-selected");
 	})
-}).on("click", ".emotion-container", function(){
+})/*.on("mouseenter", ".glyphicon-moods", function(){
+	if(window.hidingMoods != undefined) clearTimeout(window.hidingMoods);
+	window.showingMoods = setTimeout(function(){
+		$(".mood-compact").fadeOut(300, function(){
+			$(".mood-selectors").fadeIn(300);
+		})
+	}, 900);
+}).on("mouseleave", ".mood-selectors", function(){
+	if(window.showingMoods != undefined) clearTimeout(window.showingMoods);
+	window.hidingMoods = setTimeout(function(){
+		$(".mood-selectors").fadeOut(300, function(){
+			$(".mood-compact").fadeIn(300);
+		})
+	}, 600);
+})*/.on("click", ".emotion-container", function(){
 	if($(this).hasClass("selected")){
 		var mood_id = 0;
 	} else {
@@ -888,7 +904,7 @@ $(document).ready(function(){
 				}, 200);
 				if(jQuery(window).width() > 992){
 					$("#currently-playing").animate({
-						width: "65%"
+						width: "68%"
 					}, 200);
 				}
 				break;
@@ -911,7 +927,7 @@ $(document).ready(function(){
 				}, 200);
 				if(jQuery(window).width() > 992){
 					$("#currently-playing").animate({
-						width: "77%"
+						width: "79%"
 					}, 200);
 				}
 				break;
@@ -933,7 +949,7 @@ $(document).ready(function(){
 				}, 200);
 				if(jQuery(window).width() > 992){
 					$("#currently-playing").animate({
-						width: "77%"
+						width: "79%"
 					}, 200);
 				}
 				break;
@@ -955,7 +971,7 @@ $(document).ready(function(){
 				}, 200);
 				if(jQuery(window).width() > 992){
 					$("#currently-playing").animate({
-						width: "65%"
+						width: "68%"
 					}, 200);
 				}
 				break;
