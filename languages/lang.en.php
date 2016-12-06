@@ -173,8 +173,8 @@ $lang["home"] = "Back to home";
 /** PROFILE **/
 $lang["my_settings"] = "Settings";
 $lang["profile_settings_tip"] = "Update your display name, your bio and your profile picture";
-$lang["profile_history"] = "History";
-$lang["profile_history_tip"] = "If no message has been sent or no video has been posted or played in a box for the last hour, it will be automatically deactivated. After one day, it will be deleted automatically.";
+$lang["profile_history"] = "My boxes";
+$lang["profile_history_tip"] = "If no message has been sent or no video has been posted or played in a box for the last hour, it will be automatically deactivated. <strong>After one day, it will be deleted automatically</strong>.";
 $lang["profile_security"] = "Security";
 $lang["profile_security_tip"] = "Change your password";
 $lang["profile_likes"] = "Votes";

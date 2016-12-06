@@ -119,13 +119,13 @@ if(isset($_SESSION["token"])){
 					</div>
 				</div>
 				<div class="user-rooms col-xs-12">
-					<p id="profile-title"><?php echo $lang["opened_rooms"];?></p>
+					<legend id="profile-title"><?php echo $lang["opened_rooms"];?></legend>
 					<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){
 	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[box_token] rh
 													JOIN song_base sb ON sb.song_base_id = rh.video_index
-													WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+													WHERE video_status = 1 OR video_status = 2 ORDER BY playlist_order DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 					?>
-					<div class="col-lg-4 col-xs-6 panel-box-container">
+					<div class="col-lg-3 panel-box-container">
 						<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["box_token"];?>'">
 							<div class="panel-body box-entry">
 								<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
@@ -144,11 +144,6 @@ if(isset($_SESSION["token"])){
 									<p><span class="room-creator"><a href="user/<?php echo $activeRooms["user_pseudo"];?>"><?php echo $activeRooms["user_pseudo"];?></a></span></p>
 									<p class="room-type room-label">
 										<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
-										<?php if($activeRooms["room_protection"] == '1') { ?>
-										<span class="label label-success"><?php echo $lang["level_public"];?></span>
-										<?php } else { ?>
-										<span class="label label-danger"><?php echo $lang["level_private"];?></span>
-										<?php } ?>
 										<span class="label label-lang"><?php echo $lang["lang_".$activeRooms["room_lang"]];?></span>
 									</p>
 								</div>
