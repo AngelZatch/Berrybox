@@ -103,6 +103,8 @@ $lang["no_admin"] = "注意！このボックスのクリエイターがいり�
 $lang["whisper"] = "囁く";
 $lang["staff"] = "スタッフ";
 $lang["box_transfered"] = " はこのボックスの運営者になりました。";
+$lang["current_administrator"] = $lang["room_admin"]." : ";
+$lang["submitter"] = "提出者 : ";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "音楽";
