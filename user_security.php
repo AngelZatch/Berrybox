@@ -43,11 +43,10 @@ if(isset($_POST["submit"])){
 		<?php include "nav.php";?>
 		<div class="main col-lg-12">
 			<div class="col-lg-offset-2 col-lg-8 col-sm-12 page-title">
-				<p id="profile-title"><?php echo $lang["profile_security"];?></p>
+				<legend id="profile-title"><?php echo $lang["profile_security"];?></legend>
 				<span class="tip"><?php echo $lang["profile_security_tip"];?></span>
 				<ul class="nav nav-tabs" id="profile-menu">
 					<li role="presentation"><a href="profile/settings"><?php echo $lang["my_settings"];?></a></li>
-					<li role="presentation"><a href="profile/history"><?php echo $lang["profile_history"];?></a></li>
 					<li role="presentation" class="active"><a href="profile/security"><?php echo $lang["profile_security"];?></a></li>
 				</ul>
 			</div>

@@ -84,7 +84,7 @@ if(isset($_SESSION["token"])){
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
 												WHERE video_status = 1 OR video_status = 2 ORDER BY playlist_order DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 				?>
-				<div class="col-lg-3 col-xs-6 panel-box-container">
+				<div class="col-lg-3 panel-box-container">
 					<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["box_token"];?>'">
 						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
@@ -125,7 +125,7 @@ if(isset($_SESSION["token"])){
 			</div>
 			<div class="container-fluid social-space">
 				<div class="col-lg-6 col-lg-offset-3">
-					<p><?php echo $lang["follow_us"];?></p>
+					<legend><?php echo $lang["follow_us"];?></legend>
 					<a href="https://www.facebook.com/berryboxapp/" target="_blank" class="btn btn-primary">Facebook</a>
 					<a href="http://twitter.com/BerryboxTV" target="_blank" class="btn btn-primary"><?php echo $lang["twitter"];?></a>
 				</div>
@@ -136,9 +136,9 @@ if(isset($_SESSION["token"])){
 				<?php while($musicRooms = $queryMusicRooms->fetch(PDO::FETCH_ASSOC)){
 	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$musicRooms[box_token] rh
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
-												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+												WHERE video_status = 1 OR video_status = 2 ORDER BY playlist_order DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 				?>
-				<div class="col-lg-4 col-xs-6 panel-box-container">
+				<div class="col-lg-3 panel-box-container">
 					<div class="panel panel-box" onClick="window.location='box/<?php echo $musicRooms["box_token"];?>'">
 						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $musicRooms["room_name"];?></p>
@@ -176,9 +176,9 @@ if(isset($_SESSION["token"])){
 				<?php while($scienceRooms = $queryScienceRooms->fetch(PDO::FETCH_ASSOC)){
 	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$scienceRooms[box_token] rh
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
-												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+												WHERE video_status = 1 OR video_status = 2 ORDER BY playlist_order DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 				?>
-				<div class="col-lg-4 col-xs-6">
+				<div class="col-lg-3 panel-box-container">
 					<div class="panel panel-box" onClick="window.location='box/<?php echo $scienceRooms["box_token"];?>'">
 						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $scienceRooms["room_name"];?></p>
@@ -216,9 +216,9 @@ if(isset($_SESSION["token"])){
 				<?php while($comedyRooms = $queryComedyRooms->fetch(PDO::FETCH_ASSOC)){
 	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$comedyRooms[box_token] rh
 												JOIN song_base sb ON sb.song_base_id = rh.video_index
-												WHERE video_status = 1 OR video_status = 2 ORDER BY room_history_id DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
+												WHERE video_status = 1 OR video_status = 2 ORDER BY playlist_order DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 				?>
-				<div class="col-lg-4 col-xs-6">
+				<div class="col-lg-3 panel-box-container">
 					<div class="panel panel-box" onClick="window.location='box/<?php echo $comedyRooms["box_token"];?>'">
 						<div class="panel-body box-entry">
 							<p class="col-lg-12 room-name"><?php echo $comedyRooms["room_name"];?></p>
