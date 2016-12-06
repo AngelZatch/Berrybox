@@ -37,65 +37,63 @@ $allLikes = $db->query("SELECT * FROM votes v
 	<body>
 		<?php include "nav.php";?>
 		<div class="main col-lg-12">
-			<div class="col-lg-offset-2 col-lg-8 col-sm-12 page-title">
+			<div class="page-title">
 				<legend id="profile-title"><?php echo $lang["profile_likes"];?></legend>
 				<span class="tip"><?php echo $lang["profile_likes_tip"];?></span>
 			</div>
-			<div class="user-rooms col-lg-offset-2 col-lg-8 col-sm-12">
-				<ul class="likes-list">
-					<?php
-					$currentMood = ""; $moodLegend = "";
-					while($like = $allLikes->fetch(PDO::FETCH_ASSOC)){
-						if($currentMood !== $like["vote_mood"]){
-							switch($like["vote_mood"]){
-								case '1':
-									$keyMood = "like";
-									$icon = "thumbs-up";
-									break;
+			<ul class="likes-list">
+				<?php
+				$currentMood = ""; $moodLegend = "";
+				while($like = $allLikes->fetch(PDO::FETCH_ASSOC)){
+					if($currentMood !== $like["vote_mood"]){
+						switch($like["vote_mood"]){
+							case '1':
+								$keyMood = "like";
+								$icon = "thumbs-up";
+								break;
 
-								case '2':
-									$keyMood = "cry";
-									$icon = "tint";
-									break;
+							case '2':
+								$keyMood = "cry";
+								$icon = "tint";
+								break;
 
-								case '3':
-									$keyMood = "love";
-									$icon = "heart";
-									break;
+							case '3':
+								$keyMood = "love";
+								$icon = "heart";
+								break;
 
-								case '4':
-									$keyMood = "energy";
-									$icon = "eye-open";
-									break;
+							case '4':
+								$keyMood = "energy";
+								$icon = "eye-open";
+								break;
 
-								case '5':
-									$keyMood = "calm";
-									$icon = "bed";
-									break;
+							case '5':
+								$keyMood = "calm";
+								$icon = "bed";
+								break;
 
-								case '6':
-									$keyMood = "fear";
-									$icon = "flash";
-									break;
-							} ?>
-					<p class="sub-legend emotion-<?php echo $keyMood;?>"><span class="glyphicon glyphicon-<?php echo $icon;?>"></span> <?php echo $lang[$keyMood];?></p>
-					<?php } ?>
-					<li class="vote-singleton vote-<?php echo $keyMood;?> container" id="vote-<?php echo $like["vote_id"];?>">
-						<div class="video-thumbnail col-xs-2 col-sm-1">
-							<img src="http://img.youtube.com/vi/<?php echo $like["link"];?>/0.jpg" alt="">
-						</div>
-						<div class="col-xs-10 col-sm-11">
-							<p class="vote-name col-xs-11"><?php echo stripslashes($like["video_name"]);?></p>
-							<span class="glyphicon glyphicon-trash glyphicon-button col-xs-1" id="delete-<?php echo $like["vote_id"];?>" data-vote="<?php echo $like["vote_id"];?>" title="<?php echo $lang["delete"];?>"></span>
-							<a href="https://www.youtube.com/watch?v=<?php echo $like["link"];?>" class="col-xs-2" target="_blank"><span class="glyphicon glyphicon-share"></span> <?php echo $lang["go_to_video"];?></a>
-						</div>
-						<div>
-						</div>
-					</li>
-					<?php $currentMood = $like["vote_mood"];
-					} ?>
-				</ul>
-			</div>
+							case '6':
+								$keyMood = "fear";
+								$icon = "flash";
+								break;
+						} ?>
+				<?php if($currentMood != ""){;?></div><?php } ?>
+				<p class="sub-legend emotion-<?php echo $keyMood;?>"><span class="glyphicon glyphicon-<?php echo $icon;?>"></span> <?php echo $lang[$keyMood];?></p>
+				<div>
+				<?php } ?>
+				<li class="vote-singleton vote-<?php echo $keyMood;?> container-fluid" id="vote-<?php echo $like["vote_id"];?>">
+					<div class="video-thumbnail col-xs-12 col-sm-1">
+						<img src="http://img.youtube.com/vi/<?php echo $like["link"];?>/0.jpg" alt="" class="img-responsive center-block">
+					</div>
+					<div class="container-fluid vote-details col-sm-11">
+						<p class="vote-name col-xs-12 col-sm-11"><?php echo stripslashes($like["video_name"]);?></p>
+						<span class="glyphicon glyphicon-trash glyphicon-button col-xs-2 col-sm-1" id="delete-<?php echo $like["vote_id"];?>" data-vote="<?php echo $like["vote_id"];?>" title="<?php echo $lang["delete"];?>"></span>
+						<a href="https://www.youtube.com/watch?v=<?php echo $like["link"];?>" class="col-xs-8" target="_blank"><span class="glyphicon glyphicon-share"></span> <?php echo $lang["go_to_video"];?></a>
+					</div>
+				</li>
+				<?php $currentMood = $like["vote_mood"];
+				} ?>
+			</ul>
 		</div>
 		<?php include "scripts.php";?>
 		<script>

@@ -56,6 +56,9 @@ if(isset($_SESSION["token"])){
 						<a href="my/likes"><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo $lang["profile_likes"];?></a>
 					</li>
 					<li>
+						<a href="profile/history"><span class="glyphicon glyphicon-th-large"></span> <?php echo $lang["profile_history"];?></a>
+					</li>
+					<li>
 						<a href="create" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
 					</li>
 					<li>
@@ -113,6 +116,9 @@ if(isset($_SESSION["token"])){
 						</li>
 						<li>
 							<a href="my/likes" class="no-margin"><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo $lang["profile_likes"];?></a>
+						</li>
+						<li>
+							<a href="profile/history" class="no-margin"><span class="glyphicon glyphicon-th-large"></span> <?php echo $lang["profile_history"];?></a>
 						</li>
 						<li role="separator" class="divider"></li>
 						<li>

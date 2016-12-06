@@ -173,8 +173,8 @@ $lang["home"] = "Retour à l'accueil";
 /** PROFILE **/
 $lang["my_settings"] = "Paramètres";
 $lang["profile_settings_tip"] = "Changez votre nom, votre biographie et votre image de profil";
-$lang["profile_history"] = "Historique";
-$lang["profile_history_tip"] = "Si aucun message n'est envoyé et aucune vidéo n'est jouée / soumise pendant 1 heure dans une box, cette dernière sera automatique désactivée. 24 heures après, elle sera supprimée.";
+$lang["profile_history"] = "Mes boxes";
+$lang["profile_history_tip"] = "Si aucun message n'est envoyé et aucune vidéo n'est jouée / soumise pendant 1 heure dans une box, cette dernière sera automatique désactivée. <strong>24 heures après, elle sera supprimée</strong>.";
 $lang["profile_security"] = "Securité";
 $lang["profile_security_tip"] = "Changez votre mot de passe";
 $lang["profile_likes"] = "Votes";

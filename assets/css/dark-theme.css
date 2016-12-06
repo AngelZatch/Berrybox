@@ -101,4 +101,12 @@ body {
   .top-box-section {
     border-right: 1px solid rgba(255, 255, 255, 0.2); } }
 
+/** LIKES **/
+/* line 93, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+li.vote-singleton {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+  /* line 95, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  li.vote-singleton:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.2); }
+
 /*# sourceMappingURL=dark-theme.css.map */
