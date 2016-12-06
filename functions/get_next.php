@@ -22,9 +22,10 @@ if($user_power == 2){
 }
 
 // Get next video
-$next = $db->query("SELECT room_history_id, video_index, history_user, link, video_name, playlist_order
+$next = $db->query("SELECT room_history_id, video_index, history_user, user_pseudo, link, video_name, playlist_order
 					FROM roomHistory_$box_token rh
 					JOIN song_base sb ON rh.video_index = sb.song_base_id
+					JOIN user u ON rh.history_user = u.user_token
 					WHERE video_status = '0'
 					ORDER BY playlist_order ASC
 					LIMIT 1")->fetch(PDO::FETCH_ASSOC);
@@ -50,10 +51,12 @@ if($next["link"] != null){
 								WHERE user_token = '$next[history_user]'");
 		$db->query("UPDATE rooms SET room_active = 1, last_active_date = '$time' WHERE box_token = '$box_token'");
 	}
-	$n = array();
-	$n["index"] = $next["video_index"];
-	$n["link"] = $next["link"];
-	$n["title"] = stripslashes($next["video_name"]);
+	$n = array(
+		"index" => $next["video_index"],
+		"link" => $next["link"],
+		"title" => stripslashes($next["video_name"]),
+		"submitter" => $next["user_pseudo"]
+	);
 	echo json_encode($n);
 } else {
 	echo null;

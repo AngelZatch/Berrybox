@@ -103,6 +103,8 @@ $lang["no_admin"] = "Warning ! The creator is not present in the box. The synchr
 $lang["whisper"] = "Whisper";
 $lang["staff"] = "Staff";
 $lang["box_transfered"] = " is now the administrator of the box";
+$lang["current_administrator"] = "Administrated by ";
+$lang["submitter"] = "Submitted by ";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "Music";

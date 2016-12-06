@@ -64,27 +64,37 @@ if(isset($_SESSION["token"])){
 	</head>
 	<body>
 		<div class="col-sm-8 col-lg-9" id="room-player">
-			<div class="container-fluid room-info">
-				<div class="col-xs-1 top-box-menu hidden-xs">
+			<div class="room-info container-fluid">
+				<div class="col-xs-1 top-box-menu top-box-section hidden-xs">
 					<a href="home" class="glyphicon glyphicon-chevron-left button-glyph box-to-home" title="<?php echo $lang["home"];?>"></a>
 				</div>
-				<div class="col-xs-3 col-sm-2 col-lg-1 top-box-picture">
-					<div class="room-picture">
-						<img src="profile-pictures/<?php echo $roomDetails["user_pp"];?>" class="profile-picture" id="box-creator-picture" title="" alt="">
+				<div class="col-xs-12 col-sm-5 top-box-section">
+					<div class="col-xs-3 col-lg-2 top-box-picture hidden-xs hidden-sm">
+						<div class="room-picture">
+							<img src="profile-pictures/<?php echo $roomDetails["user_pp"];?>" class="profile-picture" id="box-creator-picture" title="" alt="">
+						</div>
 					</div>
-				</div>
-				<div class="col-xs-9 col-sm-9 col-lg-10 top-box-infos">
-					<div class="row">
-						<p class="col-xs-12" id="room-title"><?php echo $roomDetails["room_name"];?></p>
-					</div>
-					<div class="row">
-						<p class="col-xs-9 col-sm-7" id="room-undertitle"> <a href="user/<?php echo $roomDetails["user_0pseudo"];?>" id="box-creator-link" target="_blank"></a> | <span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span></p>
-						<div class="creator-stats col-xs-3 col-sm-5">
-							<span class="hidden-xs">
+					<div class="col-xs-12 col-md-6 col-lg-10 top-box-details">
+						<p id="room-title" class="room-undertitle"><?php echo $roomDetails["room_name"];?></p>
+						<p> <span class="subtle-text hidden-sm"><?php echo $lang["current_administrator"];?></span><a href="user/<?php echo $roomDetails["user_pseudo"];?>" id="box-creator-link" target="_blank"></a>
+							<span class="hidden-xs hidden-sm">
 								<span class="glyphicon glyphicon-eye-open" title="<?php echo $lang["total_views"];?>"></span> <span class="creator-views"></span>
 								<span class="glyphicon glyphicon-heart"></span> <span class="creator-followers"></span>
 							</span>
-						</div>
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-5 col-sm-6 top-box-infos hidden-xs">
+					<!--<div class="col-xs-6 col-sm-3 col-lg-2">
+						<span class="glyphicon glyphicon-film"></span>
+					</div>-->
+					<div class="col-xs-12">
+						<p id="box-playing" class="room-undertitle">
+							<span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span>
+						</p>
+						<p>
+							<span class="subtle-text"><?php echo $lang["submitter"];?></span><span id="video-submitter"></span>
+						</p>
 					</div>
 				</div>
 			</div>
