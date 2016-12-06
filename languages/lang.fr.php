@@ -103,6 +103,8 @@ $lang["no_admin"] = "Attention ! L'administrateur de la box n'est actuellement p
 $lang["whisper"] = "Murmurer";
 $lang["staff"] = "Staff";
 $lang["box_transfered"] = " est désormais l'administrateur de la box.";
+$lang["current_administrator"] = "Administrée par ";
+$lang["submitter"] = "Envoyée par ";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "Musique";
