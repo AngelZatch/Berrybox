@@ -17,6 +17,7 @@ assets/js/badges.js
 db_modifs.txt
 .htaccess
 vendor
+*.lock
 
 ## Beta code
 generate_keys.php
