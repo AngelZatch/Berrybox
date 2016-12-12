@@ -314,8 +314,8 @@ if(isset($_SESSION["token"])){
 	</div>
 	<?php include "scripts.php";?>
 	<script src="assets/js/autobahn.min.js"></script>
-	<script src="assets/js/box.min.js"></script>
 	<script src="assets/js/chat.min.js"></script>
+	<script src="assets/js/box.min.js"></script>
 	<script src="assets/js/mood.js"></script>
 	<script>
 		<?php if(isset($_SESSION["token"])){ ?>
