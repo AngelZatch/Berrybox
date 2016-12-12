@@ -237,4 +237,14 @@ $lang["submit_playlist_link"] = "A playlist link has been found";
 
 $lang["tip_button"] = "Do you enjoy? Show some love! ^_^";
 
+/** BADGES **/
+$lang["locked"] = "Locked";
+$lang["50_videos"] = "Will to share";
+$lang["50_videos_description"] = "Many more where that came from.";
+$lang["200_videos"] = "Sharing everyday";
+$lang["200_videos_description"] = "Let's get that thing rolling.";
+$lang["1000_videos"] = "Sharing with everyone";
+$lang["1000_videos_description"] = "So many already?";
+$lang["5000_videos"] = "Passionate";
+$lang["5000_videos_description"] = "You're unstoppable.";
 ?>

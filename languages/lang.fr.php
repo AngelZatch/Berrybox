@@ -238,4 +238,15 @@ $lang["submit_playlist_link"] = "Un lien pour une liste de lecture a été trouv
 
 $lang["tip_button"] = "Un peu de support ? :D";
 
+/** BADGES **/
+$lang["locked"] = "Verrouillé";
+$lang["50_videos"] = "Désir de partage";
+$lang["50_videos_description"] = "Et encore beaucoup d'autres à venir.";
+$lang["200_videos"] = "Partageur frénétique";
+$lang["200_videos_description"] = "La machine est en route.";
+$lang["1000_videos"] = "Partageur acharné";
+$lang["1000_videos_description"] = "Déjà autant ?";
+$lang["5000_videos"] = "Passionné";
+$lang["5000_videos_description"] = "Vous êtes inarrêtable.";
+
 ?>

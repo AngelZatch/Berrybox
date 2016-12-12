@@ -183,7 +183,7 @@ if(isset($_SESSION["token"])){
 						<span class="glyphicon glyphicon-list" title="<?php echo $lang["playlist"];?>"></span> / <span class="glyphicon glyphicon-thumbs-up" title="<?php echo $lang["playlist"];?>"></span>
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 toggle-user-list button-glyph">
-						<span class="glyphicon glyphicon-user" title="<?php echo $lang["watch_count"];?>"></span><span id="watch-count"></span>
+						<span class="glyphicon glyphicon-user" title="<?php echo $lang["watch_count"];?>"></span><span id="watch-count"> 0</span>
 					</div>
 					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 toggle-options-list button-glyph">
 						<span class="glyphicon glyphicon-cog" title="<?php echo $lang["box_settings"];?>"></span>
@@ -193,7 +193,7 @@ if(isset($_SESSION["token"])){
 						<span class="glyphicon glyphicon-list" title="<?php echo $lang["playlist"];?>"></span>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 toggle-user-list button-glyph">
-						<span class="glyphicon glyphicon-user" title="<?php echo $lang["watch_count"];?>"></span><span id="watch-count"></span>
+						<span class="glyphicon glyphicon-user" title="<?php echo $lang["watch_count"];?>"></span><span id="watch-count"> 0</span>
 					</div>
 					<?php } ?>
 				</div>
@@ -233,7 +233,14 @@ if(isset($_SESSION["token"])){
 	<div class="col-lg-2 col-sm-2 col-xs-12 full-panel" id="user-list">
 		<div class="panel panel-default panel-room panel-list">
 			<div class="panel-heading"><span class="glyphicon glyphicon-user"></span><span id="watch-count"></span> <?php echo $lang["watch_count"];?></div>
-			<div class="panel-body full-panel-body" id="body-user-list"></div>
+			<div class="panel-body full-panel-body" id="body-user-list">
+				<p class="list-rank" id="rank-2"><?php echo $lang["ul_admin"];?> <img src="assets/berrybox-creator-logo.png" alt="" class="chat-icon"></p>
+				<div class="rank-container" id="rank-2-container"></div>
+				<p class="list-rank" id="rank-3"><?php echo $lang["ul_mods"];?> <img src="assets/berrybox-moderator-logo.png" alt="" class="chat-icon"></p>
+				<div class="rank-container" id="rank-3-container"></div>
+				<p class="list-rank" id="rank-1"><?php echo $lang["ul_users"];?></p>
+				<div class="rank-container" id="rank-1-container"></div>
+			</div>
 		</div>
 	</div>
 	<div class="col-lg-3 col-sm-3 col-xs-12 full-panel" id="options-list">
@@ -306,6 +313,7 @@ if(isset($_SESSION["token"])){
 		</div>
 	</div>
 	<?php include "scripts.php";?>
+	<script src="assets/js/autobahn.min.js"></script>
 	<script src="assets/js/box.min.js"></script>
 	<script src="assets/js/chat.min.js"></script>
 	<script src="assets/js/mood.js"></script>
