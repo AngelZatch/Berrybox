@@ -63,6 +63,7 @@ if(isset($_SESSION["token"])){
 		<link rel="stylesheet" href="assets/css/croppie.css">
 		<?php include "scripts.php";?>
 		<script src="assets/js/croppie.min.js"></script>
+		<script src="assets/js/badges.min.js"></script>
 	</head>
 	<body>
 		<?php include "nav.php";?>
@@ -156,6 +157,10 @@ if(isset($_SESSION["token"])){
 					</div>
 					<?php } ?>
 				</div>
+				<div class="user-badges col-xs-12">
+					<legend>Badges</legend>
+					<div class="container-fluid badges-container"></div>
+				</div>
 			</div>
 		</div>
 		<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog">
@@ -248,6 +253,12 @@ if(isset($_SESSION["token"])){
 						$('#imagebase64').val(resp);
 						$('#form').submit();
 					});
+				});
+
+				var target_user_token = /\/([\w]+)$/g.exec(top.location.pathname)[1];
+				/** Load badges **/
+				$.when(fetchBadges(target_user_token)).done(function(badges){
+					$(".badges-container").append(renderBadges(badges));
 				});
 			}).on('mouseenter', '#user-page-unfollow', function(){
 				var text = "<span class='glyphicon glyphicon-minus'></span> <?php echo $lang['unfollow'];?>";
