@@ -9,8 +9,12 @@ $time = date('Y-m-d H:i:s', time() - 15);
 
 $stmt = $db->query("SELECT * FROM roomUsers_$box_token ru
 						JOIN user u ON ru.room_user_token = u.user_token
-						WHERE presence_stamp > '$time'
-						ORDER BY room_user_state DESC");
+						ORDER BY
+							CASE room_user_state
+								WHEN 2 THEN 1
+								WHEN 3 THEN 2
+								WHEN 1 THEN 3
+							END");
 $users = array();
 while($user = $stmt->fetch(PDO::FETCH_ASSOC)){
 	$u = array(

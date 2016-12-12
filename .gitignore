@@ -12,9 +12,11 @@ assets/css/common.css
 assets/js/tools.js
 assets/js/box.js
 assets/js/chat.js
+assets/js/badges.js
 .brackets.json
 db_modifs.txt
 .htaccess
+vendor
 
 ## Beta code
 generate_keys.php

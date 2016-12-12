@@ -1,0 +1,11 @@
+{
+	"autoload":{
+		"psr-0": {
+			"Berrybox": "src"
+		}
+	},
+	"require":{
+		"cboden/ratchet": "v0.3.*",
+		"react/zmq": "0.2.*|0.3.*"
+	}
+}
