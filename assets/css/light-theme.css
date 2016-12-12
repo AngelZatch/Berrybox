@@ -120,4 +120,8 @@ li.vote-singleton {
   li.vote-singleton:first-child {
     border-top: 1px solid rgba(0, 0, 0, 0.2); }
 
+/* line 108, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.sm-type-play {
+  color: black; }
+
 /*# sourceMappingURL=light-theme.css.map */

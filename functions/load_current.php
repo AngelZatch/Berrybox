@@ -23,7 +23,7 @@ if($load->rowCount() != 0){
 		"submitter" => $loaded["user_pseudo"]
 	);
 	echo json_encode($n);
-} else {
+}/* else {
 	// Loaded the oldest non-played video
 	$load = $db->query("SELECT video_index, room_history_id, history_user, user_pseudo, link, video_name
 						FROM roomHistory_$box_token rh
@@ -54,5 +54,5 @@ if($load->rowCount() != 0){
 								WHERE user_token = '$loaded[history_user]'");
 	}
 	echo json_encode($n);
-}
+}*/
 ?>

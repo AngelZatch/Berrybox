@@ -50,6 +50,21 @@ if($next["link"] != null){
 								SET stat_songs_submitted = stat_songs_submitted + 1
 								WHERE user_token = '$next[history_user]'");
 		$db->query("UPDATE rooms SET room_active = 1, last_active_date = '$time' WHERE box_token = '$box_token'");
+
+		// Pushing to socket
+		$video_data = array(
+			"packet_type" => "sync",
+			"token" => $box_token,
+			"index" => $next["video_index"],
+			"link" => $next["link"],
+			"title" => stripslashes($next["video_name"]),
+			"timestart" => $time,
+			"submitter" => $next["user_pseudo"]
+		);
+		$context = new ZMQContext();
+		$socket = $context->getSocket(ZMQ::SOCKET_PUSH, 'my pusher');
+		$socket->connect("tcp://localhost:5555");
+		$socket->send(json_encode($video_data));
 	}
 	$n = array(
 		"index" => $next["video_index"],
@@ -58,7 +73,5 @@ if($next["link"] != null){
 		"submitter" => $next["user_pseudo"]
 	);
 	echo json_encode($n);
-} else {
-	echo null;
 }
 ?>
