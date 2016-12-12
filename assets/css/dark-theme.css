@@ -93,23 +93,31 @@ body {
   background-color: #292929; }
 
 /* line 85, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
-.room-info {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+.room-info, #heading-chat, .panel-heading {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important; }
+
+/* line 88, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.under-video, #footer-chat {
+  border-top: 1px solid rgba(255, 255, 255, 0.2); }
+
+/* line 91, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.top-box-menu {
+  background-color: #292929; }
 
 @media screen and (min-width: 768px) {
-  /* line 88, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  /* line 94, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
   .top-box-section {
     border-right: 1px solid rgba(255, 255, 255, 0.2); } }
 
 /** LIKES **/
-/* line 93, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 99, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 li.vote-singleton {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
-  /* line 95, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  /* line 101, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
   li.vote-singleton:first-child {
     border-top: 1px solid rgba(255, 255, 255, 0.2); }
 
-/* line 98, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 104, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .sm-type-play {
   color: white; }
 
