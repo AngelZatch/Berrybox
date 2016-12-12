@@ -66,7 +66,7 @@ if(isset($_SESSION["token"])){
 		<div class="col-sm-8 col-lg-9" id="room-player">
 			<div class="room-info container-fluid">
 				<div class="col-xs-1 top-box-menu top-box-section hidden-xs">
-					<a href="home" class="glyphicon glyphicon-chevron-left button-glyph box-to-home" title="<?php echo $lang["home"];?>"></a>
+					<a href="home" class="box-to-home" title="<?php echo $lang["home"];?>"><img src="assets/berrybox-logo.png" alt="" class="img-responsive"></a>
 				</div>
 				<div class="col-xs-12 col-sm-5 top-box-section">
 					<div class="col-xs-3 col-lg-2 top-box-picture hidden-xs hidden-sm">
@@ -86,8 +86,8 @@ if(isset($_SESSION["token"])){
 				</div>
 				<div class="col-xs-5 col-sm-6 top-box-infos hidden-xs">
 					<!--<div class="col-xs-6 col-sm-3 col-lg-2">
-						<span class="glyphicon glyphicon-film"></span>
-					</div>-->
+<span class="glyphicon glyphicon-film"></span>
+</div>-->
 					<div class="col-xs-12">
 						<p id="box-playing" class="room-undertitle">
 							<span class="glyphicon glyphicon-play" title="<?php echo $lang["now_playing"];?>"></span> <span class="currently-name"></span>
@@ -100,74 +100,60 @@ if(isset($_SESSION["token"])){
 			</div>
 			<div id="currently-playing">
 				<div class="modal-body" id="player"></div>
-				<div class="container-fluid under-video">
-					<?php if(isset($_SESSION["token"])){ ?>
-					<div class="add-link col-xs-8 col-sm-4">
-						<div class="input-group">
-							<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
-							<span class="input-group-btn">
-								<button class="btn btn-primary play-url"><span class="glyphicon glyphicon-circle-arrow-right resize-lg"></span> <span class="hidden-xs hidden-sm hidden-md"><?php echo $lang["submit_link"];?></span></button>
-							</span>
-						</div>
-						<p class="submit-warning"></p>
+			</div>
+			<div class="container-fluid under-video">
+				<?php if(isset($_SESSION["token"])){ ?>
+				<div class="add-link col-xs-8 col-sm-4">
+					<div class="input-group">
+						<input type="text" placeholder="<?php echo $lang["youtube_message"];?>" class="form-control url-box">
+						<span class="input-group-btn">
+							<button class="btn btn-primary play-url"><span class="glyphicon glyphicon-circle-arrow-right resize-lg"></span> <span class="hidden-xs hidden-sm hidden-md"><?php echo $lang["submit_link"];?></span></button>
+						</span>
 					</div>
-					<?php } ?>
-					<div class="room-quick-messages col-xs-4 col-sm-2 col-md-3 col-lg-3">
-						<span class="sync-message"></span>
-						<span class="submission-message"></span>
-						<span class="play-message"></span>
-						<span class="protection-message"></span>
-					</div>
-					<?php if(isset($_SESSION["token"])){ ?>
-					<!--<div class="col-xs-12 col-sm-5 mood-compact"><span class="glyphicon glyphicon-thumbs-up glyphicon-moods"></span></div>-->
-					<div class="col-xs-12 col-sm-5 mood-selectors">
-						<div class="col-xs-2 emotion-container" id="emotion-like-container" data-mood="1">
-							<p class="emotion-glyph emotion-like button-glyph" id="emotion-like" title="<?php echo $lang["like"];?>">
-								<span class="glyphicon glyphicon-thumbs-up"></span> <span class="mood-count" id="like-count"></span>
-							</p>
-						</div>
-						<div class="col-xs-2 emotion-container" id="emotion-cry-container" data-mood="2">
-							<p class="emotion-glyph emotion-cry button-glyph" id="emotion-cry" title="<?php echo $lang["cry"];?>">
-								<span class="glyphicon glyphicon-tint"></span> <span class="mood-count" id="cry-count"></span>
-							</p>
-						</div>
-						<div class="col-xs-2 emotion-container" id="emotion-love-container" data-mood="3">
-							<p class="emotion-glyph emotion-love button-glyph" id="emotion-love" title="<?php echo $lang["love"];?>">
-								<span class="glyphicon glyphicon-heart"></span> <span class="mood-count" id="love-count"></span>
-							</p>
-						</div>
-						<div class="col-xs-2 emotion-container" id="emotion-energy-container" data-mood="4">
-							<p class="emotion-glyph emotion-energy button-glyph" id="emotion-energy" title="<?php echo $lang["energy"];?>">
-								<span class="glyphicon glyphicon-eye-open"></span> <span class="mood-count" id="energy-count"></span>
-							</p>
-						</div>
-						<div class="col-xs-2 emotion-container" id="emotion-calm-container" data-mood="5">
-							<p class="emotion-glyph emotion-calm button-glyph" id="emotion-calm" title="<?php echo $lang["calm"];?>">
-								<span class="glyphicon glyphicon-bed"></span> <span class="mood-count" id="calm-count"></span>
-							</p>
-						</div>
-						<div class="col-xs-2 emotion-container" id="emotion-fear-container" data-mood="6">
-							<p class="emotion-glyph emotion-fear button-glyph" id="emotion-fear" title="<?php echo $lang["fear"];?>">
-								<span class="glyphicon glyphicon-flash"></span> <span class="mood-count" id="fear-count"></span>
-							</p>
-						</div>
-					</div>
-					<?php } else { ?>
-					<div class="col-xs-12">
-						<div id="no-credentials">
-							<p><?php echo $lang["no_credentials"];?></p>
-							<form method="post" action="portal">
-								<input type="hidden" name="box-token" value="<?php echo $box_token;?>">
-								<input type="submit" class="btn btn-primary" value="<?php echo $lang["log_in"];?>">
-							</form>
-							<form method="post" action="signup">
-								<input type="hidden" name="box-token" value="<?php echo $box_token;?>">
-								<input type="submit" class="btn btn-primary" value="<?php echo $lang["sign_up"];?>">
-							</form>
-						</div>
-					</div>
-					<?php } ?>
+					<p class="submit-warning"></p>
 				</div>
+				<?php } ?>
+				<div class="room-quick-messages col-xs-4 col-sm-2 col-md-3 col-lg-3">
+					<span class="sync-message"></span>
+					<span class="submission-message"></span>
+					<span class="play-message"></span>
+					<span class="protection-message"></span>
+				</div>
+				<?php if(isset($_SESSION["token"])){ ?>
+				<!--<div class="col-xs-12 col-sm-5 mood-compact"><span class="glyphicon glyphicon-thumbs-up glyphicon-moods"></span></div>-->
+				<div class="col-xs-12 col-sm-5 mood-selectors">
+					<div class="col-xs-2 emotion-container" id="emotion-like-container" data-mood="1">
+						<p class="emotion-glyph emotion-like button-glyph" id="emotion-like" title="<?php echo $lang["like"];?>">
+							<span class="glyphicon glyphicon-thumbs-up"></span> <span class="mood-count" id="like-count"></span>
+						</p>
+					</div>
+					<div class="col-xs-2 emotion-container" id="emotion-cry-container" data-mood="2">
+						<p class="emotion-glyph emotion-cry button-glyph" id="emotion-cry" title="<?php echo $lang["cry"];?>">
+							<span class="glyphicon glyphicon-tint"></span> <span class="mood-count" id="cry-count"></span>
+						</p>
+					</div>
+					<div class="col-xs-2 emotion-container" id="emotion-love-container" data-mood="3">
+						<p class="emotion-glyph emotion-love button-glyph" id="emotion-love" title="<?php echo $lang["love"];?>">
+							<span class="glyphicon glyphicon-heart"></span> <span class="mood-count" id="love-count"></span>
+						</p>
+					</div>
+					<div class="col-xs-2 emotion-container" id="emotion-energy-container" data-mood="4">
+						<p class="emotion-glyph emotion-energy button-glyph" id="emotion-energy" title="<?php echo $lang["energy"];?>">
+							<span class="glyphicon glyphicon-eye-open"></span> <span class="mood-count" id="energy-count"></span>
+						</p>
+					</div>
+					<div class="col-xs-2 emotion-container" id="emotion-calm-container" data-mood="5">
+						<p class="emotion-glyph emotion-calm button-glyph" id="emotion-calm" title="<?php echo $lang["calm"];?>">
+							<span class="glyphicon glyphicon-bed"></span> <span class="mood-count" id="calm-count"></span>
+						</p>
+					</div>
+					<div class="col-xs-2 emotion-container" id="emotion-fear-container" data-mood="6">
+						<p class="emotion-glyph emotion-fear button-glyph" id="emotion-fear" title="<?php echo $lang["fear"];?>">
+							<span class="glyphicon glyphicon-flash"></span> <span class="mood-count" id="fear-count"></span>
+						</p>
+					</div>
+				</div>
+				<?php } ?>
 			</div>
 		</div>
 		</div>
@@ -199,292 +185,305 @@ if(isset($_SESSION["token"])){
 				</div>
 			</div>
 			<div class="panel-body" id="body-chat"></div>
+			<?php if(isset($_SESSION["token"])){ ?>
 			<div class="panel-footer" id="footer-chat">
-				<?php if(isset($_SESSION["token"])){ ?>
 				<input type="text" class="form-control chatbox" placeholder="<?php echo $lang["chat_placeholder"];?>">
-				<?php } ?>
+			</div>
+			<?php } else { ?>
+			<div class="panel-footer no-credentials" id="footer-chat">
+				<legend class="box-legend"><?php echo $lang["no_credentials"];?></legend>
+				<form method="post" action="portal">
+					<input type="hidden" name="box-token" value="<?php echo $box_token;?>">
+					<input type="submit" class="btn btn-primary btn-inverted" value="<?php echo $lang["log_in"];?>">
+				</form>
+				<form method="post" action="signup">
+					<input type="hidden" name="box-token" value="<?php echo $box_token;?>">
+					<input type="submit" class="btn btn-primary btn-inverted" value="<?php echo $lang["sign_up"];?>">
+				</form>
 			</div>
 		</div>
+		<?php } ?>
 	</div>
-	<div class="col-lg-3 col-sm-3 col-xs-12 full-panel" id="song-list">
-		<div class="panel panel-default panel-room panel-list">
-			<div class="panel-heading"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></div>
-			<ul class="nav nav-tabs nav-justified nav-playlist">
-				<li role="presentation" class="active"><a href="#tab-pane-playlist" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></a></li>
-				<li role="presentation"><a href="#tab-pane-likes" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo $lang["profile_likes"];?></a></li>
-			</ul>
-			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="tab-pane-playlist">
-					<div class="panel-body panel-section">
-						<input type="text" class="form-control" id="playlist-filter" placeholder="<?php echo $lang["playlist_filter"];?>">
-					</div>
-					<div class="panel-body playlist-actions"></div>
-					<div class="panel-body full-panel-body" id="body-song-list"></div>
+	</div>
+<div class="col-lg-3 col-sm-3 col-xs-12 full-panel" id="song-list">
+	<div class="panel panel-default panel-room panel-list">
+		<div class="panel-heading"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></div>
+		<ul class="nav nav-tabs nav-justified nav-playlist">
+			<li role="presentation" class="active"><a href="#tab-pane-playlist" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></a></li>
+			<li role="presentation"><a href="#tab-pane-likes" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo $lang["profile_likes"];?></a></li>
+		</ul>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="tab-pane-playlist">
+				<div class="panel-body panel-section">
+					<input type="text" class="form-control" id="playlist-filter" placeholder="<?php echo $lang["playlist_filter"];?>">
 				</div>
-				<div role="tabpanel" class="tab-pane" id="tab-pane-likes">
-					<div class="panel-body panel-section">
-						<input type="text" class="form-control" id="likes-filter" placeholder="<?php echo $lang["playlist_likes"];?>">
-					</div>
-					<div class="panel-body full-panel-body" id="body-song-likes"></div>
+				<div class="panel-body playlist-actions"></div>
+				<div class="panel-body full-panel-body" id="body-song-list"></div>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="tab-pane-likes">
+				<div class="panel-body panel-section">
+					<input type="text" class="form-control" id="likes-filter" placeholder="<?php echo $lang["playlist_likes"];?>">
 				</div>
+				<div class="panel-body full-panel-body" id="body-song-likes"></div>
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-2 col-sm-2 col-xs-12 full-panel" id="user-list">
-		<div class="panel panel-default panel-room panel-list">
-			<div class="panel-heading"><span class="glyphicon glyphicon-user"></span><span id="watch-count"></span> <?php echo $lang["watch_count"];?></div>
-			<div class="panel-body full-panel-body" id="body-user-list">
-				<p class="list-rank" id="rank-2"><?php echo $lang["ul_admin"];?> <img src="assets/berrybox-creator-logo.png" alt="" class="chat-icon"></p>
-				<div class="rank-container" id="rank-2-container"></div>
-				<p class="list-rank" id="rank-3"><?php echo $lang["ul_mods"];?> <img src="assets/berrybox-moderator-logo.png" alt="" class="chat-icon"></p>
-				<div class="rank-container" id="rank-3-container"></div>
-				<p class="list-rank" id="rank-1"><?php echo $lang["ul_users"];?></p>
-				<div class="rank-container" id="rank-1-container"></div>
-			</div>
+</div>
+<div class="col-lg-2 col-sm-2 col-xs-12 full-panel" id="user-list">
+	<div class="panel panel-default panel-room panel-list">
+		<div class="panel-heading"><span class="glyphicon glyphicon-user"></span><span id="watch-count"></span> <?php echo $lang["watch_count"];?></div>
+		<div class="panel-body full-panel-body" id="body-user-list">
+			<p class="list-rank" id="rank-2"><?php echo $lang["ul_admin"];?> <img src="assets/berrybox-creator-logo.png" alt="" class="chat-icon"></p>
+			<div class="rank-container" id="rank-2-container"></div>
+			<p class="list-rank" id="rank-3"><?php echo $lang["ul_mods"];?> <img src="assets/berrybox-moderator-logo.png" alt="" class="chat-icon"></p>
+			<div class="rank-container" id="rank-3-container"></div>
+			<p class="list-rank" id="rank-1"><?php echo $lang["ul_users"];?></p>
+			<div class="rank-container" id="rank-1-container"></div>
 		</div>
 	</div>
-	<div class="col-lg-3 col-sm-3 col-xs-12 full-panel" id="options-list">
-		<div class="panel panel-default panel-room panel-list">
-			<div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["box_settings"];?></div>
-			<div class="panel-body" id="body-options-list">
-				<?php if(isset($_SESSION["token"])){ ?>
-				<div class="user-options">
-					<p class="options-title">User options</p>
-					<div class="room-option">
-						<div class="option-title"><?php echo $lang["color_pick"];?></div>
-						<span class="tip"><?php echo $lang["color_tip"];?></span><br>
-						<div id="colors">
-							<?php while($color = $colorList->fetch(PDO::FETCH_ASSOC)){
+</div>
+<div class="col-lg-3 col-sm-3 col-xs-12 full-panel" id="options-list">
+	<div class="panel panel-default panel-room panel-list">
+		<div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["box_settings"];?></div>
+		<div class="panel-body" id="body-options-list">
+			<?php if(isset($_SESSION["token"])){ ?>
+			<div class="user-options">
+				<p class="options-title">User options</p>
+				<div class="room-option">
+					<div class="option-title"><?php echo $lang["color_pick"];?></div>
+					<span class="tip"><?php echo $lang["color_tip"];?></span><br>
+					<div id="colors">
+						<?php while($color = $colorList->fetch(PDO::FETCH_ASSOC)){
 	$colorValue = $color["color_value"];
 	if(strcasecmp($colorValue,$userDetails["up_color"]) == 0){?>
-							<div class="color-cube cube-selected" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
-							<?php } else { ?>
-							<div class="color-cube" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
-							<?php } }?>
-						</div>
-					</div>
-					<div class="room-option">
-						<div class="option-title"><?php echo $lang["user_theme"];?>
-							<span style="float:right;">
-								<input type="checkbox" class="user-option-toggle" name="toggle-theme" <?php echo($userDetails["up_theme"]=='0')?'checked':'unchecked';?>>
-							</span>
-						</div>
-						<span class="tip"><?php echo $lang["theme_tip"];?></span>
+						<div class="color-cube cube-selected" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
+						<?php } else { ?>
+						<div class="color-cube" id="color-<?php echo $colorValue;?>" style="background-color:#<?php echo $colorValue;?>"></div>
+						<?php } }?>
 					</div>
 				</div>
-				<?php } ?>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-2 col-sm-2 col-xs-12 full-panel" id="menu-list">
-		<div class="panel panel-default panel-room panel-list">
-			<div class="panel-heading"><span class="glyphicon glyphicon-dashboard" title=""></span> <?php echo $lang["menu"];?></div>
-			<div class="panel-body" style="height: 82vh;">
-				<?php if(isset($_SESSION["username"])){ ?>
-				<div class="connected-user">
-					<div class="menu-pp">
-						<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit">
+				<div class="room-option">
+					<div class="option-title"><?php echo $lang["user_theme"];?>
+						<span style="float:right;">
+							<input type="checkbox" class="user-option-toggle" name="toggle-theme" <?php echo($userDetails["up_theme"]=='0')?'checked':'unchecked';?>>
+						</span>
 					</div>
-					<p id="user-name"><?php echo $userDetails["user_pseudo"];?></p>
-				</div>
-				<form action="search" method="post" target="_blank" role="search">
-					<div class="input-group">
-						<span class="input-group-addon addon-search"><span class="glyphicon glyphicon-search"></span></span>
-						<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
-					</div>
-				</form>
-				<div class="menu-options row">
-					<ul class="nav nav-pills nav-stacked">
-						<li><a href="profile/settings" target="_blank"><span class="glyphicon glyphicon-cog col-lg-2"></span> <?php echo $lang["my_settings"];?></a></li>
-						<li><a href="user/<?php echo $userDetails['user_pseudo'];?>" target="_blank"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
-						<li><a href="follow" target="_blank"><span class="glyphicon glyphicon-heart col-lg-2"></span> <?php echo $lang["following"];?></a></li>
-						<li><a href="my/likes" target="_blank"><span class="glyphicon glyphicon-thumbs-up col-lg-2"></span> <?php echo $lang["profile_likes"];?></a></li>
-						<li><a href="profile/history" target="_blank"><span class="glyphicon glyphicon-th-large col-lg-2"></span> <?php echo $lang["profile_history"];?></a></li>
-					</ul>
-				</div>
-				<?php } ?>
-			</div>
-			<div class="panel-footer no-border">
-				<a href="https://www.paypal.me/angelzatch" target="_blank" class="btn btn-primary btn-block"><span><img src="assets/paypal.png" alt="" style="height:15px"></span> <?php echo $lang["tip_button"];?></a>
-				<div class="menu-logo">
-					<img src="assets/berrybox-logo-grey.png" alt="">
+					<span class="tip"><?php echo $lang["theme_tip"];?></span>
 				</div>
 			</div>
-		</div>
-	</div>
-	<?php include "scripts.php";?>
-	<script src="assets/js/autobahn.min.js"></script>
-	<script src="assets/js/chat.min.js"></script>
-	<script src="assets/js/box.min.js"></script>
-	<script src="assets/js/mood.js"></script>
-	<script>
-		<?php if(isset($_SESSION["token"])){ ?>
-		window.user_token = <?php echo json_encode($_SESSION["token"]);?>;
-		window.user_name = <?php echo json_encode($_SESSION["username"]);?>
-			<?php } else { ?>
-			window.user_token = -1;
-		<?php } ?>
-
-		var done = false;
-		$(document).ready(function(){
-			/** THINGS TO DO IF THE USER IS LOOGED **/
-			<?php if(isset($_SESSION["token"])){ ?>
-			$(":regex(name,toggle-theme)").bootstrapSwitch({
-				size: 'small',
-				onText: '<?php echo $lang["light"];?>',
-				offText: '<?php echo $lang["dark"];?>',
-				onColor: 'light',
-				offColor: 'dark',
-				onSwitchChange: function(){
-					var state = "<?php echo $userDetails["up_theme"];?>";
-					$.post("functions/toggle_theme.php", {user_token : user_token, state : state}).done(function(data){
-						location.reload();
-					})
-				}
-			});
 			<?php } ?>
-		});
+		</div>
+	</div>
+</div>
+<div class="col-lg-2 col-sm-2 col-xs-12 full-panel" id="menu-list">
+	<div class="panel panel-default panel-room panel-list">
+		<div class="panel-heading"><span class="glyphicon glyphicon-dashboard" title=""></span> <?php echo $lang["menu"];?></div>
+		<div class="panel-body" style="height: 77.9vh;">
+			<?php if(isset($_SESSION["username"])){ ?>
+			<div class="connected-user">
+				<div class="menu-pp">
+					<img src="<?php echo $ppAdresss;?>" alt="" style="width:inherit">
+				</div>
+				<p id="user-name"><?php echo $userDetails["user_pseudo"];?></p>
+			</div>
+			<form action="search" method="post" target="_blank" role="search">
+				<div class="input-group">
+					<span class="input-group-addon addon-search"><span class="glyphicon glyphicon-search"></span></span>
+					<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
+				</div>
+			</form>
+			<div class="menu-options row">
+				<ul class="nav nav-pills nav-stacked">
+					<li><a href="profile/settings" target="_blank"><span class="glyphicon glyphicon-cog col-lg-2"></span> <?php echo $lang["my_settings"];?></a></li>
+					<li><a href="user/<?php echo $userDetails['user_pseudo'];?>" target="_blank"><span class="glyphicon glyphicon-user col-lg-2"></span> <?php echo $lang["my_profile"];?></a></li>
+					<li><a href="follow" target="_blank"><span class="glyphicon glyphicon-heart col-lg-2"></span> <?php echo $lang["following"];?></a></li>
+					<li><a href="my/likes" target="_blank"><span class="glyphicon glyphicon-thumbs-up col-lg-2"></span> <?php echo $lang["profile_likes"];?></a></li>
+					<li><a href="profile/history" target="_blank"><span class="glyphicon glyphicon-th-large col-lg-2"></span> <?php echo $lang["profile_history"];?></a></li>
+				</ul>
+			</div>
+			<?php } ?>
+		</div>
+		<div class="panel-footer no-border">
+			<a href="https://www.paypal.me/angelzatch" target="_blank" class="btn btn-primary btn-block"><span><img src="assets/paypal.png" alt="" style="height:15px"></span> <?php echo $lang["tip_button"];?></a>
+			<div class="menu-logo">
+				<img src="assets/berrybox-logo-grey.png" alt="">
+			</div>
+		</div>
+	</div>
+</div>
+<?php include "scripts.php";?>
+<script src="assets/js/autobahn.min.js"></script>
+<script src="assets/js/chat.min.js"></script>
+<script src="assets/js/box.min.js"></script>
+<script src="assets/js/mood.js"></script>
+<script>
+	<?php if(isset($_SESSION["token"])){ ?>
+	window.user_token = <?php echo json_encode($_SESSION["token"]);?>;
+	window.user_name = <?php echo json_encode($_SESSION["username"]);?>
+		<?php } else { ?>
+		window.user_token = -1;
+	<?php } ?>
 
-		/** THING TO DO ON DOCUMENT FOR EVERYONE **/
-		$(document).on('click', '.author-linkback', function(){
-			var user = $(this).text();
-			var currentLine = $(this).parents("p");
-			$(".user-card").remove();
-			$.post("functions/fetch_user_card.php", {user : user}).done(function(data){
-				var details = JSON.parse(data);
-				var userCard = "<div class='user-card'>";
-				userCard += "<div class='user-card-info'>";
-				userCard += "<div class='medium-pp'>";
-				userCard += "<img src='"+details.user_pp+"' alt='' style='width:inherit'>";
-				userCard += "</div>";
-				userCard += "<p id='user-card-name'><a href='user/"+details.user_pseudo+"' target='_blank'>"+details.user_pseudo+"</a><span class='glyphicon glyphicon-remove button-glyph' id='user-card-close'></span></p>";
-				userCard += "<div class='container-fluid user-card-stats'>";
-				userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-heart' title='<?php echo $lang["total_followers"];?>'></span> "+details.followers+"</div>";
-				userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-eye-open' title='<?php echo $lang["total_views"];?>'></span> "+details.visitors+"</div>";
-				userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-plus' title='<?php echo $lang["rooms_created"];?>'></span> "+details.rooms+"</div>";
-				userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-music' title='<?php echo $lang["songs_submitted"];?>'></span> "+details.songs+"</div>";
-				userCard += "</div>"; // user-card-stats
-				userCard += "</div>"; // user-card-info
-				<?php if(isset($_SESSION["username"])){ ?>
-				if(details.user_pseudo != '<?php echo $userDetails["user_pseudo"];?>'){
-					userCard += "<div class='user-card-actions'>";
-					userCard += "<button class='btn btn-primary whisper-action'><?php echo $lang["whisper"];?></button>"; // whisper action
-					if(details.following == 1){
-						userCard += "<button class='btn btn-primary btn-active btn-card btn-unfollow' id='user-card-unfollow' value='"+details.user_pseudo+"'><span class='glyphicon glyphicon-heart'></span></button>";
-					} else {
-						userCard += "<button class='btn btn-primary btn-card btn-follow' id='user-card-follow' value='"+details.user_pseudo+"'><span class='glyphicon glyphicon-heart'></span></button>";
-					} // follow action
-					if(user_power == 2){
-						userCard += "<button class='btn btn-primary transfer-box' data-user='"+details.user_pseudo+"' title='<?php echo $lang["transfer_box"];?>'><span class='glyphicon glyphicon-transfer'></span> Give creatorsihp</button>";
-					}
-					userCard += "</div>"; // user-card-actions
-				}
-				<?php } ?>
-				userCard += "</div>"; //user-card
-				currentLine.after(userCard);
-				$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
-			})
-		})
-		/** FUNCTIONS TO LOAD ONLY IF USER IS LOGGED **/
-		function timeoutUser(targetToken){
-			$.post("functions/time_out.php", {box_token : box_token, targetToken : targetToken}).done(function(data){
-				var adminMessage = "<?php echo $lang["timeout_message_admin_first_part"];?>"+data+"<?php echo $lang["timeout_message_admin_second_part"];?>";
-				sendMessage(box_token, 3, null, adminMessage);
-				sendMessage(box_token, 5, null, "<?php echo $lang["timeout_message_user"];?>", user_token);
-			})
-		}
-		function banUser(targetToken){
-
-		}
-		function promoteUser(targetToken){
-			$.post("functions/promote_user.php", {box_token : box_token, user_token : user_token, targetToken : targetToken}).done(function(data){
-				var message = "{user_promoted}"+data;
-				// System message to everyone to alert the new mod
-				sendMessage(box_token, 4, 1, message);
-				// System message to the new mod only
-				sendMessage(box_token, 5, null, "{you_promoted}", targetToken);
-			})
-		}
-		function demoteUser(targetToken){
-			$.post("functions/demote_user.php", {box_token : box_token, user_tokenToken : user_token, targetToken : targetToken}).done(function(data){
-				var message = "{user_demoted}"+data;
-				// System message to everyone to alert of the demote
-				sendMessage(box_token, 4, 1, message);
-				// System message to the affected user only
-				sendMessage(box_token, 5, null, "{you_demoted}", targetToken);
-			});
-		}
-		function fillInfo(){
-			var name = $(".info-box").val();
-			var id = $(".info-box").attr("id").substr(5);
-			$.post("functions/fill_info.php", {index : id, name : name}).done(function(data){
-				$("#warning-"+id).remove();
-				$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["info_fill_success"];?></p>");
-			})
-		}
-		/** FUNCTION TO LOAD FOR EVERYONE **/
-		function onSecPlayerReady(event){
-			//console.log("inputting playlist iD: "+pID);
-			event.target.cuePlaylist({list: pID});
-		}
-		function onSecPlayerStateChange(event){
-			//console.log("secondary player started : "+event.data);
-			if(event.data == YT.PlayerState.CUED){
-				// We retrieve all the IDs from the playlist
-				//console.log("a playlist has been cued");
-				// Test playlist : https://www.youtube.com/watch?v=DdK5eshlWlg&list=PLDCu51jsfPJexXUm4W89HqRcj8gG569Nm
-				var list = event.target.getPlaylist();
-				var box_token = getBoxToken();
-				$("#body-chat").append("<p class='system-message'> <?php echo $lang["submitting_playlist"];?></p>");
-				$(".url-box").val('');
-				$(".play-url").addClass("disabled");
-				$(".play-url").attr("disabled", "disabled");
-				$(".play-url").text("<?php echo $lang["submitting"];?>");
-
-				var dfd = $.Deferred(),
-					dfdNext = dfd;
-				i = 0,
-					values = [],
-					postVideo = function(box_token, video_id, source){
-					return $.post("functions/post_history.php", {url : video_id, box_token : box_token, source : source});
-				};
-
-				dfd.resolve();
-
-				var codes = [];
-
-				for(var i = 0; i < list.length; i++){
-					values.push(i);
-					dfdNext = dfdNext.then(function(){
-						var value = values.shift();
-						/*console.log("step "+value+" of "+list.length+" : posting ID "+list[value]);*/
-						return postVideo(box_token, list[value], "playlist").done(function(data){
-							/*codes.push(data);*/
-							if(value != list.length - 1){
-								/*console.log("posted "+value+" with code "+data);*/
-							} else {
-								/*console.log(codes);*/
-								if(jQuery.inArray('error', codes) != -1){
-									$("#body-chat").append("<p class='system-message system-warning'>"+language_tokens.playlist_error+"</p>");
-								} else if(jQuery.inArray('info', codes) != -1){
-									$("#body-chat").append("<p class='system-message system-warning'>"+language_tokens.need_info+"</p>");
-								} else {
-									$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> "+language_tokens.playlist_submitted+" ("+list.length+" "+language_tokens.videos+")</p>");
-									$(".play-url").removeClass("disabled");
-									$(".play-url").removeAttr("disabled");
-									$(".play-url").html("<span class='glyphicon glyphicon-circle-arrow-right resize-lg'></span> <?php echo $lang["submit_link"];?>");
-								}
-							}
-						});
-					});
-				}
-				$("#sec-player").remove();
-				event.target.destroy();
+	var done = false;
+	$(document).ready(function(){
+		/** THINGS TO DO IF THE USER IS LOOGED **/
+		<?php if(isset($_SESSION["token"])){ ?>
+		$(":regex(name,toggle-theme)").bootstrapSwitch({
+			size: 'small',
+			onText: '<?php echo $lang["light"];?>',
+			offText: '<?php echo $lang["dark"];?>',
+			onColor: 'light',
+			offColor: 'dark',
+			onSwitchChange: function(){
+				var state = "<?php echo $userDetails["up_theme"];?>";
+				$.post("functions/toggle_theme.php", {user_token : user_token, state : state}).done(function(data){
+					location.reload();
+				})
 			}
+		});
+		<?php } ?>
+	});
+
+	/** THING TO DO ON DOCUMENT FOR EVERYONE **/
+	$(document).on('click', '.author-linkback', function(){
+		var user = $(this).text();
+		var currentLine = $(this).parents("p");
+		$(".user-card").remove();
+		$.post("functions/fetch_user_card.php", {user : user}).done(function(data){
+			var details = JSON.parse(data);
+			var userCard = "<div class='user-card'>";
+			userCard += "<div class='user-card-info'>";
+			userCard += "<div class='medium-pp'>";
+			userCard += "<img src='"+details.user_pp+"' alt='' style='width:inherit'>";
+			userCard += "</div>";
+			userCard += "<p id='user-card-name'><a href='user/"+details.user_pseudo+"' target='_blank'>"+details.user_pseudo+"</a><span class='glyphicon glyphicon-remove button-glyph' id='user-card-close'></span></p>";
+			userCard += "<div class='container-fluid user-card-stats'>";
+			userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-heart' title='<?php echo $lang["total_followers"];?>'></span> "+details.followers+"</div>";
+			userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-eye-open' title='<?php echo $lang["total_views"];?>'></span> "+details.visitors+"</div>";
+			userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-plus' title='<?php echo $lang["rooms_created"];?>'></span> "+details.rooms+"</div>";
+			userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-music' title='<?php echo $lang["songs_submitted"];?>'></span> "+details.songs+"</div>";
+			userCard += "</div>"; // user-card-stats
+			userCard += "</div>"; // user-card-info
+			<?php if(isset($_SESSION["username"])){ ?>
+			if(details.user_pseudo != '<?php echo $userDetails["user_pseudo"];?>'){
+				userCard += "<div class='user-card-actions'>";
+				userCard += "<button class='btn btn-primary whisper-action'><?php echo $lang["whisper"];?></button>"; // whisper action
+				if(details.following == 1){
+					userCard += "<button class='btn btn-primary btn-active btn-card btn-unfollow' id='user-card-unfollow' value='"+details.user_pseudo+"'><span class='glyphicon glyphicon-heart'></span></button>";
+				} else {
+					userCard += "<button class='btn btn-primary btn-card btn-follow' id='user-card-follow' value='"+details.user_pseudo+"'><span class='glyphicon glyphicon-heart'></span></button>";
+				} // follow action
+				if(user_power == 2){
+					userCard += "<button class='btn btn-primary transfer-box' data-user='"+details.user_pseudo+"' title='<?php echo $lang["transfer_box"];?>'><span class='glyphicon glyphicon-transfer'></span> Give creatorsihp</button>";
+				}
+				userCard += "</div>"; // user-card-actions
+			}
+			<?php } ?>
+			userCard += "</div>"; //user-card
+			currentLine.after(userCard);
+			$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
+		})
+	})
+	/** FUNCTIONS TO LOAD ONLY IF USER IS LOGGED **/
+	function timeoutUser(targetToken){
+		$.post("functions/time_out.php", {box_token : box_token, targetToken : targetToken}).done(function(data){
+			var adminMessage = "<?php echo $lang["timeout_message_admin_first_part"];?>"+data+"<?php echo $lang["timeout_message_admin_second_part"];?>";
+			sendMessage(box_token, 3, null, adminMessage);
+			sendMessage(box_token, 5, null, "<?php echo $lang["timeout_message_user"];?>", user_token);
+		})
+	}
+	function banUser(targetToken){
+
+	}
+	function promoteUser(targetToken){
+		$.post("functions/promote_user.php", {box_token : box_token, user_token : user_token, targetToken : targetToken}).done(function(data){
+			var message = "{user_promoted}"+data;
+			// System message to everyone to alert the new mod
+			sendMessage(box_token, 4, 1, message);
+			// System message to the new mod only
+			sendMessage(box_token, 5, null, "{you_promoted}", targetToken);
+		})
+	}
+	function demoteUser(targetToken){
+		$.post("functions/demote_user.php", {box_token : box_token, user_tokenToken : user_token, targetToken : targetToken}).done(function(data){
+			var message = "{user_demoted}"+data;
+			// System message to everyone to alert of the demote
+			sendMessage(box_token, 4, 1, message);
+			// System message to the affected user only
+			sendMessage(box_token, 5, null, "{you_demoted}", targetToken);
+		});
+	}
+	function fillInfo(){
+		var name = $(".info-box").val();
+		var id = $(".info-box").attr("id").substr(5);
+		$.post("functions/fill_info.php", {index : id, name : name}).done(function(data){
+			$("#warning-"+id).remove();
+			$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["info_fill_success"];?></p>");
+		})
+	}
+	/** FUNCTION TO LOAD FOR EVERYONE **/
+	function onSecPlayerReady(event){
+		//console.log("inputting playlist iD: "+pID);
+		event.target.cuePlaylist({list: pID});
+	}
+	function onSecPlayerStateChange(event){
+		//console.log("secondary player started : "+event.data);
+		if(event.data == YT.PlayerState.CUED){
+			// We retrieve all the IDs from the playlist
+			//console.log("a playlist has been cued");
+			// Test playlist : https://www.youtube.com/watch?v=DdK5eshlWlg&list=PLDCu51jsfPJexXUm4W89HqRcj8gG569Nm
+			var list = event.target.getPlaylist();
+			var box_token = getBoxToken();
+			$("#body-chat").append("<p class='system-message'> <?php echo $lang["submitting_playlist"];?></p>");
+			$(".url-box").val('');
+			$(".play-url").addClass("disabled");
+			$(".play-url").attr("disabled", "disabled");
+			$(".play-url").text("<?php echo $lang["submitting"];?>");
+
+			var dfd = $.Deferred(),
+				dfdNext = dfd;
+			i = 0,
+				values = [],
+				postVideo = function(box_token, video_id, source){
+				return $.post("functions/post_history.php", {url : video_id, box_token : box_token, source : source});
+			};
+
+			dfd.resolve();
+
+			var codes = [];
+
+			for(var i = 0; i < list.length; i++){
+				values.push(i);
+				dfdNext = dfdNext.then(function(){
+					var value = values.shift();
+					/*console.log("step "+value+" of "+list.length+" : posting ID "+list[value]);*/
+					return postVideo(box_token, list[value], "playlist").done(function(data){
+						/*codes.push(data);*/
+						if(value != list.length - 1){
+							/*console.log("posted "+value+" with code "+data);*/
+						} else {
+							/*console.log(codes);*/
+							if(jQuery.inArray('error', codes) != -1){
+								$("#body-chat").append("<p class='system-message system-warning'>"+language_tokens.playlist_error+"</p>");
+							} else if(jQuery.inArray('info', codes) != -1){
+								$("#body-chat").append("<p class='system-message system-warning'>"+language_tokens.need_info+"</p>");
+							} else {
+								$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> "+language_tokens.playlist_submitted+" ("+list.length+" "+language_tokens.videos+")</p>");
+								$(".play-url").removeClass("disabled");
+								$(".play-url").removeAttr("disabled");
+								$(".play-url").html("<span class='glyphicon glyphicon-circle-arrow-right resize-lg'></span> <?php echo $lang["submit_link"];?>");
+							}
+						}
+					});
+				});
+			}
+			$("#sec-player").remove();
+			event.target.destroy();
 		}
-		function requestCompletion(code){
-			$("#body-chat").append("<div id='warning-"+code+"'><p class='system-message system-warning'><span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["no_fetch"];?><div class='input-group info-box-group'><input type='text' placeholder='<?php echo $lang["fill_placeholder"];?>' class='form-control info-box' id='info-"+code+"'><span class='input-group-btn'><button class='btn btn-primary send-info'><?php echo $lang["fill_missing"];?></button><button class='btn btn-danger cancel-info' id='cancel-info-"+code+"'>Cancel</button></div></div>");
-		}
-	</script>
-	</body>
+	}
+	function requestCompletion(code){
+		$("#body-chat").append("<div id='warning-"+code+"'><p class='system-message system-warning'><span class='glyphicon glyphicon-question-sign'></span> <?php echo $lang["no_fetch"];?><div class='input-group info-box-group'><input type='text' placeholder='<?php echo $lang["fill_placeholder"];?>' class='form-control info-box' id='info-"+code+"'><span class='input-group-btn'><button class='btn btn-primary send-info'><?php echo $lang["fill_missing"];?></button><button class='btn btn-danger cancel-info' id='cancel-info-"+code+"'>Cancel</button></div></div>");
+	}
+</script>
+</body>
 </html>

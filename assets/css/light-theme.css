@@ -104,23 +104,31 @@ body {
 
 /** FOOTER **/
 /* line 95, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
-.room-info {
+.room-info, #heading-chat, .panel-heading {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
 
+/* line 98, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.under-video, #footer-chat {
+  border-top: 1px solid rgba(0, 0, 0, 0.2); }
+
+/* line 101, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.top-box-menu {
+  background-color: #e6e6e6; }
+
 @media screen and (min-width: 768px) {
-  /* line 98, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+  /* line 104, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
   .top-box-section {
     border-right: 1px solid rgba(0, 0, 0, 0.2); } }
 
 /** LIKES **/
-/* line 103, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 109, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 li.vote-singleton {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
-  /* line 105, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+  /* line 111, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
   li.vote-singleton:first-child {
     border-top: 1px solid rgba(0, 0, 0, 0.2); }
 
-/* line 108, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+/* line 114, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .sm-type-play {
   color: black; }
 
