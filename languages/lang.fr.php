@@ -238,6 +238,17 @@ $lang["submit_playlist_link"] = "Un lien pour une liste de lecture a été trouv
 
 $lang["tip_button"] = "Un peu de support ? :D";
 
+/** FEEDBACK **/
+$lang["submission_all"] = "La soumission de vidéos est désormais accessible à tous les utilisateurs.";
+$lang["submission_mod"] = "La soumission de vidéos a été restreinte aux modérateurs uniquement.";
+$lang["protect_public"] = "Cette box est désormais publique. Son accès est autorisé à tout le monde.";
+$lang["protect_private"] = "Cette box est désormais privée. Son accès est permis seulement par partage du lien.";
+$lang["auto_on"] = "La lecture automatique a été activée.";
+$lang["auto_off"] = "La lecture automatique a été désactivée.";
+$lang["song_ignored"] = "Cette vidéo sera ignorée: ";
+$lang["song_reinstated"] = "Cette video a été remise dans la liste: ";
+$lang["now_playing"] = "Lecture en cours: ";
+
 /** BADGES **/
 $lang["locked"] = "Verrouillé";
 $lang["50_videos"] = "Désir de partage";

@@ -1,7 +1,10 @@
 <?php
-include "db_connect.php";
 session_start();
+include "db_connect.php";
 $db = PDOFactory::getConnection();
+$user_lang = $_SESSION["user_lang"];
+
+require_once "../languages/lang.".$user_lang.".php";
 
 $box_token = $_GET["box_token"];
 
@@ -22,4 +25,14 @@ foreach($numbers as $number){
 	$i++;
 }
 
+$message_data = array(
+	"packet_type" => "notification",
+	"token" => $_SESSION["token"],
+	"notification_type" => "info",
+	"content" => $lang["playlist_shuffled"]
+);
+$context = new ZMQContext();
+$socket = $context->getSocket(ZMQ::SOCKET_PUSH, 'my pusher');
+$socket->connect("tcp://localhost:5555");
+$socket->send(json_encode($message_data));
 ?>

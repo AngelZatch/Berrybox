@@ -12,10 +12,6 @@ $(document).ready(function(){
 		return regex.test(jQuery(elem)[attr.method](attr.property));
 	}
 	menuPopover = false;
-	/*$.when(getUserLang()).done(function(data){
-		window.language_tokens = JSON.parse(data);
-		console.log(data);
-	})*/
 	// When user leaves the room, he has to be removed from the box
 	if(/(\/follow)/.exec(top.location.pathname) !== null || /(\/create)/.exec(top.location.pathname) !== null){
 		document.title = $("legend").text()+" | Berrybox";
@@ -89,3 +85,31 @@ function resizeElements(){
 	console.log(chat_pos, heading_chat_height, footer_chat_height);
 	$("#body-chat").outerHeight(body_chat_height);
 }
+
+$.notify.addStyle('berrybox', {
+	html: "<div><span data-notify-text/></div>",
+	classes: {
+		base: {
+			"border-right": "5px solid",
+			"box-shadow": "0px 2px 10px black",
+			"background-color": "#101010",
+			"font-size": "1.1em",
+			"font-style": "italic",
+			"font-weight": "600",
+			"padding": "15px",
+			"width": "300px"
+		},
+		success : {
+			"border-color": "#87CE77"
+		},
+		warning: {
+			"border-color": "#F0AD4E"
+		},
+		error: {
+			"border-color": "#D9534F"
+		},
+		info: {
+			"border-color": "#D08AC3"
+		}
+	}
+})

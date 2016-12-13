@@ -237,6 +237,17 @@ $lang["submit_playlist_link"] = "A playlist link has been found";
 
 $lang["tip_button"] = "Do you enjoy? Show some love! ^_^";
 
+/** FEEDBACK **/
+$lang["submission_all"] = "The submission of videos is now available for everyone.";
+$lang["submission_mod"] = "The submission of videos has been restricted to the moderators only";
+$lang["protect_public"] = "This box is now public. Everyone can access it.";
+$lang["protect_private"] = "This box is now private. It can still be accessed by sharing its link.";
+$lang["auto_on"] = "Autoplay has been enabled.";
+$lang["auto_off"] = "Autoplay has been disabled.";
+$lang["song_ignored"] = "This video will be ignored: ";
+$lang["song_reinstated"] = "This video has been reinstated: ";
+$lang["now_playing"] = "Now playing: ";
+
 /** BADGES **/
 $lang["locked"] = "Locked";
 $lang["50_videos"] = "Will to share";
