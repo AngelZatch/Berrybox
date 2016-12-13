@@ -445,7 +445,7 @@ if(isset($_SESSION["token"])){
 			i = 0,
 				values = [],
 				postVideo = function(box_token, video_id, source){
-				return $.post("functions/post_history.php", {url : video_id, box_token : box_token, source : source});
+				return $.post("functions/post_history.php", {url : video_id, box_token : box_token, source : source, playlist : true});
 			};
 
 			dfd.resolve();
@@ -464,15 +464,31 @@ if(isset($_SESSION["token"])){
 						} else {
 							/*console.log(codes);*/
 							if(jQuery.inArray('error', codes) != -1){
-								$("#body-chat").append("<p class='system-message system-warning'>"+language_tokens.playlist_error+"</p>");
+								var message_data = {
+									packet_type : "notification",
+									token : window.user_token,
+									notification_type : "error",
+									content : language_tokens.playlist_error
+								};
 							} else if(jQuery.inArray('info', codes) != -1){
-								$("#body-chat").append("<p class='system-message system-warning'>"+language_tokens.need_info+"</p>");
+								var message_data = {
+									packet_type : "notification",
+									token : window.user_token,
+									notification_type : "warning",
+									content : language_tokens.need_info
+								};
 							} else {
-								$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> "+language_tokens.playlist_submitted+" ("+list.length+" "+language_tokens.videos+")</p>");
+								var message_data = {
+									packet_type : "notification",
+									token : window.user_token,
+									notification_type : "success",
+									content : language_tokens.playlist_submitted+" ("+list.length+" "+language_tokens.videos+")"
+								}
 								$(".play-url").removeClass("disabled");
 								$(".play-url").removeAttr("disabled");
 								$(".play-url").html("<span class='glyphicon glyphicon-circle-arrow-right resize-lg'></span> <?php echo $lang["submit_link"];?>");
 							}
+							conn.publish(window.user_token, message_data);
 						}
 					});
 				});

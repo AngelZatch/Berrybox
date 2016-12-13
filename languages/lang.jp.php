@@ -236,4 +236,16 @@ $lang["submit_video_link"] = "ビデオリンクが見出されていました";
 $lang["submit_playlist_link"] = "プレイリストリンクが見出されていました";
 
 $lang["tip_button"] = "サポートしてくれ！";
+
+/** FEEDBACK **/
+$lang["submission_all"] = "ビデオ提出が「みんな」のセッティングにされました。";
+$lang["submission_mod"] = "ビデオ提出が「モデレーターだけ」のセッティングにされました。";
+$lang["protect_public"] = "このボックスの保護レベルが「パブリック」に設定されていました。誰もこのボックスに入ることができるようになる。";
+$lang["protect_private"] = "このボックスの保護レベルが「プライベート」に設定されていました。このボックスが目に見えませんになる。";
+$lang["auto_on"] = "オートプレイがアくティブにされました。";
+$lang["auto_off"] = "オートプレイが無効にされました。";
+$lang["song_ignored"] = "このビデオはスキップされます: ";
+$lang["song_reinstated"] = "このビデオが復元されました:";
+$lang["now_playing"] = "プレイ中: ";
+
 ?>

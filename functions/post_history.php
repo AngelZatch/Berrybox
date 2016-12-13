@@ -3,6 +3,10 @@ session_start();
 require_once "db_connect.php";
 require_once "tools.php";
 $db = PDOFactory::getConnection();
+$user_lang = $_SESSION["user_lang"];
+
+require_once "../languages/lang.".$user_lang.".php";
+
 
 $link = $_POST["url"];
 $time = date_create('now', new datetimezone('UTC'))->format('Y-m-d H:i:s');
@@ -67,16 +71,39 @@ if(strlen($link) == 11){
 	// Update last active date
 	refreshBoxActivity($db, $box_token, $user);
 
-	// If info are not missing, result is 1 (success code). If not, it's the entry of the video in the song base (need for info)
+	// Socket packet
 	if($pending == "0"){
-		echo "ok";
+		$message_data = array(
+			"packet_type" => "notification",
+			"token" => $user,
+			"notification_type" => "success",
+			"content" => $lang["song_submit_success"]
+		);
 	} else {
-		if($source == "playlist")
-			echo 'info';
+		if($source == "playlist"){
+			$message_data = array(
+				"packet_type" => "notification",
+				"token" => $user,
+				"notification_type" => "success",
+				"content" => $lang["need_info"]
+			);
+		}
 		else
 			echo $baseIndex;
 	}
 } else {
-	echo "error"; // Invalid link code
+	$message_data = array(
+		"packet_type" => "notification",
+		"token" => $user,
+		"notification_type" => "success",
+		"content" => $lang["invalid_link"]
+	);
+}
+// Pushing
+if(!isset($_POST["playlist"])){
+	$context = new ZMQContext();
+	$socket = $context->getSocket(ZMQ::SOCKET_PUSH, 'my pusher');
+	$socket->connect("tcp://localhost:5555");
+	$socket->send(json_encode($message_data));
 }
 ?>
