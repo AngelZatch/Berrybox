@@ -152,9 +152,9 @@ function displayMessage(message){
 			if(message.authorGlobalPower == 1){
 				formatted_message += "<span class='chat-icon' title='"+language_tokens.staff+"'><img src='assets/berrybox-staff-logo.png'></span> ";
 			}
-			/*if(message.featured_badge){
-				formatted_message += "<span class='chat-icon' title=''><img src='assets/badges/"+message.featured_badge+".png'></span> ";
-			}*/
+			if(message.featured_badge){
+				formatted_message += "<span class='chat-icon' title='"+language_tokens[message.badge_name]+"'><img src='assets/badges/"+message.featured_badge+".png'></span> ";
+			}
 			formatted_message += "<a style='text-decoration:none'><span class='message-author author-linkback' style='color:#" + message.authorColor + ";'>";
 			formatted_message += message.author;
 			formatted_message += "</span></a>";
@@ -230,9 +230,9 @@ function displayMessage(message){
 				formatted_message += "<p class='whisper'>";
 				// User badge
 				formatted_message += "<span class='message-time'>" + when + "</span> ";
-				/*if(message.featured_badge){
+				if(message.featured_badge){
 					formatted_message += "<span class='chat-icon' title=''><img src='assets/badges/"+message.featured_badge+".png'></span> ";
-				}*/
+				}
 				formatted_message += "<a style='text-decoration:none;'><span class='message-author author-linkback' style='color:#" + message.authorColor + ";'>";
 				formatted_message += message.author;
 				formatted_message += "</span></a>";

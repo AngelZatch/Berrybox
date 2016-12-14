@@ -31,6 +31,10 @@ if(isset($_POST["submit"])){
 	$editSettings = $db->query("UPDATE user_preferences
 									SET up_theme = '$newTheme'
 									WHERE up_user_id = '$user_token'");
+	unset($_SESSION["user_lang"]);
+	$_SESSION["user_lang"] = $newLang;
+	unset($_SESSION["username"]);
+	$_SESSION["username"] = $newPseudo;
 }
 ?>
 <html>

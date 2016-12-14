@@ -86,20 +86,20 @@ $lang["fear"] = "ちょっと怖い (/-(ｴ)-＼)";
 $lang["youtube_message"] = "YouTubeのリンクを書きます";
 $lang["submit_link"] = "提出する";
 $lang["no_submit"] = "曲を提出するには、<a href='../portal'>ログイン</a>または<a href='../signup'>サインアップ</a>して下さい。";
-$lang["room_admin"] = "ボックスクリエイター";
+$lang["room_admin"] = "運営者";
 $lang["room_mod"] = "ボックスモデレータ";
 $lang["now_playing"] = "プレイ中";
 $lang["watch_count"] = "観衆カウント";
 $lang["playlist"] = "プレイリスト";
 $lang["playlist_filter"] = "プレイリストをフィルタリングします";
 $lang["playlist_likes"] = "投票をフィルタリングします";
-$lang["ul_admin"] = "クリエイター";
+$lang["ul_admin"] = "運営者";
 $lang["ul_mods"] = "モデレーターズ";
-$lang["ul_users"] = "リサナーズ";
+$lang["ul_users"] = "ウォッチャーズ";
 $lang["sl_played"] = "過去";
 $lang["sl_upcoming"] = "次";
 $lang["synchronizing"] = "シンク中…";
-$lang["no_admin"] = "注意！このボックスのクリエイターがいりません。シンクは不可能です。ビデオをシェアーするために、新しいボックスを始めて下さい。";
+$lang["no_admin"] = "注意！このボックスの運営者が入りません。シンクは不可能です。ビデオをシェアーするために、新しいボックスを始めて下さい。";
 $lang["whisper"] = "囁く";
 $lang["staff"] = "スタッフ";
 $lang["box_transfered"] = " はこのボックスの運営者になりました。";
@@ -122,7 +122,7 @@ $lang["following"] = "登録済み";
 $lang["unfollow"] = "登録解除";
 $lang["submitting"] = "提出中…";
 $lang["delete"] = "削除";
-$lang["transfer_box"] = "クリエイター権限を与えます。";
+$lang["transfer_box"] = "運営者権限を与えます。";
 
 /** ACTIONS **/
 $lang["log_out"] = "ログアウト";
@@ -167,7 +167,8 @@ $lang["user_match"] = "ユーザーが基準を合わせる";
 $lang["goto_user"] = "ユーザーページへ";
 $lang["user_match"] = "ボックスが基準を合わせる";
 $lang["user_options"] = "ユーザー設定";
-$lang["creator_options"] = "クリエイター設定";
+$lang["watcher_options"] = "ウォッチャー設定";
+$lang["creator_options"] = "運営者設定";
 $lang["home"] = "ホームページに戻る";
 
 /** PROFILE **/
@@ -248,4 +249,17 @@ $lang["song_ignored"] = "このビデオはスキップされます: ";
 $lang["song_reinstated"] = "このビデオが復元されました:";
 $lang["now_playing"] = "プレイ中: ";
 
+/** BADGES **/
+$lang["badges"] = "記章";
+$lang["locked"] = "ロックされた";
+$lang["unlocked"] = "記章をゲットしました！";
+$lang["unlocked_tip"] = "みんなに知らせましょう！プロファイルに表示する！";
+$lang["50_videos"] = "提出の意志";
+$lang["50_videos_description"] = "これからだぞ！";
+$lang["200_videos"] = "毎日に提出";
+$lang["200_videos_description"] = "まだまだ！！";
+$lang["1000_videos"] = "一緒に提出";
+$lang["1000_videos_description"] = "もうそでに多くの？！";
+$lang["5000_videos"] = "情熱的な提出";
+$lang["5000_videos_description"] = "止まらない！！！！";
 ?>

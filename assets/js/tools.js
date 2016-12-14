@@ -93,6 +93,7 @@ $.notify.addStyle('berrybox', {
 			"border-right": "5px solid",
 			"box-shadow": "0px 2px 10px black",
 			"background-color": "#101010",
+			"color": "white",
 			"font-size": "1.1em",
 			"font-style": "italic",
 			"font-weight": "600",

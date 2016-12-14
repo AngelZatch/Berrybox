@@ -52,7 +52,7 @@ $lang["playlist_error"] = "An error has been encountered when uploading the play
 
 /** TOGGLES **/
 $lang["play_type"] = "Play type";
-$lang["play_type_tip"] = "In manual mode, the creator must click on 'Next' to play the next video.";
+$lang["play_type_tip"] = "In manual mode, the administrator must click on 'Next' to play the next video.";
 $lang["manual_play"] = "Manual";
 $lang["auto_play"] = "Auto";
 $lang["submit_type"] = "Submission rights";
@@ -69,7 +69,7 @@ $lang["box_settings"] = "Box settings";
 $lang["color_pick"] = "Username color";
 $lang["color_tip"] = "Your username in chat will be displayed in the color you'll have chosen";
 $lang["welcome"] = "Welcome in the box! To submit a video, please paste any YouTube link in the input under the player.";
-$lang["welcome_admin"] = "Welcome in your box! To submit a video, please paste any YouTube link in the input under the player. Please note that you are the creator and therefore administrator of this box. If you leave it without closing it, video synchronization and play will stop for your users.";
+$lang["welcome_admin"] = "Welcome in your box! To submit a video, please paste any YouTube link in the input under the player. Please note that you are the administrator and therefore administrator of this box. If you leave it without closing it, video synchronization and play will stop for your users.";
 $lang["invalid_macro"] = "The command you entered is invalid.";
 $lang["no_power"] = "You don't have the power to use this command";
 
@@ -86,20 +86,20 @@ $lang["fear"] = "It's scary... ><";
 $lang["youtube_message"] = "Submit your YouTube link here";
 $lang["submit_link"] = "Submit";
 $lang["no_submit"] = "Please <a href='../signup'>register</a> or <a href='../portal'>log in</a> to submit links";
-$lang["room_admin"] = "Box creator";
+$lang["room_admin"] = "Box administrator";
 $lang["room_mod"] = "Box moderator";
 $lang["now_playing"] = "Now playing";
 $lang["watch_count"] = "Spectators";
 $lang["playlist"] = "Playlist";
 $lang["playlist_filter"] = "Filter the playlist";
 $lang["playlist_likes"] = "Filter your likes";
-$lang["ul_admin"] = "Creator";
+$lang["ul_admin"] = "Administrator";
 $lang["ul_mods"] = "Moderators";
-$lang["ul_users"] = "Listeners";
+$lang["ul_users"] = "Watchers";
 $lang["sl_played"] = "Played videos";
 $lang["sl_upcoming"] = "Upcoming videos";
 $lang["synchronizing"] = "Synchronization...";
-$lang["no_admin"] = "Warning ! The creator is not present in the box. The synchronization is therefore impossible. If you want to share videos in proper conditions, please create another box or contact the creator of this box directly.";
+$lang["no_admin"] = "Warning ! The administrator is not present in the box. The synchronization is therefore impossible. If you want to share videos in proper conditions, please create another box or contact the administrator of this box directly.";
 $lang["whisper"] = "Whisper";
 $lang["staff"] = "Staff";
 $lang["box_transfered"] = " is now the administrator of the box";
@@ -122,7 +122,7 @@ $lang["following"] = "Following";
 $lang["unfollow"] = "Unfollow";
 $lang["submitting"] = "Submitting...";
 $lang["delete"] = "Delete";
-$lang["transfer_box"] = "Transfer creatorship";
+$lang["transfer_box"] = "Transfer administratorship";
 
 /** ACTIONS **/
 $lang["log_out"] = "Log out";
@@ -158,7 +158,7 @@ $lang["menu"] = "Main menu";
 $lang["my_profile"] = "Public profile";
 $lang["public_profile"] = "My stats";
 $lang["leave"] = "Leave the box";
-$lang["warning_sync_admin"] = "Warning! The synchronization is based on you, the creator of the box. If you leave, the sync will stop and no video will play anymore.";
+$lang["warning_sync_admin"] = "Warning! The synchronization is based on you, the administrator of the box. If you leave, the sync will stop and no video will play anymore.";
 $lang["room_delete"] = "Delete the box";
 $lang["status_open"] = "Active";
 $lang["status_closed"] = "Inactive";
@@ -167,7 +167,8 @@ $lang["user_match"] = "user(s) matching your search";
 $lang["goto_user"] = "Go to user";
 $lang["box_match"] = "box(es) matching your search";
 $lang["user_options"] = "User options";
-$lang["creator_options"] = "Creator options";
+$lang["watcher_options"] = "Watcher options";
+$lang["creator_options"] = "Administrator options";
 $lang["home"] = "Back to home";
 
 /** PROFILE **/
@@ -249,7 +250,10 @@ $lang["song_reinstated"] = "This video has been reinstated: ";
 $lang["now_playing"] = "Now playing: ";
 
 /** BADGES **/
+$lang["badges"] = "Badges";
 $lang["locked"] = "Locked";
+$lang["unlocked"] = "You unlocked a badge!";
+$lang["unlocked_tip"] = "Display it on your profile to show the world!";
 $lang["50_videos"] = "Will to share";
 $lang["50_videos_description"] = "Many more where that came from.";
 $lang["200_videos"] = "Sharing everyday";

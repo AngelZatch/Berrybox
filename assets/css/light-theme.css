@@ -21,7 +21,7 @@ body {
   background-color: #e6e6e6 !important; }
 
 /* line 30, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
-.panel {
+.panel-menu {
   background-color: #f2f2f2; }
 
 /* line 33, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
@@ -131,5 +131,9 @@ li.vote-singleton {
 /* line 114, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
 .sm-type-play {
   color: black; }
+
+/* line 118, C:/xampp/htdocs/Berrybox/assets/css/light-theme.sass */
+.badge-unlock legend {
+  color: white !important; }
 
 /*# sourceMappingURL=light-theme.css.map */
