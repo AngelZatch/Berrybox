@@ -44,7 +44,7 @@ VALUES(:scope, :type, :author, :destination, :time, :message)");
 									JOIN user_preferences up ON u.user_token = up.up_user_id
 									JOIN roomUsers_$token ru ON u.user_token = ru.room_user_token
 									WHERE u.user_token = '$author'")->fetch();
-		$author_badge = $db->query("SELECT badge_icon FROM user_badges ub JOIN badges b ON ub.badge_id = b.badge_id WHERE user_token = '$author' AND featured = '1'")->fetch(PDO::FETCH_COLUMN);
+		$author_badge = $db->query("SELECT badge_icon, badge_name FROM user_badges ub JOIN badges b ON ub.badge_id = b.badge_id WHERE user_token = '$author' AND featured = '1'")->fetch();
 		$message_data = array(
 			"packet_type" => "chat",
 			"token" => $token,
@@ -56,7 +56,8 @@ VALUES(:scope, :type, :author, :destination, :time, :message)");
 			"authorStatus" => $author_details["room_user_state"],
 			"authorGlobalPower" => $author_details["user_power"],
 			"timestamp" => $time,
-			"featured_badge" => $author_badge,
+			"featured_badge" => $author_badge["badge_icon"],
+			"badge_name" => $author_badge["badge_name"],
 			"content" => $message
 		);
 		if($destination != ""){
