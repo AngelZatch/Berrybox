@@ -17,8 +17,7 @@ if($target_badge_status != null){
 						WHEN badge_id = $badge_id AND user_token = '$user_token' THEN 1
 						WHEN badge_id != $badge_id AND user_token = '$user_token' THEN 0
 						ELSE featured
-					END
-				WHERE badge_id IN (SELECT badge_id WHERE user_token = '$user_token')");
+					END");
 		echo $badge_id;
 	} else {
 		// Else, we "unfeature" it.
