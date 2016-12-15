@@ -158,7 +158,7 @@ if(isset($_SESSION["token"])){
 		</div>
 		</div>
 	<div class="col-sm-4 col-lg-3" id="room-chat">
-		<div class="panel panel-default panel-room">
+		<div class="panel panel-default panel-menu">
 			<div class="panel-heading" id="heading-chat">
 				<div class="chat-options row">
 					<?php if(isset($_SESSION["username"])) { ?>
@@ -206,7 +206,7 @@ if(isset($_SESSION["token"])){
 	</div>
 	</div>
 <div class="col-lg-3 col-sm-3 col-xs-12 full-panel" id="song-list">
-	<div class="panel panel-default panel-room panel-list">
+	<div class="panel panel-default panel-menu panel-list">
 		<div class="panel-heading"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></div>
 		<ul class="nav nav-tabs nav-justified nav-playlist">
 			<li role="presentation" class="active"><a href="#tab-pane-playlist" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list"></span> <?php echo $lang["playlist"];?></a></li>
@@ -230,7 +230,7 @@ if(isset($_SESSION["token"])){
 	</div>
 </div>
 <div class="col-lg-2 col-sm-2 col-xs-12 full-panel" id="user-list">
-	<div class="panel panel-default panel-room panel-list">
+	<div class="panel panel-default panel-menu panel-list">
 		<div class="panel-heading"><span class="glyphicon glyphicon-user"></span><span id="watch-count"></span> <?php echo $lang["watch_count"];?></div>
 		<div class="panel-body full-panel-body" id="body-user-list">
 			<p class="list-rank" id="rank-2"><?php echo $lang["ul_admin"];?> <img src="assets/berrybox-creator-logo.png" alt="" class="chat-icon"></p>
@@ -243,12 +243,12 @@ if(isset($_SESSION["token"])){
 	</div>
 </div>
 <div class="col-lg-3 col-sm-3 col-xs-12 full-panel" id="options-list">
-	<div class="panel panel-default panel-room panel-list">
+	<div class="panel panel-default panel-menu panel-list">
 		<div class="panel-heading"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["box_settings"];?></div>
 		<div class="panel-body" id="body-options-list">
 			<?php if(isset($_SESSION["token"])){ ?>
 			<div class="user-options">
-				<p class="options-title">User options</p>
+				<p class="options-title"><?php echo $lang["watcher_options"];?></p>
 				<div class="room-option">
 					<div class="option-title"><?php echo $lang["color_pick"];?></div>
 					<span class="tip"><?php echo $lang["color_tip"];?></span><br>
@@ -276,7 +276,7 @@ if(isset($_SESSION["token"])){
 	</div>
 </div>
 <div class="col-lg-2 col-sm-2 col-xs-12 full-panel" id="menu-list">
-	<div class="panel panel-default panel-room panel-list">
+	<div class="panel panel-default panel-menu panel-list">
 		<div class="panel-heading"><span class="glyphicon glyphicon-dashboard" title=""></span> <?php echo $lang["menu"];?></div>
 		<div class="panel-body" style="height: 77.9vh;">
 			<?php if(isset($_SESSION["username"])){ ?>
@@ -315,6 +315,7 @@ if(isset($_SESSION["token"])){
 <script src="assets/js/autobahn.min.js"></script>
 <script src="assets/js/chat.min.js"></script>
 <script src="assets/js/box.min.js"></script>
+<script src="assets/js/badges.js"></script>
 <script src="assets/js/mood.js"></script>
 <script>
 	<?php if(isset($_SESSION["token"])){ ?>
@@ -326,6 +327,7 @@ if(isset($_SESSION["token"])){
 
 	var done = false;
 	$(document).ready(function(){
+
 		/** THINGS TO DO IF THE USER IS LOOGED **/
 		<?php if(isset($_SESSION["token"])){ ?>
 		$(":regex(name,toggle-theme)").bootstrapSwitch({
@@ -345,45 +347,6 @@ if(isset($_SESSION["token"])){
 	});
 
 	/** THING TO DO ON DOCUMENT FOR EVERYONE **/
-	$(document).on('click', '.author-linkback', function(){
-		var user = $(this).text();
-		var currentLine = $(this).parents("p");
-		$(".user-card").remove();
-		$.post("functions/fetch_user_card.php", {user : user}).done(function(data){
-			var details = JSON.parse(data);
-			var userCard = "<div class='user-card'>";
-			userCard += "<div class='user-card-info'>";
-			userCard += "<div class='medium-pp'>";
-			userCard += "<img src='"+details.user_pp+"' alt='' style='width:inherit'>";
-			userCard += "</div>";
-			userCard += "<p id='user-card-name'><a href='user/"+details.user_pseudo+"' target='_blank'>"+details.user_pseudo+"</a><span class='glyphicon glyphicon-remove button-glyph' id='user-card-close'></span></p>";
-			userCard += "<div class='container-fluid user-card-stats'>";
-			userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-heart' title='<?php echo $lang["total_followers"];?>'></span> "+details.followers+"</div>";
-			userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-eye-open' title='<?php echo $lang["total_views"];?>'></span> "+details.visitors+"</div>";
-			userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-plus' title='<?php echo $lang["rooms_created"];?>'></span> "+details.rooms+"</div>";
-			userCard += "<div class='col-lg-2 col-xs-3'><span class='glyphicon glyphicon-music' title='<?php echo $lang["songs_submitted"];?>'></span> "+details.songs+"</div>";
-			userCard += "</div>"; // user-card-stats
-			userCard += "</div>"; // user-card-info
-			<?php if(isset($_SESSION["username"])){ ?>
-			if(details.user_pseudo != '<?php echo $userDetails["user_pseudo"];?>'){
-				userCard += "<div class='user-card-actions'>";
-				userCard += "<button class='btn btn-primary whisper-action'><?php echo $lang["whisper"];?></button>"; // whisper action
-				if(details.following == 1){
-					userCard += "<button class='btn btn-primary btn-active btn-card btn-unfollow' id='user-card-unfollow' value='"+details.user_pseudo+"'><span class='glyphicon glyphicon-heart'></span></button>";
-				} else {
-					userCard += "<button class='btn btn-primary btn-card btn-follow' id='user-card-follow' value='"+details.user_pseudo+"'><span class='glyphicon glyphicon-heart'></span></button>";
-				} // follow action
-				if(user_power == 2){
-					userCard += "<button class='btn btn-primary transfer-box' data-user='"+details.user_pseudo+"' title='<?php echo $lang["transfer_box"];?>'><span class='glyphicon glyphicon-transfer'></span> Give creatorsihp</button>";
-				}
-				userCard += "</div>"; // user-card-actions
-			}
-			<?php } ?>
-			userCard += "</div>"; //user-card
-			currentLine.after(userCard);
-			$("#body-chat").scrollTop($("#body-chat")[0].scrollHeight);
-		})
-	})
 	/** FUNCTIONS TO LOAD ONLY IF USER IS LOGGED **/
 	function timeoutUser(targetToken){
 		$.post("functions/time_out.php", {box_token : box_token, targetToken : targetToken}).done(function(data){
