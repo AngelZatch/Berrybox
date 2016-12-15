@@ -149,7 +149,7 @@ $lang["wrong_password"] = "Mot de passe erroné";
 $lang["no_credentials"] = "Envie de partager? Rejoignez-nous !";
 $lang["follow_us"] = "Suivez l'actualité de Berrybox";
 $lang["twitter"] = "Twitter";
-$lang["dev_message"] = "Bonjour! Je suis Andréas, développeur de cette application. Je suis un étudiant ingénieur multimédia qui développe Berrybox sur son temps libre ! Si vous voulez chatter un peu, n'hésitez pas à m'envoyer un mail à <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>  - Ce projet n'aurait pas été possible sans l'aide précieuse de l'<a href='http://www.fun.ac.jp/en/'>Université du Futur Hakodate</a> et <a href='http://www.ingenieur-imac.fr/'>mon école d'ingénieur l'IMAC</a>. Un grand merci à eux !";
+$lang["dev_message"] = "Bonjour! Je suis Andréas, développeur de cette application. Je suis un étudiant ingénieur multimédia qui développe Berrybox sur son temps libre depuis Septembre 2015 ! Si vous voulez chatter un peu, n'hésitez pas à m'envoyer un mail à <a href='mailto:pinbouen.andreas@gmail.com'>pinbouen.andreas@gmail.com</a>  - Ce projet n'aurait pas été possible sans l'aide précieuse de l'<a href='http://www.fun.ac.jp/en/'>Université du Futur Hakodate</a> et <a href='http://www.ingenieur-imac.fr/'>mon école d'ingénieur l'IMAC</a>. Un grand merci à eux !";
 $lang["firefox_alert"] = "ATTENTION ! Firefox ne fonctionne pas correctement lorsqu'il doit charger des vidéos sans recharger la page (comme ce qu'on fait ici). Si vous voulez profiter pleinement de Berrybox, nous vous recommandons d'essayer avec un autre navigateur. Nous sommes désolés, d'autant plus que nous n'y pouvons rien :(";
 $lang["go_to_video"] = "Aller à la vidéo";
 
@@ -252,6 +252,7 @@ $lang["now_playing"] = "Lecture en cours: ";
 
 /** BADGES **/
 $lang["badges"] = "Badges";
+$lang["how_to_display"] = "Une fois que vous avez débloqué un badge, cliquez dessus pour l'afficher sur votre profil et dans le chat !";
 $lang["locked"] = "Verrouillé";
 $lang["unlocked"] = "Vous avez obtenu un badge !";
 $lang["unlocked_tip"] = "Affichez-le fièrement pour le montrer à tout le monde !";
@@ -263,5 +264,12 @@ $lang["1000_videos"] = "Partageur acharné";
 $lang["1000_videos_description"] = "Déjà autant ?";
 $lang["5000_videos"] = "Passionné";
 $lang["5000_videos_description"] = "Vous êtes inarrêtable.";
-
+$lang["1_box"] = "La Première";
+$lang["1_box_description"] = "Vous êtes le maître à bord maintenant.";
+$lang["10_boxes"] = "Paquet-cadeau";
+$lang["10_boxes_description"] = "Vous savez comment ça marche.";
+$lang["100_boxes"] = "Méga boxeur";
+$lang["100_boxes_description"] = "Créer une box devient seconde nature.";
+$lang["500_boxes"] = "Boxeur résident";
+$lang["500_boxes_description"] = "Vous VIVEZ ici désormais.";
 ?>

@@ -9,12 +9,14 @@ $user_lang = $_SESSION["user_lang"];
 
 require_once "../languages/lang.".$user_lang.".php";
 
+date_default_timezone_set('UTC');
+$time = date('Y-m-d H:i:s', time());
 try{
 	include "tools.php";
 	$playlist_order = getPlaylistOrdering($db, $box_token);
 
 	$requeue = $db->query("INSERT INTO roomHistory_$box_token(video_index, history_time, history_user, playlist_order)
-							SELECT video_index, history_time, '$user_token', '$playlist_order'
+							SELECT video_index, '$time', '$user_token', '$playlist_order'
 							FROM roomHistory_$box_token
 							WHERE room_history_id = '$video_id'");
 

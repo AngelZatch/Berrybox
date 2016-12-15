@@ -159,6 +159,7 @@ if(isset($_SESSION["token"])){
 				</div>
 				<div class="user-badges col-xs-12">
 					<legend><?php echo $lang["badges"];?></legend>
+					<p class="tip"><?php echo $lang["how_to_display"];?></p>
 					<div class="container-fluid badges-container"></div>
 				</div>
 			</div>
