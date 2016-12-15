@@ -48,8 +48,8 @@ if(isset($_SESSION["token"]) && isset($_SESSION["user_lang"])){
 					<div class="form-group form-group-lg">
 						<input type="password" placeholder="<?php echo $lang["password"];?>" class="form-control form-control-portal" name="login_pwd">
 					</div>
-					<?php if(isset($_POST["box-token"])){ ?>
-					<input type="hidden" name="box-token-redirect" value="<?php echo $_POST["box-token"];?>">
+					<?php if(isset($_GET["box-token"])){ ?>
+					<input type="hidden" name="box-token-redirect" value="<?php echo $_GET["box-token"];?>">
 					<?php } ?>
 					<input type="submit" class="btn btn-primary btn-block" name="login" value="<?php echo $lang["log_in"];?>">
 				</form>
