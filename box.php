@@ -190,16 +190,9 @@ if(isset($_SESSION["token"])){
 				<input type="text" class="form-control chatbox" placeholder="<?php echo $lang["chat_placeholder"];?>">
 			</div>
 			<?php } else { ?>
-			<div class="panel-footer no-credentials" id="footer-chat">
-				<legend class="box-legend"><?php echo $lang["no_credentials"];?></legend>
-				<form method="post" action="portal">
-					<input type="hidden" name="box-token" value="<?php echo $box_token;?>">
-					<input type="submit" class="btn btn-primary btn-inverted" value="<?php echo $lang["log_in"];?>">
-				</form>
-				<form method="post" action="signup">
-					<input type="hidden" name="box-token" value="<?php echo $box_token;?>">
-					<input type="submit" class="btn btn-primary btn-inverted" value="<?php echo $lang["sign_up"];?>">
-				</form>
+			<div class="no-credentials" id="footer-chat">
+				<a href="portal?box-token=<?php echo $box_token;?>"><legend class="box-legend"><?php echo $lang["no_credentials"];?></legend>
+				</a>
 			</div>
 		</div>
 		<?php } ?>
