@@ -31,9 +31,11 @@ $lang["action_demote"] = "このユーザーを降格する。";
 $lang["timeout_message_admin_first_part"] = "このユーザは、ミュートされています (";
 $lang["timeout_message_admin_second_part"] = " 回)";
 $lang["timeout_message_user"] = "あなたはミュートされていました。次のメッセジを送信することができません。";
-$lang["ignore_song"] = "この曲をスキップ";
+$lang["ignore_song"] = "プレイリストを削除する";
+$lang["reinstate_video"] = "プレイリストに戻す";
 $lang["song_up"] = "後でビデオを再生";
 $lang["song_down"] = "早くビデオを再生";
+$lang["edit_video"] = "埋め込まれた情報を編集する";
 $lang["room_closing"] = "ボックスは閉じています。あなたは外にリダイレクトされます。";
 $lang["change_type"] = "ボックスタイプを変更します";
 $lang["song_submit_success"] = "あなたのビデオ曲は提出されました";
@@ -47,7 +49,7 @@ $lang["playlist_submitted"] = "プレイリストは提出されました。";
 $lang["skip"] = "ネクスト";
 $lang["spam"] = "新しいメッセージを送信するには、少なくとも1秒お待ちください";
 $lang["playlist_shuffled"] = "プレイリストがシャッフルされています。";
-$lang["need_info"] = "The video has been uploaded but some info could not be found. Please update the info from the box playlist";
+$lang["need_info"] = "ビデオが提出されましたが、タイトルが見つかりませんでした。ぜひ、ボックスプレイリストから情報を更新してください。";
 $lang["playlist_error"] = "エラーがありました。もう一度リンクを提出してください。";
 
 /** TOGGLES **/

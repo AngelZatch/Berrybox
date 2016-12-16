@@ -374,7 +374,6 @@ if(isset($_SESSION["token"])){
 		var id = $(".info-box").attr("id").substr(5);
 		$.post("functions/fill_info.php", {index : id, name : name}).done(function(data){
 			$("#warning-"+id).remove();
-			$("#body-chat").append("<p class='system-message system-success'><span class='glyphicon glyphicon-ok-sign'></span> <?php echo $lang["info_fill_success"];?></p>");
 		})
 	}
 	/** FUNCTION TO LOAD FOR EVERYONE **/
