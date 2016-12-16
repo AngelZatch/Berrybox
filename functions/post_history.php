@@ -88,8 +88,10 @@ if(strlen($link) == 11){
 				"content" => $lang["need_info"]
 			);
 		}
-		else
+		else{
 			echo $baseIndex;
+			return;
+		}
 	}
 } else {
 	$message_data = array(
