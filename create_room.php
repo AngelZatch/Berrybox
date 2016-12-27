@@ -4,7 +4,7 @@ require "functions/db_connect.php";
 $db = PDOFactory::getConnection();
 if(isset($_SESSION["token"])){
 	$userDetails = $db->query("SELECT * FROM user_preferences up
-							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
 }
 
 $queryTypes = $db->query("SELECT * FROM room_types");

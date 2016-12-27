@@ -202,6 +202,10 @@ $lang["sync"] = "Synchronisation";
 $lang["sync_tip"] = "When disabled, the next video won't play automatically and you will stay on current video. You can catch up at any moment.";
 $lang["sync_on"] = "Synchro ON";
 $lang["sync_off"] = "Synchro OFF";
+$lang["badge_alert"] = "Badge alert size";
+$lang["badge_alert_small"] =  "Small";
+$lang["badge_alert_large"] = "Large";
+$lang["badge_alert_tip"] = "Displays an alert when you unlock a badge. Large is screenwise.";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "This user doesn't have any bio";

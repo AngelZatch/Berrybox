@@ -37,7 +37,17 @@ foreach($values as $column => $value){
 		$query .= ", ";
 	}
 }
-$query .= " WHERE $primary_key[Column_name] = '$entry_id' OR box_token = '$entry_id'";
+$query .= " WHERE ";
+
+if(strlen($entry_id) == 6)
+	$query .= "user_token";
+else if(strlen($entry_id) == 15)
+	$query .= "box_token";
+else
+	$query .= $primary_key["Column_name"];
+
+
+$query .= " = '$entry_id'";
 
 // Execution
 try{

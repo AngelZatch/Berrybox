@@ -10,7 +10,7 @@ try{
 		$value = 1;
 	}
 	$toggle = $db->query("UPDATE user_preferences
-							SET up_theme = $value WHERE up_user_id = '$user_token'");
+							SET up_theme = $value WHERE user_token = '$user_token'");
 	echo $value;
 } catch (PDOException $e){
 	echo "2"; // Error code

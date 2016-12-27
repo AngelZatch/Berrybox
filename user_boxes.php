@@ -7,7 +7,7 @@ if(isset($_SESSION["token"])){
 	$profileToken = $_SESSION["token"];
 	$userSettings = $db->query("SELECT *
 							FROM user_preferences up
-							WHERE up_user_id='$profileToken'")->fetch(PDO::FETCH_ASSOC);
+							WHERE user_token='$profileToken'")->fetch(PDO::FETCH_ASSOC);
 
 	if($userSettings["up_theme"] == "1"){
 		$theme = "dark";
