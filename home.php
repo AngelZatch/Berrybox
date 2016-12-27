@@ -23,7 +23,7 @@ if(isset($_SESSION["token"])){
 								WHERE room_type = 3 AND room_active = 1 AND (room_protection != 2 OR (room_protection = 2 AND room_creator = '$_SESSION[token]'))
 								ORDER BY room_id DESC LIMIT 6");
 	$userSettings = $db->query("SELECT * FROM user_preferences up
-							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
 
 	if($userSettings["up_theme"] == "1"){
 		$theme = "dark";

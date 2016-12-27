@@ -202,6 +202,10 @@ $lang["sync"] = "シンクロ";
 $lang["sync_tip"] = "シンクロがオフにするなら、次のビデオが始まりません。";
 $lang["sync_on"] = "シンク オン";
 $lang["sync_off"] = "シンク　オフ";
+$lang["badge_alert"] = "記章アンロックの幅";
+$lang["badge_alert_small"] =  "小さい";
+$lang["badge_alert_large"] = "大きい";
+$lang["badge_alert_tip"] = "記章をアンロックした時は、アラートが表示されます。「大きい」は画面の全幅です。";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "このユーザーはバイオがない。";

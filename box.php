@@ -21,8 +21,8 @@ $queryTypes = $db->query("SELECT * FROM room_types");
 
 if(isset($_SESSION["token"])){
 	$userDetails = $db->query("SELECT * FROM user u
-							JOIN user_preferences up ON up.up_user_id = u.user_token
-							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+							JOIN user_preferences up ON up.user_token = u.user_token
+							WHERE u.user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
 	if($userDetails["up_theme"] == "1"){ // userDetails only for this page. On all the other rooms, it's userSettings
 		$theme = "dark";
 	} else {
@@ -262,6 +262,18 @@ if(isset($_SESSION["token"])){
 						</span>
 					</div>
 					<span class="tip"><?php echo $lang["theme_tip"];?></span>
+				</div>
+				<div class="room-option">
+					<p class="option-title"><?php echo $lang["badge_alert"];?></p>
+					<span class="tip"><?php echo $lang["badge_alert_tip"];?></span>
+					<div class="row">
+						<div class="col-lg-6">
+							<span class="btn btn-primary btn-block btn-switch toggle-user-setting" data-field="badge_alert" data-value="1" data-twin="select-small-alert" id="select-large-alert"><?php echo $lang["badge_alert_large"];?></span>
+						</div>
+						<div class="col-lg-6">
+							<span class="btn btn-primary btn-block btn-switch toggle-user-setting" id="select-small-alert" data-field="badge_alert" data-value="0" data-twin="select-large-alert"><?php echo $lang["badge_alert_small"];?></span>
+						</div>
+					</div>
 				</div>
 			</div>
 			<?php } ?>

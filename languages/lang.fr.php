@@ -202,6 +202,10 @@ $lang["sync"] = "Synchronisation";
 $lang["sync_tip"] = "Si vous désactivez la synchronisation, la prochaine vidéo ne sera pas lancée automatiquement et vous resterez sur la vidéo actuelle. Vous pourrez rattraper à tout moment";
 $lang["sync_on"] = "Synchro ON";
 $lang["sync_off"] = "Synchro OFF";
+$lang["badge_alert"] = "Taille d'alerte badge";
+$lang["badge_alert_small"] =  "Petite";
+$lang["badge_alert_large"] = "Grande";
+$lang["badge_alert_tip"] = "Affiche une alerte lorsque vous débloquez un badge. Grande correspond à tout l'écran.";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "Cet utilisateur n'a pas de biographie";

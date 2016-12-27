@@ -7,7 +7,7 @@ if(isset($_SESSION["token"])){
 								JOIN user u ON uf.user_followed = u.user_token
 								WHERE user_following = '$_SESSION[token]'");
 	$userSettings = $db->query("SELECT * FROM user_preferences up
-							WHERE up_user_id='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
 	$listFollowed = array();
 
 	if($userSettings["up_theme"] == "1"){

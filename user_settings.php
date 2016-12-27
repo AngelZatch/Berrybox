@@ -7,7 +7,7 @@ if(isset($_SESSION["token"])){
 	$user_token = $_SESSION["token"];
 	$userSettings = $db->query("SELECT *
 							FROM user_preferences up
-							WHERE up_user_id='$user_token'")->fetch(PDO::FETCH_ASSOC);
+							WHERE user_token='$user_token'")->fetch(PDO::FETCH_ASSOC);
 
 	if($userSettings["up_theme"] == "1"){
 		$theme = "dark";
@@ -22,6 +22,7 @@ if(isset($_POST["submit"])){
 	$newBio = addslashes($_POST["bio"]);
 	$newLang = $_POST["default-lang"];
 	$newTheme = $_POST["default-theme"];
+	$badge_alert = $_POST["badge-alert"];
 	$edit = $db->query("UPDATE user
 							SET user_pseudo = '$newPseudo',
 							user_mail = '$newMail',
@@ -29,8 +30,9 @@ if(isset($_POST["submit"])){
 							user_lang = '$newLang'
 							WHERE user_token = '$user_token'");
 	$editSettings = $db->query("UPDATE user_preferences
-									SET up_theme = '$newTheme'
-									WHERE up_user_id = '$user_token'");
+									SET up_theme = '$newTheme',
+									badge_alert = '$badge_alert'
+									WHERE user_token = '$user_token'");
 	unset($_SESSION["user_lang"]);
 	$_SESSION["user_lang"] = $newLang;
 	unset($_SESSION["username"]);
@@ -56,24 +58,24 @@ if(isset($_POST["submit"])){
 		<?php include "nav.php";?>
 		<div class="main col-lg-12">
 			<div class="col-lg-offset-2 col-lg-8 col-sm-12 page-title">
-				<legend id="profile-title"><?php echo $lang["my_settings"];?></legend>
+				<legend id="profile-title"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["my_settings"];?></legend>
 				<span class="tip"><?php echo $lang["profile_settings_tip"];?></span>
 				<ul class="nav nav-tabs" id="profile-menu">
-					<li role="presentation" class="active"><a href="profile/settings"><?php echo $lang["my_settings"];?></a></li>
-					<li role="presentation"><a href="profile/security"><?php echo $lang["profile_security"];?></a></li>
+					<li role="presentation" class="active"><a href="profile/settings"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["my_settings"];?></a></li>
+					<li role="presentation"><a href="profile/security"><span class="glyphicon glyphicon-lock"></span> <?php echo $lang["profile_security"];?></a></li>
 				</ul>
 			</div>
 			<form action="profile/settings" class="form-horizontal" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="username" class="col-sm-3 control-label"><?php echo $lang["display_name"];?></label>
-					<div class="col-sm-9 col-lg-7 has-feedback" id="username-form-group">
+					<div class="col-sm-9 col-lg-4 has-feedback" id="username-form-group">
 						<input type="text" name="username" class="form-control" aria-describedby="username-tip" value="<?php echo stripslashes($userDetails["user_pseudo"]);?>">
 						<span class="tip" id="username-tip"><?php echo $lang["display_name_tip"];?></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="mail" class="col-sm-3 control-label"><?php echo $lang["display_mail"];?></label>
-					<div class="col-sm-9 col-lg-7">
+					<div class="col-sm-9 col-lg-4">
 						<input type="mail" name="mail" class="form-control" value="<?php echo $userDetails["user_mail"];?>">
 					</div>
 				</div>
@@ -95,14 +97,14 @@ if(isset($_POST["submit"])){
 				</div>
 				<div class="form-group">
 					<label for="bio" class="col-sm-3 control-label"><?php echo $lang["bio"];?></label>
-					<div class="col-sm-9 col-lg-7">
+					<div class="col-sm-9 col-lg-4">
 						<textarea rows="5" maxlength="400" name="bio" class="form-control" aria-describedby="bio-tip"><?php echo stripslashes($userDetails["user_bio"]);?></textarea>
 						<span class="tip" id="bio-tip"><?php echo $lang["bio_tip"];?></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="default-lang" class="col-sm-3 control-label"><?php echo $lang["default_lang"];?></label>
-					<div class="col-sm-9 col-lg-7">
+					<div class="col-sm-9 col-lg-4">
 						<select name="default-lang" id="" class="form-control">
 							<option value="en" <?php if($userDetails["user_lang"]=="en") echo "selected='selected'";?>>English</option>
 							<option value="fr" <?php if($userDetails["user_lang"]=="fr") echo "selected='selected'";?>>Français</option>
@@ -113,12 +115,22 @@ if(isset($_POST["submit"])){
 				</div>
 				<div class="form-group">
 					<label for="default-theme" class="col-sm-3 control-label"><?php echo $lang["user_theme"];?></label>
-					<div class="col-sm-9 col-lg-7">
+					<div class="col-sm-9 col-lg-4">
 						<select name="default-theme" id="" class="form-control">
 							<option value="0" <?php if($userSettings["up_theme"]=="0") echo "selected='selected'";?>><?php echo $lang["light"];?></option>
 							<option value="1" <?php if($userSettings["up_theme"]=="1") echo "selected='selected'";?>><?php echo $lang["dark"];?></option>
 						</select>
 						<span class="tip"><?php echo $lang["theme_tip"];?></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="badge-alert" class="col-sm-3 control-label"><?php echo $lang["badge_alert"];?></label>
+					<div class="col-sm-9 col-lg-4">
+						<select name="badge-alert" id="" class="form-control">
+							<option value="1" <?php if($userSettings["badge_alert"]=="1") echo "selected='selected'";?>><?php echo $lang["badge_alert_large"];?></option>
+							<option value="0" <?php if($userSettings["badge_alert"]=="0") echo "selected='selected'";?>><?php echo $lang["badge_alert_small"];?></option>
+						</select>
+						<span class="tip"><?php echo $lang["badge_alert_tip"];?></span>
 					</div>
 				</div>
 				<div class="col-lg-offset-2 col-lg-8">
@@ -149,6 +161,9 @@ if(isset($_POST["submit"])){
 			}
 			.user-pp{
 				margin-bottom: 10px;
+			}
+			.form-group{
+				padding: 20px 0;
 			}
 		</style>
 		<script>

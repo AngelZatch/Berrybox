@@ -3,8 +3,8 @@ if(isset($_SESSION["token"])){
 	//If the user is connected
 	$userDetails = $db->query("SELECT user_pseudo, user_mail, user_power, user_lang, user_pp, user_banner, user_bio, up_color, up_theme, up_lang FROM user u
 							JOIN user_preferences up
-								ON u.user_token = up.up_user_id
-							WHERE user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
+								ON u.user_token = up.user_token
+							WHERE u.user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
 	$followRooms = $db->query("SELECT * FROM rooms
 								WHERE room_creator in (SELECT user_followed FROM user_follow uf
 								WHERE user_following = '$_SESSION[token]')

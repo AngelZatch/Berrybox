@@ -17,7 +17,7 @@ if(isset($_POST["signup"])){
 		$newUser->bindParam(':token', $token);
 		$newUser->execute();
 
-		$newPref = $db->prepare("INSERT INTO user_preferences(up_user_id, up_color)
+		$newPref = $db->prepare("INSERT INTO user_preferences(user_token, up_color)
 								VALUES(:token, :color)");
 		$newPref->bindParam(':token', $token);
 		$newPref->bindParam(':color', $color["color_value"]);
