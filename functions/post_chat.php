@@ -41,7 +41,7 @@ VALUES(:scope, :type, :author, :destination, :time, :message)");
 
 		// SOCKET
 		$author_details = $db->query("SELECT user_pseudo, up_color, user_power, room_user_state FROM user u
-									JOIN user_preferences up ON u.user_token = up.up_user_id
+									JOIN user_preferences up ON u.user_token = up.user_token
 									JOIN roomUsers_$token ru ON u.user_token = ru.room_user_token
 									WHERE u.user_token = '$author'")->fetch();
 		$author_badge = $db->query("SELECT badge_icon, badge_name FROM user_badges ub JOIN badges b ON ub.badge_id = b.badge_id WHERE user_token = '$author' AND featured = '1'")->fetch();
@@ -62,7 +62,7 @@ VALUES(:scope, :type, :author, :destination, :time, :message)");
 		);
 		if($destination != ""){
 			$destination_details = $db->query("SELECT user_pseudo, up_color FROM user u
-												JOIN user_preferences up ON u.user_token = up.up_user_id
+												JOIN user_preferences up ON u.user_token = up.user_token
 												WHERE u.user_token = '$destination'")->fetch();
 			$message_data["destination"] = $destination_details["user_pseudo"];
 			$message_data["destinationColor"] = $destination_details["up_color"];

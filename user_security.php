@@ -7,7 +7,7 @@ if(isset($_SESSION["token"])){
 	$profileToken = $_SESSION["token"];
 	$userSettings = $db->query("SELECT *
 							FROM user_preferences up
-							WHERE up_user_id='$profileToken'")->fetch(PDO::FETCH_ASSOC);
+							WHERE user_token='$profileToken'")->fetch(PDO::FETCH_ASSOC);
 
 	if($userSettings["up_theme"] == "1"){
 		$theme = "dark";
@@ -43,29 +43,29 @@ if(isset($_POST["submit"])){
 		<?php include "nav.php";?>
 		<div class="main col-lg-12">
 			<div class="col-lg-offset-2 col-lg-8 col-sm-12 page-title">
-				<legend id="profile-title"><?php echo $lang["profile_security"];?></legend>
+				<legend id="profile-title"><span class="glyphicon glyphicon-lock"></span> <?php echo $lang["profile_security"];?></legend>
 				<span class="tip"><?php echo $lang["profile_security_tip"];?></span>
 				<ul class="nav nav-tabs" id="profile-menu">
-					<li role="presentation"><a href="profile/settings"><?php echo $lang["my_settings"];?></a></li>
-					<li role="presentation" class="active"><a href="profile/security"><?php echo $lang["profile_security"];?></a></li>
+					<li role="presentation"><a href="profile/settings"><span class="glyphicon glyphicon-cog"></span> <?php echo $lang["my_settings"];?></a></li>
+					<li role="presentation" class="active"><a href="profile/security"><span class="glyphicon glyphicon-lock"></span> <?php echo $lang["profile_security"];?></a></li>
 				</ul>
 			</div>
 			<form action="profile/security" class="form-horizontal" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="currentPassword" class="col-sm-3 control-label"><?php echo $lang["old_password"];?></label>
-					<div class="col-sm-9 col-lg-7 has-feedback" id="current-password-form-group">
+					<div class="col-sm-9 col-lg-4 has-feedback" id="current-password-form-group">
 						<input type="password" name="currentPassword" class="form-control" aria-describedby="username-tip">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="newPassword" class="col-sm-3 control-label"><?php echo $lang["new_password"];?></label>
-					<div class="col-sm-9 col-lg-7">
+					<div class="col-sm-9 col-lg-4">
 						<input type="password" name="newPassword" class="form-control" aria-describedby="username-tip">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="confirmNewPassword" class="col-sm-3 control-label"><?php echo $lang["confirm_new_password"];?></label>
-					<div class="col-sm-9 col-lg-7 has-feedback" id="password-confirm-form-group">
+					<div class="col-sm-9 col-lg-4 has-feedback" id="password-confirm-form-group">
 						<input type="password" name="confirmNewPassword" class="form-control" aria-describedby="username-tip">
 					</div>
 				</div>
@@ -74,6 +74,11 @@ if(isset($_POST["submit"])){
 				</div>
 			</form>
 		</div>
+		<style>
+			.form-group{
+				padding: 20px 0;
+			}
+		</style>
 		<?php include "scripts.php";?>
 		<script>
 			$(document).ready(function(){
