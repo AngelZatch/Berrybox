@@ -14,6 +14,7 @@ $lang["now_playing_home"] = "En cours : ";
 $lang["room_join"] = "Rejoindre";
 $lang["room_create"] = "Créer une box";
 $lang["active_room"] = "Boxes actives";
+$lang["active_room_tip"] = "Cliquez sur une box pour la rejoindre en direct !";
 $lang["room_name"] = "Nom de la box";
 $lang["room_protection"] = "Niveau de protection";
 $lang["protection_tip"] = "Une box privée ne s'affichera plus dans les répertoires du site. L'accès sera restreint à seuls ceux qui disposent du lien.";
@@ -107,6 +108,7 @@ $lang["staff"] = "Staff";
 $lang["box_transfered"] = " est désormais l'administrateur de la box.";
 $lang["current_administrator"] = "Administrée par ";
 $lang["submitter"] = "Envoyée par ";
+$lang["uptime"] = "Activité";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "Musique";
@@ -165,9 +167,9 @@ $lang["room_delete"] = "Supprimer";
 $lang["status_open"] = "Active";
 $lang["status_closed"] = "Inactive";
 $lang["search"] = "Recherche";
-$lang["user_match"] = "utilisateur(s) correspond(ent) à vos critères";
+$lang["user_match"] = "Utilisateur(s) correspondant à vos critères";
 $lang["goto_user"] = "Aller à l'utilisateur";
-$lang["box_match"] = "box(es) correspond(ent) à vos critères";
+$lang["box_match"] = "Box(es) correspondant à vos critères";
 $lang["user_options"] = "Paramètres utilisateur";
 $lang["watcher_options"] = "Paramètres spectateur";
 $lang["creator_options"] = "Paramètres administrateur";

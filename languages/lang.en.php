@@ -14,6 +14,7 @@ $lang["now_playing_home"] = "Now playing: ";
 $lang["room_join"] = "Join";
 $lang["room_create"] = "Create a new box";
 $lang["active_room"] = "Active boxes";
+$lang["active_room_tip"] = "Click on a box to join it live !";
 $lang["room_name"] = "Name";
 $lang["room_protection"] = "Protection level";
 $lang["protection_tip"] = "A private box will only be accessible via sharing its link. It won't display publicly.";
@@ -107,6 +108,7 @@ $lang["staff"] = "Staff";
 $lang["box_transfered"] = " is now the administrator of the box";
 $lang["current_administrator"] = "Administrated by ";
 $lang["submitter"] = "Submitted by ";
+$lang["uptime"] = "Uptime";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "Music";
@@ -165,9 +167,9 @@ $lang["room_delete"] = "Delete the box";
 $lang["status_open"] = "Active";
 $lang["status_closed"] = "Inactive";
 $lang["search"] = "Search";
-$lang["user_match"] = "user(s) matching your search";
+$lang["user_match"] = "User(s) matching your search";
 $lang["goto_user"] = "Go to user";
-$lang["box_match"] = "box(es) matching your search";
+$lang["box_match"] = "Box(es) matching your search";
 $lang["user_options"] = "User options";
 $lang["watcher_options"] = "Watcher options";
 $lang["creator_options"] = "Administrator options";
@@ -205,7 +207,7 @@ $lang["sync_off"] = "Synchro OFF";
 $lang["badge_alert"] = "Badge alert size";
 $lang["badge_alert_small"] =  "Small";
 $lang["badge_alert_large"] = "Large";
-$lang["badge_alert_tip"] = "Displays an alert when you unlock a badge. Large is screenwise.";
+$lang["badge_alert_tip"] = "Displays an alert when you unlock a badge. Large is screenwide.";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "This user doesn't have any bio";

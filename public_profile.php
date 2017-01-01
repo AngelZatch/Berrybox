@@ -121,41 +121,7 @@ if(isset($_SESSION["token"])){
 				</div>
 				<div class="user-rooms col-xs-12">
 					<legend id="profile-title"><?php echo $lang["opened_rooms"];?></legend>
-					<?php while($activeRooms = $queryactiveRooms->fetch(PDO::FETCH_ASSOC)){
-	$roomInfo = $db->query("SELECT link, video_name, video_status FROM roomHistory_$activeRooms[box_token] rh
-													JOIN song_base sb ON sb.song_base_id = rh.video_index
-													WHERE video_status = 1 OR video_status = 2 ORDER BY playlist_order DESC LIMIT 1")->fetch(PDO::FETCH_ASSOC);
-					?>
-					<div class="col-lg-3 panel-box-container">
-						<div class="panel panel-box" onClick="window.location='box/<?php echo $activeRooms["box_token"];?>'">
-							<div class="panel-body box-entry">
-								<p class="col-lg-12 room-name"><?php echo $activeRooms["room_name"];?></p>
-								<div class="col-lg-12 room-thumbnail">
-									<img src="http://img.youtube.com/vi/<?php echo $roomInfo["link"];?>/0.jpg" alt="">
-									<?php if($roomInfo["video_status"] == 1){ ?>
-									<p id="current-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["now_playing_home"].stripslashes($roomInfo["video_name"]);?></p>
-									<?php } else {?>
-									<p id="previous-play"><span class="glyphicon glyphicon-play"></span> <?php echo $lang["recently_played"].stripslashes($roomInfo["video_name"]);?></p>
-									<?php } ?>
-								</div>
-								<div class="room-pp">
-									<img src="profile-pictures/<?php echo $activeRooms["user_pp"];?>" alt="<?php echo $activeRooms["user_pseudo"];?>" style="width:inherit;">
-								</div>
-								<div class="room-details">
-									<p><span class="room-creator"><a href="user/<?php echo $activeRooms["user_pseudo"];?>"><?php echo $activeRooms["user_pseudo"];?></a></span></p>
-									<p class="room-type room-label">
-										<span class="label label-info"><?php echo $lang[$activeRooms["type"]];?></span>
-										<span class="label label-lang"><?php echo $lang["lang_".$activeRooms["room_lang"]];?></span>
-									</p>
-								</div>
-								<p class="col-lg-12 room-description"><?php echo $activeRooms["room_description"];?></p>
-								<div class="col-lg-12">
-									<a href="box/<?php echo $activeRooms["box_token"];?>" class="btn btn-primary btn-block"><?php echo $lang["room_join"];?></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<?php } ?>
+					<div class="container-fluid boxes-container"></div>
 				</div>
 				<div class="user-badges col-xs-12">
 					<legend><?php echo $lang["badges"];?></legend>
@@ -216,6 +182,12 @@ if(isset($_SESSION["token"])){
 		</style>
 		<script>
 			$(document).ready(function(){
+				$.when(getUserLang()).done(function(data){
+					window.language_tokens = JSON.parse(data);
+					window.lang = language_tokens.user_lang;
+					var target_user_token = /\/([\w]+)$/g.exec(top.location.pathname)[1];
+					fetchBoxes($(".boxes-container"), "public-"+target_user_token);
+				})
 				var $uploadCrop;
 
 				function readFile(input) {
