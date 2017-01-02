@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION["token"])){
 	//If the user is connected
-	$userDetails = $db->query("SELECT user_pseudo, user_mail, user_power, user_lang, user_pp, user_banner, user_bio, up_color, up_theme, up_lang FROM user u
+	$userDetails = $db->query("SELECT user_pseudo, user_mail, user_power, user_lang, user_pp, user_banner, user_bio, up_color, up_theme, up_lang, name_change_allowed, user_new FROM user u
 							JOIN user_preferences up
 								ON u.user_token = up.user_token
 							WHERE u.user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);

@@ -20,9 +20,9 @@ function checkDuplicate($token, $len){
 	$db = PDOFactory::getConnection();
 	$search = $db->query("SELECT * FROM user WHERE user_token='$token'");
 	if($search->rowCount() != 0){
-		$reference = generateReference($len);
+		generateReference($len);
 	} else {
-		return $reference;
+		return $token;
 	}
 }
 

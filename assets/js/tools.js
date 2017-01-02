@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	//Regex
 	jQuery.expr[':'].regex = function(elem, index, match) {
 		var matchParams = match[3].split(','),
 			validLabels = /^(data|css):/,
@@ -117,7 +118,7 @@ function renderBoxCard(data){
 		contents += "<img class='img-responsive' src='profile-pictures/"+boxes[i].admin_pp+"' alt='"+boxes[i].admin+"' style='width:inherit;'>";
 		contents += "</div>";
 		contents += "<p class='col-lg-10' style='margin-bottom: 5px;'><span class='room-creator'><a href='user/"+boxes[i].admin+"'>"+boxes[i].admin+"</a></span></p>";
-		contents += "<p class='col-lg-5'><span class='glyphicon glyphicon-user'></span> "+boxes[i].watchers+" "+language_tokens.ul_users+"</p>";
+		contents += "<p class='col-lg-5'><span class='glyphicon glyphicon-user'></span> "+boxes[i].watchers+"</p>";
 		contents += "<p class='col-lg-5'><span class='glyphicon glyphicon-time'></span> "+language_tokens.uptime+" : "+duration.get('hours')+":"+duration.get('minutes')+"</p>";
 
 		if(boxes[i].video_status == 1){

@@ -4,6 +4,7 @@
 $lang = array();
 /** HOME **/
 $lang["hello"] = "Bienvenue sur Berrybox!";
+$lang["settings_prompt"] = "Passez par votre profil pour renseigner votre adresse mail, changer votre pseudo et mettre une image de profil !";
 $lang["berrybox_description"] = "Partagez et regardez YouTube ensemble.";
 $lang["get_started"] = "Rejoindre l'expérience Berrybox";
 $lang["home_create_room"] = "Envie de partager ? C'est par ici !";
@@ -174,6 +175,7 @@ $lang["user_options"] = "Paramètres utilisateur";
 $lang["watcher_options"] = "Paramètres spectateur";
 $lang["creator_options"] = "Paramètres administrateur";
 $lang["home"] = "Retour à l'accueil";
+$lang["dispel"] = "J'ai compris.";
 
 /** PROFILE **/
 $lang["my_settings"] = "Paramètres";
@@ -186,6 +188,7 @@ $lang["profile_likes"] = "Votes";
 $lang["profile_likes_tip"] = "Consultez vos votes";
 $lang["display_name"] = "Nom affiché";
 $lang["display_name_tip"] = "Personnalisez votre nom affiché.";
+$lang["display_name_free"] = "Personnalisez votre nom. <strong>Vous ne pouvez le modifier qu'une seule fois.</strong>";
 $lang["display_mail"] = "Adresse mail";
 $lang["profile_picture"] = "Image de profil";
 $lang["profile_picture_formats"] = "3Mo max. Formats JPG et PNG supportés";
@@ -280,4 +283,16 @@ $lang["100_boxes"] = "Méga boxeur";
 $lang["100_boxes_description"] = "Créer une box devient seconde nature.";
 $lang["500_boxes"] = "Boxeur résident";
 $lang["500_boxes_description"] = "Vous VIVEZ ici désormais.";
+
+/** BERRYTIPS **/
+$lang["tip_1"] = "Vous pouvez rejoindre une box sans avoir de compte !";
+$lang["tip_2"] = "Lorsque vous votez sur une vidéo, vous pouvez la retrouver dans votre liste de votes pour un ajout rapide.";
+$lang["tip_3"] = "Il est possible de choisir le type d'alerte lorsque vous débloquez un badge.";
+$lang["tip_4"] = "En tant qu'administrateur, vous pouvez régler différents paramètres pour votre box comme l'autorisation d'envoyer des vidéos.";
+$lang["tip_5"] = "Une box inactive depuis plus d'une heure est automatiquement fermée.";
+$lang["tip_6"] = "Vous pouvez passer une vidéo en tapant '!skip' ou '!next' dans le chat.";
+$lang["tip_7"] = "Vous pouvez mélanger la liste des vidéos en tapant '!shuffle' dans le chat.";
+$lang["tip_8"] = "Envie de ne parler qu'à une personne ? Murmurez-lui !";
+$lang["tip_9"] = "Vous pouvez soumettre des vidéos, mais aussi des playlists entières.";
+$lang["tip_10"] = "Les utilisateurs que vous suivez sont rassemblé dans une page dédiée.";
 ?>

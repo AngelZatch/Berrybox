@@ -4,6 +4,7 @@
 $lang = array();
 /** HOME **/
 $lang["hello"] = "Welcome to Berrybox!";
+$lang["settings_prompt"] = "Hop on to your settings to fill in your mail address, change your username and get a sweet profile picture!";
 $lang["berrybox_description"] = "Share and watch youtube videos together.";
 $lang["get_started"] = "Join the community";
 $lang["home_create_room"] = "Want to open a new box? Click here!";
@@ -174,6 +175,7 @@ $lang["user_options"] = "User options";
 $lang["watcher_options"] = "Watcher options";
 $lang["creator_options"] = "Administrator options";
 $lang["home"] = "Back to home";
+$lang["dispel"] = "Don't show this again.";
 
 /** PROFILE **/
 $lang["my_settings"] = "Settings";
@@ -186,6 +188,7 @@ $lang["profile_likes"] = "Votes";
 $lang["profile_likes_tip"] = "View the videos you reacted to:";
 $lang["display_name"] = "Display name";
 $lang["display_name_tip"] = "Customize your display name.";
+$lang["display_name_free"] = "Customize your name. <strong>You can only change it once.</strong>";
 $lang["display_mail"] = "Mail address";
 $lang["profile_picture"] = "Profile picture";
 $lang["profile_picture_formats"] = "3Mo max. JPG & PNG formats supported";
@@ -279,4 +282,16 @@ $lang["100_boxes"] = "Mega boxer";
 $lang["100_boxes_description"] = "You're an expert at this.";
 $lang["500_boxes"] = "Resident boxer";
 $lang["500_boxes_description"] = "You LIVE here, now, don't you.";
+
+/** BERRYTIPS **/
+$lang["tip_1"] = "You can join a box without an account!";
+$lang["tip_2"] = "When you vote on a video, you can find it in your vote list for quick submission.";
+$lang["tip_3"] = "You can choose between two sizes for the badge unlock alert.";
+$lang["tip_4"] = "As an administrator, you can adjust the box parameters such as submission rights.";
+$lang["tip_5"] = "A box deemed inactive is automatically closed after one hour.";
+$lang["tip_6"] = "You can skip the currently playing video by typing '!skip' or '!next' in the chat.";
+$lang["tip_7"] = "You can shuffle the playlist with '!shuffle'.";
+$lang["tip_8"] = "Want to talk to only someone? Whisper away.";
+$lang["tip_9"] = "You can submit videos and playlists alike.";
+$lang["tip_10"] = "Your followed users are all gathered in their dedicated space.";
 ?>

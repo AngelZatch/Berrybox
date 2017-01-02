@@ -3,7 +3,7 @@ RewriteEngine On
 #Header set Access-Control-Allow-Origin "*"
 DirectoryIndex home.php
 RewriteRule ^box/([A-Za-z0-9-]+)/?$ box.php?id=$1 [NC,L] # Display room pages
-RewriteRule ^user/([A-Za-z0-9-]+)/?$ public_profile.php?id=$1 [NC,L] # Display user pages
+RewriteRule ^user/([\S-]+)/?$ public_profile.php?id=$1 [NC,L] # Display user pages
 # 1 argument
 RewriteRule ^home$ home.php [NC,L] # Display home
 RewriteRule ^create$ create_room.php [NC,L] # Room creation

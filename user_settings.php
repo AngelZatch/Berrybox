@@ -17,7 +17,11 @@ if(isset($_SESSION["token"])){
 }
 
 if(isset($_POST["submit"])){
-	$newPseudo = addslashes($_POST["username"]);
+	if(isset($_POST["username"])){
+		$newPseudo = addslashes($_POST["username"]);
+	} else {
+		$newPseudo = addslashes($_POST["username-free"]);
+	}
 	$newMail = $_POST["mail"];
 	$newBio = addslashes($_POST["bio"]);
 	$newLang = $_POST["default-lang"];
@@ -27,7 +31,8 @@ if(isset($_POST["submit"])){
 							SET user_pseudo = '$newPseudo',
 							user_mail = '$newMail',
 							user_bio = '$newBio',
-							user_lang = '$newLang'
+							user_lang = '$newLang',
+							name_change_allowed = 0
 							WHERE user_token = '$user_token'");
 	$editSettings = $db->query("UPDATE user_preferences
 									SET up_theme = '$newTheme',
@@ -69,8 +74,13 @@ if(isset($_POST["submit"])){
 				<div class="form-group">
 					<label for="username" class="col-sm-3 control-label"><?php echo $lang["display_name"];?></label>
 					<div class="col-sm-9 col-lg-4 has-feedback" id="username-form-group">
-						<input type="text" name="username" class="form-control" aria-describedby="username-tip" value="<?php echo stripslashes($userDetails["user_pseudo"]);?>">
+						<?php if($userDetails["name_change_allowed"] != 1){ ?>
+						<input type="text" name="username" id="username-input" class="form-control" aria-describedby="username-tip" value="<?php echo stripslashes($userDetails["user_pseudo"]);?>">
 						<span class="tip" id="username-tip"><?php echo $lang["display_name_tip"];?></span>
+						<?php } else { ?>
+						<input type="text" name="username-free" id="username-free-input" class="form-control" aria-describedby="username-tip" value="<?php echo stripslashes($userDetails["user_pseudo"]);?>">
+						<span class="tip" id="username-tip"><?php echo $lang["display_name_free"];?></span>
+						<?php } ?>
 					</div>
 				</div>
 				<div class="form-group">
@@ -133,7 +143,7 @@ if(isset($_POST["submit"])){
 						<span class="tip"><?php echo $lang["badge_alert_tip"];?></span>
 					</div>
 				</div>
-				<div class="col-lg-offset-2 col-lg-8">
+				<div class="col-lg-offset-2 col-lg-8 submit-space">
 					<input type="submit" class="btn btn-primary btn-block" name="submit" value="<?php echo $lang["save_changes"];?>">
 				</div>
 			</form>
@@ -164,6 +174,9 @@ if(isset($_POST["submit"])){
 			}
 			.form-group{
 				padding: 20px 0;
+			}
+			.submit-space{
+				margin-bottom: 20px;
 			}
 		</style>
 		<script>
@@ -208,7 +221,7 @@ if(isset($_POST["submit"])){
 				});
 
 				var patternUserReg = /^<?php echo $userDetails['user_pseudo'];?>$/i;
-				$(":regex(name,username)").on('keydown', function(e){
+				$("#username-input").on('keydown', function(e){
 					if(e.which === 32) return false;
 				}).on('keyup blur', function(e){
 					var modifiedUsername = $(this).val();
@@ -220,7 +233,7 @@ if(isset($_POST["submit"])){
 						$(":regex(name,submit)").removeClass("disabled");
 						$(":regex(name,submit)").removeAttr("disabled");
 					} else {
-						//console.log("Not match...");
+						console.log("Not match...");
 						applyErrorFeedback(elementId);
 						$(":regex(name,submit)").addClass("disabled");
 						$(":regex(name,submit)").attr("disabled", "disabled");

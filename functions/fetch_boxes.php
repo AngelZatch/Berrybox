@@ -4,7 +4,7 @@ require_once "db_connect.php";
 require_once "tools.php";
 $db = PDOFactory::getConnection();
 
-$user_token = ($_SESSION["token"])?$_SESSION["token"]:-1;
+$user_token = (isset($_SESSION["token"]))?$_SESSION["token"]:-1;
 
 $filter = $_GET["filter"];
 
@@ -22,7 +22,7 @@ if($filter == "featured"){ // Featured boxes
 							JOIN user u ON r.room_creator = u.user_token
 							JOIN room_types rt ON r.room_type = rt.id
 							WHERE r.room_creator='$user_token'";
-} else if (preg_match('/(public)-([\w]*)/i', $filter, $matches)){ // Public profile
+} else if (preg_match('/(public:)([\S]*)/i', $filter, $matches)){ // Public profile
 	$filter_token = $matches[2];
 	$user_token = solveUserFromName($db, $filter_token);
 	$query = "SELECT box_token, room_name, user_pseudo, user_pp, type, room_lang, creation_date FROM rooms r

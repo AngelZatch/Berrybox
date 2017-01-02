@@ -185,8 +185,8 @@ if(isset($_SESSION["token"])){
 				$.when(getUserLang()).done(function(data){
 					window.language_tokens = JSON.parse(data);
 					window.lang = language_tokens.user_lang;
-					var target_user_token = /\/([\w]+)$/g.exec(top.location.pathname)[1];
-					fetchBoxes($(".boxes-container"), "public-"+target_user_token);
+					var target_user_token = /\/(user)\/([\S-]+)$/g.exec(top.location.pathname)[2];
+					fetchBoxes($(".boxes-container"), "public:"+target_user_token);
 				})
 				var $uploadCrop;
 
@@ -228,7 +228,7 @@ if(isset($_SESSION["token"])){
 					});
 				});
 
-				var target_user_token = /\/([\w]+)$/g.exec(top.location.pathname)[1];
+				var target_user_token = /\/(user)\/([\S-]+)$/g.exec(top.location.pathname)[2];
 				/** Load badges **/
 				$.when(fetchBadges(target_user_token)).done(function(badges){
 					$(".badges-container").append(renderBadges(badges));
