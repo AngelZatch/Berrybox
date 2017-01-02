@@ -4,6 +4,7 @@
 $lang = array();
 /** HOME **/
 $lang["hello"] = "Welcome to Berrybox!";
+$lang["settings_prompt"] = "Hop on to your settings to fill in your mail address, change your username and get a sweet profile picture!";
 $lang["berrybox_description"] = "Share and watch youtube videos together.";
 $lang["get_started"] = "Join the community";
 $lang["home_create_room"] = "Want to open a new box? Click here!";
@@ -14,6 +15,7 @@ $lang["now_playing_home"] = "Now playing: ";
 $lang["room_join"] = "Join";
 $lang["room_create"] = "Create a new box";
 $lang["active_room"] = "Active boxes";
+$lang["active_room_tip"] = "Click on a box to join it live !";
 $lang["room_name"] = "Name";
 $lang["room_protection"] = "Protection level";
 $lang["protection_tip"] = "A private box will only be accessible via sharing its link. It won't display publicly.";
@@ -107,6 +109,7 @@ $lang["staff"] = "Staff";
 $lang["box_transfered"] = " is now the administrator of the box";
 $lang["current_administrator"] = "Administrated by ";
 $lang["submitter"] = "Submitted by ";
+$lang["uptime"] = "Uptime";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "Music";
@@ -165,13 +168,14 @@ $lang["room_delete"] = "Delete the box";
 $lang["status_open"] = "Active";
 $lang["status_closed"] = "Inactive";
 $lang["search"] = "Search";
-$lang["user_match"] = "user(s) matching your search";
+$lang["user_match"] = "User(s) matching your search";
 $lang["goto_user"] = "Go to user";
-$lang["box_match"] = "box(es) matching your search";
+$lang["box_match"] = "Box(es) matching your search";
 $lang["user_options"] = "User options";
 $lang["watcher_options"] = "Watcher options";
 $lang["creator_options"] = "Administrator options";
 $lang["home"] = "Back to home";
+$lang["dispel"] = "Don't show this again.";
 
 /** PROFILE **/
 $lang["my_settings"] = "Settings";
@@ -184,6 +188,7 @@ $lang["profile_likes"] = "Votes";
 $lang["profile_likes_tip"] = "View the videos you reacted to:";
 $lang["display_name"] = "Display name";
 $lang["display_name_tip"] = "Customize your display name.";
+$lang["display_name_free"] = "Customize your name. <strong>You can only change it once.</strong>";
 $lang["display_mail"] = "Mail address";
 $lang["profile_picture"] = "Profile picture";
 $lang["profile_picture_formats"] = "3Mo max. JPG & PNG formats supported";
@@ -205,7 +210,7 @@ $lang["sync_off"] = "Synchro OFF";
 $lang["badge_alert"] = "Badge alert size";
 $lang["badge_alert_small"] =  "Small";
 $lang["badge_alert_large"] = "Large";
-$lang["badge_alert_tip"] = "Displays an alert when you unlock a badge. Large is screenwise.";
+$lang["badge_alert_tip"] = "Displays an alert when you unlock a badge. Large is screenwide.";
 
 /** OTHER PROFILE **/
 $lang["no_bio"] = "This user doesn't have any bio";
@@ -277,4 +282,16 @@ $lang["100_boxes"] = "Mega boxer";
 $lang["100_boxes_description"] = "You're an expert at this.";
 $lang["500_boxes"] = "Resident boxer";
 $lang["500_boxes_description"] = "You LIVE here, now, don't you.";
+
+/** BERRYTIPS **/
+$lang["tip_1"] = "You can join a box without an account!";
+$lang["tip_2"] = "When you vote on a video, you can find it in your vote list for quick submission.";
+$lang["tip_3"] = "You can choose between two sizes for the badge unlock alert.";
+$lang["tip_4"] = "As an administrator, you can adjust the box parameters such as submission rights.";
+$lang["tip_5"] = "A box deemed inactive is automatically closed after one hour.";
+$lang["tip_6"] = "You can skip the currently playing video by typing '!skip' or '!next' in the chat.";
+$lang["tip_7"] = "You can shuffle the playlist with '!shuffle'.";
+$lang["tip_8"] = "Want to talk to only someone? Whisper away.";
+$lang["tip_9"] = "You can submit videos and playlists alike.";
+$lang["tip_10"] = "Your followed users are all gathered in their dedicated space.";
 ?>

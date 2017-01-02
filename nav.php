@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION["token"])){
 	//If the user is connected
-	$userDetails = $db->query("SELECT user_pseudo, user_mail, user_power, user_lang, user_pp, user_banner, user_bio, up_color, up_theme, up_lang FROM user u
+	$userDetails = $db->query("SELECT user_pseudo, user_mail, user_power, user_lang, user_pp, user_banner, user_bio, up_color, up_theme, up_lang, name_change_allowed, user_new FROM user u
 							JOIN user_preferences up
 								ON u.user_token = up.user_token
 							WHERE u.user_token='$_SESSION[token]'")->fetch(PDO::FETCH_ASSOC);
@@ -62,10 +62,10 @@ if(isset($_SESSION["token"])){
 						<a href="create" class="btn btn-primary btn-nav"><?php echo $lang["room_create"];?></a>
 					</li>
 					<li>
-						<form action="search" method="post" class="navbar-form" role="search">
+						<form action="search.php" method="get" class="navbar-form" role="search">
 							<div class="input-group">
 								<span class="input-group-addon addon-search"><span class="glyphicon glyphicon-search"></span></span>
-								<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
+								<input type="text" class="form-control search-input" name="q" placeholder="<?php echo $lang["search"];?>...">
 							</div>
 						</form>
 					</li>
@@ -88,10 +88,10 @@ if(isset($_SESSION["token"])){
 				<a href="home" class="navbar-brand">Berrybox</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
-				<form action="search" method="post" class="navbar-form navbar-left" role="search">
+				<form action="search.php" method="get" class="navbar-form navbar-left" role="search">
 					<div class="input-group">
 						<span class="input-group-addon addon-search"><span class="glyphicon glyphicon-search"></span></span>
-						<input type="text" class="form-control search-input" name="search-terms" placeholder="<?php echo $lang["search"];?>...">
+						<input type="text" class="form-control search-input" name="q" placeholder="<?php echo $lang["search"];?>...">
 					</div>
 				</form>
 				<?php if(isset($_SESSION["username"])){ ?>
