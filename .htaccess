@@ -3,22 +3,22 @@ RewriteEngine On
 #Header set Access-Control-Allow-Origin "*"
 DirectoryIndex home.php
 RewriteRule ^box/([A-Za-z0-9-]+)/?$ box.php?id=$1 [NC,L] # Display room pages
-RewriteRule ^user/([A-Za-z0-9-]+)/?$ public_profile.php?id=$1 [NC,L] # Display user pages
+RewriteRule ^user/([\S-]+)/?$ public_profile.php?id=$1 [NC,L] # Display user pages
 # 1 argument
 RewriteRule ^home$ home.php [NC,L] # Display home
 RewriteRule ^create$ create_room.php [NC,L] # Room creation
 RewriteRule ^portal$ portal.php [NC,L] # Portal
 RewriteRule ^signup$ signup.php [NC,L] # Signup
 RewriteRule ^follow$ follow.php [NC,L] # Follow page
-RewriteRule ^search$ search.php [NC,L] # Search results page
+RewriteRule ^search?q=(.*)$ search.php?q=$1 [QSA] # Search results page
 # sub-pages
 RewriteRule ^profile/settings$ user_settings.php [NC,L] # Profile
 RewriteRule ^profile/history$ user_boxes.php [NC,L] # Profile
 RewriteRule ^profile/security$ user_security.php [NC,L] # Profile
 RewriteRule ^my/likes$ likes.php [NC,L] # Profile
 
-#Erreurs
-ErrorDocument 404 /404.php
+#Errors
+ErrorDocument 404 /Berrybox/404.php
 
 #Maintenance ON
 #RewriteCond %{REQUEST_URI} !/maintenance.php$

@@ -4,6 +4,7 @@
 $lang = array();
 /** HOME **/
 $lang["hello"] = "ベリボックスへようこそ！";
+$lang["settings_prompt"] = "メールアドレスを記入し、ユーザー名を変更し、甘いプロフィールの画像を取得するためにユーザー設定に飛び乗る！";
 $lang["berrybox_description"] = "みんな一緒に、ベリボックスでビデオを見ましょう！";
 $lang["get_started"] = "始まります";
 $lang["home_create_room"] = "新しいボックスを始まりたい？はい、このボタンをクリックしてください。";
@@ -15,6 +16,7 @@ $lang["room_join"] = "入ります";
 $lang["room_create"] = "ボックスを始まる";
 $lang["active_room"] = "ライブ中のボックス";
 $lang["room_name"] = "ボックスの名前";
+$lang["active_room_tip"] = "ボックスクリックして、入ります！";
 $lang["room_protection"] = "防御レベル";
 $lang["protection_tip"] = "他のユーザーズはリンクだけでプライベートボックスに入りますことへできます。";
 $lang["level_private"] = "プライベート";
@@ -107,6 +109,7 @@ $lang["staff"] = "スタッフ";
 $lang["box_transfered"] = " はこのボックスの運営者になりました。";
 $lang["current_administrator"] = $lang["room_admin"]." : ";
 $lang["submitter"] = "提出者 : ";
+$lang["uptime"] = "稼働時間";
 
 /** ROOM TYPES **/
 $lang["rt_music"] = "音楽";
@@ -157,7 +160,7 @@ $lang["go_to_video"] = "ビデオへ";
 
 /** MENU **/
 $lang["menu"] = "メニュー";
-$lang["my_profile"] = "公開プロファイル";
+$lang["my_profile"] = "公開プロフィール";
 $lang["public_profile"] = "パラメータ";
 $lang["leave"] = "ボックスを出ます";
 $lang["warning_sync_admin"] = "注意！　シンクはあなたに基づいています。あなたはボックスを出るとき、シンクが停止します。";
@@ -165,17 +168,18 @@ $lang["room_delete"] = "ボックスを削除します";
 $lang["status_open"] = "ライブ中";
 $lang["status_closed"] = "低調";
 $lang["search"] = "探索";
-$lang["user_match"] = "ユーザーが基準を合わせる";
+$lang["user_match"] = "ユーザーの検索結果";
 $lang["goto_user"] = "ユーザーページへ";
-$lang["user_match"] = "ボックスが基準を合わせる";
+$lang["box_match"] = "ボックスの検索結果";
 $lang["user_options"] = "ユーザー設定";
 $lang["watcher_options"] = "ウォッチャー設定";
 $lang["creator_options"] = "運営者設定";
 $lang["home"] = "ホームページに戻る";
+$lang["dispel"] = "分かりました。";
 
 /** PROFILE **/
-$lang["my_settings"] = "プロファイル設定";
-$lang["profile_settings_tip"] = "ディスプレイ名、バイオとプロファイル画像をアップデートする。";
+$lang["my_settings"] = "プロフィール設定";
+$lang["profile_settings_tip"] = "ディスプレイ名、バイオとプロフィール画像をアップデートする。";
 $lang["profile_history"] = "歴史";
 $lang["profile_history_tip"] = "もし、最後の１時間で誰かがメッセージ送信しませんとかビデオが始まりません、ボックスが無効にされています。<strong>そして24時間以内に削除されます</strong>。";
 $lang["profile_security"] = "セキュリティ";
@@ -184,10 +188,11 @@ $lang["profile_likes"] = "投票";
 $lang["profile_likes_tip"] = "好きか怖いか発見しましたビデオを表示する。";
 $lang["display_name"] = "ディスプレイ名";
 $lang["display_name_tip"] = "ディスプレイ名をカスタマイズします";
+$lang["display_name_free"] = "ディスプレイ名をカスタマイズします。<strong>一度しか変更できませ。</strong>";
 $lang["display_mail"] = "メールアドレス";
-$lang["profile_picture"] = "プロファイル画像";
+$lang["profile_picture"] = "プロフィール画像";
 $lang["profile_picture_formats"] = "3MB上限. JPGとPNG形式は、サポートされています";
-$lang["banner_picture"] = "プロファイルバナーを変更する...";
+$lang["banner_picture"] = "プロフィールバナーを変更する...";
 $lang["bio"] = "バイオ";
 $lang["bio_tip"] = "あなたの事項商会〔400文字上限〕";
 $lang["default_lang"] = "デフォールト言語";
@@ -215,7 +220,7 @@ $lang["total_views"] = "視聴者数";
 $lang["total_followers"] = "フォロワー者数";
 $lang["opened_rooms"] = "ライブ中のボックス";
 $lang["no_opened_rooms"] = "空";
-$lang["change_banner"] = "プロファイルバナーを変える";
+$lang["change_banner"] = "プロフィールバナーを変える";
 
 /** SECURITY **/
 $lang["old_password"] = "現在のパスワード";
@@ -257,16 +262,16 @@ $lang["now_playing"] = "プレイ中: ";
 
 /** BADGES **/
 $lang["badges"] = "記章";
-$lang["how_to_display"] = "記章をアンロックした後は、記章をクリックして、チャットとプロファイルにディスプレイする！";
+$lang["how_to_display"] = "記章をアンロックした後は、記章をクリックして、チャットとプロフィールにディスプレイする！";
 $lang["locked"] = "ロックされた";
 $lang["unlocked"] = "記章をゲットしました！";
-$lang["unlocked_tip"] = "みんなに知らせましょう！プロファイルに表示する！";
+$lang["unlocked_tip"] = "みんなに知らせましょう！プロフィールに表示する！";
 $lang["50_videos"] = "提出の意志";
 $lang["50_videos_description"] = "これからだぞ！";
 $lang["200_videos"] = "毎日に提出";
 $lang["200_videos_description"] = "まだまだ！！";
 $lang["1000_videos"] = "一緒に提出";
-$lang["1000_videos_description"] = "もうそでに多くの？！";
+$lang["1000_videos_description"] = "もうすでに多くの？！";
 $lang["5000_videos"] = "情熱的な提出";
 $lang["5000_videos_description"] = "止まらない！！！！";
 $lang["1_box"] = "最初のボックス";
@@ -277,4 +282,16 @@ $lang["100_boxes"] = "スーパーボックサー";
 $lang["100_boxes_description"] = "あんた上手だね！";
 $lang["500_boxes"] = "超ボックサー";
 $lang["500_boxes_description"] = "ボックスじゃない、家かな？";
+
+/** BERRYTIPS **/
+$lang["tip_1"] = "あなたはアカウントなしで入力することができます！";
+$lang["tip_2"] = "あなたの投票リストであなたが投票したビデオを素早く提出できます。";
+$lang["tip_3"] = "記章アンロックの幅のサイズは2種類から選択できます。";
+$lang["tip_4"] = "運営者として、提出権などのボックス設定を調整することができます。";
+$lang["tip_5"] = "もし、最後の１時間で誰かがメッセージ送信しませんとかビデオが始まりません、ボックスが無効にされています。";
+$lang["tip_6"] = "現在再生中のビデオをスキップするには、ちゃっとで'!skip'または'!next'と入力します。";
+$lang["tip_7"] = "'!shuffle'でプレイリストをシャッフルできます。";
+$lang["tip_8"] = "誰かに話をしたいですか？ささやく。";
+$lang["tip_9"] = "ビデオとプレイスとを提出することができます。";
+$lang["tip_10"] = "あなたの追跡されたユーザーはすべて専用スペースに集まります。";
 ?>

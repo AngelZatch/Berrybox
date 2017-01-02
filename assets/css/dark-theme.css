@@ -12,116 +12,121 @@ body {
   background-color: #191206; }
 
 /* line 21, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.panel-box {
+  border: 1px solid #cf9930; }
+
+/* line 24, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .chat-options {
   color: #cf9930; }
 
-/* line 24, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 27, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .button-glyph:hover {
   color: #ddb86e; }
 
-/* line 27, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 30, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .song-played > div > p > a {
   color: #916b22; }
 
-/* line 30, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 33, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .moderation-option:hover {
   color: #a2a2a2; }
 
-/* line 33, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 36, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .moderation-option-enabled {
   color: #bbbbbb;
   cursor: pointer; }
 
-/* line 37, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 40, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .menu-popover {
   background-color: #434343; }
 
-/* line 40, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 43, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .menu-popover > .popover-footer {
   background-color: #5d5d5d; }
 
-/* line 43, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 46, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .user-card {
   background-color: #110c04; }
-  /* line 45, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  /* line 48, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
   .user-card .user-card-actions {
     background-color: #3e2e0e; }
 
-/* line 48, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 51, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .cube-selected {
   border: 2px solid #FFF; }
 
-/* line 51, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 54, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .mood-selectors {
   background-color: #101010; }
 
-/* line 54, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 57, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .btn-default {
   color: white; }
 
-/* line 57, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
-.user-entry, .box-entry {
+/* line 60, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.box-entry, .user-entry, .badge-box {
   background-color: #292929; }
-  /* line 59, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
-  .user-entry a, .box-entry a {
-    color: white; }
-  /* line 61, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
-  .user-entry:hover, .box-entry:hover {
+  /* line 62, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  .box-entry:hover, .user-entry:hover, .badge-box:hover {
     background-color: #434343;
     color: white; }
-  /* line 64, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
-  .user-entry:active, .box-entry:active {
+  /* line 65, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  .box-entry:active, .user-entry:active, .badge-box:active {
     background-color: #5d5d5d; }
 
-/* line 67, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 70, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+.user-entry a {
+  color: white; }
+
+/* line 73, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .playlist-entry:hover {
   background-color: #291f0a; }
 
 /** NAV **/
-/* line 72, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 77, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .dropdown-custom {
   border-color: #434343 !important;
   background-color: #292929; }
-  /* line 75, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  /* line 80, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
   .dropdown-custom .divider {
     background-color: #434343; }
 
-/* line 78, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 83, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .user-menu-name {
   color: white; }
 
 /** FOOTER **/
 /** MODAL **/
-/* line 86, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 91, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .modal-content {
   background-color: #292929; }
 
-/* line 89, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 94, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .room-info, #heading-chat, .panel-heading {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important; }
 
-/* line 92, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 97, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .under-video, #footer-chat {
   border-top: 1px solid rgba(255, 255, 255, 0.2); }
 
-/* line 95, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 100, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .top-box-menu {
   background-color: #292929; }
 
 @media screen and (min-width: 768px) {
-  /* line 98, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  /* line 103, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
   .top-box-section {
     border-right: 1px solid rgba(255, 255, 255, 0.2); } }
 
 /** LIKES **/
-/* line 103, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 108, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 li.vote-singleton {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
-  /* line 105, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+  /* line 110, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
   li.vote-singleton:first-child {
     border-top: 1px solid rgba(255, 255, 255, 0.2); }
 
-/* line 108, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
+/* line 113, C:/xampp/htdocs/Berrybox/assets/css/dark-theme.sass */
 .sm-type-play {
   color: white; }
 
